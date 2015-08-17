@@ -1,6 +1,59 @@
 Import lp2
 Import lp2.animatedsprite
 Import src.components
+Import consts
+
+Class EnemyAI Implements iDrawable
+
+    Field shot_time :Int = 2000
+    Field shot_timer:Int
+
+    Field parent:Enemy
+
+    Method New(parent:Enemy)
+        Self.parent = parent
+
+        Self.Create()
+    End
+
+    ''' implementing iDrawable
+    Method Create:Void()
+    End
+    
+    Method Update:Void()
+
+        Self.shot_timer += Time.Delta
+
+        If (Self.shot_timer >= Self.shot_time)
+            Self.shot_timer = 0
+
+            Self.parent.Shot()
+        EndIf
+
+    End
+    
+    Method Render:Void()
+    End
+
+End
+
+Class EnemyAAI Extends EnemyAI
+    Method New(parent:Enemy)
+        Super.New(parent)
+    End
+End
+
+Class EnemyBAI Extends EnemyAI
+    Method New(parent:Enemy)
+        Super.New(parent)
+    End
+End
+
+Class EnemyCAI Extends EnemyAI
+    Method New(parent:Enemy)
+        Super.New(parent)
+    End
+End
 
 
 Class Enemy Implements iDrawable, iOnCollide
@@ -10,6 +63,12 @@ Class Enemy Implements iDrawable, iOnCollide
 
     Field animated_sprite:AnimatedSprite
     Field visible:Bool = True
+
+    Field cannon:EnemyCannon
+
+    Field ai:EnemyAI
+
+    Field player_position:Rectangle
 
     Method New(position:Rectangle, type:String)
         Self.position = position
@@ -30,10 +89,30 @@ Class Enemy Implements iDrawable, iOnCollide
 
         ''' collisions
         CollisionEngine.Instance.AddStaticBody(Self)
+
+        ''' cannon
+        Self.cannon = New EnemyCannon
+
+        Self.InitAI()
     End
-    
+
+    Method InitAI:Void()
+        Select Self.type
+            Case ENEMY_A 
+                Self.ai = New EnemyAAI(Self)
+            Case ENEMY_B
+                Self.ai = New EnemyBAI(Self)
+            Case ENEMY_C
+                Self.ai = New EnemyCAI(Self)
+        End
+    End
+
     Method Update:Void()
+        If (Not(visible)) Then Return
+        
         Self.animated_sprite.Update()
+        Self.ai.Update()
+        Self.cannon.Update()
     End
     
     Method Render:Void()
@@ -43,6 +122,8 @@ Class Enemy Implements iDrawable, iOnCollide
         Translate Self.position.X, Self.position.Y
         Self.animated_sprite.Render()
         PopMatrix()
+
+        Self.cannon.Render()
     End
 
     ''' iOnCollide
@@ -53,12 +134,19 @@ Class Enemy Implements iDrawable, iOnCollide
     Method OnCollide:Void(name:String)
         If (name = "player" Or name = "player_bullet")
             Self.visible = False
+            Self.cannon.Destroy()
             CollisionEngine.Instance.Destroy(Self)
         EndIf
     End
 
     Method GetName:String()
         Return "enemy"
+    End
+
+    Method Shot:Void()
+        Self.cannon.Shot(
+            Self.position.X, Self.position.Y,
+            Self.player_position.CenterX, Self.player_position.CenterY)
     End
 
 End

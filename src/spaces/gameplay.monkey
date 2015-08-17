@@ -47,9 +47,15 @@ Class GamePlaySpace Extends Space
     Method AddElements:Void(objects:Stack<TileObject>)
         For Local o:=Eachin objects
             If (o.gid = "200")  ''' powerup
+
                 Self.AddChild(New PowerUp(o))
+
             ElseIf (o.gid = ENEMY_A Or o.gid = ENEMY_B Or o.gid = ENEMY_C)  ''' enemies
-                Self.AddChild(New Enemy(o, o.gid))
+
+                Local enemy:Enemy = New Enemy(o, o.gid)
+                enemy.player_position = Self.player.position
+
+                Self.AddChild(enemy)
             EndIf
         Next
     End

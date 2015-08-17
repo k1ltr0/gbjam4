@@ -25,7 +25,7 @@ Class TileMapCollider Extends CollisionEngine
             Local index:= (tx) + tile_layer.width * ty
             Local tile:= 0
 
-            If (index < Self.tile_layer.data.Length)
+            If (index < Self.tile_layer.data.Length-1)
                 tile = Self.tile_layer.data[index]
             EndIf
 
