@@ -29,10 +29,13 @@ Class CollisionEngine Implements iDrawable
     
     Method Update:Void()
 
+        Local collision_count:Int = 0
+
         ''' test collisions
         For Local o:=Eachin Self.objects
             For Local other:=Eachin Self.objects
                 If (o <> other)
+                    collision_count += 1
                     If (Collision.AABBIntersects(o.GetBox(), other.GetBox()))
                         o.OnCollide(other.GetName())
                     EndIf
@@ -42,12 +45,15 @@ Class CollisionEngine Implements iDrawable
 
         For Local o:=Eachin Self.objects
             For Local other:=Eachin Self.static_objects
+                collision_count += 1
                 If (Collision.AABBIntersects(o.GetBox(), other.GetBox()))
                     o.OnCollide(other.GetName())
                     other.OnCollide(o.GetName())
                 End
             Next
         Next
+
+        Print collision_count
     End
     
     Method Render:Void()

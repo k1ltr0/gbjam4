@@ -18,12 +18,16 @@ Class Bullet Extends lpImage Implements iOnCollide
     End
     Method OnCollide:Void(name:String)
         If name = "wall" Or name = "enemy"
-            CollisionEngine.Instance.Destroy(Self)
-            Self.visible = False
+            Self.Destroy()
         End
     End
     Method GetName:String()
         Return "player_bullet"
+    End
+
+    Method Destroy:Void()
+        CollisionEngine.Instance.Destroy(Self)
+        Self.visible = False
     End
 End
 
@@ -58,6 +62,7 @@ Class SpaceShooterCannon Implements iDrawable
             b.current_live_time += Time.DeltaSecs
 
             If (b.max_live_time * (1 + Self.level) <= b.current_live_time)
+                b.Destroy()
                 Self.discard_list.AddLast(b)
             EndIf
             
