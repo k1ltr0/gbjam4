@@ -1,12 +1,29 @@
 Import lp2
+Import collision_engine
 
-Class Bullet Extends lpImage
+Class Bullet Extends lpImage Implements iOnCollide
 
     Field max_live_time:Float = 0.2
     Field current_live_time:Float = 0
+    Field visible:Bool = True
 
     Method New(img:Image, position:Vec2)
         Super.New(img, position)
+
+        CollisionEngine.Instance.AddBody(Self)
+    End
+
+    Method GetBox:Rectangle()
+        Return Self.Position
+    End
+    Method OnCollide:Void(name:String)
+        If name = "wall" Or name = "enemy"
+            CollisionEngine.Instance.Destroy(Self)
+            Self.visible = False
+        End
+    End
+    Method GetName:String()
+        Return "player_bullet"
     End
 End
 
@@ -66,7 +83,9 @@ Class SpaceShooterCannon Implements iDrawable
 
     Method Render:Void()
         For Local b:=Eachin Self.bullets
-            b.Render()
+            If (b.visible)
+                b.Render()
+            EndIf
         Next
     End
 

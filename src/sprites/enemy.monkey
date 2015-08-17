@@ -51,7 +51,7 @@ Class Enemy Implements iDrawable, iOnCollide
     End
 
     Method OnCollide:Void(name:String)
-        If (name = "player")
+        If (name = "player" Or name = "player_bullet")
             Self.visible = False
             CollisionEngine.Instance.Destroy(Self)
         EndIf
