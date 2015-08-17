@@ -24,4 +24,12 @@ Class World Implements iDrawable
     Method Render:Void()
         Self.tile_map.Render()
     End
+
+    Method RemoveForeground:MidLayer()
+        Return Self.tile_map.RemoveLayer("foreground")
+    End
+
+    Method RemoveElements:ObjectGroup()
+        Return ObjectGroup(Self.tile_map.RemoveLayer("elements"))
+    End
 End

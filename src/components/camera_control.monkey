@@ -4,7 +4,7 @@ Import lp2
 Class CameraControl Implements iDrawable
 
     Field target:Rectangle
-    Field x_speed:Float = 50
+    Field x_speed:Float = 25
     Field y_speed:Float = 0
     Field player:Rectangle
 

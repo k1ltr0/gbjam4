@@ -22,7 +22,6 @@ Class GBNova Extends Game
 
 End
 
-
 Function Main:Int()
     new GBNova()
     Return 

@@ -3,6 +3,9 @@
  <tileset firstgid="1" name="tiles" tilewidth="8" tileheight="8">
   <image source="tiles.png" width="512" height="512"/>
  </tileset>
+ <tileset firstgid="4097" name="enemies" tilewidth="9" tileheight="9">
+  <image source="enemies.png" width="9" height="27"/>
+ </tileset>
  <layer name="background" width="100" height="36">
   <data>
    <tile gid="0"/>
@@ -7215,6 +7218,11 @@
   <object gid="200" x="183" y="83"/>
   <object gid="200" x="262" y="77"/>
   <object gid="200" x="309" y="34"/>
+  <object gid="329" x="451" y="134"/>
+  <object gid="4097" x="369" y="40"/>
+  <object gid="4098" x="411" y="72"/>
+  <object gid="4099" x="436" y="105"/>
+  <object gid="4097" x="465" y="52"/>
  </objectgroup>
  <layer name="foreground" width="100" height="36">
   <data>

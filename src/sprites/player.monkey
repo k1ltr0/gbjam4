@@ -2,7 +2,7 @@ Import lp2
 Import lp2.animatedsprite
 Import src.components
 
-Class Player Implements iDrawable
+Class Player Implements iDrawable, iOnCollide
 
     Field sprite:AnimatedSprite
     Field position:Rectangle
@@ -16,7 +16,7 @@ Class Player Implements iDrawable
 
     ''' implementing iDrawable
     Method Create:Void()
-        Self.position = New Rectangle(0,0,23,8)
+        Self.position = New Rectangle(30,60,23,8)
 
         ''' ship animation
         Self.sprite = new AnimatedSprite("ship.png", new Vec2(0,0), 23, 8, 2)
@@ -36,6 +36,8 @@ Class Player Implements iDrawable
         Self.cannon.AddSprite("bullet_level_1.png")  '' level 1
         Self.cannon.AddSprite("bullet_level_2.png")  '' level 2
         Self.cannon.AddSprite("bullet_level_3.png")  '' level 3
+
+        CollisionEngine.Instance.AddBody(Self)
     End
     
     Method Update:Void()
@@ -57,5 +59,22 @@ Class Player Implements iDrawable
 
         Self.cannon.Render()
     End
+
+
+    ''' iOnCollide
+    Method GetBox:Rectangle()
+        Return Self.position
+    End
+
+    Method OnCollide:Void(name:String)
+        If (name = "powerup")
+            Self.cannon.LevelUp()
+        EndIf
+    End
+
+    Method GetName:String()
+        Return "player"
+    End
+
 
 End

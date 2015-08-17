@@ -21,7 +21,7 @@ Class SpaceShooterCannon Implements iDrawable
 
     Field level:Int = 0
 
-    Field speed:Int = 300
+    Field speed:Int = 250
 
     Method New(target:Point)
         Self.target = target

@@ -67,6 +67,76 @@
                  "width":0,
                  "x":309,
                  "y":34
+                }, 
+                {
+                 "gid":329,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":451,
+                 "y":134
+                }, 
+                {
+                 "gid":4097,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":369,
+                 "y":40
+                }, 
+                {
+                 "gid":4098,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":411,
+                 "y":72
+                }, 
+                {
+                 "gid":4099,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":436,
+                 "y":105
+                }, 
+                {
+                 "gid":4097,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":465,
+                 "y":52
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -107,6 +177,21 @@
          "spacing":0,
          "tileheight":8,
          "tilewidth":8
+        }, 
+        {
+         "firstgid":4097,
+         "image":"enemies.png",
+         "imageheight":27,
+         "imagewidth":9,
+         "margin":0,
+         "name":"enemies",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tileheight":9,
+         "tilewidth":9
         }],
  "tilewidth":8,
  "version":1,
