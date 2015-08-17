@@ -10,8 +10,6 @@ Class Player Implements iDrawable
     Field control:SpaceShooterControl
     Field cannon:SpaceShooterCannon
 
-    Field screen_clamp:ClampToScreen
-
     Method New()
         Self.Create()
     End
@@ -38,17 +36,12 @@ Class Player Implements iDrawable
         Self.cannon.AddSprite("bullet_level_1.png")  '' level 1
         Self.cannon.AddSprite("bullet_level_2.png")  '' level 2
         Self.cannon.AddSprite("bullet_level_3.png")  '' level 3
-
-        ''' clamp to camera
-        Self.screen_clamp = New ClampToScreen(Self.position)
-        Self.screen_clamp.camera_viewport = Game.Instance().GetCurrentCamera().ViewPort
     End
     
     Method Update:Void()
         Self.sprite.Update()
         Self.control.Update()
         Self.cannon.Update()
-        Self.screen_clamp.Update()
 
         If (Self.control.Shot())
             Self.cannon.Shot()

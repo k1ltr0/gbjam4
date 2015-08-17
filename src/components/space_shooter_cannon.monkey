@@ -21,6 +21,8 @@ Class SpaceShooterCannon Implements iDrawable
 
     Field level:Int = 0
 
+    Field speed:Int = 300
+
     Method New(target:Point)
         Self.target = target
         Self.Create()
@@ -35,7 +37,7 @@ Class SpaceShooterCannon Implements iDrawable
 
     Method Update:Void()
         For Local b:=Eachin Self.bullets
-            b.Position.X += 200 * Time.DeltaSecs
+            b.Position.X += Self.speed * Time.DeltaSecs
             b.current_live_time += Time.DeltaSecs
 
             If (b.max_live_time * (1 + Self.level) <= b.current_live_time)

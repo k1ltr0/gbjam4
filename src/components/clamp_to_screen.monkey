@@ -1,7 +1,7 @@
 Import lp2
 
 
-Class ClampToScreen
+Class ClampToScreen Implements iDrawable
 
     Field target:Rectangle
     Field camera_viewport:Rectangle
@@ -27,6 +27,14 @@ Class ClampToScreen
             Self.target.Y Self.camera_viewport.Y + Self.camera_viewport.Height - Self.target.Height
         EndIf
         
+    End
+
+    Method Create:Void()
+        ''' nothing here
+    End
+
+    Method Render:Void()
+        ''' nothing here
     End
 
 End
