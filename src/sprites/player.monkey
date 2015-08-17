@@ -10,6 +10,8 @@ Class Player Implements iDrawable, iOnCollide
     Field control:SpaceShooterControl
     Field cannon:SpaceShooterCannon
 
+    Field visible:Bool = True
+
     Method New()
         Self.Create()
     End
@@ -52,6 +54,9 @@ Class Player Implements iDrawable, iOnCollide
     End
     
     Method Render:Void()
+
+        If (Not(Self.visible)) Then Return
+
         PushMatrix()
         Translate Self.position.X, Self.position.Y
         Self.sprite.Render()
@@ -70,8 +75,20 @@ Class Player Implements iDrawable, iOnCollide
         If (name = "powerup")
             Self.cannon.LevelUp()
         ElseIf (name = "enemy")
-            Self.cannon.LevelDown()
+
+            If (Self.cannon.level = 0)
+                Self.Die()
+            Else
+                Self.cannon.LevelDown()
+            EndIf
+        ElseIf (name = "wall")
+            Self.Die()
         End
+    End
+
+    Method Die:Void()
+        CollisionEngine.Instance.Destroy(Self)
+        Self.visible = False
     End
 
     Method GetName:String()

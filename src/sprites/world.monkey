@@ -32,4 +32,9 @@ Class World Implements iDrawable
     Method RemoveElements:ObjectGroup()
         Return ObjectGroup(Self.tile_map.RemoveLayer("elements"))
     End
+
+    Method GetCollisionsLayer:TileLayer()
+        Return TileLayer(Self.tile_map.GetLayer("collisions"))
+    End
+
 End

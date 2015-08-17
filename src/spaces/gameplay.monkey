@@ -12,6 +12,7 @@ Class GamePlaySpace Extends Space
     Field screen_clamp:ClampToScreen
     Field camera_control:CameraControl
     Field collision_engine:CollisionEngine
+    Field tile_map_collider:TileMapCollider
 
     Method Create:Void()
         Self.world = New World()
@@ -38,6 +39,9 @@ Class GamePlaySpace Extends Space
         ''' collision engine
         Self.collision_engine = CollisionEngine.Instance()
         Self.AddChild(Self.collision_engine)
+
+        Self.tile_map_collider = New TileMapCollider(Self.world.GetCollisionsLayer())
+        Self.AddChild(Self.tile_map_collider)
     End
 
     Method AddElements:Void(objects:Stack<TileObject>)

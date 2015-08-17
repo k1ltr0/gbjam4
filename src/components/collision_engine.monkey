@@ -9,22 +9,22 @@ End
 
 Class CollisionEngine Implements iDrawable
 
-Private 
     Global instance:CollisionEngine
 
     Field objects:Stack<iOnCollide>
     Field static_objects:Stack<iOnCollide>
 
+    Field delegates:Stack<CollisionEngine>
+
     Method New()
         Self.Create()
     End
-
-Public
 
     ''' implementing iDrawable
     Method Create:Void()
         Self.objects = New Stack<iOnCollide>
         Self.static_objects = New Stack<iOnCollide>
+        Self.delegates = New Stack<CollisionEngine>
     End
     
     Method Update:Void()
@@ -48,7 +48,6 @@ Public
                 End
             Next
         Next
-
     End
     
     Method Render:Void()
@@ -65,6 +64,13 @@ Public
     Method Destroy:Void(element:iOnCollide)
         Self.objects.RemoveEach(element)
         Self.static_objects.RemoveEach(element)
+    End
+
+    Method RegisterDelegate:Void(collision_engine:CollisionEngine)
+        collision_engine.objects = Self.objects
+        collision_engine.static_objects = Self.static_objects
+
+        Self.delegates.Push(collision_engine)
     End
 
     Function Instance:CollisionEngine()
