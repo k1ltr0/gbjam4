@@ -24,7 +24,7 @@ Class PowerUp Implements iDrawable, iOnCollide
         Self.sprite = New lpImage("powerup.png", New Vec2(0,0))
 
         '' add to collision engine
-        CollisionEngine.Instance.AddBody(Self)
+        CollisionEngine.Instance.AddStaticBody(Self)
     End
     
     Method Update:Void()

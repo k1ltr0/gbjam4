@@ -69,7 +69,9 @@ Class Player Implements iDrawable, iOnCollide
     Method OnCollide:Void(name:String)
         If (name = "powerup")
             Self.cannon.LevelUp()
-        EndIf
+        ElseIf (name = "enemy")
+            Self.cannon.LevelDown()
+        End
     End
 
     Method GetName:String()

@@ -13,6 +13,7 @@ Private
     Global instance:CollisionEngine
 
     Field objects:Stack<iOnCollide>
+    Field static_objects:Stack<iOnCollide>
 
     Method New()
         Self.Create()
@@ -23,6 +24,7 @@ Public
     ''' implementing iDrawable
     Method Create:Void()
         Self.objects = New Stack<iOnCollide>
+        Self.static_objects = New Stack<iOnCollide>
     End
     
     Method Update:Void()
@@ -38,6 +40,15 @@ Public
             Next
         Next
 
+        For Local o:=Eachin Self.objects
+            For Local other:=Eachin Self.static_objects
+                If (Collision.AABBIntersects(o.GetBox(), other.GetBox()))
+                    o.OnCollide(other.GetName())
+                    other.OnCollide(o.GetName())
+                End
+            Next
+        Next
+
     End
     
     Method Render:Void()
@@ -47,8 +58,13 @@ Public
         Self.objects.Push(body)
     End
 
+    Method AddStaticBody(body:iOnCollide)
+        Self.static_objects.Push(body)
+    End
+
     Method Destroy:Void(element:iOnCollide)
         Self.objects.RemoveEach(element)
+        Self.static_objects.RemoveEach(element)
     End
 
     Function Instance:CollisionEngine()

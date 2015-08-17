@@ -1,6 +1,7 @@
 Import lp2
 Import src.sprites
 Import src.components
+Import consts
 
 
 Class GamePlaySpace Extends Space
@@ -43,8 +44,9 @@ Class GamePlaySpace Extends Space
         For Local o:=Eachin objects
             If (o.gid = "200")  ''' powerup
                 Self.AddChild(New PowerUp(o))
+            ElseIf (o.gid = ENEMY_A Or o.gid = ENEMY_B Or o.gid = ENEMY_C)  ''' enemies
+                Self.AddChild(New Enemy(o, o.gid))
             EndIf
-            
         Next
     End
 
