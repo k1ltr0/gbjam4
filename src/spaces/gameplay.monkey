@@ -56,6 +56,11 @@ Class GamePlaySpace Extends Space
                 enemy.player_position = Self.player.position
 
                 Self.AddChild(enemy)
+            ElseIf (o.gid = ENEMY_TURRET Or o.gid = ENEMY_TURRET_INVERTED)
+                Local enemy:EnemyTurret = New EnemyTurret(o, o.gid)
+                enemy.player_position = Self.player.position
+
+                Self.AddChild(enemy)
             EndIf
         Next
     End

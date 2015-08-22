@@ -13,3 +13,5 @@ Global COLOR_4:Int[] = [232, 227, 169]
 Const ENEMY_A:String = "4097"
 Const ENEMY_B:String = "4098"
 Const ENEMY_C:String = "4099"
+Const ENEMY_TURRET:String = "4100"
+Const ENEMY_TURRET_INVERTED:String = "4101"

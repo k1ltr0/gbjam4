@@ -1,0 +1,27 @@
+{
+  "name": "gbjam4",
+  "version": "1.0.0",
+  "description": "gbjam 4 entry",
+  "main": "index.js",
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-express": "^1.4.1",
+    "grunt-shell": "^1.1.2",
+    "load-grunt-tasks": "^3.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/k1ltr0/gbjam4.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/k1ltr0/gbjam4/issues"
+  },
+  "homepage": "https://github.com/k1ltr0/gbjam4"
+}

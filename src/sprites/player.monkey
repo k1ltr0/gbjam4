@@ -1,11 +1,13 @@
 Import lp2
 Import lp2.animatedsprite
 Import src.components
+Import main
 
 Class Player Implements iDrawable, iOnCollide
 
     Field sprite:AnimatedSprite
     Field position:Rectangle
+    Field box:Rectangle
 
     Field control:SpaceShooterControl
     Field cannon:SpaceShooterCannon
@@ -19,6 +21,7 @@ Class Player Implements iDrawable, iOnCollide
     ''' implementing iDrawable
     Method Create:Void()
         Self.position = New Rectangle(30,60,23,8)
+        Self.box = New Rectangle(0, 0, 10, 4)
 
         ''' ship animation
         Self.sprite = new AnimatedSprite("ship.png", new Vec2(0,0), 23, 8, 2)
@@ -51,6 +54,9 @@ Class Player Implements iDrawable, iOnCollide
             Self.cannon.Shot()
         EndIf
 
+        Self.box.X = Self.position.X + 10
+        Self.box.Y = Self.position.Y + 2
+
     End
     
     Method Render:Void()
@@ -68,7 +74,7 @@ Class Player Implements iDrawable, iOnCollide
 
     ''' iOnCollide
     Method GetBox:Rectangle()
-        Return Self.position
+        Return Self.box
     End
 
     Method OnCollide:Void(name:String)
@@ -80,6 +86,7 @@ Class Player Implements iDrawable, iOnCollide
                 Self.Die()
             Else
                 Self.cannon.LevelDown()
+                Time.Freeze(200)
             EndIf
         ElseIf (name = "wall")
             Self.Die()
@@ -89,6 +96,8 @@ Class Player Implements iDrawable, iOnCollide
     Method Die:Void()
         CollisionEngine.Instance.Destroy(Self)
         Self.visible = False
+
+        Game.Instance.SetScene(GAME_SCENE)
     End
 
     Method GetName:String()

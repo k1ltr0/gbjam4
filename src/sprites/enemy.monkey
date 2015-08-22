@@ -72,6 +72,7 @@ Class Enemy Implements iDrawable, iOnCollide
 
     Method New(position:Rectangle, type:String)
         Self.position = position
+        Self.position.Y -= position.Height
         Self.type = type
         Self.Create()
     End
