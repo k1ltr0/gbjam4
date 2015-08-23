@@ -15,9 +15,20 @@ Class GamePlaySpace Extends Space
     Field tile_map_collider:TileMapCollider
 
     Method Create:Void()
+
+        ''' elements
         Self.world = New World()
         Self.AddChild(Self.world)
 
+
+        ''' collision engine
+        Self.collision_engine = CollisionEngine.Instance()
+        Self.AddChild(Self.collision_engine)
+
+        Self.tile_map_collider = New TileMapCollider(Self.world.GetCollisionsLayer())
+        Self.AddChild(Self.tile_map_collider)
+
+        ''' player
         Self.player = new Player()
         Self.AddChild(Self.player)
 
@@ -35,13 +46,6 @@ Class GamePlaySpace Extends Space
         Self.camera_control = New CameraControl(Game.Instance.GetCurrentCamera.ViewPort)
         Self.camera_control.player = Self.player.position
         Self.AddChild(Self.camera_control)
-
-        ''' collision engine
-        Self.collision_engine = CollisionEngine.Instance()
-        Self.AddChild(Self.collision_engine)
-
-        Self.tile_map_collider = New TileMapCollider(Self.world.GetCollisionsLayer())
-        Self.AddChild(Self.tile_map_collider)
     End
 
     Method AddElements:Void(objects:Stack<TileObject>)

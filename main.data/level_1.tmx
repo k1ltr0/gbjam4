@@ -3,8 +3,8 @@
  <tileset firstgid="1" name="tiles" tilewidth="8" tileheight="8" tilecount="4096">
   <image source="tiles.png" width="512" height="512"/>
  </tileset>
- <tileset firstgid="4097" name="enemies" tilewidth="9" tileheight="9" tilecount="4">
-  <image source="enemies.png" width="36" height="9"/>
+ <tileset firstgid="4097" name="enemies" tilewidth="9" tileheight="9" tilecount="5">
+  <image source="enemies.png" width="45" height="9"/>
  </tileset>
  <layer name="background" width="157" height="36">
   <data>
@@ -16976,8 +16976,6 @@
  </layer>
  <objectgroup name="elements" opacity="0.95">
   <object id="1" gid="200" x="539" y="283" width="8" height="8"/>
-  <object id="2" gid="4097" x="831" y="76" width="9" height="9"/>
-  <object id="3" gid="4100" x="231.667" y="135.667" width="9" height="9"/>
  </objectgroup>
  <layer name="foreground" width="157" height="36">
   <data>

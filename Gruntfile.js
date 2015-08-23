@@ -11,7 +11,7 @@ module.exports = function(grunt)
         watch: {
             options : { livereload : true },
             monkey: {
-                files: ['**/*.monkey'],
+                files: ['**/*.monkey', 'main.data/*.*'],
                 tasks: ['shell']
             }
         },
