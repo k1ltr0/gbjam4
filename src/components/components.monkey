@@ -5,3 +5,4 @@ Import camera_control
 Import collision_engine
 Import tile_map_collider
 Import enemy_cannon
+Import activeoncamera

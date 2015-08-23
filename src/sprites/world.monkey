@@ -34,7 +34,11 @@ Class World Implements iDrawable
     End
 
     Method GetCollisionsLayer:TileLayer()
+        #If CONFIG="debug"
         Return TileLayer(Self.tile_map.GetLayer("collisions"))
+        #Else
+        Return TileLayer(Self.tile_map.RemoveLayer("collisions"))
+        #End
     End
 
 End

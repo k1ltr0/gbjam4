@@ -3,3 +3,4 @@ Import world
 Import powerup
 Import enemy
 Import enemy_turret
+Import enemywave

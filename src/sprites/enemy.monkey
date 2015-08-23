@@ -3,7 +3,7 @@ Import lp2.animatedsprite
 Import src.components
 Import consts
 
-Class EnemyAI Implements iDrawable
+Class SimpleShotAI Implements iDrawable
 
     Field shot_time :Int = 2000
     Field shot_timer:Int
@@ -37,24 +37,6 @@ Class EnemyAI Implements iDrawable
 
 End
 
-Class EnemyAAI Extends EnemyAI
-    Method New(parent:Enemy)
-        Super.New(parent)
-    End
-End
-
-Class EnemyBAI Extends EnemyAI
-    Method New(parent:Enemy)
-        Super.New(parent)
-    End
-End
-
-Class EnemyCAI Extends EnemyAI
-    Method New(parent:Enemy)
-        Super.New(parent)
-    End
-End
-
 
 Class Enemy Implements iDrawable, iOnCollide
 
@@ -66,7 +48,7 @@ Class Enemy Implements iDrawable, iOnCollide
 
     Field cannon:EnemyCannon
 
-    Field ai:EnemyAI
+    Field ai:SimpleShotAI
 
     Field player_position:Rectangle
 
@@ -81,10 +63,13 @@ Class Enemy Implements iDrawable, iOnCollide
     Method Create:Void()
 
         ''' sprite
-        Self.animated_sprite = New AnimatedSprite("enemies.png", new Vec2(0,0), 9, 9, 3)
+        Self.animated_sprite = New AnimatedSprite("enemies.png", new Vec2(0,0), 9, 9, 6)
         Self.animated_sprite.AddSequence("4097", [0])
         Self.animated_sprite.AddSequence("4098", [1])
         Self.animated_sprite.AddSequence("4099", [2])
+        Self.animated_sprite.AddSequence("4100", [3])
+        Self.animated_sprite.AddSequence("4101", [4])
+        Self.animated_sprite.AddSequence("play", [5])
 
         Self.animated_sprite.PlaySequence(Self.type)
 
@@ -94,18 +79,7 @@ Class Enemy Implements iDrawable, iOnCollide
         ''' cannon
         Self.cannon = New EnemyCannon
 
-        Self.InitAI()
-    End
-
-    Method InitAI:Void()
-        Select Self.type
-            Case ENEMY_A 
-                Self.ai = New EnemyAAI(Self)
-            Case ENEMY_B
-                Self.ai = New EnemyBAI(Self)
-            Case ENEMY_C
-                Self.ai = New EnemyCAI(Self)
-        End
+        Self.ai = New SimpleShotAI(Self)
     End
 
     Method Update:Void()

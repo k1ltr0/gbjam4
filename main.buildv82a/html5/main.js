@@ -19,7 +19,7 @@ CFG_TEXT_FILES="*.txt|*.xml|*.json;|*.fnt";
 //${CONFIG_END}
 
 //${METADATA_BEGIN}
-var META_DATA="[mojo_font.png];type=image/png;width=864;height=13;\n[bullet_level_0.png];type=image/png;width=2;height=2;\n[bullet_level_1.png];type=image/png;width=5;height=3;\n[bullet_level_2.png];type=image/png;width=10;height=3;\n[bullet_level_3.png];type=image/png;width=10;height=6;\n[collisions.png];type=image/png;width=24;height=48;\n[enemies.png];type=image/png;width=45;height=9;\n[powerup.png];type=image/png;width=4;height=6;\n[ship.png];type=image/png;width=46;height=8;\n[tiles.png];type=image/png;width=512;height=512;\n";
+var META_DATA="[mojo_font.png];type=image/png;width=864;height=13;\n[bullet_level_0.png];type=image/png;width=2;height=2;\n[bullet_level_1.png];type=image/png;width=5;height=3;\n[bullet_level_2.png];type=image/png;width=10;height=3;\n[bullet_level_3.png];type=image/png;width=10;height=6;\n[collisions.png];type=image/png;width=24;height=48;\n[enemies.png];type=image/png;width=55;height=9;\n[powerup.png];type=image/png;width=4;height=6;\n[ship.png];type=image/png;width=46;height=8;\n[tiles.png];type=image/png;width=512;height=512;\n";
 //${METADATA_END}
 
 //${TRANSCODE_BEGIN}
@@ -7338,30 +7338,37 @@ c_GamePlaySpace.prototype.p_AddElements=function(t_objects){
 	while(t_.p_HasNext()){
 		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<52>";
 		var t_o=t_.p_NextObject();
-		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<53>";
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<54>";
+		var t_enemy=null;
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<56>";
 		if(String(dbg_object(t_o).m_gid)=="200"){
-			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<55>";
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<57>";
 			this.p_AddChild2(c_PowerUp.m_new.call(new c_PowerUp,(t_o)));
 		}else{
-			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<57>";
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<58>";
 			if(String(dbg_object(t_o).m_gid)=="4097" || String(dbg_object(t_o).m_gid)=="4098" || String(dbg_object(t_o).m_gid)=="4099"){
-				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<59>";
-				var t_enemy=c_Enemy.m_new.call(new c_Enemy,(t_o),String(dbg_object(t_o).m_gid));
 				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<60>";
-				dbg_object(t_enemy).m_player_position=dbg_object(dbg_object(this).m_player).m_position;
-				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<62>";
-				this.p_AddChild2(t_enemy);
+				t_enemy=c_Enemy.m_new.call(new c_Enemy,(t_o),String(dbg_object(t_o).m_gid));
 			}else{
-				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<63>";
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<61>";
 				if(String(dbg_object(t_o).m_gid)=="4100" || String(dbg_object(t_o).m_gid)=="4101"){
-					err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<64>";
-					var t_enemy2=c_EnemyTurret.m_new.call(new c_EnemyTurret,(t_o),String(dbg_object(t_o).m_gid));
-					err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<65>";
-					dbg_object(t_enemy2).m_player_position=dbg_object(dbg_object(this).m_player).m_position;
-					err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<67>";
-					this.p_AddChild2(t_enemy2);
+					err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<62>";
+					t_enemy=(c_EnemyTurret.m_new.call(new c_EnemyTurret,(t_o),String(dbg_object(t_o).m_gid)));
+				}else{
+					err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<63>";
+					if(String(dbg_object(t_o).m_gid)=="4102"){
+						err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<64>";
+						t_enemy=(c_EnemyWave.m_new.call(new c_EnemyWave,(t_o)));
+					}
 				}
 			}
+		}
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<67>";
+		if(t_enemy!=null){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<68>";
+			dbg_object(t_enemy).m_player_position=dbg_object(dbg_object(this).m_player).m_position;
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<69>";
+			this.p_AddChild2(t_enemy);
 		}
 	}
 	pop_err();
@@ -7538,7 +7545,7 @@ c_World.m_new=function(){
 }
 c_World.prototype.p_GetCollisionsLayer=function(){
 	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/world.monkey<37>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/world.monkey<38>";
 	var t_=object_downcast((dbg_object(this).m_tile_map.p_GetLayer("collisions")),c_TileLayer);
 	pop_err();
 	return t_;
@@ -13260,6 +13267,128 @@ c_Enumerator8.prototype.p_NextObject=function(){
 	pop_err();
 	return t_;
 }
+function c_Enemy(){
+	Object.call(this);
+	this.m_position=null;
+	this.m_type="";
+	this.m_animated_sprite=null;
+	this.m_cannon=null;
+	this.m_ai=null;
+	this.m_player_position=null;
+	this.m_visible=true;
+	this.implments={c_iDrawable:1,c_iOnCollide:1};
+}
+c_Enemy.prototype.p_Create=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<66>";
+	dbg_object(this).m_animated_sprite=c_AnimatedSprite.m_new.call(new c_AnimatedSprite,"enemies.png",c_Vec2.m_new.call(new c_Vec2,0.0,0.0),9.0,9.0,6,0.0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<67>";
+	dbg_object(this).m_animated_sprite.p_AddSequence("4097",[0]);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<68>";
+	dbg_object(this).m_animated_sprite.p_AddSequence("4098",[1]);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<69>";
+	dbg_object(this).m_animated_sprite.p_AddSequence("4099",[2]);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<70>";
+	dbg_object(this).m_animated_sprite.p_AddSequence("4100",[3]);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<71>";
+	dbg_object(this).m_animated_sprite.p_AddSequence("4101",[4]);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<72>";
+	dbg_object(this).m_animated_sprite.p_AddSequence("play",[5]);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<74>";
+	dbg_object(this).m_animated_sprite.p_PlaySequence(dbg_object(this).m_type,100,true);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<77>";
+	c_CollisionEngine.m_Instance2().p_AddStaticBody(this);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<80>";
+	dbg_object(this).m_cannon=c_EnemyCannon.m_new.call(new c_EnemyCannon);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<82>";
+	dbg_object(this).m_ai=c_SimpleShotAI.m_new.call(new c_SimpleShotAI,this);
+	pop_err();
+}
+c_Enemy.m_new=function(t_position,t_type){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<56>";
+	dbg_object(this).m_position=t_position;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<57>";
+	var t_=dbg_object(this).m_position;
+	dbg_object(this).m_position.p_Y(t_.p_Y2()-t_position.p_Height());
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<58>";
+	dbg_object(this).m_type=t_type;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<59>";
+	this.p_Create();
+	pop_err();
+	return this;
+}
+c_Enemy.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<41>";
+	pop_err();
+	return this;
+}
+c_Enemy.prototype.p_Shot=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<124>";
+	dbg_object(this).m_cannon.p_Shot2(((dbg_object(this).m_position.p_X2())|0),((dbg_object(this).m_position.p_Y2())|0),((dbg_object(this).m_player_position.p_CenterX())|0),((dbg_object(this).m_player_position.p_CenterY())|0));
+	pop_err();
+}
+c_Enemy.prototype.p_Update=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<86>";
+	if(!this.m_visible){
+		pop_err();
+		return;
+	}
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<88>";
+	dbg_object(this).m_animated_sprite.p_Update();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<89>";
+	dbg_object(this).m_ai.p_Update();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<90>";
+	dbg_object(this).m_cannon.p_Update();
+	pop_err();
+}
+c_Enemy.prototype.p_Render=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<94>";
+	if(!dbg_object(this).m_visible){
+		pop_err();
+		return;
+	}
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<96>";
+	bb_graphics_PushMatrix();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<97>";
+	bb_graphics_Translate(dbg_object(this).m_position.p_X2(),dbg_object(this).m_position.p_Y2());
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<98>";
+	dbg_object(this).m_animated_sprite.p_Render();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<99>";
+	bb_graphics_PopMatrix();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<101>";
+	dbg_object(this).m_cannon.p_Render();
+	pop_err();
+}
+c_Enemy.prototype.p_GetBox=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<106>";
+	pop_err();
+	return dbg_object(this).m_position;
+}
+c_Enemy.prototype.p_OnCollide=function(t_name){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<110>";
+	if(t_name=="player" || t_name=="player_bullet"){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<111>";
+		dbg_object(this).m_visible=false;
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<112>";
+		dbg_object(this).m_cannon.p_Destroy2();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<113>";
+		c_CollisionEngine.m_Instance2().p_Destroy(this);
+	}
+	pop_err();
+}
+c_Enemy.prototype.p_GetName=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<118>";
+	pop_err();
+	return "enemy";
+}
 function c_PowerUp(){
 	Object.call(this);
 	this.m_position=null;
@@ -13345,145 +13474,6 @@ c_PowerUp.prototype.p_GetName=function(){
 	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/powerup.monkey<53>";
 	pop_err();
 	return "powerup";
-}
-function c_Enemy(){
-	Object.call(this);
-	this.m_position=null;
-	this.m_type="";
-	this.m_animated_sprite=null;
-	this.m_cannon=null;
-	this.m_ai=null;
-	this.m_player_position=null;
-	this.m_visible=true;
-	this.implments={c_iDrawable:1,c_iOnCollide:1};
-}
-c_Enemy.prototype.p_InitAI=function(){
-	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<101>";
-	var t_1=dbg_object(this).m_type;
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<102>";
-	if(t_1=="4097"){
-		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<103>";
-		dbg_object(this).m_ai=(c_EnemyAAI.m_new.call(new c_EnemyAAI,this));
-	}else{
-		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<104>";
-		if(t_1=="4098"){
-			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<105>";
-			dbg_object(this).m_ai=(c_EnemyBAI.m_new.call(new c_EnemyBAI,this));
-		}else{
-			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<106>";
-			if(t_1=="4099"){
-				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<107>";
-				dbg_object(this).m_ai=(c_EnemyCAI.m_new.call(new c_EnemyCAI,this));
-			}
-		}
-	}
-	pop_err();
-}
-c_Enemy.prototype.p_Create=function(){
-	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<84>";
-	dbg_object(this).m_animated_sprite=c_AnimatedSprite.m_new.call(new c_AnimatedSprite,"enemies.png",c_Vec2.m_new.call(new c_Vec2,0.0,0.0),9.0,9.0,3,0.0);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<85>";
-	dbg_object(this).m_animated_sprite.p_AddSequence("4097",[0]);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<86>";
-	dbg_object(this).m_animated_sprite.p_AddSequence("4098",[1]);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<87>";
-	dbg_object(this).m_animated_sprite.p_AddSequence("4099",[2]);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<89>";
-	dbg_object(this).m_animated_sprite.p_PlaySequence(dbg_object(this).m_type,100,true);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<92>";
-	c_CollisionEngine.m_Instance2().p_AddStaticBody(this);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<95>";
-	dbg_object(this).m_cannon=c_EnemyCannon.m_new.call(new c_EnemyCannon);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<97>";
-	this.p_InitAI();
-	pop_err();
-}
-c_Enemy.m_new=function(t_position,t_type){
-	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<74>";
-	dbg_object(this).m_position=t_position;
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<75>";
-	var t_=dbg_object(this).m_position;
-	dbg_object(this).m_position.p_Y(t_.p_Y2()-t_position.p_Height());
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<76>";
-	dbg_object(this).m_type=t_type;
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<77>";
-	this.p_Create();
-	pop_err();
-	return this;
-}
-c_Enemy.m_new2=function(){
-	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<59>";
-	pop_err();
-	return this;
-}
-c_Enemy.prototype.p_Shot=function(){
-	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<150>";
-	dbg_object(this).m_cannon.p_Shot2(((dbg_object(this).m_position.p_X2())|0),((dbg_object(this).m_position.p_Y2())|0),((dbg_object(this).m_player_position.p_CenterX())|0),((dbg_object(this).m_player_position.p_CenterY())|0));
-	pop_err();
-}
-c_Enemy.prototype.p_Update=function(){
-	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<112>";
-	if(!this.m_visible){
-		pop_err();
-		return;
-	}
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<114>";
-	dbg_object(this).m_animated_sprite.p_Update();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<115>";
-	dbg_object(this).m_ai.p_Update();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<116>";
-	dbg_object(this).m_cannon.p_Update();
-	pop_err();
-}
-c_Enemy.prototype.p_Render=function(){
-	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<120>";
-	if(!dbg_object(this).m_visible){
-		pop_err();
-		return;
-	}
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<122>";
-	bb_graphics_PushMatrix();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<123>";
-	bb_graphics_Translate(dbg_object(this).m_position.p_X2(),dbg_object(this).m_position.p_Y2());
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<124>";
-	dbg_object(this).m_animated_sprite.p_Render();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<125>";
-	bb_graphics_PopMatrix();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<127>";
-	dbg_object(this).m_cannon.p_Render();
-	pop_err();
-}
-c_Enemy.prototype.p_GetBox=function(){
-	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<132>";
-	pop_err();
-	return dbg_object(this).m_position;
-}
-c_Enemy.prototype.p_OnCollide=function(t_name){
-	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<136>";
-	if(t_name=="player" || t_name=="player_bullet"){
-		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<137>";
-		dbg_object(this).m_visible=false;
-		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<138>";
-		dbg_object(this).m_cannon.p_Destroy2();
-		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<139>";
-		c_CollisionEngine.m_Instance2().p_Destroy(this);
-	}
-	pop_err();
-}
-c_Enemy.prototype.p_GetName=function(){
-	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<144>";
-	pop_err();
-	return "enemy";
 }
 function c_EnemyCannon(){
 	Object.call(this);
@@ -13790,18 +13780,18 @@ c_HeadNode7.m_new=function(){
 	pop_err();
 	return this;
 }
-function c_EnemyAI(){
+function c_SimpleShotAI(){
 	Object.call(this);
 	this.m_parent=null;
 	this.m_shot_timer=0;
 	this.m_shot_time=2000;
 	this.implments={c_iDrawable:1};
 }
-c_EnemyAI.prototype.p_Create=function(){
+c_SimpleShotAI.prototype.p_Create=function(){
 	push_err();
 	pop_err();
 }
-c_EnemyAI.m_new=function(t_parent){
+c_SimpleShotAI.m_new=function(t_parent){
 	push_err();
 	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<14>";
 	dbg_object(this).m_parent=t_parent;
@@ -13810,13 +13800,13 @@ c_EnemyAI.m_new=function(t_parent){
 	pop_err();
 	return this;
 }
-c_EnemyAI.m_new2=function(){
+c_SimpleShotAI.m_new2=function(){
 	push_err();
 	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<6>";
 	pop_err();
 	return this;
 }
-c_EnemyAI.prototype.p_Update=function(){
+c_SimpleShotAI.prototype.p_Update=function(){
 	push_err();
 	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<25>";
 	dbg_object(this).m_shot_timer+=c_Time.m_Delta();
@@ -13829,69 +13819,9 @@ c_EnemyAI.prototype.p_Update=function(){
 	}
 	pop_err();
 }
-c_EnemyAI.prototype.p_Render=function(){
+c_SimpleShotAI.prototype.p_Render=function(){
 	push_err();
 	pop_err();
-}
-function c_EnemyAAI(){
-	c_EnemyAI.call(this);
-	this.implments={c_iDrawable:1};
-}
-c_EnemyAAI.prototype=extend_class(c_EnemyAI);
-c_EnemyAAI.m_new=function(t_parent){
-	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<42>";
-	c_EnemyAI.m_new.call(this,t_parent);
-	pop_err();
-	return this;
-}
-c_EnemyAAI.m_new2=function(){
-	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<40>";
-	c_EnemyAI.m_new2.call(this);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<40>";
-	pop_err();
-	return this;
-}
-function c_EnemyBAI(){
-	c_EnemyAI.call(this);
-	this.implments={c_iDrawable:1};
-}
-c_EnemyBAI.prototype=extend_class(c_EnemyAI);
-c_EnemyBAI.m_new=function(t_parent){
-	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<48>";
-	c_EnemyAI.m_new.call(this,t_parent);
-	pop_err();
-	return this;
-}
-c_EnemyBAI.m_new2=function(){
-	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<46>";
-	c_EnemyAI.m_new2.call(this);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<46>";
-	pop_err();
-	return this;
-}
-function c_EnemyCAI(){
-	c_EnemyAI.call(this);
-	this.implments={c_iDrawable:1};
-}
-c_EnemyCAI.prototype=extend_class(c_EnemyAI);
-c_EnemyCAI.m_new=function(t_parent){
-	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<54>";
-	c_EnemyAI.m_new.call(this,t_parent);
-	pop_err();
-	return this;
-}
-c_EnemyCAI.m_new2=function(){
-	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<52>";
-	c_EnemyAI.m_new2.call(this);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<52>";
-	pop_err();
-	return this;
 }
 function c_EnemyTurret(){
 	c_Enemy.call(this);
@@ -13900,47 +13830,130 @@ function c_EnemyTurret(){
 c_EnemyTurret.prototype=extend_class(c_Enemy);
 c_EnemyTurret.m_new=function(t_position,t_gid){
 	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<15>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<9>";
 	c_Enemy.m_new.call(this,t_position,t_gid);
 	pop_err();
 	return this;
 }
 c_EnemyTurret.m_new2=function(){
 	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<12>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<6>";
 	c_Enemy.m_new2.call(this);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<12>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<6>";
 	pop_err();
 	return this;
 }
-c_EnemyTurret.prototype.p_InitAI=function(){
-	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<40>";
-	dbg_object(this).m_ai=(c_EnemyTurretAI.m_new.call(new c_EnemyTurretAI,(this)));
-	pop_err();
-}
 c_EnemyTurret.prototype.p_Create=function(){
 	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<21>";
-	dbg_object(this).m_animated_sprite=c_AnimatedSprite.m_new.call(new c_AnimatedSprite,"enemies.png",c_Vec2.m_new.call(new c_Vec2,0.0,0.0),9.0,9.0,5,0.0);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<22>";
-	dbg_object(this).m_animated_sprite.p_AddSequence("4097",[0]);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<23>";
-	dbg_object(this).m_animated_sprite.p_AddSequence("4098",[1]);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<24>";
-	dbg_object(this).m_animated_sprite.p_AddSequence("4099",[2]);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<25>";
-	dbg_object(this).m_animated_sprite.p_AddSequence("4100",[3]);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<26>";
-	dbg_object(this).m_animated_sprite.p_AddSequence("4101",[4]);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<28>";
-	dbg_object(this).m_animated_sprite.p_PlaySequence(dbg_object(this).m_type,100,true);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<31>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<13>";
+	c_Enemy.prototype.p_Create.call(this);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<17>";
 	c_CollisionEngine.m_Instance2().p_AddStaticBody(this);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<34>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<20>";
 	dbg_object(this).m_cannon=c_EnemyCannon.m_new.call(new c_EnemyCannon);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<36>";
-	this.p_InitAI();
+	pop_err();
+}
+function c_EnemyWave(){
+	c_Enemy.call(this);
+	this.m_initial_y=0;
+	this.m_active=null;
+	this.m_speed=-25;
+	this.implments={c_iDrawable:1,c_iOnCollide:1};
+}
+c_EnemyWave.prototype=extend_class(c_Enemy);
+c_EnemyWave.m_new=function(t_position){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<14>";
+	c_Enemy.m_new.call(this,t_position,"play");
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<15>";
+	dbg_object(this).m_position=t_position;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<16>";
+	dbg_object(this).m_initial_y=((dbg_object(this).m_position.p_Y2())|0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<18>";
+	dbg_object(this).m_active=c_ActiveOnCamera.m_new.call(new c_ActiveOnCamera,dbg_object(this).m_position);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<20>";
+	this.p_Create();
+	pop_err();
+	return this;
+}
+c_EnemyWave.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<6>";
+	c_Enemy.m_new2.call(this);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<6>";
+	pop_err();
+	return this;
+}
+c_EnemyWave.prototype.p_Update=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<24>";
+	c_Enemy.prototype.p_Update.call(this);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<25>";
+	dbg_object(this).m_active.p_Update();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<26>";
+	if(!dbg_object(this).m_active.p_IsActive()){
+		pop_err();
+		return;
+	}
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<28>";
+	dbg_object(this).m_animated_sprite.p_Update();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<30>";
+	var t_=dbg_object(this).m_position;
+	dbg_object(this).m_position.p_X(t_.p_X2()+(dbg_object(this).m_speed)*c_Time.m_DeltaSecs());
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<31>";
+	dbg_object(this).m_position.p_Y((dbg_object(this).m_initial_y)+Math.sin((dbg_object(this).m_position.p_X2() % 45.0*8.0)*D2R)*7.0);
+	pop_err();
+}
+c_EnemyWave.prototype.p_Shot=function(){
+	push_err();
+	pop_err();
+}
+function c_ActiveOnCamera(){
+	Object.call(this);
+	this.m_target=null;
+	this.m_viewport=null;
+	this.m_active=false;
+	this.implments={c_iDrawable:1};
+}
+c_ActiveOnCamera.m_new=function(t_target){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/activeoncamera.monkey<12>";
+	dbg_object(this).m_target=t_target;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/activeoncamera.monkey<14>";
+	dbg_object(this).m_viewport=dbg_object(c_Game.m_Instance().p_GetCurrentCamera()).m_ViewPort;
+	pop_err();
+	return this;
+}
+c_ActiveOnCamera.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/activeoncamera.monkey<5>";
+	pop_err();
+	return this;
+}
+c_ActiveOnCamera.prototype.p_Update=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/activeoncamera.monkey<22>";
+	if(c_Collision.m_AABBIntersects(dbg_object(this).m_target,dbg_object(this).m_viewport)){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/activeoncamera.monkey<23>";
+		dbg_object(this).m_active=true;
+	}else{
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/activeoncamera.monkey<25>";
+		dbg_object(this).m_active=false;
+	}
+	pop_err();
+}
+c_ActiveOnCamera.prototype.p_IsActive=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/activeoncamera.monkey<33>";
+	pop_err();
+	return dbg_object(this).m_active;
+}
+c_ActiveOnCamera.prototype.p_Create=function(){
+	push_err();
+	pop_err();
+}
+c_ActiveOnCamera.prototype.p_Render=function(){
+	push_err();
 	pop_err();
 }
 function c_ClampToScreen(){
@@ -14574,26 +14587,6 @@ c_Enumerator11.prototype.p_NextObject=function(){
 	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<340>";
 	pop_err();
 	return t_data;
-}
-function c_EnemyTurretAI(){
-	c_EnemyAI.call(this);
-	this.implments={c_iDrawable:1};
-}
-c_EnemyTurretAI.prototype=extend_class(c_EnemyAI);
-c_EnemyTurretAI.m_new=function(t_parent){
-	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<7>";
-	c_EnemyAI.m_new.call(this,t_parent);
-	pop_err();
-	return this;
-}
-c_EnemyTurretAI.m_new2=function(){
-	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<5>";
-	c_EnemyAI.m_new2.call(this);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<5>";
-	pop_err();
-	return this;
 }
 function bbInit(){
 	bb_app__app=null;

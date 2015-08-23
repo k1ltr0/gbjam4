@@ -50,20 +50,22 @@ Class GamePlaySpace Extends Space
 
     Method AddElements:Void(objects:Stack<TileObject>)
         For Local o:=Eachin objects
+
+            Local enemy:Enemy = Null  ''' aux
+
             If (o.gid = "200")  ''' powerup
-
                 Self.AddChild(New PowerUp(o))
-
             ElseIf (o.gid = ENEMY_A Or o.gid = ENEMY_B Or o.gid = ENEMY_C)  ''' enemies
 
-                Local enemy:Enemy = New Enemy(o, o.gid)
-                enemy.player_position = Self.player.position
-
-                Self.AddChild(enemy)
+                enemy = New Enemy(o, o.gid)
             ElseIf (o.gid = ENEMY_TURRET Or o.gid = ENEMY_TURRET_INVERTED)
-                Local enemy:EnemyTurret = New EnemyTurret(o, o.gid)
-                enemy.player_position = Self.player.position
+                enemy = New EnemyTurret(o, o.gid)
+            ElseIf (o.gid = ENEMY_WAVE)
+                enemy = New EnemyWave(o)
+            EndIf
 
+            If (enemy <> Null)
+                enemy.player_position = Self.player.position
                 Self.AddChild(enemy)
             EndIf
         Next
