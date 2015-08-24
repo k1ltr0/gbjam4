@@ -1,5 +1,6 @@
 Import lp2
 Import collision_engine
+Import camerafx
 
 Class Bullet Extends lpImage Implements iOnCollide
 
@@ -43,6 +44,7 @@ Class SpaceShooterCannon Implements iDrawable
     Field level:Int = 0
 
     Field speed:Int = 250
+    Field camera_fx:CameraFX
 
     Method New(target:Point)
         Self.target = target
@@ -54,6 +56,7 @@ Class SpaceShooterCannon Implements iDrawable
         Self.offset = New Point(0,0)
         Self.bullets = New List<Bullet>
         Self.discard_list = New List<Bullet>
+        Self.camera_fx = New CameraFX(Game.Instance.GetCurrentCamera.ViewPort)
     End
 
     Method Update:Void()
@@ -84,6 +87,8 @@ Class SpaceShooterCannon Implements iDrawable
             Self.LevelDown()
         EndIf
 
+        Self.camera_fx.Update()
+
     End
 
     Method Render:Void()
@@ -92,6 +97,8 @@ Class SpaceShooterCannon Implements iDrawable
                 b.Render()
             EndIf
         Next
+
+        Self.camera_fx.Render()
     End
 
     Method Offset:Point()
@@ -106,6 +113,8 @@ Class SpaceShooterCannon Implements iDrawable
                                 Self.target.Y + Self.offset.Y))
 
         self.bullets.AddLast(img)
+
+        Self.camera_fx.Shake(100, 0.2 * (level+1), 0.2 * (level+1))
     End
 
     Method LevelUp:Void()

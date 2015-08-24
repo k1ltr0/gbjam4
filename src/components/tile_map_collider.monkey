@@ -65,7 +65,6 @@ Class TileMapCollider Extends CollisionEngine
 
                     Local tile:= Self.GetTileID(Self.tile_layer.parent.tileWidth * x, 
                                                 Self.tile_layer.parent.tileHeight * y)
-
                     If (tile <> 0)
                         o.OnCollide("wall")  ''' inform collision
 

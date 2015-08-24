@@ -68,6 +68,11 @@ Class CollisionEngine Implements iDrawable
         Self.static_objects.RemoveEach(element)
     End
 
+    Method DestroyAll:Void()
+        Self.objects.Clear()
+        Self.static_objects.Clear()
+    End
+
     Method RegisterDelegate:Void(collision_engine:CollisionEngine)
         collision_engine.objects = Self.objects
         collision_engine.static_objects = Self.static_objects

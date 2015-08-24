@@ -94,7 +94,9 @@ Class Player Implements iDrawable, iOnCollide
     End
 
     Method Die:Void()
+
         CollisionEngine.Instance.Destroy(Self)
+        CollisionEngine.Instance.DestroyAll()
         Self.visible = False
 
         Game.Instance.SetScene(GAME_SCENE)
