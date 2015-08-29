@@ -108,6 +108,7 @@ Class Enemy Implements iDrawable, iOnCollide
 
     Method OnCollide:Void(name:String)
         If (name = "player" Or name = "player_bullet")
+            Time.Freeze(100)
             Self.visible = False
             Self.cannon.Destroy()
             CollisionEngine.Instance.Destroy(Self)

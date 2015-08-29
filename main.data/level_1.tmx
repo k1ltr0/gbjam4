@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="157" height="36" tilewidth="8" tileheight="8" nextobjectid="22">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="157" height="36" tilewidth="8" tileheight="8" nextobjectid="26">
  <tileset firstgid="1" name="tiles" tilewidth="8" tileheight="8" tilecount="4096">
   <image source="tiles.png" width="512" height="512"/>
  </tileset>
@@ -11371,7 +11371,7 @@
    <tile gid="0"/>
   </data>
  </layer>
- <layer name="collisions" width="157" height="36" opacity="0.23">
+ <layer name="collisions" width="157" height="36" visible="0" opacity="0.23">
   <data>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -17033,16 +17033,20 @@
   <object id="5" gid="4101" x="384.667" y="17.3333" width="9" height="9"/>
   <object id="6" gid="4100" x="572.333" y="87.6667" width="9" height="9"/>
   <object id="7" gid="4097" x="783.667" y="36.3333" width="9" height="9"/>
-  <object id="12" gid="4102" x="262.333" y="60.3333" width="9" height="9"/>
-  <object id="13" gid="4102" x="268.333" y="60.3333" width="9" height="9"/>
-  <object id="14" gid="4102" x="274.333" y="60.6667" width="9" height="9"/>
-  <object id="15" gid="4102" x="202.167" y="107.333" width="9" height="9"/>
-  <object id="16" gid="4102" x="196.167" y="107.333" width="9" height="9"/>
-  <object id="17" gid="4102" x="208.167" y="107.667" width="9" height="9"/>
+  <object id="12" gid="4102" x="238" y="91.3333" width="9" height="9"/>
+  <object id="13" gid="4102" x="244" y="91.3333" width="9" height="9"/>
+  <object id="14" gid="4102" x="250" y="91.6667" width="9" height="9"/>
+  <object id="15" gid="4102" x="197.167" y="118.667" width="9" height="9"/>
+  <object id="16" gid="4102" x="191.167" y="118.667" width="9" height="9"/>
+  <object id="17" gid="4102" x="203.167" y="119" width="9" height="9"/>
   <object id="18" gid="4102" x="487.833" y="114" width="9" height="9"/>
   <object id="19" gid="4102" x="481.833" y="114" width="9" height="9"/>
   <object id="20" gid="4102" x="493.833" y="114.333" width="9" height="9"/>
   <object id="21" gid="4098" x="782" y="115" width="9" height="9"/>
+  <object id="22" gid="4102" x="305.833" y="48" width="9" height="9"/>
+  <object id="23" gid="4102" x="299.833" y="48" width="9" height="9"/>
+  <object id="24" gid="4102" x="311.833" y="48.3334" width="9" height="9"/>
+  <object id="25" gid="4099" x="781.667" y="76" width="9" height="9"/>
  </objectgroup>
  <layer name="foreground" width="157" height="36">
   <data>

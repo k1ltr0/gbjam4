@@ -22,6 +22,9 @@ Private
     Field correction_x:Float = 0
     Field correction_y:Float = 0
 
+
+    Field recoil_fx:Int = 0
+
 Public
 
     Method New(camera_view:Rectangle=Null)
@@ -61,6 +64,11 @@ Public
                 Self.state = Self.STATE_IDLE
             EndIf
         End
+
+        If (Self.recoil_fx > 0)
+            Self.camera_view.X -= Self.recoil_fx
+            Self.recoil_fx -= 1
+        EndIf
     End
 
     Method Render:Void()
@@ -82,5 +90,11 @@ Public
         Self.force_y = force_y
         Self.state = Self.STATE_SHAKING
     End
+
+    Method Recoil()
+        Self.recoil_fx = 1
+        Self.camera_view.X += 1
+    End
+
 
 End

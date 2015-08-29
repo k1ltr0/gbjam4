@@ -6,6 +6,7 @@ Import main
 Class Player Implements iDrawable, iOnCollide
 
     Field sprite:AnimatedSprite
+    Field particles_emitter:ParticleEmitter
     Field position:Rectangle
     Field box:Rectangle
 
@@ -42,6 +43,11 @@ Class Player Implements iDrawable, iOnCollide
         Self.cannon.AddSprite("bullet_level_2.png")  '' level 2
         Self.cannon.AddSprite("bullet_level_3.png")  '' level 3
 
+        Self.particles_emitter = New ParticleEmitter()
+        Self.particles_emitter.LoadFromJson(LoadString("ship_booster.json"))
+        Self.particles_emitter.Position.X = 0
+        Self.particles_emitter.Position.Y = 0
+
         CollisionEngine.Instance.AddBody(Self)
     End
     
@@ -49,6 +55,7 @@ Class Player Implements iDrawable, iOnCollide
         Self.sprite.Update()
         Self.control.Update()
         Self.cannon.Update()
+        Self.particles_emitter.Update()
 
         If (Self.control.Shot())
             Self.cannon.Shot()
@@ -57,11 +64,16 @@ Class Player Implements iDrawable, iOnCollide
         Self.box.X = Self.position.X + 10
         Self.box.Y = Self.position.Y + 2
 
+        Self.particles_emitter.Position.X = Self.position.X + 7
+        Self.particles_emitter.Position.Y = Self.position.Y + Self.position.Height / 2
+
     End
     
     Method Render:Void()
 
         If (Not(Self.visible)) Then Return
+
+        Self.particles_emitter.Render()
 
         PushMatrix()
         Translate Self.position.X, Self.position.Y

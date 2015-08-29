@@ -114,7 +114,8 @@ Class SpaceShooterCannon Implements iDrawable
 
         self.bullets.AddLast(img)
 
-        Self.camera_fx.Shake(100, 0.2 * (level+1), 0.2 * (level+1))
+        '' Self.camera_fx.Shake(100, 0.2 * (level+1), 0.2 * (level+1))
+        Self.camera_fx.Recoil()
     End
 
     Method LevelUp:Void()
