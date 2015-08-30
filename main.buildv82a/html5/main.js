@@ -19,7 +19,7 @@ CFG_TEXT_FILES="*.txt|*.xml|*.json;|*.fnt";
 //${CONFIG_END}
 
 //${METADATA_BEGIN}
-var META_DATA="[mojo_font.png];type=image/png;width=864;height=13;\n[bullet_enemy.png];type=image/png;width=6;height=6;\n[bullet_level_0.png];type=image/png;width=8;height=4;\n[bullet_level_1.png];type=image/png;width=5;height=3;\n[bullet_level_2.png];type=image/png;width=10;height=3;\n[bullet_level_3.png];type=image/png;width=10;height=6;\n[collisions.png];type=image/png;width=24;height=48;\n[enemies.png];type=image/png;width=55;height=9;\n[powerup.png];type=image/png;width=4;height=6;\n[ship.png];type=image/png;width=46;height=8;\n[tiles.png];type=image/png;width=512;height=512;\n";
+var META_DATA="[mojo_font.png];type=image/png;width=864;height=13;\n[bullet_enemy.png];type=image/png;width=6;height=6;\n[bullet_level_0.png];type=image/png;width=16;height=4;\n[bullet_level_1.png];type=image/png;width=5;height=3;\n[bullet_level_2.png];type=image/png;width=10;height=3;\n[bullet_level_3.png];type=image/png;width=10;height=6;\n[collisions.png];type=image/png;width=24;height=48;\n[enemies.png];type=image/png;width=55;height=9;\n[powerup.png];type=image/png;width=4;height=6;\n[ship.png];type=image/png;width=46;height=8;\n[tiles.png];type=image/png;width=512;height=512;\n";
 //${METADATA_END}
 
 //${TRANSCODE_BEGIN}
@@ -12799,203 +12799,255 @@ function c_SpaceShooterCannon(){
 	this.m_discard_list=null;
 	this.m_camera_fx=null;
 	this.m_sprites=[];
-	this.m_speed=150;
 	this.m_level=0;
-	this.implments={c_iDrawable:1};
+	this.implments={c_iDrawable:1,c_iOnDestroy:1};
 }
 c_SpaceShooterCannon.prototype.p_Create=function(){
 	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<56>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<111>";
 	dbg_object(this).m_offset=c_Point.m_new2.call(new c_Point,0.0,0.0);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<57>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<112>";
 	dbg_object(this).m_bullets=c_List5.m_new.call(new c_List5);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<58>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<113>";
 	dbg_object(this).m_discard_list=c_List5.m_new.call(new c_List5);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<59>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<114>";
 	dbg_object(this).m_camera_fx=c_CameraFX.m_new.call(new c_CameraFX,dbg_object(c_Game.m_Instance().p_GetCurrentCamera()).m_ViewPort);
 	pop_err();
 }
 c_SpaceShooterCannon.m_new=function(t_target){
 	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<50>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<105>";
 	dbg_object(this).m_target=t_target;
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<51>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<106>";
 	this.p_Create();
 	pop_err();
 	return this;
 }
 c_SpaceShooterCannon.m_new2=function(){
 	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<35>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<91>";
 	pop_err();
 	return this;
 }
 c_SpaceShooterCannon.prototype.p_Offset=function(){
 	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<105>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<153>";
 	pop_err();
 	return dbg_object(this).m_offset;
 }
 c_SpaceShooterCannon.prototype.p_AddSprite=function(t_sprite_name){
 	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<137>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<184>";
 	var t_imgs=c_List6.m_new2.call(new c_List6,this.m_sprites);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<139>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<186>";
 	t_imgs.p_AddLast5(bb_lpresources_lpLoadImage(t_sprite_name,1,c_Image.m_DefaultFlags));
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<141>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<188>";
 	this.m_sprites=t_imgs.p_ToArray();
 	pop_err();
 }
 c_SpaceShooterCannon.prototype.p_LevelUp=function(){
 	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<122>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<169>";
 	dbg_object(this).m_level+=1;
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<123>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<170>";
 	if(dbg_object(this).m_sprites.length<=dbg_object(this).m_level){
-		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<124>";
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<171>";
 		dbg_object(this).m_level=dbg_object(this).m_sprites.length-1;
 	}
 	pop_err();
 }
 c_SpaceShooterCannon.prototype.p_LevelDown=function(){
 	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<129>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<176>";
 	dbg_object(this).m_level-=1;
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<130>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<177>";
 	if(dbg_object(this).m_level<0){
-		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<131>";
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<178>";
 		dbg_object(this).m_level=0;
 	}
 	pop_err();
 }
 c_SpaceShooterCannon.prototype.p_Update=function(){
 	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<63>";
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<63>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<118>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<118>";
 	var t_=dbg_object(this).m_bullets.p_ObjectEnumerator();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<63>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<118>";
 	while(t_.p_HasNext()){
-		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<63>";
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<118>";
 		var t_b=t_.p_NextObject();
-		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<64>";
-		var t_2=dbg_object(t_b).m_Position;
-		dbg_object(t_b).m_Position.p_X(t_2.p_X2()+(dbg_object(this).m_speed)*c_Time.m_DeltaSecs());
-		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<65>";
-		dbg_object(t_b).m_current_live_time+=c_Time.m_DeltaSecs();
-		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<67>";
-		if(dbg_object(t_b).m_max_live_time*(1+dbg_object(this).m_level)<=dbg_object(t_b).m_current_live_time){
-			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<68>";
-			t_b.p_Destroy2();
-			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<69>";
-			dbg_object(this).m_discard_list.p_AddLast4(t_b);
-		}
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<119>";
+		t_b.p_Update();
 	}
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<75>";
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<75>";
-	var t_3=dbg_object(this).m_discard_list.p_ObjectEnumerator();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<75>";
-	while(t_3.p_HasNext()){
-		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<75>";
-		var t_db=t_3.p_NextObject();
-		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<76>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<123>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<123>";
+	var t_2=dbg_object(this).m_discard_list.p_ObjectEnumerator();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<123>";
+	while(t_2.p_HasNext()){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<123>";
+		var t_db=t_2.p_NextObject();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<124>";
 		dbg_object(this).m_bullets.p_RemoveEach2(t_db);
 	}
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<79>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<127>";
 	dbg_object(this).m_discard_list.p_Clear();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<82>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<130>";
 	if((bb_input_KeyHit(81))!=0){
-		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<83>";
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<131>";
 		this.p_LevelUp();
 	}
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<86>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<134>";
 	if((bb_input_KeyHit(69))!=0){
-		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<87>";
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<135>";
 		this.p_LevelDown();
 	}
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<90>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<138>";
 	dbg_object(this).m_camera_fx.p_Update();
 	pop_err();
 }
 c_SpaceShooterCannon.prototype.p_Shot=function(){
 	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<113>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<161>";
 	var t_img=c_Bullet.m_new.call(new c_Bullet,dbg_array(this.m_sprites,dbg_object(this).m_level)[dbg_index],c_Vec2.m_new.call(new c_Vec2,dbg_object(this).m_target.p_X2()+dbg_object(this).m_offset.p_X2(),dbg_object(this).m_target.p_Y2()+dbg_object(this).m_offset.p_Y2()));
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<115>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<162>";
+	t_img.p_OnDestroyListener(this);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<164>";
 	dbg_object(this).m_bullets.p_AddLast4(t_img);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<118>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<165>";
 	dbg_object(this).m_camera_fx.p_Recoil();
 	pop_err();
 }
 c_SpaceShooterCannon.prototype.p_Render=function(){
 	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<95>";
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<95>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<143>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<143>";
 	var t_=dbg_object(this).m_bullets.p_ObjectEnumerator();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<95>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<143>";
 	while(t_.p_HasNext()){
-		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<95>";
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<143>";
 		var t_b=t_.p_NextObject();
-		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<96>";
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<144>";
 		if(dbg_object(t_b).m_visible){
-			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<97>";
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<145>";
 			t_b.p_Render();
 		}
 	}
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<101>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<149>";
 	dbg_object(this).m_camera_fx.p_Render();
 	pop_err();
 }
-function c_Bullet(){
-	c_lpImage.call(this);
-	this.m_current_live_time=0.0;
-	this.m_max_live_time=0.3;
-	this.m_visible=true;
-	this.implments={c_iOnCollide:1,c_iDrawable:1};
+c_SpaceShooterCannon.prototype.p_OnDestroy=function(t_e){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<192>";
+	dbg_object(this).m_discard_list.p_AddLast4(object_downcast((t_e),c_Bullet));
+	pop_err();
+	return 0;
 }
-c_Bullet.prototype=extend_class(c_lpImage);
+function c_Bullet(){
+	c_AnimatedSprite.call(this);
+	this.m_state=0;
+	this.m_speed=150;
+	this.m_max_live_time=0.3;
+	this.m_level=0;
+	this.m_current_live_time=0.0;
+	this.m_destroy_listener=null;
+	this.m_visible=true;
+	this.implments={c_iOnCollide:1,c_ilpAnimation:1,c_iDrawable:1};
+}
+c_Bullet.prototype=extend_class(c_AnimatedSprite);
 c_Bullet.prototype.p_Destroy2=function(){
 	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<30>";
-	c_CollisionEngine.m_Instance2().p_Destroy(this);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<31>";
-	dbg_object(this).m_visible=false;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<83>";
+	dbg_object(this).m_destroy_listener.p_OnDestroy(this);
+	pop_err();
+}
+c_Bullet.prototype.p_Update=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<40>";
+	c_AnimatedSprite.prototype.p_Update.call(this);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<42>";
+	if(dbg_object(this).m_state==0){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<44>";
+		var t_=dbg_object(this).m_Position;
+		dbg_object(this).m_Position.p_X(t_.p_X2()+(dbg_object(this).m_speed)*c_Time.m_DeltaSecs());
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<45>";
+		if(dbg_object(this).m_max_live_time*(1+dbg_object(this).m_level)<=dbg_object(this).m_current_live_time){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<46>";
+			c_CollisionEngine.m_Instance2().p_Destroy(this);
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<47>";
+			this.p_Destroy2();
+		}
+	}else{
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<50>";
+		if(dbg_object(this).m_state==1){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<52>";
+			if(dbg_object(this).m_max_live_time<=dbg_object(this).m_current_live_time){
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<53>";
+				dbg_object(this).m_visible=false;
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<54>";
+				this.p_Destroy2();
+			}
+		}
+	}
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<59>";
+	dbg_object(this).m_current_live_time+=c_Time.m_DeltaSecs();
 	pop_err();
 }
 c_Bullet.m_new=function(t_img,t_position){
 	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<12>";
-	c_lpImage.m_new2.call(this,t_img,t_position);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<14>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<29>";
+	c_AnimatedSprite.m_new.call(this,"bullet_level_0.png",t_position,8.0,4.0,2,0.0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<31>";
+	this.p_AddSequence("shot",[0]);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<32>";
+	this.p_AddSequence("explode",[1]);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<34>";
+	this.p_PlaySequence("shot",100,true);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<36>";
 	c_CollisionEngine.m_Instance2().p_AddBody(this);
 	pop_err();
 	return this;
 }
 c_Bullet.m_new2=function(){
 	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<5>";
-	c_lpImage.m_new6.call(this);
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<5>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<10>";
+	c_AnimatedSprite.m_new3.call(this);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<10>";
 	pop_err();
 	return this;
 }
+c_Bullet.prototype.p_OnDestroyListener=function(t_l){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<87>";
+	dbg_object(this).m_destroy_listener=t_l;
+	pop_err();
+}
 c_Bullet.prototype.p_GetBox=function(){
 	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<18>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<64>";
 	pop_err();
 	return dbg_object(this).m_Position;
 }
 c_Bullet.prototype.p_OnCollide=function(t_name){
 	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<21>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<68>";
 	if(t_name=="wall" || t_name=="enemy"){
-		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<22>";
-		this.p_Destroy2();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<69>";
+		dbg_object(this).m_state=1;
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<71>";
+		c_CollisionEngine.m_Instance2().p_Destroy(this);
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<72>";
+		this.p_PlaySequence("explode",100,true);
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<74>";
+		dbg_object(this).m_current_live_time=0.0;
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<75>";
+		dbg_object(this).m_max_live_time=0.1;
 	}
 	pop_err();
 }
 c_Bullet.prototype.p_GetName=function(){
 	push_err();
-	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<26>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<79>";
 	pop_err();
 	return "player_bullet";
 }

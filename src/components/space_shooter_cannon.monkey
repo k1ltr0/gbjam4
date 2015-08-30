@@ -2,24 +2,77 @@ Import lp2
 Import collision_engine
 Import camerafx
 
-Class Bullet Extends lpImage Implements iOnCollide
+
+Interface iOnDestroy
+    Method OnDestroy(e:iDrawable)
+End
+
+Class Bullet Extends AnimatedSprite Implements iOnCollide
 
     Field max_live_time:Float = 0.3
     Field current_live_time:Float = 0
     Field visible:Bool = True
 
+    Const STATE_SHOT:Int = 0
+    Const STATE_EXPLODE:Int = 1
+
+    Field state:Int = STATE_SHOT
+    Field current_time_exploded:Int = 0
+
+    Field destroy_listener:iOnDestroy
+
+    Field speed:Int = 150
+
+    Field level:Int = 0
+
     Method New(img:Image, position:Vec2)
-        Super.New(img, position)
+        Super.New("bullet_level_0.png", position, 8.0, 4.0, 2)
+
+        Self.AddSequence("shot", [0])
+        Self.AddSequence("explode", [1])
+
+        Self.PlaySequence("shot")
 
         CollisionEngine.Instance.AddBody(Self)
     End
 
+    Method Update:Void()
+        Super.Update()
+
+        If (Self.state = Bullet.STATE_SHOT)
+
+            Self.Position.X += Self.speed * Time.DeltaSecs
+            If (Self.max_live_time * (1 + Self.level) <= Self.current_live_time)
+                CollisionEngine.Instance.Destroy(Self)
+                Self.Destroy()
+            EndIf
+
+        ElseIf (Self.state = Bullet.STATE_EXPLODE)
+
+            If Self.max_live_time <= Self.current_live_time
+                Self.visible = False
+                Self.Destroy()
+            End
+
+        End
+
+        Self.current_live_time += Time.DeltaSecs
+    End
+
+
     Method GetBox:Rectangle()
         Return Self.Position
     End
+
     Method OnCollide:Void(name:String)
         If name = "wall" Or name = "enemy"
-            Self.Destroy()
+            Self.state = STATE_EXPLODE
+
+            CollisionEngine.Instance.Destroy(Self)
+            Self.PlaySequence("explode")
+
+            Self.current_live_time = 0
+            Self.max_live_time = 0.1
         End
     End
     Method GetName:String()
@@ -27,12 +80,15 @@ Class Bullet Extends lpImage Implements iOnCollide
     End
 
     Method Destroy:Void()
-        CollisionEngine.Instance.Destroy(Self)
-        Self.visible = False
+        Self.destroy_listener.OnDestroy(Self)
+    End
+
+    Method OnDestroyListener:Void(l:iOnDestroy)
+        Self.destroy_listener = l
     End
 End
 
-Class SpaceShooterCannon Implements iDrawable
+Class SpaceShooterCannon Implements iDrawable, iOnDestroy
 
     Field offset:Point
     Field target:Point
@@ -43,7 +99,6 @@ Class SpaceShooterCannon Implements iDrawable
 
     Field level:Int = 0
 
-    Field speed:Int = 150
     Field camera_fx:CameraFX
 
     Method New(target:Point)
@@ -61,14 +116,7 @@ Class SpaceShooterCannon Implements iDrawable
 
     Method Update:Void()
         For Local b:=Eachin Self.bullets
-            b.Position.X += Self.speed * Time.DeltaSecs
-            b.current_live_time += Time.DeltaSecs
-
-            If (b.max_live_time * (1 + Self.level) <= b.current_live_time)
-                b.Destroy()
-                Self.discard_list.AddLast(b)
-            EndIf
-            
+            b.Update()
         Next
 
         ''' discard bullets
@@ -111,10 +159,9 @@ Class SpaceShooterCannon Implements iDrawable
                             new Vec2(
                                 Self.target.X + Self.offset.X, 
                                 Self.target.Y + Self.offset.Y))
+        img.OnDestroyListener = Self
 
         self.bullets.AddLast(img)
-
-        '' Self.camera_fx.Shake(100, 0.2 * (level+1), 0.2 * (level+1))
         Self.camera_fx.Recoil()
     End
 
@@ -140,5 +187,10 @@ Class SpaceShooterCannon Implements iDrawable
 
         sprites = imgs.ToArray()
     End
+
+    Method OnDestroy(e:iDrawable)
+        Self.discard_list.AddLast(Bullet(e))
+    End
+    
 
 End
