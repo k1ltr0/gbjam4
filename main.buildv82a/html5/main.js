@@ -19,7 +19,7 @@ CFG_TEXT_FILES="*.txt|*.xml|*.json;|*.fnt";
 //${CONFIG_END}
 
 //${METADATA_BEGIN}
-var META_DATA="[mojo_font.png];type=image/png;width=864;height=13;\n[bullet_level_0.png];type=image/png;width=2;height=2;\n[bullet_level_1.png];type=image/png;width=5;height=3;\n[bullet_level_2.png];type=image/png;width=10;height=3;\n[bullet_level_3.png];type=image/png;width=10;height=6;\n[collisions.png];type=image/png;width=24;height=48;\n[enemies.png];type=image/png;width=55;height=9;\n[powerup.png];type=image/png;width=4;height=6;\n[ship.png];type=image/png;width=46;height=8;\n[tiles.png];type=image/png;width=512;height=512;\n";
+var META_DATA="[mojo_font.png];type=image/png;width=864;height=13;\n[bullet_enemy.png];type=image/png;width=6;height=6;\n[bullet_level_0.png];type=image/png;width=8;height=4;\n[bullet_level_1.png];type=image/png;width=5;height=3;\n[bullet_level_2.png];type=image/png;width=10;height=3;\n[bullet_level_3.png];type=image/png;width=10;height=6;\n[collisions.png];type=image/png;width=24;height=48;\n[enemies.png];type=image/png;width=55;height=9;\n[powerup.png];type=image/png;width=4;height=6;\n[ship.png];type=image/png;width=46;height=8;\n[tiles.png];type=image/png;width=512;height=512;\n";
 //${METADATA_END}
 
 //${TRANSCODE_BEGIN}
@@ -7260,6 +7260,14 @@ c_GameScene.prototype.p_LoadingRender=function(){
 	bb_graphics_SetColor(255.0,255.0,255.0);
 	pop_err();
 }
+c_GameScene.prototype.p_Render=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/scenes/gamescene.monkey<34>";
+	bb_graphics_Cls((dbg_array(bb_consts2_COLOR_1,0)[dbg_index]),(dbg_array(bb_consts2_COLOR_1,1)[dbg_index]),(dbg_array(bb_consts2_COLOR_1,2)[dbg_index]));
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/scenes/gamescene.monkey<35>";
+	c_Scene.prototype.p_Render.call(this);
+	pop_err();
+}
 function c_Space(){
 	Object.call(this);
 	this.m_children=c_Stack5.m_new.call(new c_Stack5);
@@ -7410,6 +7418,7 @@ c_GamePlaySpace.prototype.p_Create=function(){
 	pop_err();
 }
 var bb_consts2_COLOR_4=[];
+var bb_consts2_COLOR_1=[];
 function c_Stack5(){
 	Object.call(this);
 	this.m_data=[];
@@ -12790,7 +12799,7 @@ function c_SpaceShooterCannon(){
 	this.m_discard_list=null;
 	this.m_camera_fx=null;
 	this.m_sprites=[];
-	this.m_speed=250;
+	this.m_speed=150;
 	this.m_level=0;
 	this.implments={c_iDrawable:1};
 }
@@ -12939,7 +12948,7 @@ c_SpaceShooterCannon.prototype.p_Render=function(){
 function c_Bullet(){
 	c_lpImage.call(this);
 	this.m_current_live_time=0.0;
-	this.m_max_live_time=0.2;
+	this.m_max_live_time=0.3;
 	this.m_visible=true;
 	this.implments={c_iOnCollide:1,c_iDrawable:1};
 }
@@ -13133,7 +13142,7 @@ function c_CameraFX(){
 	this.m_force_y=100.0;
 	this.m_correction_x=0.0;
 	this.m_correction_y=0.0;
-	this.m_recoil_fx=0;
+	this.m_recoil_fx=0.0;
 }
 c_CameraFX.prototype.p_CameraView=function(t_value){
 	push_err();
@@ -13195,22 +13204,22 @@ c_CameraFX.prototype.p_Update=function(){
 		}
 	}
 	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<68>";
-	if(dbg_object(this).m_recoil_fx>0){
+	if(dbg_object(this).m_recoil_fx>0.0){
 		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<69>";
 		var t_5=dbg_object(this).m_camera_view;
-		dbg_object(this).m_camera_view.p_X(t_5.p_X2()-(dbg_object(this).m_recoil_fx));
+		dbg_object(this).m_camera_view.p_X(t_5.p_X2()-dbg_object(this).m_recoil_fx);
 		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<70>";
-		dbg_object(this).m_recoil_fx-=1;
+		dbg_object(this).m_recoil_fx-=0.5;
 	}
 	pop_err();
 }
 c_CameraFX.prototype.p_Recoil=function(){
 	push_err();
 	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<95>";
-	dbg_object(this).m_recoil_fx=1;
+	dbg_object(this).m_recoil_fx=0.5;
 	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<96>";
 	var t_=dbg_object(this).m_camera_view;
-	dbg_object(this).m_camera_view.p_X(t_.p_X2()+1.0);
+	dbg_object(this).m_camera_view.p_X(t_.p_X2()+0.5);
 	pop_err();
 	return 0;
 }
@@ -14544,7 +14553,7 @@ c_EnemyBullet.prototype=extend_class(c_lpImage);
 c_EnemyBullet.m_new=function(t_position,t_direction){
 	push_err();
 	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/enemy_cannon.monkey<15>";
-	c_lpImage.m_new.call(this,"bullet_level_0.png",t_position,0);
+	c_lpImage.m_new.call(this,"bullet_enemy.png",t_position,0);
 	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/enemy_cannon.monkey<17>";
 	dbg_object(this).m_direction=t_direction;
 	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/enemy_cannon.monkey<18>";
@@ -15612,7 +15621,8 @@ function bbInit(){
 	bb_game_LONENTERSCENE=2;
 	c_lpResources.m__instance=c_lpResources.m_new.call(new c_lpResources);
 	bb_app__updateRate=0;
-	bb_consts2_COLOR_4=[232,227,169];
+	bb_consts2_COLOR_4=[231,214,156];
+	bb_consts2_COLOR_1=[57,57,41];
 	c_Stack5.m_NIL=null;
 	c_Stack6.m_NIL=null;
 	c_Stack7.m_NIL=null;

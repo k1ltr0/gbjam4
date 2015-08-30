@@ -12,7 +12,7 @@ Class EnemyBullet Extends lpImage Implements iOnCollide
     Field direction:Vec2
 
     Method New(position:Vec2, direction:Vec2)
-        Super.New("bullet_level_0.png", position)
+        Super.New("bullet_enemy.png", position)
 
         Self.direction = direction
         CollisionEngine.Instance.AddBody(Self)

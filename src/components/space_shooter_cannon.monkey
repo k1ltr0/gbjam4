@@ -4,7 +4,7 @@ Import camerafx
 
 Class Bullet Extends lpImage Implements iOnCollide
 
-    Field max_live_time:Float = 0.2
+    Field max_live_time:Float = 0.3
     Field current_live_time:Float = 0
     Field visible:Bool = True
 
@@ -43,7 +43,7 @@ Class SpaceShooterCannon Implements iDrawable
 
     Field level:Int = 0
 
-    Field speed:Int = 250
+    Field speed:Int = 150
     Field camera_fx:CameraFX
 
     Method New(target:Point)

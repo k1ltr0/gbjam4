@@ -23,7 +23,7 @@ Private
     Field correction_y:Float = 0
 
 
-    Field recoil_fx:Int = 0
+    Field recoil_fx:Float = 0
 
 Public
 
@@ -67,7 +67,7 @@ Public
 
         If (Self.recoil_fx > 0)
             Self.camera_view.X -= Self.recoil_fx
-            Self.recoil_fx -= 1
+            Self.recoil_fx -= 0.5
         EndIf
     End
 
@@ -92,8 +92,8 @@ Public
     End
 
     Method Recoil()
-        Self.recoil_fx = 1
-        Self.camera_view.X += 1
+        Self.recoil_fx = 0.5
+        Self.camera_view.X += 0.5
     End
 
 

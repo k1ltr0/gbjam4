@@ -4,10 +4,10 @@ Const SCREEN_WIDTH:Int = 160
 Const SCREEN_HEIGHT:Int = 144
 
 
-Global COLOR_1:Int[] = [0,0,0]
-Global COLOR_2:Int[] = [3, 63, 69]
-Global COLOR_3:Int[] = [75, 168, 139]
-Global COLOR_4:Int[] = [232, 227, 169]
+Global COLOR_1:Int[] = [57,57,41]
+Global COLOR_2:Int[] = [123,115,99]
+Global COLOR_3:Int[] = [181,165,107]
+Global COLOR_4:Int[] = [231,214,156]
 
 
 Const ENEMY_A:String = "4097"

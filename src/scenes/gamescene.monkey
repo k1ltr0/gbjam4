@@ -30,4 +30,9 @@ Class GameScene Extends Scene
         SetColor (255,255,255)
     End
 
+    Method Render:Void()
+        Cls COLOR_1[0],COLOR_1[1],COLOR_1[2]
+        Super.Render()
+    End
+
 End
