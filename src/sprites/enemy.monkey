@@ -52,6 +52,16 @@ Class Enemy Implements iDrawable, iOnCollide
 
     Field player_position:Rectangle
 
+    Field explosion:AnimatedSprite
+
+
+    ''' state machine
+    Const STATE_ALIVE:Int = 0
+    Const STATE_EXPLODE:Int = 1
+    Const STATE_DIE:Int = 2
+
+    Field state:Int = STATE_ALIVE
+
     Method New(position:Rectangle, type:String)
         Self.position = position
         Self.position.Y -= position.Height
@@ -80,25 +90,50 @@ Class Enemy Implements iDrawable, iOnCollide
         Self.cannon = New EnemyCannon
 
         Self.ai = New SimpleShotAI(Self)
+
+        ''' explosion
+        Self.explosion = New AnimatedSprite("explosion.png", new Vec2(0,0), 9,9,14)
+        Self.explosion.AddSequence("explode", [0,1,2,3,4,5,6,7,8,9,10,11,12,13])
+        '' Self.explosion.PlaySequence("explode", 70, False)
     End
 
     Method Update:Void()
         If (Not(visible)) Then Return
-        
-        Self.animated_sprite.Update()
-        Self.ai.Update()
-        Self.cannon.Update()
+
+        If (Self.state = STATE_ALIVE)
+
+            Self.animated_sprite.Update()
+            Self.ai.Update()
+            Self.cannon.Update()
+
+        ElseIf(Self.state = STATE_EXPLODE)
+
+            Self.explosion.Update()
+
+            If (Self.explosion.IsLastFrame) Then Self.state = STATE_DIE
+
+        ElseIf(Self.state = STATE_DIE)
+
+            Self.visible = False
+
+        EndIf
     End
     
     Method Render:Void()
         If (Not(Self.visible)) Then Return
-        
-        PushMatrix()
-        Translate Self.position.X, Self.position.Y
-        Self.animated_sprite.Render()
-        PopMatrix()
 
-        Self.cannon.Render()
+        If (Self.state = STATE_ALIVE)
+
+            PushMatrix()
+            Translate Self.position.X, Self.position.Y
+            Self.animated_sprite.Render()
+            PopMatrix()
+
+            Self.cannon.Render()
+
+        ElseIf (Self.state = STATE_EXPLODE)
+            Self.explosion.Render()
+        End
     End
 
     ''' iOnCollide
@@ -109,7 +144,11 @@ Class Enemy Implements iDrawable, iOnCollide
     Method OnCollide:Void(name:String)
         If (name = "player" Or name = "player_bullet")
             Time.Freeze(100)
-            Self.visible = False
+            Self.explosion.PlaySequence("explode", 70)
+            Self.explosion.Position.X = Self.position.X
+            Self.explosion.Position.Y = Self.position.Y
+            Self.state = STATE_EXPLODE
+            '' Self.visible = False
             Self.cannon.Destroy()
             CollisionEngine.Instance.Destroy(Self)
         EndIf
