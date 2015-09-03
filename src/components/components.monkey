@@ -7,3 +7,5 @@ Import tile_map_collider
 Import enemy_cannon
 Import activeoncamera
 Import camerafx
+Import aaenemycannon
+Import wavymovement

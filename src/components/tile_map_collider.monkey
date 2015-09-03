@@ -50,7 +50,7 @@ Class TileMapCollider Extends CollisionEngine
         Local tile_position := Self.GetTileGridPosition(cx, cy)
         Local index:= (tile_position[0]) + Self.tile_layer.width * tile_position[1]
 
-        If (index < Self.tile_layer.data.Length-1)
+        If (index < Self.tile_layer.data.Length-1 And index > 0)
             Return Self.tile_layer.data[index]
         EndIf
 

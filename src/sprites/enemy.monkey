@@ -161,7 +161,19 @@ Class Enemy Implements iDrawable, iOnCollide
     Method Shot:Void()
         Self.cannon.Shot(
             Self.position.X, Self.position.Y,
-            Self.player_position.CenterX, Self.player_position.CenterY)
+            Self.position.X-1, Self.position.Y)
+
+        Self.cannon.Shot(
+            Self.position.X, Self.position.Y,
+            Self.position.X+1, Self.position.Y)
+
+        Self.cannon.Shot(
+            Self.position.X, Self.position.Y,
+            Self.position.X, Self.position.Y-1)
+
+        Self.cannon.Shot(
+            Self.position.X, Self.position.Y,
+            Self.position.X, Self.position.Y+1)
     End
 
 End
