@@ -67,6 +67,8 @@ Class GamePlaySpace Extends Space
                 enemy = New EnemyTurret(o, o.gid)
             ElseIf (o.gid = ENEMY_WAVE)
                 enemy = New EnemyWave(o)
+            ElseIf o.gid = ENEMY_RECTLINE
+                enemy = New EnemyRectLine(o, o.gid)
             EndIf
 
             If (enemy <> Null)

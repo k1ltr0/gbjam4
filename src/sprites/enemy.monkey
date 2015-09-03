@@ -69,9 +69,7 @@ Class Enemy Implements iDrawable, iOnCollide
         Self.Create()
     End
 
-    ''' implementing iDrawable
-    Method Create:Void()
-
+    Method CreateSprite:Void()
         ''' sprite
         Self.animated_sprite = New AnimatedSprite("enemies.png", new Vec2(0,0), 9, 9, 6)
         Self.animated_sprite.AddSequence("4097", [0])
@@ -82,6 +80,12 @@ Class Enemy Implements iDrawable, iOnCollide
         Self.animated_sprite.AddSequence("play", [5])
 
         Self.animated_sprite.PlaySequence(Self.type)
+    End
+
+    ''' implementing iDrawable
+    Method Create:Void()
+
+        Self.CreateSprite()
 
         ''' collisions
         CollisionEngine.Instance.AddStaticBody(Self)
