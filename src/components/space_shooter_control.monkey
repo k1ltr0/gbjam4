@@ -29,7 +29,7 @@ Class SpaceShooterControl
             Self.target.X += Self.speed * Time.DeltaSecs
         End
 
-        If (KeyHit(KEY_SPACE))
+        If (KeyHit(KEY_SPACE) Or KeyHit(KEY_X))
             Self.shot = True
         EndIf
 

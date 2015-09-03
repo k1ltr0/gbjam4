@@ -6,6 +6,7 @@ Import main
 Class Player Implements iDrawable, iOnCollide
 
     Field sprite:AnimatedSprite
+    Field explosion:AnimatedSprite
     Field particles_emitter:ParticleEmitter
     Field position:Rectangle
     Field box:Rectangle
@@ -13,7 +14,12 @@ Class Player Implements iDrawable, iOnCollide
     Field control:SpaceShooterControl
     Field cannon:SpaceShooterCannon
 
-    Field visible:Bool = True
+    ''' state machine
+    Const STATE_ALIVE:Int = 0
+    Const STATE_EXPLODE:Int = 1
+    Const STATE_DIE:Int = 2
+
+    Field state:Int = STATE_ALIVE
 
     Method New()
         Self.Create()
@@ -49,38 +55,53 @@ Class Player Implements iDrawable, iOnCollide
         Self.particles_emitter.Position.Y = 0
 
         CollisionEngine.Instance.AddBody(Self)
+
+        ''' explosion
+        Self.explosion = New AnimatedSprite("explosion.png", new Vec2(0,0), 9,9,14)
+        Self.explosion.AddSequence("explode", [0,1,2,3,4,5,6,7,8,9,10,11,12,13])
     End
     
     Method Update:Void()
-        Self.sprite.Update()
-        Self.control.Update()
-        Self.cannon.Update()
-        Self.particles_emitter.Update()
 
-        If (Self.control.Shot())
-            Self.cannon.Shot()
+        If Self.state = STATE_ALIVE
+            Self.sprite.Update()
+            Self.control.Update()
+            Self.cannon.Update()
+            Self.particles_emitter.Update()
+
+            If (Self.control.Shot())
+                Self.cannon.Shot()
+            EndIf
+
+            Self.box.X = Self.position.X + 10
+            Self.box.Y = Self.position.Y + 2
+
+            Self.particles_emitter.Position.X = Self.position.X + 7
+            Self.particles_emitter.Position.Y = Self.position.Y + Self.position.Height / 2
+        ElseIf Self.state = STATE_EXPLODE
+            Self.explosion.Update()
+
+            If (Self.explosion.IsLastFrame)
+                Game.Instance.SetScene(GAME_SCENE)
+            EndIf
         EndIf
-
-        Self.box.X = Self.position.X + 10
-        Self.box.Y = Self.position.Y + 2
-
-        Self.particles_emitter.Position.X = Self.position.X + 7
-        Self.particles_emitter.Position.Y = Self.position.Y + Self.position.Height / 2
 
     End
     
     Method Render:Void()
 
-        If (Not(Self.visible)) Then Return
+        If Self.state = STATE_ALIVE
+            Self.particles_emitter.Render()
 
-        Self.particles_emitter.Render()
+            PushMatrix()
+            Translate Self.position.X, Self.position.Y
+            Self.sprite.Render()
+            PopMatrix()
 
-        PushMatrix()
-        Translate Self.position.X, Self.position.Y
-        Self.sprite.Render()
-        PopMatrix()
-
-        Self.cannon.Render()
+            Self.cannon.Render()
+        ElseIf Self.state = STATE_EXPLODE
+            Self.explosion.Render()
+        End
     End
 
 
@@ -109,9 +130,15 @@ Class Player Implements iDrawable, iOnCollide
 
         CollisionEngine.Instance.Destroy(Self)
         CollisionEngine.Instance.DestroyAll()
-        Self.visible = False
 
-        Game.Instance.SetScene(GAME_SCENE)
+        Self.state = STATE_EXPLODE
+
+        Self.explosion.Position.X = Self.position.X + 10
+        Self.explosion.Position.Y = Self.position.Y
+        Self.explosion.PlaySequence("explode")
+
+        Time.SlowDown(0.5, 1000)
+        '' Game.Instance.SetScene(GAME_SCENE)
     End
 
     Method GetName:String()

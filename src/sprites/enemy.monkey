@@ -158,7 +158,7 @@ Class Enemy Implements iDrawable, iOnCollide
         Return "enemy"
     End
 
-    Method Shot:Void()
+    Method AAShot:Void()
         Self.cannon.Shot(
             Self.position.X, Self.position.Y,
             Self.position.X-1, Self.position.Y)
@@ -174,6 +174,37 @@ Class Enemy Implements iDrawable, iOnCollide
         Self.cannon.Shot(
             Self.position.X, Self.position.Y,
             Self.position.X, Self.position.Y+1)
+    End
+
+    Method XShot:Void()
+        Self.cannon.Shot(
+            Self.position.X, Self.position.Y,
+            Self.position.X-1, Self.position.Y-1)
+
+        Self.cannon.Shot(
+            Self.position.X, Self.position.Y,
+            Self.position.X+1, Self.position.Y+1)
+
+        Self.cannon.Shot(
+            Self.position.X, Self.position.Y,
+            Self.position.X+1, Self.position.Y-1)
+
+        Self.cannon.Shot(
+            Self.position.X, Self.position.Y,
+            Self.position.X-1, Self.position.Y+1)
+    End
+
+    Method Shot:Void()
+
+        If (Self.type = 4097)
+            Self.AAShot()
+        ElseIf (Self.type = 4098)
+            Self.AAShot()
+            Self.XShot()
+        ElseIf(Self.type = 4099)
+            Self.XShot()
+        EndIf
+
     End
 
 End
