@@ -14,6 +14,8 @@ Class GamePlaySpace Extends Space
     Field collision_engine:CollisionEngine
     Field tile_map_collider:TileMapCollider
 
+    Field bullets_engine:BulletsEngine
+
     Method Create:Void()
 
         ''' elements
@@ -27,6 +29,9 @@ Class GamePlaySpace Extends Space
 
         Self.tile_map_collider = New TileMapCollider(Self.world.GetCollisionsLayer())
         Self.AddChild(Self.tile_map_collider)
+
+        Self.bullets_engine = New BulletsEngine()
+        Self.AddChild(Self.bullets_engine)
 
         ''' player
         Self.player = new Player()

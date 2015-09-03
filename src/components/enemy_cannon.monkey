@@ -16,6 +16,7 @@ Class EnemyBullet Extends lpImage Implements iOnCollide
 
         Self.direction = direction
         CollisionEngine.Instance.AddBody(Self)
+        BulletsEngine.Instance.AddBullet(Self)
     End
 
     Method GetBox:Rectangle()
@@ -39,8 +40,6 @@ End
 
 Class EnemyCannon Implements iDrawable
 
-    Field bullets:List<EnemyBullet>
-    Field discard_list:List<EnemyBullet>
     Field visible:Bool = True
 
     Method New()
@@ -49,56 +48,23 @@ Class EnemyCannon Implements iDrawable
 
     ''' implementing iDrawable
     Method Create:Void()
-        Self.bullets = New List<EnemyBullet>
-        Self.discard_list = New List<EnemyBullet>
     End
     
     Method Update:Void()
-        If Not(Self.visible) Then Return
-        For Local b:=Eachin Self.bullets
-            b.Position.X += (b.speed * Time.DeltaSecs) * b.direction.X
-            b.Position.Y += (b.speed * Time.DeltaSecs) * b.direction.Y
-
-            b.current_live_time += Time.DeltaSecs
-
-            If (b.max_live_time <= b.current_live_time)
-                b.Destroy()
-                Self.discard_list.AddLast(b)
-            EndIf
-            
-        Next
-
-
-        ''' discard bullets
-        For Local db:=Eachin Self.discard_list
-            Self.bullets.RemoveEach( db )
-        Next
-
-        Self.discard_list.Clear()
     End
     
     Method Render:Void()
-        If Not(Self.visible) Then Return
-        For Local b:=Eachin Self.bullets
-            If (b.visible)
-                b.Render()
-            EndIf
-        Next
     End
 
     Method Shot:Void(ox:Int, oy:Int, dx:Int, dy:Int)
 
         Local v:= New Vec2(dx-ox, dy-oy)
-        Local bullet:= New EnemyBullet(New Vec2(ox, oy), v.UnitVector())
+        New EnemyBullet(New Vec2(ox, oy), v.UnitVector()) ''' auto add to bullets_engine
 
-        Self.bullets.AddLast(bullet)
     End
 
     Method Destroy:Void()
         Self.visible = False
-        For Local b:=Eachin Self.bullets
-            b.Destroy()
-        Next
     End
 
 
