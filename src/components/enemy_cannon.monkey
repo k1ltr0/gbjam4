@@ -7,7 +7,7 @@ Class EnemyBullet Extends lpImage Implements iOnCollide
     Field max_live_time:Float = 5
     Field current_live_time:Float = 0
     Field visible:Bool = True
-    Field speed:Int = 25
+    Field speed:Int = 30
 
     Field direction:Vec2
 
