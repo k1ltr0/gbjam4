@@ -3,7 +3,7 @@
 CFG_BINARY_FILES="*.bin|*.dat";
 CFG_BRL_GAMETARGET_IMPLEMENTED="1";
 CFG_BRL_THREAD_IMPLEMENTED="1";
-CFG_CONFIG="release";
+CFG_CONFIG="debug";
 CFG_HOST="macos";
 CFG_HTML5_WEBAUDIO_ENABLED="1";
 CFG_IMAGE_FILES="*.png|*.jpg";
@@ -2381,41 +2381,68 @@ function c_App(){
 	Object.call(this);
 }
 c_App.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<152>";
 	if((bb_app__app)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<152>";
 		error("App has already been created");
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<153>";
 	bb_app__app=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<154>";
 	bb_app__delegate=c_GameDelegate.m_new.call(new c_GameDelegate);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<155>";
 	bb_app__game.SetDelegate(bb_app__delegate);
+	pop_err();
 	return this;
 }
 c_App.prototype.p_OnResize=function(){
+	push_err();
+	pop_err();
 	return 0;
 }
 c_App.prototype.p_OnCreate=function(){
+	push_err();
+	pop_err();
 	return 0;
 }
 c_App.prototype.p_OnSuspend=function(){
+	push_err();
+	pop_err();
 	return 0;
 }
 c_App.prototype.p_OnResume=function(){
+	push_err();
+	pop_err();
 	return 0;
 }
 c_App.prototype.p_OnUpdate=function(){
+	push_err();
+	pop_err();
 	return 0;
 }
 c_App.prototype.p_OnLoading=function(){
+	push_err();
+	pop_err();
 	return 0;
 }
 c_App.prototype.p_OnRender=function(){
+	push_err();
+	pop_err();
 	return 0;
 }
 c_App.prototype.p_OnClose=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<177>";
 	bb_app_EndApp();
+	pop_err();
 	return 0;
 }
 c_App.prototype.p_OnBack=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<181>";
 	this.p_OnClose();
+	pop_err();
 	return 0;
 }
 function c_Game(){
@@ -2432,239 +2459,443 @@ function c_Game(){
 	this.m_toast_timer=0;
 	this.m_toast_animation_time=1500;
 	this.m_toast_font=null;
+	this.m__frames_count=0;
+	this.m__time_count=0.0;
 	this.m__lastSceneId=0;
 	this.implments={c_iDrawable:1};
 }
 c_Game.prototype=extend_class(c_App);
 c_Game.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<19>";
 	c_App.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<19>";
+	pop_err();
 	return this;
 }
 c_Game.m__instance=null;
 c_Game.prototype.p_Create=function(){
+	push_err();
+	pop_err();
 }
 c_Game.prototype.p_PostCreate=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<393>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<393>";
 	var t_=this.m__currentScene.p_GetChildren().p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<393>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<393>";
 		var t_l=t_.p_NextObject();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<394>";
 		t_l.p_Create();
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<397>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<397>";
 	var t_2=this.m__currentScene.p_GetGui().p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<397>";
 	while(t_2.p_HasNext()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<397>";
 		var t_l2=t_2.p_NextObject();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<398>";
 		t_l2.p_Create();
 	}
+	pop_err();
 }
 c_Game.prototype.p_OnCreate=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<63>";
 	c_Game.m__instance=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<64>";
 	this.m__loadingTween=c_lpTween.m_CreateLinear(0.0,1.0,300.0,false);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<65>";
 	var t_defCamera=c_lpCamera.m_new.call(new c_lpCamera,0.0,0.0,(bb_app_DeviceWidth()),(bb_app_DeviceHeight()),0.0,0.0,(bb_app_DeviceWidth()),(bb_app_DeviceHeight()));
-	this.m__currentCamera=t_defCamera;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<66>";
+	dbg_object(this).m__currentCamera=t_defCamera;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<68>";
 	this.p_Create();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<70>";
 	if(this.m__currentScene==null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<71>";
 		error("Debes crear una escena, implementa 'Method GetScene:Scene(id:Int)'");
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<74>";
 	if(0>=this.m__currentScene.p_Cameras().p_Length2()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<76>";
 		this.m__currentScene.p_AddCamera(t_defCamera);
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<79>";
 	if(this.m__currentScene.p_AutoCreate()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<80>";
 		this.p_PostCreate();
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<84>";
+	pop_err();
 	return 0;
 }
 c_Game.prototype.p_Update=function(){
+	push_err();
+	pop_err();
 }
 c_Game.prototype.p_OnUpdate=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<89>";
 	c_Time.m_OnUpdate();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<91>";
 	if(this.m__loadingState==bb_game_LONLOADING){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<92>";
 		this.m__currentScene.p_SetLoadingState(this.m__currentScene.p_Loading());
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<95>";
 	if(this.m__loadingState==bb_game_LONPLAYING){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<98>";
 		if(this.m__showPopup){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<99>";
 			this.m__currentPopup.p_Update();
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<101>";
 			this.m__currentScene.p_Update();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<102>";
 			this.p_Update();
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<105>";
 		bb_asyncevent_UpdateAsyncEvents();
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<108>";
+	pop_err();
 	return 0;
 }
 c_Game.prototype.p_OnLoading=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<115>";
+	pop_err();
 	return 0;
 }
 c_Game.prototype.p_OnBack=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<125>";
 	if(this.m__showPopup){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<126>";
 		this.m__currentPopup.p_Back();
 	}
-	return this.m__currentScene.p_Back();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<130>";
+	var t_=this.m__currentScene.p_Back();
+	pop_err();
+	return t_;
 }
 c_Game.prototype.p_OnSuspend=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<134>";
 	this.m__currentScene.p_Suspend();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<136>";
+	pop_err();
 	return 0;
 }
 c_Game.prototype.p_Render=function(){
+	push_err();
+	pop_err();
 }
 c_Game.prototype.p_ToastRender=function(){
-	if(this.m_toast_tail!=null && this.m_toast_tail.p_Count()>0){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<274>";
+	if(dbg_object(this).m_toast_tail!=null && dbg_object(this).m_toast_tail.p_Count()>0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<277>";
 		var t_alpha=0.0;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<278>";
 		var t_color=bb_graphics_GetColor();
-		var t_1=this.m_toast_state_machine;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<281>";
+		var t_1=dbg_object(this).m_toast_state_machine;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<282>";
 		if(t_1==3){
-			this.m_toast_state_machine=0;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<284>";
+			dbg_object(this).m_toast_state_machine=0;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<285>";
 			if(t_1==2){
-				this.m_toast_timer+=c_Time.m_Delta();
-				t_alpha=1.0-(this.m_toast_timer)/((this.m_toast_animation_time)*0.2);
-				if((this.m_toast_timer)>=(this.m_toast_animation_time)*0.2){
-					this.m_toast_state_machine=3;
-					this.m_toast_timer=0;
-					this.m_toast_tail.p_RemoveLast();
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<286>";
+				dbg_object(this).m_toast_timer+=c_Time.m_Delta();
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<287>";
+				t_alpha=1.0-(dbg_object(this).m_toast_timer)/((dbg_object(this).m_toast_animation_time)*0.2);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<289>";
+				if((dbg_object(this).m_toast_timer)>=(dbg_object(this).m_toast_animation_time)*0.2){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<290>";
+					dbg_object(this).m_toast_state_machine=3;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<291>";
+					dbg_object(this).m_toast_timer=0;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<293>";
+					dbg_object(this).m_toast_tail.p_RemoveLast();
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<294>";
 					t_alpha=0.0;
 				}
 			}else{
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<296>";
 				if(t_1==1){
-					this.m_toast_timer+=c_Time.m_Delta();
-					if((this.m_toast_timer)>=(this.m_toast_animation_time)*0.6){
-						this.m_toast_state_machine=2;
-						this.m_toast_timer=0;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<297>";
+					dbg_object(this).m_toast_timer+=c_Time.m_Delta();
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<299>";
+					if((dbg_object(this).m_toast_timer)>=(dbg_object(this).m_toast_animation_time)*0.6){
+						err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<300>";
+						dbg_object(this).m_toast_state_machine=2;
+						err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<301>";
+						dbg_object(this).m_toast_timer=0;
 					}
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<304>";
 					t_alpha=1.0;
 				}else{
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<305>";
 					if(t_1==0){
-						this.m_toast_timer+=c_Time.m_Delta();
-						t_alpha=(this.m_toast_timer)/((this.m_toast_animation_time)*0.2);
-						if((this.m_toast_timer)>=(this.m_toast_animation_time)*0.2){
-							this.m_toast_state_machine=1;
-							this.m_toast_timer=0;
+						err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<306>";
+						dbg_object(this).m_toast_timer+=c_Time.m_Delta();
+						err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<307>";
+						t_alpha=(dbg_object(this).m_toast_timer)/((dbg_object(this).m_toast_animation_time)*0.2);
+						err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<309>";
+						if((dbg_object(this).m_toast_timer)>=(dbg_object(this).m_toast_animation_time)*0.2){
+							err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<310>";
+							dbg_object(this).m_toast_state_machine=1;
+							err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<311>";
+							dbg_object(this).m_toast_timer=0;
+							err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<313>";
 							t_alpha=1.0;
 						}
 					}
 				}
 			}
 		}
-		if(this.m_toast_state_machine!=3){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<318>";
+		if(dbg_object(this).m_toast_state_machine!=3){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<319>";
 			bb_graphics_PushMatrix();
-			if(this.m_toast_font!=null){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<321>";
+			if(dbg_object(this).m_toast_font!=null){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<322>";
 				bb_graphics_SetAlpha(t_alpha);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<323>";
 				bb_graphics_SetColor(0.0,0.0,0.0);
-				bb_graphics_DrawRect(10.0,(bb_app_DeviceHeight()-80),(bb_app_DeviceWidth()-20),(this.m_toast_font.p_TextHeight(this.m_toast_tail.p_First())*2));
-				bb_graphics_SetColor(t_color[0],t_color[1],t_color[2]);
-				this.m_toast_font.p_DrawText(this.m_toast_tail.p_First(),(((bb_app_DeviceWidth())*0.5)|0),bb_app_DeviceHeight()-80,1,0.0);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<324>";
+				bb_graphics_DrawRect(10.0,(bb_app_DeviceHeight()-80),(bb_app_DeviceWidth()-20),(dbg_object(this).m_toast_font.p_TextHeight(dbg_object(this).m_toast_tail.p_First())*2));
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<325>";
+				bb_graphics_SetColor(dbg_array(t_color,0)[dbg_index],dbg_array(t_color,1)[dbg_index],dbg_array(t_color,2)[dbg_index]);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<327>";
+				dbg_object(this).m_toast_font.p_DrawText(dbg_object(this).m_toast_tail.p_First(),(((bb_app_DeviceWidth())*0.5)|0),bb_app_DeviceHeight()-80,1,0.0);
 			}else{
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<329>";
 				bb_graphics_SetAlpha(t_alpha);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<330>";
 				bb_graphics_SetColor(0.0,0.0,0.0);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<331>";
 				bb_graphics_DrawRect(10.0,(bb_app_DeviceHeight()-40),(bb_app_DeviceWidth()-20),20.0);
-				bb_graphics_SetColor(t_color[0],t_color[1],t_color[2]);
-				bb_graphics_DrawText(this.m_toast_tail.p_First(),20.0,(bb_app_DeviceHeight()-35),0.0,0.0);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<332>";
+				bb_graphics_SetColor(dbg_array(t_color,0)[dbg_index],dbg_array(t_color,1)[dbg_index],dbg_array(t_color,2)[dbg_index]);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<334>";
+				bb_graphics_DrawText(dbg_object(this).m_toast_tail.p_First(),20.0,(bb_app_DeviceHeight()-35),0.0,0.0);
 			}
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<337>";
 			bb_graphics_PopMatrix();
 		}
 	}
+	pop_err();
 }
 c_Game.prototype.p_OnRender=function(){
-	bb_graphics_Cls(this.m__clsColor.m_r,this.m__clsColor.m_g,this.m__clsColor.m_b);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<141>";
+	bb_graphics_Cls(dbg_object(this.m__clsColor).m_r,dbg_object(this.m__clsColor).m_g,dbg_object(this.m__clsColor).m_b);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<146>";
 	if(this.m__loadingState==bb_game_LONENTERLOADING){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<148>";
 		if(!this.m__loadingTween.p_IsRunning()){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<149>";
 			this.m__loadingTween.p_Start();
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<152>";
 		this.m__loadingTween.p_Update();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<153>";
 		bb_graphics_SetAlpha(this.m__loadingTween.p_GetCurrentValue());
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<154>";
 		this.m__currentScene.p_LoadingRender();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<156>";
 		if(this.m__loadingTween.p_GetCurrentValue()==1.0){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<157>";
 			this.m__loadingState=bb_game_LONLOADING;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<160>";
+		pop_err();
 		return 0;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<164>";
 	if(this.m__loadingState==bb_game_LONLOADING){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<166>";
 		if(this.m__currentScene.p_GetLoadingState()<=0){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<167>";
 			this.m__loadingState=bb_game_LONENTERSCENE;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<168>";
 			this.m__loadingTween.p_SetValues(1.0,0.0);
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<171>";
 		bb_lpresources_lpLoadToVideoMemory();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<172>";
 		this.m__currentScene.p_LoadingRender();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<174>";
+		pop_err();
 		return 0;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<177>";
 	if(this.m__loadingState==bb_game_LONENTERSCENE){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<179>";
 		if(!this.m__loadingTween.p_IsRunning()){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<180>";
 			this.m__loadingTween.p_Start();
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<183>";
 		this.m__loadingTween.p_Update();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<184>";
 		bb_graphics_SetAlpha(this.m__loadingTween.p_GetCurrentValue());
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<185>";
 		this.m__currentScene.p_LoadingRender();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<187>";
 		if(this.m__loadingTween.p_GetCurrentValue()==0.0){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<188>";
 			this.m__loadingState=bb_game_LONPLAYING;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<191>";
+		pop_err();
 		return 0;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<198>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<198>";
 	var t_=this.m__currentScene.p_Cameras().p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<198>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<198>";
 		var t_c=t_.p_NextObject();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<199>";
 		bb_graphics_PushMatrix();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<201>";
 		this.m__currentCamera=t_c;
-		if(t_c.m_Position.p_Width()!=t_c.m_ViewPort.p_Width() || t_c.m_Position.p_Height()!=t_c.m_ViewPort.p_Height()){
-			bb_graphics_Scale(t_c.m_Position.p_Width()/t_c.m_ViewPort.p_Width(),t_c.m_Position.p_Height()/t_c.m_ViewPort.p_Height());
-			bb_graphics_Translate(-(t_c.m_ViewPort.p_X2()*bb_graphics_GetMatrix()[0]-t_c.m_Position.p_X2())/bb_graphics_GetMatrix()[0],-(t_c.m_ViewPort.p_Y2()*bb_graphics_GetMatrix()[3]-t_c.m_Position.p_Y2())/bb_graphics_GetMatrix()[3]);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<203>";
+		if(dbg_object(t_c).m_Position.p_Width()!=dbg_object(t_c).m_ViewPort.p_Width() || dbg_object(t_c).m_Position.p_Height()!=dbg_object(t_c).m_ViewPort.p_Height()){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<208>";
+			bb_graphics_Scale(dbg_object(t_c).m_Position.p_Width()/dbg_object(t_c).m_ViewPort.p_Width(),dbg_object(t_c).m_Position.p_Height()/dbg_object(t_c).m_ViewPort.p_Height());
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<212>";
+			bb_graphics_Translate(-(dbg_object(t_c).m_ViewPort.p_X2()*dbg_array(bb_graphics_GetMatrix(),0)[dbg_index]-dbg_object(t_c).m_Position.p_X2())/dbg_array(bb_graphics_GetMatrix(),0)[dbg_index],-(dbg_object(t_c).m_ViewPort.p_Y2()*dbg_array(bb_graphics_GetMatrix(),3)[dbg_index]-dbg_object(t_c).m_Position.p_Y2())/dbg_array(bb_graphics_GetMatrix(),3)[dbg_index]);
 		}else{
-			bb_graphics_Translate(-(t_c.m_ViewPort.p_X2()-t_c.m_Position.p_X2())/bb_graphics_GetMatrix()[0],-(t_c.m_ViewPort.p_Y2()-t_c.m_Position.p_Y2())/bb_graphics_GetMatrix()[3]);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<216>";
+			bb_graphics_Translate(-(dbg_object(t_c).m_ViewPort.p_X2()-dbg_object(t_c).m_Position.p_X2())/dbg_array(bb_graphics_GetMatrix(),0)[dbg_index],-(dbg_object(t_c).m_ViewPort.p_Y2()-dbg_object(t_c).m_Position.p_Y2())/dbg_array(bb_graphics_GetMatrix(),3)[dbg_index]);
 		}
-		bb_graphics_SetScissor(t_c.m_Position.p_X2(),t_c.m_Position.p_Y2(),t_c.m_Position.p_Width(),t_c.m_Position.p_Height());
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<219>";
+		bb_graphics_SetScissor(dbg_object(t_c).m_Position.p_X2(),dbg_object(t_c).m_Position.p_Y2(),dbg_object(t_c).m_Position.p_Width(),dbg_object(t_c).m_Position.p_Height());
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<221>";
 		this.m__currentScene.p_Render();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<222>";
 		this.p_Render();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<224>";
 		bb_graphics_PopMatrix();
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<227>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<227>";
 	var t_2=this.m__currentScene.p_GetGui().p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<227>";
 	while(t_2.p_HasNext()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<227>";
 		var t_gui=t_2.p_NextObject();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<228>";
 		bb_graphics_PushMatrix();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<229>";
 		bb_graphics_SetScissor(0.0,0.0,(bb_app_DeviceWidth()),(bb_app_DeviceHeight()));
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<230>";
 		t_gui.p_Render();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<231>";
 		bb_graphics_PopMatrix();
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<235>";
 	if(this.m__showPopup){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<236>";
 		bb_graphics_PushMatrix();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<239>";
 		bb_graphics_Scale((bb_app_DeviceWidth())/this.m__currentPopup.p_ViewPort().p_X2(),(bb_app_DeviceHeight())/this.m__currentPopup.p_ViewPort().p_Y2());
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<241>";
 		bb_graphics_SetAlpha(this.m__currentPopup.p_GetBakgroundAlpha());
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<242>";
 		bb_graphics_SetColor(0.0,0.0,0.0);
-		bb_graphics_DrawRect(0.0,0.0,(bb_app_DeviceWidth()*3),(bb_app_DeviceHeight())/bb_graphics_GetMatrix()[3]);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<243>";
+		bb_graphics_DrawRect(0.0,0.0,(bb_app_DeviceWidth()*3),(bb_app_DeviceHeight())/dbg_array(bb_graphics_GetMatrix(),3)[dbg_index]);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<244>";
 		bb_graphics_SetColor(255.0,255.0,255.0);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<245>";
 		bb_graphics_SetAlpha(1.0);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<246>";
 		this.m__currentPopup.p_Render();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<247>";
 		bb_graphics_PopMatrix();
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<251>";
 	this.p_ToastRender();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<255>";
 	lp.ResetValues();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<261>";
+	dbg_object(this).m__frames_count+=1;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<262>";
+	dbg_object(this).m__time_count+=c_Time.m_DeltaSecs();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<264>";
+	bb_graphics_DrawText("FPS : "+String((dbg_object(this).m__frames_count)/dbg_object(this).m__time_count),-dbg_array(bb_graphics_GetMatrix(),4)[dbg_index],-dbg_array(bb_graphics_GetMatrix(),5)[dbg_index],0.0,0.0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<268>";
+	pop_err();
 	return 0;
 }
 c_Game.prototype.p_HidePopup=function(){
-	this.m__showPopup=false;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<434>";
+	dbg_object(this).m__showPopup=false;
+	pop_err();
 }
 c_Game.prototype.p_GetScene=function(t_id){
 }
 c_Game.prototype.p_SetScene=function(t_id,t_parameters){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<350>";
 	this.p_HidePopup();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<352>";
 	if(this.m__lastSceneId!=t_id){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<354>";
 		bb_lpresources_lpFreeMemory();
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<358>";
 	this.m__lastSceneId=t_id;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<360>";
 	this.m__loadingState=bb_game_LONENTERLOADING;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<361>";
 	this.m__loadingTween.p_SetValues(0.0,1.0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<362>";
 	this.m__loadingTween.p_Start();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<364>";
 	this.m__currentScene=this.p_GetScene(t_id);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<366>";
 	if(null!=t_parameters){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<367>";
 		this.m__currentScene.p_Parameters(t_parameters);
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<370>";
 	var t_defCamera=c_lpCamera.m_new.call(new c_lpCamera,0.0,0.0,(bb_app_DeviceWidth()),(bb_app_DeviceHeight()),0.0,0.0,(bb_app_DeviceWidth()),(bb_app_DeviceHeight()));
-	this.m__currentCamera=t_defCamera;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<371>";
+	dbg_object(this).m__currentCamera=t_defCamera;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<373>";
 	this.m__currentScene.p_Create();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<375>";
 	if(0>=this.m__currentScene.p_Cameras().p_Length2()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<377>";
 		this.m__currentScene.p_AddCamera(t_defCamera);
 	}
+	pop_err();
 }
 c_Game.m_Instance=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<446>";
+	pop_err();
 	return c_Game.m__instance;
 }
 c_Game.prototype.p_GetCurrentCamera=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/game.monkey<382>";
+	pop_err();
 	return this.m__currentCamera;
 }
 function c_GBNova(){
@@ -2673,19 +2904,35 @@ function c_GBNova(){
 }
 c_GBNova.prototype=extend_class(c_Game);
 c_GBNova.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/main.monkey<6>";
 	c_Game.m_new.call(this);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/main.monkey<6>";
+	pop_err();
 	return this;
 }
 c_GBNova.prototype.p_Create=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/main.monkey<9>";
 	bb_app_SetUpdateRate(0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/main.monkey<11>";
 	enablePixelArt();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/main.monkey<13>";
 	this.p_SetScene(0,null);
+	pop_err();
 }
 c_GBNova.prototype.p_GetScene=function(t_scene){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/main.monkey<17>";
 	var t_1=t_scene;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/main.monkey<18>";
 	if(t_1==0){
-		return (c_GameScene.m_new.call(new c_GameScene));
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/main.monkey<19>";
+		var t_=(c_GameScene.m_new.call(new c_GameScene));
+		pop_err();
+		return t_;
 	}
+	pop_err();
 	return null;
 }
 var bb_app__app=null;
@@ -2697,85 +2944,155 @@ function c_GameDelegate(){
 }
 c_GameDelegate.prototype=extend_class(BBGameDelegate);
 c_GameDelegate.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<65>";
+	pop_err();
 	return this;
 }
 c_GameDelegate.prototype.StartGame=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<75>";
 	this.m__graphics=(new gxtkGraphics);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<76>";
 	bb_graphics_SetGraphicsDevice(this.m__graphics);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<77>";
 	bb_graphics_SetFont(null,32);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<79>";
 	this.m__audio=(new gxtkAudio);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<80>";
 	bb_audio_SetAudioDevice(this.m__audio);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<82>";
 	this.m__input=c_InputDevice.m_new.call(new c_InputDevice);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<83>";
 	bb_input_SetInputDevice(this.m__input);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<85>";
 	bb_app_ValidateDeviceWindow(false);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<87>";
 	bb_app_EnumDisplayModes();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<89>";
 	bb_app__app.p_OnCreate();
+	pop_err();
 }
 c_GameDelegate.prototype.SuspendGame=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<93>";
 	bb_app__app.p_OnSuspend();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<94>";
 	this.m__audio.Suspend();
+	pop_err();
 }
 c_GameDelegate.prototype.ResumeGame=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<98>";
 	this.m__audio.Resume();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<99>";
 	bb_app__app.p_OnResume();
+	pop_err();
 }
 c_GameDelegate.prototype.UpdateGame=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<103>";
 	bb_app_ValidateDeviceWindow(true);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<104>";
 	this.m__input.p_BeginUpdate();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<105>";
 	bb_app__app.p_OnUpdate();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<106>";
 	this.m__input.p_EndUpdate();
+	pop_err();
 }
 c_GameDelegate.prototype.RenderGame=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<110>";
 	bb_app_ValidateDeviceWindow(true);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<111>";
 	var t_mode=this.m__graphics.BeginRender();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<112>";
 	if((t_mode)!=0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<112>";
 		bb_graphics_BeginRender();
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<113>";
 	if(t_mode==2){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<113>";
 		bb_app__app.p_OnLoading();
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<113>";
 		bb_app__app.p_OnRender();
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<114>";
 	if((t_mode)!=0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<114>";
 		bb_graphics_EndRender();
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<115>";
 	this.m__graphics.EndRender();
+	pop_err();
 }
 c_GameDelegate.prototype.KeyEvent=function(t_event,t_data){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<119>";
 	this.m__input.p_KeyEvent(t_event,t_data);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<120>";
 	if(t_event!=1){
+		pop_err();
 		return;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<121>";
 	var t_1=t_data;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<122>";
 	if(t_1==432){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<123>";
 		bb_app__app.p_OnClose();
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<124>";
 		if(t_1==416){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<125>";
 			bb_app__app.p_OnBack();
 		}
 	}
+	pop_err();
 }
 c_GameDelegate.prototype.MouseEvent=function(t_event,t_data,t_x,t_y){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<130>";
 	this.m__input.p_MouseEvent(t_event,t_data,t_x,t_y);
+	pop_err();
 }
 c_GameDelegate.prototype.TouchEvent=function(t_event,t_data,t_x,t_y){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<134>";
 	this.m__input.p_TouchEvent(t_event,t_data,t_x,t_y);
+	pop_err();
 }
 c_GameDelegate.prototype.MotionEvent=function(t_event,t_data,t_x,t_y,t_z){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<138>";
 	this.m__input.p_MotionEvent(t_event,t_data,t_x,t_y,t_z);
+	pop_err();
 }
 c_GameDelegate.prototype.DiscardGraphics=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<142>";
 	this.m__graphics.DiscardGraphics();
+	pop_err();
 }
 var bb_app__delegate=null;
 var bb_app__game=null;
 function bbMain(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/main.monkey<26>";
 	c_GBNova.m_new.call(new c_GBNova);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/main.monkey<27>";
+	pop_err();
 	return 0;
 }
 var bb_graphics_device=null;
 function bb_graphics_SetGraphicsDevice(t_dev){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<63>";
 	bb_graphics_device=t_dev;
+	pop_err();
 	return 0;
 }
 function c_Image(){
@@ -2791,97 +3108,178 @@ function c_Image(){
 }
 c_Image.m_DefaultFlags=0;
 c_Image.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<70>";
+	pop_err();
 	return this;
 }
 c_Image.prototype.p_SetHandle=function(t_tx,t_ty){
-	this.m_tx=t_tx;
-	this.m_ty=t_ty;
-	this.m_flags=this.m_flags&-2;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<114>";
+	dbg_object(this).m_tx=t_tx;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<115>";
+	dbg_object(this).m_ty=t_ty;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<116>";
+	dbg_object(this).m_flags=dbg_object(this).m_flags&-2;
+	pop_err();
 	return 0;
 }
 c_Image.prototype.p_ApplyFlags=function(t_iflags){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<197>";
 	this.m_flags=t_iflags;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<199>";
 	if((this.m_flags&2)!=0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<200>";
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<200>";
 		var t_=this.m_frames;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<200>";
 		var t_2=0;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<200>";
 		while(t_2<t_.length){
-			var t_f=t_[t_2];
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<200>";
+			var t_f=dbg_array(t_,t_2)[dbg_index];
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<200>";
 			t_2=t_2+1;
-			t_f.m_x+=1;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<201>";
+			dbg_object(t_f).m_x+=1;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<203>";
 		this.m_width-=2;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<206>";
 	if((this.m_flags&4)!=0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<207>";
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<207>";
 		var t_3=this.m_frames;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<207>";
 		var t_4=0;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<207>";
 		while(t_4<t_3.length){
-			var t_f2=t_3[t_4];
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<207>";
+			var t_f2=dbg_array(t_3,t_4)[dbg_index];
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<207>";
 			t_4=t_4+1;
-			t_f2.m_y+=1;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<208>";
+			dbg_object(t_f2).m_y+=1;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<210>";
 		this.m_height-=2;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<213>";
 	if((this.m_flags&1)!=0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<214>";
 		this.p_SetHandle((this.m_width)/2.0,(this.m_height)/2.0);
 	}
-	if(this.m_frames.length==1 && this.m_frames[0].m_x==0 && this.m_frames[0].m_y==0 && this.m_width==this.m_surface.Width() && this.m_height==this.m_surface.Height()){
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<217>";
+	if(this.m_frames.length==1 && dbg_object(dbg_array(this.m_frames,0)[dbg_index]).m_x==0 && dbg_object(dbg_array(this.m_frames,0)[dbg_index]).m_y==0 && this.m_width==this.m_surface.Width() && this.m_height==this.m_surface.Height()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<218>";
 		this.m_flags|=65536;
 	}
+	pop_err();
 	return 0;
 }
 c_Image.prototype.p_Init=function(t_surf,t_nframes,t_iflags){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<143>";
 	if((this.m_surface)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<143>";
 		error("Image already initialized");
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<144>";
 	this.m_surface=t_surf;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<146>";
 	this.m_width=((this.m_surface.Width()/t_nframes)|0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<147>";
 	this.m_height=this.m_surface.Height();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<149>";
 	this.m_frames=new_object_array(t_nframes);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<150>";
 	for(var t_i=0;t_i<t_nframes;t_i=t_i+1){
-		this.m_frames[t_i]=c_Frame.m_new.call(new c_Frame,t_i*this.m_width,0);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<151>";
+		dbg_array(this.m_frames,t_i)[dbg_index]=c_Frame.m_new.call(new c_Frame,t_i*this.m_width,0);
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<154>";
 	this.p_ApplyFlags(t_iflags);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<155>";
+	pop_err();
 	return this;
 }
 c_Image.prototype.p_Init2=function(t_surf,t_x,t_y,t_iwidth,t_iheight,t_nframes,t_iflags,t_src,t_srcx,t_srcy,t_srcw,t_srch){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<159>";
 	if((this.m_surface)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<159>";
 		error("Image already initialized");
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<160>";
 	this.m_surface=t_surf;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<161>";
 	this.m_source=t_src;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<163>";
 	this.m_width=t_iwidth;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<164>";
 	this.m_height=t_iheight;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<166>";
 	this.m_frames=new_object_array(t_nframes);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<168>";
 	var t_ix=t_x;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<168>";
 	var t_iy=t_y;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<170>";
 	for(var t_i=0;t_i<t_nframes;t_i=t_i+1){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<171>";
 		if(t_ix+this.m_width>t_srcw){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<172>";
 			t_ix=0;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<173>";
 			t_iy+=this.m_height;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<175>";
 		if(t_ix+this.m_width>t_srcw || t_iy+this.m_height>t_srch){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<176>";
 			error("Image frame outside surface");
 		}
-		this.m_frames[t_i]=c_Frame.m_new.call(new c_Frame,t_ix+t_srcx,t_iy+t_srcy);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<178>";
+		dbg_array(this.m_frames,t_i)[dbg_index]=c_Frame.m_new.call(new c_Frame,t_ix+t_srcx,t_iy+t_srcy);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<179>";
 		t_ix+=this.m_width;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<182>";
 	this.p_ApplyFlags(t_iflags);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<183>";
+	pop_err();
 	return this;
 }
 c_Image.prototype.p_Width=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<81>";
+	pop_err();
 	return this.m_width;
 }
 c_Image.prototype.p_Height=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<85>";
+	pop_err();
 	return this.m_height;
 }
 c_Image.prototype.p_Frames=function(){
-	return this.m_frames.length;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<93>";
+	var t_=this.m_frames.length;
+	pop_err();
+	return t_;
 }
 c_Image.prototype.p_Discard=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<120>";
 	if(((this.m_surface)!=null) && !((this.m_source)!=null)){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<121>";
 		this.m_surface.Discard();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<122>";
 		this.m_surface=null;
 	}
+	pop_err();
 	return 0;
 }
 function c_GraphicsContext(){
@@ -2910,25 +3308,44 @@ function c_GraphicsContext(){
 	this.m_matrixStack=new_number_array(192);
 }
 c_GraphicsContext.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<29>";
+	pop_err();
 	return this;
 }
 c_GraphicsContext.prototype.p_Validate=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<40>";
 	if((this.m_matDirty)!=0){
-		bb_graphics_renderDevice.SetMatrix(bb_graphics_context.m_ix,bb_graphics_context.m_iy,bb_graphics_context.m_jx,bb_graphics_context.m_jy,bb_graphics_context.m_tx,bb_graphics_context.m_ty);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<41>";
+		bb_graphics_renderDevice.SetMatrix(dbg_object(bb_graphics_context).m_ix,dbg_object(bb_graphics_context).m_iy,dbg_object(bb_graphics_context).m_jx,dbg_object(bb_graphics_context).m_jy,dbg_object(bb_graphics_context).m_tx,dbg_object(bb_graphics_context).m_ty);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<42>";
 		this.m_matDirty=0;
 	}
+	pop_err();
 	return 0;
 }
 var bb_graphics_context=null;
 function bb_data_FixDataPath(t_path){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/data.monkey<7>";
 	var t_i=t_path.indexOf(":/",0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/data.monkey<8>";
 	if(t_i!=-1 && t_path.indexOf("/",0)==t_i+1){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/data.monkey<8>";
+		pop_err();
 		return t_path;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/data.monkey<9>";
 	if(string_startswith(t_path,"./") || string_startswith(t_path,"/")){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/data.monkey<9>";
+		pop_err();
 		return t_path;
 	}
-	return "monkey://data/"+t_path;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/data.monkey<10>";
+	var t_="monkey://data/"+t_path;
+	pop_err();
+	return t_;
 }
 function c_Frame(){
 	Object.call(this);
@@ -2936,42 +3353,75 @@ function c_Frame(){
 	this.m_y=0;
 }
 c_Frame.m_new=function(t_x,t_y){
-	this.m_x=t_x;
-	this.m_y=t_y;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<23>";
+	dbg_object(this).m_x=t_x;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<24>";
+	dbg_object(this).m_y=t_y;
+	pop_err();
 	return this;
 }
 c_Frame.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<18>";
+	pop_err();
 	return this;
 }
 function bb_graphics_LoadImage(t_path,t_frameCount,t_flags){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<239>";
 	var t_surf=bb_graphics_device.LoadSurface(bb_data_FixDataPath(t_path));
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<240>";
 	if((t_surf)!=null){
-		return (c_Image.m_new.call(new c_Image)).p_Init(t_surf,t_frameCount,t_flags);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<240>";
+		var t_=(c_Image.m_new.call(new c_Image)).p_Init(t_surf,t_frameCount,t_flags);
+		pop_err();
+		return t_;
 	}
+	pop_err();
 	return null;
 }
 function bb_graphics_LoadImage2(t_path,t_frameWidth,t_frameHeight,t_frameCount,t_flags){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<244>";
 	var t_surf=bb_graphics_device.LoadSurface(bb_data_FixDataPath(t_path));
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<245>";
 	if((t_surf)!=null){
-		return (c_Image.m_new.call(new c_Image)).p_Init2(t_surf,0,0,t_frameWidth,t_frameHeight,t_frameCount,t_flags,null,0,0,t_surf.Width(),t_surf.Height());
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<245>";
+		var t_=(c_Image.m_new.call(new c_Image)).p_Init2(t_surf,0,0,t_frameWidth,t_frameHeight,t_frameCount,t_flags,null,0,0,t_surf.Width(),t_surf.Height());
+		pop_err();
+		return t_;
 	}
+	pop_err();
 	return null;
 }
 function bb_graphics_SetFont(t_font,t_firstChar){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<548>";
 	if(!((t_font)!=null)){
-		if(!((bb_graphics_context.m_defaultFont)!=null)){
-			bb_graphics_context.m_defaultFont=bb_graphics_LoadImage("mojo_font.png",96,2);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<549>";
+		if(!((dbg_object(bb_graphics_context).m_defaultFont)!=null)){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<550>";
+			dbg_object(bb_graphics_context).m_defaultFont=bb_graphics_LoadImage("mojo_font.png",96,2);
 		}
-		t_font=bb_graphics_context.m_defaultFont;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<552>";
+		t_font=dbg_object(bb_graphics_context).m_defaultFont;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<553>";
 		t_firstChar=32;
 	}
-	bb_graphics_context.m_font=t_font;
-	bb_graphics_context.m_firstChar=t_firstChar;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<555>";
+	dbg_object(bb_graphics_context).m_font=t_font;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<556>";
+	dbg_object(bb_graphics_context).m_firstChar=t_firstChar;
+	pop_err();
 	return 0;
 }
 var bb_audio_device=null;
 function bb_audio_SetAudioDevice(t_dev){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/audio.monkey<22>";
 	bb_audio_device=t_dev;
+	pop_err();
 	return 0;
 }
 function c_InputDevice(){
@@ -2993,146 +3443,250 @@ function c_InputDevice(){
 	this.m__accelZ=.0;
 }
 c_InputDevice.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<26>";
 	for(var t_i=0;t_i<4;t_i=t_i+1){
-		this.m__joyStates[t_i]=c_JoyState.m_new.call(new c_JoyState);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<27>";
+		dbg_array(this.m__joyStates,t_i)[dbg_index]=c_JoyState.m_new.call(new c_JoyState);
 	}
+	pop_err();
 	return this;
 }
 c_InputDevice.prototype.p_PutKeyHit=function(t_key){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<237>";
 	if(this.m__keyHitPut==this.m__keyHitQueue.length){
+		pop_err();
 		return;
 	}
-	this.m__keyHit[t_key]+=1;
-	this.m__keyHitQueue[this.m__keyHitPut]=t_key;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<238>";
+	dbg_array(this.m__keyHit,t_key)[dbg_index]+=1;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<239>";
+	dbg_array(this.m__keyHitQueue,this.m__keyHitPut)[dbg_index]=t_key;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<240>";
 	this.m__keyHitPut+=1;
+	pop_err();
 }
 c_InputDevice.prototype.p_BeginUpdate=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<189>";
 	for(var t_i=0;t_i<4;t_i=t_i+1){
-		var t_state=this.m__joyStates[t_i];
-		if(!BBGame.Game().PollJoystick(t_i,t_state.m_joyx,t_state.m_joyy,t_state.m_joyz,t_state.m_buttons)){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<190>";
+		var t_state=dbg_array(this.m__joyStates,t_i)[dbg_index];
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<191>";
+		if(!BBGame.Game().PollJoystick(t_i,dbg_object(t_state).m_joyx,dbg_object(t_state).m_joyy,dbg_object(t_state).m_joyz,dbg_object(t_state).m_buttons)){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<191>";
 			break;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<192>";
 		for(var t_j=0;t_j<32;t_j=t_j+1){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<193>";
 			var t_key=256+t_i*32+t_j;
-			if(t_state.m_buttons[t_j]){
-				if(!this.m__keyDown[t_key]){
-					this.m__keyDown[t_key]=true;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<194>";
+			if(dbg_array(dbg_object(t_state).m_buttons,t_j)[dbg_index]){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<195>";
+				if(!dbg_array(this.m__keyDown,t_key)[dbg_index]){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<196>";
+					dbg_array(this.m__keyDown,t_key)[dbg_index]=true;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<197>";
 					this.p_PutKeyHit(t_key);
 				}
 			}else{
-				this.m__keyDown[t_key]=false;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<200>";
+				dbg_array(this.m__keyDown,t_key)[dbg_index]=false;
 			}
 		}
 	}
+	pop_err();
 }
 c_InputDevice.prototype.p_EndUpdate=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<207>";
 	for(var t_i=0;t_i<this.m__keyHitPut;t_i=t_i+1){
-		this.m__keyHit[this.m__keyHitQueue[t_i]]=0;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<208>";
+		dbg_array(this.m__keyHit,dbg_array(this.m__keyHitQueue,t_i)[dbg_index])[dbg_index]=0;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<210>";
 	this.m__keyHitPut=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<211>";
 	this.m__charGet=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<212>";
 	this.m__charPut=0;
+	pop_err();
 }
 c_InputDevice.prototype.p_KeyEvent=function(t_event,t_data){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<111>";
 	var t_1=t_event;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<112>";
 	if(t_1==1){
-		if(!this.m__keyDown[t_data]){
-			this.m__keyDown[t_data]=true;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<113>";
+		if(!dbg_array(this.m__keyDown,t_data)[dbg_index]){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<114>";
+			dbg_array(this.m__keyDown,t_data)[dbg_index]=true;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<115>";
 			this.p_PutKeyHit(t_data);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<116>";
 			if(t_data==1){
-				this.m__keyDown[384]=true;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<117>";
+				dbg_array(this.m__keyDown,384)[dbg_index]=true;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<118>";
 				this.p_PutKeyHit(384);
 			}else{
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<119>";
 				if(t_data==384){
-					this.m__keyDown[1]=true;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<120>";
+					dbg_array(this.m__keyDown,1)[dbg_index]=true;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<121>";
 					this.p_PutKeyHit(1);
 				}
 			}
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<124>";
 		if(t_1==2){
-			if(this.m__keyDown[t_data]){
-				this.m__keyDown[t_data]=false;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<125>";
+			if(dbg_array(this.m__keyDown,t_data)[dbg_index]){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<126>";
+				dbg_array(this.m__keyDown,t_data)[dbg_index]=false;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<127>";
 				if(t_data==1){
-					this.m__keyDown[384]=false;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<128>";
+					dbg_array(this.m__keyDown,384)[dbg_index]=false;
 				}else{
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<129>";
 					if(t_data==384){
-						this.m__keyDown[1]=false;
+						err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<130>";
+						dbg_array(this.m__keyDown,1)[dbg_index]=false;
 					}
 				}
 			}
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<133>";
 			if(t_1==3){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<134>";
 				if(this.m__charPut<this.m__charQueue.length){
-					this.m__charQueue[this.m__charPut]=t_data;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<135>";
+					dbg_array(this.m__charQueue,this.m__charPut)[dbg_index]=t_data;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<136>";
 					this.m__charPut+=1;
 				}
 			}
 		}
 	}
+	pop_err();
 }
 c_InputDevice.prototype.p_MouseEvent=function(t_event,t_data,t_x,t_y){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<142>";
 	var t_2=t_event;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<143>";
 	if(t_2==4){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<144>";
 		this.p_KeyEvent(1,1+t_data);
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<145>";
 		if(t_2==5){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<146>";
 			this.p_KeyEvent(2,1+t_data);
+			pop_err();
 			return;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<148>";
 			if(t_2==6){
 			}else{
+				pop_err();
 				return;
 			}
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<152>";
 	this.m__mouseX=t_x;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<153>";
 	this.m__mouseY=t_y;
-	this.m__touchX[0]=t_x;
-	this.m__touchY[0]=t_y;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<154>";
+	dbg_array(this.m__touchX,0)[dbg_index]=t_x;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<155>";
+	dbg_array(this.m__touchY,0)[dbg_index]=t_y;
+	pop_err();
 }
 c_InputDevice.prototype.p_TouchEvent=function(t_event,t_data,t_x,t_y){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<159>";
 	var t_3=t_event;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<160>";
 	if(t_3==7){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<161>";
 		this.p_KeyEvent(1,384+t_data);
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<162>";
 		if(t_3==8){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<163>";
 			this.p_KeyEvent(2,384+t_data);
+			pop_err();
 			return;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<165>";
 			if(t_3==9){
 			}else{
+				pop_err();
 				return;
 			}
 		}
 	}
-	this.m__touchX[t_data]=t_x;
-	this.m__touchY[t_data]=t_y;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<169>";
+	dbg_array(this.m__touchX,t_data)[dbg_index]=t_x;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<170>";
+	dbg_array(this.m__touchY,t_data)[dbg_index]=t_y;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<171>";
 	if(t_data==0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<172>";
 		this.m__mouseX=t_x;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<173>";
 		this.m__mouseY=t_y;
 	}
+	pop_err();
 }
 c_InputDevice.prototype.p_MotionEvent=function(t_event,t_data,t_x,t_y,t_z){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<178>";
 	var t_4=t_event;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<179>";
 	if(t_4==10){
 	}else{
+		pop_err();
 		return;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<183>";
 	this.m__accelX=t_x;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<184>";
 	this.m__accelY=t_y;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<185>";
 	this.m__accelZ=t_z;
+	pop_err();
 }
 c_InputDevice.prototype.p_KeyDown=function(t_key){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<47>";
 	if(t_key>0 && t_key<512){
-		return this.m__keyDown[t_key];
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<47>";
+		pop_err();
+		return dbg_array(this.m__keyDown,t_key)[dbg_index];
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<48>";
+	pop_err();
 	return false;
 }
 c_InputDevice.prototype.p_KeyHit=function(t_key){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<52>";
 	if(t_key>0 && t_key<512){
-		return this.m__keyHit[t_key];
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<52>";
+		pop_err();
+		return dbg_array(this.m__keyHit,t_key)[dbg_index];
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<53>";
+	pop_err();
 	return 0;
 }
 function c_JoyState(){
@@ -3143,26 +3697,42 @@ function c_JoyState(){
 	this.m_buttons=new_bool_array(32);
 }
 c_JoyState.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/inputdevice.monkey<14>";
+	pop_err();
 	return this;
 }
 var bb_input_device=null;
 function bb_input_SetInputDevice(t_dev){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/input.monkey<22>";
 	bb_input_device=t_dev;
+	pop_err();
 	return 0;
 }
 var bb_app__devWidth=0;
 var bb_app__devHeight=0;
 function bb_app_ValidateDeviceWindow(t_notifyApp){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<57>";
 	var t_w=bb_app__game.GetDeviceWidth();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<58>";
 	var t_h=bb_app__game.GetDeviceHeight();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<59>";
 	if(t_w==bb_app__devWidth && t_h==bb_app__devHeight){
+		pop_err();
 		return;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<60>";
 	bb_app__devWidth=t_w;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<61>";
 	bb_app__devHeight=t_h;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<62>";
 	if(t_notifyApp){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<62>";
 		bb_app__app.p_OnResize();
 	}
+	pop_err();
 }
 function c_DisplayMode(){
 	Object.call(this);
@@ -3170,11 +3740,18 @@ function c_DisplayMode(){
 	this.m__height=0;
 }
 c_DisplayMode.m_new=function(t_width,t_height){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<192>";
 	this.m__width=t_width;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<193>";
 	this.m__height=t_height;
+	pop_err();
 	return this;
 }
 c_DisplayMode.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<189>";
+	pop_err();
 	return this;
 }
 function c_Map(){
@@ -3182,152 +3759,263 @@ function c_Map(){
 	this.m_root=null;
 }
 c_Map.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<7>";
+	pop_err();
 	return this;
 }
 c_Map.prototype.p_Compare=function(t_lhs,t_rhs){
 }
 c_Map.prototype.p_FindNode=function(t_key){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<157>";
 	var t_node=this.m_root;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<159>";
 	while((t_node)!=null){
-		var t_cmp=this.p_Compare(t_key,t_node.m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<160>";
+		var t_cmp=this.p_Compare(t_key,dbg_object(t_node).m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<161>";
 		if(t_cmp>0){
-			t_node=t_node.m_right;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<162>";
+			t_node=dbg_object(t_node).m_right;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<163>";
 			if(t_cmp<0){
-				t_node=t_node.m_left;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<164>";
+				t_node=dbg_object(t_node).m_left;
 			}else{
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<166>";
+				pop_err();
 				return t_node;
 			}
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<169>";
+	pop_err();
 	return t_node;
 }
 c_Map.prototype.p_Contains=function(t_key){
-	return this.p_FindNode(t_key)!=null;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<25>";
+	var t_=this.p_FindNode(t_key)!=null;
+	pop_err();
+	return t_;
 }
 c_Map.prototype.p_RotateLeft=function(t_node){
-	var t_child=t_node.m_right;
-	t_node.m_right=t_child.m_left;
-	if((t_child.m_left)!=null){
-		t_child.m_left.m_parent=t_node;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<251>";
+	var t_child=dbg_object(t_node).m_right;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<252>";
+	dbg_object(t_node).m_right=dbg_object(t_child).m_left;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<253>";
+	if((dbg_object(t_child).m_left)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<254>";
+		dbg_object(dbg_object(t_child).m_left).m_parent=t_node;
 	}
-	t_child.m_parent=t_node.m_parent;
-	if((t_node.m_parent)!=null){
-		if(t_node==t_node.m_parent.m_left){
-			t_node.m_parent.m_left=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<256>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<257>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<258>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<259>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
 		}else{
-			t_node.m_parent.m_right=t_child;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<261>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<264>";
 		this.m_root=t_child;
 	}
-	t_child.m_left=t_node;
-	t_node.m_parent=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<266>";
+	dbg_object(t_child).m_left=t_node;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<267>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
 	return 0;
 }
 c_Map.prototype.p_RotateRight=function(t_node){
-	var t_child=t_node.m_left;
-	t_node.m_left=t_child.m_right;
-	if((t_child.m_right)!=null){
-		t_child.m_right.m_parent=t_node;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<271>";
+	var t_child=dbg_object(t_node).m_left;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<272>";
+	dbg_object(t_node).m_left=dbg_object(t_child).m_right;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<273>";
+	if((dbg_object(t_child).m_right)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<274>";
+		dbg_object(dbg_object(t_child).m_right).m_parent=t_node;
 	}
-	t_child.m_parent=t_node.m_parent;
-	if((t_node.m_parent)!=null){
-		if(t_node==t_node.m_parent.m_right){
-			t_node.m_parent.m_right=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<276>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<277>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<278>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<279>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
 		}else{
-			t_node.m_parent.m_left=t_child;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<281>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<284>";
 		this.m_root=t_child;
 	}
-	t_child.m_right=t_node;
-	t_node.m_parent=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<286>";
+	dbg_object(t_child).m_right=t_node;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<287>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
 	return 0;
 }
 c_Map.prototype.p_InsertFixup=function(t_node){
-	while(((t_node.m_parent)!=null) && t_node.m_parent.m_color==-1 && ((t_node.m_parent.m_parent)!=null)){
-		if(t_node.m_parent==t_node.m_parent.m_parent.m_left){
-			var t_uncle=t_node.m_parent.m_parent.m_right;
-			if(((t_uncle)!=null) && t_uncle.m_color==-1){
-				t_node.m_parent.m_color=1;
-				t_uncle.m_color=1;
-				t_uncle.m_parent.m_color=-1;
-				t_node=t_uncle.m_parent;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<212>";
+	while(((dbg_object(t_node).m_parent)!=null) && dbg_object(dbg_object(t_node).m_parent).m_color==-1 && ((dbg_object(dbg_object(t_node).m_parent).m_parent)!=null)){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<213>";
+		if(dbg_object(t_node).m_parent==dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<214>";
+			var t_uncle=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_right;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<215>";
+			if(((t_uncle)!=null) && dbg_object(t_uncle).m_color==-1){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<216>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<217>";
+				dbg_object(t_uncle).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<218>";
+				dbg_object(dbg_object(t_uncle).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<219>";
+				t_node=dbg_object(t_uncle).m_parent;
 			}else{
-				if(t_node==t_node.m_parent.m_right){
-					t_node=t_node.m_parent;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<221>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<222>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<223>";
 					this.p_RotateLeft(t_node);
 				}
-				t_node.m_parent.m_color=1;
-				t_node.m_parent.m_parent.m_color=-1;
-				this.p_RotateRight(t_node.m_parent.m_parent);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<225>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<226>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<227>";
+				this.p_RotateRight(dbg_object(dbg_object(t_node).m_parent).m_parent);
 			}
 		}else{
-			var t_uncle2=t_node.m_parent.m_parent.m_left;
-			if(((t_uncle2)!=null) && t_uncle2.m_color==-1){
-				t_node.m_parent.m_color=1;
-				t_uncle2.m_color=1;
-				t_uncle2.m_parent.m_color=-1;
-				t_node=t_uncle2.m_parent;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<230>";
+			var t_uncle2=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<231>";
+			if(((t_uncle2)!=null) && dbg_object(t_uncle2).m_color==-1){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<232>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<233>";
+				dbg_object(t_uncle2).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<234>";
+				dbg_object(dbg_object(t_uncle2).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<235>";
+				t_node=dbg_object(t_uncle2).m_parent;
 			}else{
-				if(t_node==t_node.m_parent.m_left){
-					t_node=t_node.m_parent;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<237>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<238>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<239>";
 					this.p_RotateRight(t_node);
 				}
-				t_node.m_parent.m_color=1;
-				t_node.m_parent.m_parent.m_color=-1;
-				this.p_RotateLeft(t_node.m_parent.m_parent);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<241>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<242>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<243>";
+				this.p_RotateLeft(dbg_object(dbg_object(t_node).m_parent).m_parent);
 			}
 		}
 	}
-	this.m_root.m_color=1;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<247>";
+	dbg_object(this.m_root).m_color=1;
+	pop_err();
 	return 0;
 }
 c_Map.prototype.p_Set=function(t_key,t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<29>";
 	var t_node=this.m_root;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<30>";
 	var t_parent=null;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<30>";
 	var t_cmp=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<32>";
 	while((t_node)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<33>";
 		t_parent=t_node;
-		t_cmp=this.p_Compare(t_key,t_node.m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<34>";
+		t_cmp=this.p_Compare(t_key,dbg_object(t_node).m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<35>";
 		if(t_cmp>0){
-			t_node=t_node.m_right;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<36>";
+			t_node=dbg_object(t_node).m_right;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<37>";
 			if(t_cmp<0){
-				t_node=t_node.m_left;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<38>";
+				t_node=dbg_object(t_node).m_left;
 			}else{
-				t_node.m_value=t_value;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<40>";
+				dbg_object(t_node).m_value=t_value;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<41>";
+				pop_err();
 				return false;
 			}
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<45>";
 	t_node=c_Node.m_new.call(new c_Node,t_key,t_value,-1,t_parent);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<47>";
 	if((t_parent)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<48>";
 		if(t_cmp>0){
-			t_parent.m_right=t_node;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<49>";
+			dbg_object(t_parent).m_right=t_node;
 		}else{
-			t_parent.m_left=t_node;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<51>";
+			dbg_object(t_parent).m_left=t_node;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<53>";
 		this.p_InsertFixup(t_node);
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<55>";
 		this.m_root=t_node;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<57>";
+	pop_err();
 	return true;
 }
 c_Map.prototype.p_Insert=function(t_key,t_value){
-	return this.p_Set(t_key,t_value);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<146>";
+	var t_=this.p_Set(t_key,t_value);
+	pop_err();
+	return t_;
 }
 function c_IntMap(){
 	c_Map.call(this);
 }
 c_IntMap.prototype=extend_class(c_Map);
 c_IntMap.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<534>";
 	c_Map.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<534>";
+	pop_err();
 	return this;
 }
 c_IntMap.prototype.p_Compare=function(t_lhs,t_rhs){
-	return t_lhs-t_rhs;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<537>";
+	var t_=t_lhs-t_rhs;
+	pop_err();
+	return t_;
 }
 function c_Stack(){
 	Object.call(this);
@@ -3335,33 +4023,58 @@ function c_Stack(){
 	this.m_length=0;
 }
 c_Stack.m_new=function(){
+	push_err();
+	pop_err();
 	return this;
 }
 c_Stack.m_new2=function(t_data){
-	this.m_data=t_data.slice(0);
-	this.m_length=t_data.length;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<13>";
+	dbg_object(this).m_data=t_data.slice(0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<14>";
+	dbg_object(this).m_length=t_data.length;
+	pop_err();
 	return this;
 }
 c_Stack.prototype.p_Push=function(t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<67>";
 	if(this.m_length==this.m_data.length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<68>";
 		this.m_data=resize_object_array(this.m_data,this.m_length*2+10);
 	}
-	this.m_data[this.m_length]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<70>";
+	dbg_array(this.m_data,this.m_length)[dbg_index]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<71>";
 	this.m_length+=1;
+	pop_err();
 }
 c_Stack.prototype.p_Push2=function(t_values,t_offset,t_count){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<79>";
 	for(var t_i=0;t_i<t_count;t_i=t_i+1){
-		this.p_Push(t_values[t_offset+t_i]);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<80>";
+		this.p_Push(dbg_array(t_values,t_offset+t_i)[dbg_index]);
 	}
+	pop_err();
 }
 c_Stack.prototype.p_Push3=function(t_values,t_offset){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<75>";
 	this.p_Push2(t_values,t_offset,t_values.length-t_offset);
+	pop_err();
 }
 c_Stack.prototype.p_ToArray=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<18>";
 	var t_t=new_object_array(this.m_length);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<19>";
 	for(var t_i=0;t_i<this.m_length;t_i=t_i+1){
-		t_t[t_i]=this.m_data[t_i];
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<20>";
+		dbg_array(t_t,t_i)[dbg_index]=dbg_array(this.m_data,t_i)[dbg_index];
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<22>";
+	pop_err();
 	return t_t;
 }
 function c_Node(){
@@ -3374,106 +4087,188 @@ function c_Node(){
 	this.m_parent=null;
 }
 c_Node.m_new=function(t_key,t_value,t_color,t_parent){
-	this.m_key=t_key;
-	this.m_value=t_value;
-	this.m_color=t_color;
-	this.m_parent=t_parent;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<364>";
+	dbg_object(this).m_key=t_key;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<365>";
+	dbg_object(this).m_value=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<366>";
+	dbg_object(this).m_color=t_color;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<367>";
+	dbg_object(this).m_parent=t_parent;
+	pop_err();
 	return this;
 }
 c_Node.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<361>";
+	pop_err();
 	return this;
 }
 var bb_app__displayModes=[];
 var bb_app__desktopMode=null;
 function bb_app_DeviceWidth(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<263>";
+	pop_err();
 	return bb_app__devWidth;
 }
 function bb_app_DeviceHeight(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<267>";
+	pop_err();
 	return bb_app__devHeight;
 }
 function bb_app_EnumDisplayModes(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<33>";
 	var t_modes=bb_app__game.GetDisplayModes();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<34>";
 	var t_mmap=c_IntMap.m_new.call(new c_IntMap);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<35>";
 	var t_mstack=c_Stack.m_new.call(new c_Stack);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<36>";
 	for(var t_i=0;t_i<t_modes.length;t_i=t_i+1){
-		var t_w=t_modes[t_i].width;
-		var t_h=t_modes[t_i].height;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<37>";
+		var t_w=dbg_object(dbg_array(t_modes,t_i)[dbg_index]).width;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<38>";
+		var t_h=dbg_object(dbg_array(t_modes,t_i)[dbg_index]).height;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<39>";
 		var t_size=t_w<<16|t_h;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<40>";
 		if(t_mmap.p_Contains(t_size)){
 		}else{
-			var t_mode=c_DisplayMode.m_new.call(new c_DisplayMode,t_modes[t_i].width,t_modes[t_i].height);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<42>";
+			var t_mode=c_DisplayMode.m_new.call(new c_DisplayMode,dbg_object(dbg_array(t_modes,t_i)[dbg_index]).width,dbg_object(dbg_array(t_modes,t_i)[dbg_index]).height);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<43>";
 			t_mmap.p_Insert(t_size,t_mode);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<44>";
 			t_mstack.p_Push(t_mode);
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<47>";
 	bb_app__displayModes=t_mstack.p_ToArray();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<48>";
 	var t_mode2=bb_app__game.GetDesktopMode();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<49>";
 	if((t_mode2)!=null){
-		bb_app__desktopMode=c_DisplayMode.m_new.call(new c_DisplayMode,t_mode2.width,t_mode2.height);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<50>";
+		bb_app__desktopMode=c_DisplayMode.m_new.call(new c_DisplayMode,dbg_object(t_mode2).width,dbg_object(t_mode2).height);
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<52>";
 		bb_app__desktopMode=c_DisplayMode.m_new.call(new c_DisplayMode,bb_app_DeviceWidth(),bb_app_DeviceHeight());
 	}
+	pop_err();
 }
 var bb_graphics_renderDevice=null;
 function bb_graphics_SetMatrix(t_ix,t_iy,t_jx,t_jy,t_tx,t_ty){
-	bb_graphics_context.m_ix=t_ix;
-	bb_graphics_context.m_iy=t_iy;
-	bb_graphics_context.m_jx=t_jx;
-	bb_graphics_context.m_jy=t_jy;
-	bb_graphics_context.m_tx=t_tx;
-	bb_graphics_context.m_ty=t_ty;
-	bb_graphics_context.m_tformed=((t_ix!=1.0 || t_iy!=0.0 || t_jx!=0.0 || t_jy!=1.0 || t_tx!=0.0 || t_ty!=0.0)?1:0);
-	bb_graphics_context.m_matDirty=1;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<312>";
+	dbg_object(bb_graphics_context).m_ix=t_ix;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<313>";
+	dbg_object(bb_graphics_context).m_iy=t_iy;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<314>";
+	dbg_object(bb_graphics_context).m_jx=t_jx;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<315>";
+	dbg_object(bb_graphics_context).m_jy=t_jy;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<316>";
+	dbg_object(bb_graphics_context).m_tx=t_tx;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<317>";
+	dbg_object(bb_graphics_context).m_ty=t_ty;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<318>";
+	dbg_object(bb_graphics_context).m_tformed=((t_ix!=1.0 || t_iy!=0.0 || t_jx!=0.0 || t_jy!=1.0 || t_tx!=0.0 || t_ty!=0.0)?1:0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<319>";
+	dbg_object(bb_graphics_context).m_matDirty=1;
+	pop_err();
 	return 0;
 }
 function bb_graphics_SetMatrix2(t_m){
-	bb_graphics_SetMatrix(t_m[0],t_m[1],t_m[2],t_m[3],t_m[4],t_m[5]);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<308>";
+	bb_graphics_SetMatrix(dbg_array(t_m,0)[dbg_index],dbg_array(t_m,1)[dbg_index],dbg_array(t_m,2)[dbg_index],dbg_array(t_m,3)[dbg_index],dbg_array(t_m,4)[dbg_index],dbg_array(t_m,5)[dbg_index]);
+	pop_err();
 	return 0;
 }
 function bb_graphics_SetColor(t_r,t_g,t_b){
-	bb_graphics_context.m_color_r=t_r;
-	bb_graphics_context.m_color_g=t_g;
-	bb_graphics_context.m_color_b=t_b;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<254>";
+	dbg_object(bb_graphics_context).m_color_r=t_r;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<255>";
+	dbg_object(bb_graphics_context).m_color_g=t_g;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<256>";
+	dbg_object(bb_graphics_context).m_color_b=t_b;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<257>";
 	bb_graphics_renderDevice.SetColor(t_r,t_g,t_b);
+	pop_err();
 	return 0;
 }
 function bb_graphics_SetAlpha(t_alpha){
-	bb_graphics_context.m_alpha=t_alpha;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<271>";
+	dbg_object(bb_graphics_context).m_alpha=t_alpha;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<272>";
 	bb_graphics_renderDevice.SetAlpha(t_alpha);
+	pop_err();
 	return 0;
 }
 function bb_graphics_SetBlend(t_blend){
-	bb_graphics_context.m_blend=t_blend;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<280>";
+	dbg_object(bb_graphics_context).m_blend=t_blend;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<281>";
 	bb_graphics_renderDevice.SetBlend(t_blend);
+	pop_err();
 	return 0;
 }
 function bb_graphics_SetScissor(t_x,t_y,t_width,t_height){
-	bb_graphics_context.m_scissor_x=t_x;
-	bb_graphics_context.m_scissor_y=t_y;
-	bb_graphics_context.m_scissor_width=t_width;
-	bb_graphics_context.m_scissor_height=t_height;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<289>";
+	dbg_object(bb_graphics_context).m_scissor_x=t_x;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<290>";
+	dbg_object(bb_graphics_context).m_scissor_y=t_y;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<291>";
+	dbg_object(bb_graphics_context).m_scissor_width=t_width;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<292>";
+	dbg_object(bb_graphics_context).m_scissor_height=t_height;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<293>";
 	bb_graphics_renderDevice.SetScissor(((t_x)|0),((t_y)|0),((t_width)|0),((t_height)|0));
+	pop_err();
 	return 0;
 }
 function bb_graphics_BeginRender(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<225>";
 	bb_graphics_renderDevice=bb_graphics_device;
-	bb_graphics_context.m_matrixSp=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<226>";
+	dbg_object(bb_graphics_context).m_matrixSp=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<227>";
 	bb_graphics_SetMatrix(1.0,0.0,0.0,1.0,0.0,0.0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<228>";
 	bb_graphics_SetColor(255.0,255.0,255.0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<229>";
 	bb_graphics_SetAlpha(1.0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<230>";
 	bb_graphics_SetBlend(0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<231>";
 	bb_graphics_SetScissor(0.0,0.0,(bb_app_DeviceWidth()),(bb_app_DeviceHeight()));
+	pop_err();
 	return 0;
 }
 function bb_graphics_EndRender(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<235>";
 	bb_graphics_renderDevice=null;
+	pop_err();
 	return 0;
 }
 function c_BBGameEvent(){
 	Object.call(this);
 }
 function bb_app_EndApp(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<259>";
 	error("");
+	pop_err();
 }
 function c_lpTween(){
 	Object.call(this);
@@ -3488,144 +4283,256 @@ function c_lpTween(){
 	this.m__beginTime=0.0;
 }
 c_lpTween.m_new=function(t_funct,t_initValue,t_endValue,t_time,t_easing,t_loop){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<48>";
 	this.m__function=t_funct;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<49>";
 	this.m__initialValue=t_initValue;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<50>";
 	this.m__currentValue=t_initValue;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<51>";
 	this.m__endValue=t_endValue;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<52>";
 	this.m__time=t_time;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<53>";
 	this.m__easing=t_easing;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<54>";
 	this.m__loop=t_loop;
+	pop_err();
 	return this;
 }
 c_lpTween.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<3>";
+	pop_err();
 	return this;
 }
 c_lpTween.m_CreateLinear=function(t_initValue,t_endValue,t_time,t_loop){
-	return c_lpTween.m_new.call(new c_lpTween,0,t_initValue,t_endValue,t_time,((t_loop)?1:0),false);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<32>";
+	var t_=c_lpTween.m_new.call(new c_lpTween,0,t_initValue,t_endValue,t_time,((t_loop)?1:0),false);
+	pop_err();
+	return t_;
 }
 c_lpTween.prototype.p_IsRunning=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<183>";
+	pop_err();
 	return this.m__running;
 }
 c_lpTween.prototype.p_Start=function(){
-	this.m__beginTime=(bb_app_Millisecs());
-	this.m__running=true;
-	this.m__currentValue=this.m__initialValue;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<62>";
+	dbg_object(this).m__beginTime=(bb_app_Millisecs());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<63>";
+	dbg_object(this).m__running=true;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<64>";
+	dbg_object(this).m__currentValue=this.m__initialValue;
+	pop_err();
 }
 c_lpTween.prototype.p_LinearUpdate=function(t_t,t_b,t_c,t_d){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<122>";
 	this.m__currentValue=t_c*t_t/t_d+t_b;
+	pop_err();
 }
 c_lpTween.prototype.p_QuadUpdate=function(t_easing,t_t,t_b,t_c,t_d){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<126>";
 	var t_2=t_easing;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<127>";
 	if(t_2==0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<128>";
 		t_t/=t_d;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<129>";
 		this.m__currentValue=t_c*t_t*t_t+t_b;
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<130>";
 		if(t_2==1){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<131>";
 			t_t/=t_d;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<132>";
 			this.m__currentValue=-t_c*t_t*(t_t-2.0)+t_b;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<133>";
 			if(t_2==2){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<134>";
 				t_t/=t_d/2.0;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<135>";
 				if(t_t<1.0){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<135>";
 					this.m__currentValue=t_c/2.0*t_t*t_t+t_b;
 				}
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<136>";
 				t_t=t_t-1.0;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<137>";
 				this.m__currentValue=-t_c/2.0*(t_t*(t_t-2.0)-1.0)+t_b;
 			}
 		}
 	}
+	pop_err();
 }
 c_lpTween.prototype.p_CubicUpdate=function(t_easing,t_t,t_b,t_c,t_d){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<143>";
 	var t_3=t_easing;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<144>";
 	if(t_3==0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<145>";
 		t_t/=t_d;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<146>";
 		this.m__currentValue=t_c*t_t*t_t*t_t+t_b;
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<147>";
 		if(t_3==1){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<148>";
 			t_t/=t_d;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<149>";
 			t_t=t_t-1.0;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<150>";
 			this.m__currentValue=t_c*(t_t*t_t*t_t+1.0)+t_b;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<151>";
 			if(t_3==2){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<152>";
 				t_t/=t_d/2.0;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<153>";
 				if(t_t<1.0){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<153>";
 					this.m__currentValue=t_c/2.0*t_t*t_t*t_t+t_b;
 				}
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<154>";
 				t_t=t_t-2.0;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<155>";
 				this.m__currentValue=t_c/2.0*(t_t*t_t*t_t+2.0)+t_b;
 			}
 		}
 	}
+	pop_err();
 }
 c_lpTween.prototype.p_BackUpdate=function(t_easing,t_t,t_b,t_c,t_d){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<160>";
 	var t_4=t_easing;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<161>";
 	if(t_4==0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<162>";
 		var t_s=1.70158;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<163>";
 		t_t/=t_d;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<164>";
 		this.m__currentValue=t_c*t_t*t_t*((t_s+1.0)*t_t-t_s)+t_b;
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<165>";
 		if(t_4==1){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<166>";
 			var t_s2=1.70158;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<167>";
 			t_t=t_t/t_d-1.0;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<168>";
 			this.m__currentValue=t_c*(t_t*t_t*((t_s2+1.0)*t_t+t_s2)+1.0)+t_b;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<169>";
 			if(t_4==2){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<170>";
 				var t_s3=1.70158;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<171>";
 				t_s3*=1.525;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<172>";
 				if(t_t<1.0){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<173>";
 					t_t/=t_d/2.0;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<174>";
 					this.m__currentValue=t_c/2.0*(t_t*t_t*((t_s3+1.0)*t_t-t_s3))+t_b;
 				}else{
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<176>";
 					t_t=t_t-2.0;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<177>";
 					this.m__currentValue=t_c/2.0*(t_t*t_t*((t_s3+1.0)*t_t+t_s3)+2.0)+t_b;
 				}
 			}
 		}
 	}
+	pop_err();
 }
 c_lpTween.prototype.p_SetInitialValue=function(t_v){
-	this.m__initialValue=t_v;
-	this.m__currentValue=t_v;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<68>";
+	dbg_object(this).m__initialValue=t_v;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<69>";
+	dbg_object(this).m__currentValue=t_v;
+	pop_err();
 }
 c_lpTween.prototype.p_SetEndValue=function(t_v){
-	this.m__endValue=t_v;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<73>";
+	dbg_object(this).m__endValue=t_v;
+	pop_err();
 }
 c_lpTween.prototype.p_SetValues=function(t_v1,t_v2){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<77>";
 	this.p_SetInitialValue(t_v1);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<78>";
 	this.p_SetEndValue(t_v2);
+	pop_err();
 }
 c_lpTween.prototype.p_Update=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<91>";
 	var t_currentTime=0.0;
-	if(this.m__running){
-		t_currentTime=(bb_app_Millisecs())-this.m__beginTime;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<93>";
+	if(dbg_object(this).m__running){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<95>";
+		t_currentTime=(bb_app_Millisecs())-dbg_object(this).m__beginTime;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<97>";
 		var t_1=this.m__function;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<98>";
 		if(t_1==0){
-			this.p_LinearUpdate(t_currentTime,this.m__initialValue,this.m__endValue-this.m__initialValue,this.m__time);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<99>";
+			this.p_LinearUpdate(t_currentTime,dbg_object(this).m__initialValue,this.m__endValue-this.m__initialValue,dbg_object(this).m__time);
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<100>";
 			if(t_1==1){
-				this.p_QuadUpdate(this.m__easing,t_currentTime,this.m__initialValue,this.m__endValue-this.m__initialValue,this.m__time);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<101>";
+				this.p_QuadUpdate(this.m__easing,t_currentTime,dbg_object(this).m__initialValue,this.m__endValue-this.m__initialValue,dbg_object(this).m__time);
 			}else{
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<102>";
 				if(t_1==2){
-					this.p_CubicUpdate(this.m__easing,t_currentTime,this.m__initialValue,this.m__endValue-this.m__initialValue,this.m__time);
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<103>";
+					this.p_CubicUpdate(this.m__easing,t_currentTime,dbg_object(this).m__initialValue,this.m__endValue-this.m__initialValue,dbg_object(this).m__time);
 				}else{
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<104>";
 					if(t_1==3){
-						this.p_BackUpdate(this.m__easing,t_currentTime,this.m__initialValue,this.m__endValue-this.m__initialValue,this.m__time);
+						err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<105>";
+						this.p_BackUpdate(this.m__easing,t_currentTime,dbg_object(this).m__initialValue,this.m__endValue-this.m__initialValue,dbg_object(this).m__time);
 					}
 				}
 			}
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<109>";
 	if(t_currentTime>=this.m__time){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<110>";
 		this.m__currentValue=this.m__endValue;
-		this.m__running=false;
-		if(this.m__loop){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<111>";
+		dbg_object(this).m__running=false;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<113>";
+		if(dbg_object(this).m__loop){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<114>";
 			print("llega");
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<115>";
 			this.p_SetValues(this.m__initialValue,this.m__endValue);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<116>";
 			this.p_Start();
 		}
 	}
+	pop_err();
 }
 c_lpTween.prototype.p_GetCurrentValue=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lptween.monkey<187>";
+	pop_err();
 	return this.m__currentValue;
 }
 function c_lpCamera(){
@@ -3636,27 +4543,46 @@ function c_lpCamera(){
 	this.implments={c_iDrawable:1};
 }
 c_lpCamera.prototype.p__init=function(t_px,t_py,t_pw,t_ph,t_vx,t_vy,t_vw,t_vh){
-	this.m_Position=c_Rectangle.m_new3.call(new c_Rectangle,t_px,t_py,t_pw,t_ph);
-	this.m_ViewPort=c_Rectangle.m_new3.call(new c_Rectangle,t_vx,t_vy,t_vw,t_vh);
-	this.m__firstViewPort=c_Rectangle.m_new3.call(new c_Rectangle,t_vx,t_vy,t_vw,t_vh);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpcamera.monkey<14>";
+	dbg_object(this).m_Position=c_Rectangle.m_new3.call(new c_Rectangle,t_px,t_py,t_pw,t_ph);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpcamera.monkey<15>";
+	dbg_object(this).m_ViewPort=c_Rectangle.m_new3.call(new c_Rectangle,t_vx,t_vy,t_vw,t_vh);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpcamera.monkey<16>";
+	dbg_object(this).m__firstViewPort=c_Rectangle.m_new3.call(new c_Rectangle,t_vx,t_vy,t_vw,t_vh);
+	pop_err();
 }
 c_lpCamera.m_new=function(t_px,t_py,t_pw,t_ph,t_vx,t_vy,t_vw,t_vh){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpcamera.monkey<25>";
 	this.p__init(t_px,t_py,t_pw,t_ph,t_vx,t_vy,t_vw,t_vh);
+	pop_err();
 	return this;
 }
 c_lpCamera.prototype.p_Create=function(){
+	push_err();
+	pop_err();
 }
 c_lpCamera.prototype.p_Render=function(){
+	push_err();
+	pop_err();
 }
 c_lpCamera.prototype.p_Update=function(){
+	push_err();
+	pop_err();
 }
 function c_ShapeBase(){
 	Object.call(this);
 }
 c_ShapeBase.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/shapebase.monkey<3>";
+	pop_err();
 	return this;
 }
 c_ShapeBase.prototype.p_Render=function(){
+	push_err();
+	pop_err();
 }
 c_ShapeBase.prototype.p_GetType=function(){
 }
@@ -3667,35 +4593,65 @@ function c_Point(){
 }
 c_Point.prototype=extend_class(c_ShapeBase);
 c_Point.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/point.monkey<15>";
 	c_ShapeBase.m_new.call(this);
-	this.m__x=0.0;
-	this.m__y=0.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/point.monkey<16>";
+	dbg_object(this).m__x=0.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/point.monkey<17>";
+	dbg_object(this).m__y=0.0;
+	pop_err();
 	return this;
 }
 c_Point.m_new2=function(t_x,t_y){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/point.monkey<20>";
 	c_ShapeBase.m_new.call(this);
-	this.m__x=t_x;
-	this.m__y=t_y;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/point.monkey<21>";
+	dbg_object(this).m__x=t_x;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/point.monkey<22>";
+	dbg_object(this).m__y=t_y;
+	pop_err();
 	return this;
 }
 c_Point.prototype.p_X=function(t_x){
-	this.m__x=t_x;
-	return this.m__x;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/point.monkey<27>";
+	dbg_object(this).m__x=t_x;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/point.monkey<28>";
+	pop_err();
+	return dbg_object(this).m__x;
 }
 c_Point.prototype.p_X2=function(){
-	return this.m__x;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/point.monkey<37>";
+	pop_err();
+	return dbg_object(this).m__x;
 }
 c_Point.prototype.p_Y=function(t_y){
-	this.m__y=t_y;
-	return this.m__y;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/point.monkey<32>";
+	dbg_object(this).m__y=t_y;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/point.monkey<33>";
+	pop_err();
+	return dbg_object(this).m__y;
 }
 c_Point.prototype.p_Y2=function(){
-	return this.m__y;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/point.monkey<41>";
+	pop_err();
+	return dbg_object(this).m__y;
 }
 c_Point.prototype.p_Render=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/point.monkey<57>";
 	bb_graphics_DrawCircle(this.p_X2(),this.p_Y2(),10.0);
+	pop_err();
 }
 c_Point.prototype.p_GetType=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/point.monkey<82>";
+	pop_err();
 	return 1;
 }
 function c_Rectangle(){
@@ -3707,81 +4663,157 @@ function c_Rectangle(){
 }
 c_Rectangle.prototype=extend_class(c_Point);
 c_Rectangle.prototype.p_Width2=function(t_w){
-	this.m_mmax.p_X(t_w);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<54>";
+	dbg_object(this).m_mmax.p_X(t_w);
+	pop_err();
 	return 0;
 }
 c_Rectangle.prototype.p_Width=function(){
-	return this.m_mmax.p_X2();
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<62>";
+	var t_=dbg_object(this).m_mmax.p_X2();
+	pop_err();
+	return t_;
 }
 c_Rectangle.prototype.p_Height2=function(t_h){
-	this.m_mmax.p_Y(t_h);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<58>";
+	dbg_object(this).m_mmax.p_Y(t_h);
+	pop_err();
 	return 0;
 }
 c_Rectangle.prototype.p_Height=function(){
-	return this.m_mmax.p_Y2();
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<66>";
+	var t_=dbg_object(this).m_mmax.p_Y2();
+	pop_err();
+	return t_;
 }
 c_Rectangle.prototype.p__init2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<14>";
 	this.m__points_stack.p_Push4(c_Point.m_new.call(new c_Point));
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<15>";
 	this.m__points_stack.p_Push4(c_Point.m_new.call(new c_Point));
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<16>";
 	this.m__points_stack.p_Push4(c_Point.m_new.call(new c_Point));
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<17>";
 	this.m__points_stack.p_Push4(c_Point.m_new.call(new c_Point));
+	pop_err();
 }
 c_Rectangle.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<29>";
 	c_Point.m_new2.call(this,0.0,0.0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<30>";
 	this.p_Width2(0.0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<31>";
 	this.p_Height2(0.0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<32>";
 	this.p__init2();
+	pop_err();
 	return this;
 }
 c_Rectangle.m_new2=function(t_avoidpoly){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<36>";
 	c_Point.m_new2.call(this,0.0,0.0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<37>";
 	this.p_X(0.0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<38>";
 	this.p_Y(0.0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<39>";
 	this.p_Width2(0.0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<40>";
 	this.p_Height2(0.0);
+	pop_err();
 	return this;
 }
 c_Rectangle.m_new3=function(t_x,t_y,t_width,t_height){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<45>";
 	c_Point.m_new2.call(this,t_x,t_y);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<46>";
 	this.p_Width2(t_width);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<47>";
 	this.p_Height2(t_height);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<49>";
 	this.p__init2();
+	pop_err();
 	return this;
 }
 c_Rectangle.prototype.p_GetType=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<205>";
+	pop_err();
 	return 3;
 }
 c_Rectangle.prototype.p_PointStack=function(){
-	return this.m__points_stack;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<140>";
+	pop_err();
+	return dbg_object(this).m__points_stack;
 }
 c_Rectangle.prototype.p_Vertices=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<123>";
 	this.p_PointStack().p_Get(0).p_X(this.p_X2());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<124>";
 	this.p_PointStack().p_Get(0).p_Y(this.p_Y2());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<126>";
 	this.p_PointStack().p_Get(1).p_X(this.p_X2()+this.p_Width());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<127>";
 	this.p_PointStack().p_Get(1).p_Y(this.p_Y2());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<129>";
 	this.p_PointStack().p_Get(2).p_X(this.p_X2()+this.p_Width());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<130>";
 	this.p_PointStack().p_Get(2).p_Y(this.p_Y2()+this.p_Height());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<132>";
 	this.p_PointStack().p_Get(3).p_X(this.p_X2());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<133>";
 	this.p_PointStack().p_Get(3).p_Y(this.p_Y2()+this.p_Height());
-	return this.m__points_stack;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<135>";
+	pop_err();
+	return dbg_object(this).m__points_stack;
 }
 c_Rectangle.prototype.p_Min=function(t_m){
-	this.m_min=t_m;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<103>";
+	dbg_object(this).m_min=t_m;
+	pop_err();
 }
 c_Rectangle.prototype.p_Min2=function(){
-	return this.m_min;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<111>";
+	pop_err();
+	return dbg_object(this).m_min;
 }
 c_Rectangle.prototype.p_Max=function(t_m){
-	this.m_max=t_m;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<107>";
+	dbg_object(this).m_max=t_m;
+	pop_err();
 }
 c_Rectangle.prototype.p_Max2=function(){
-	return this.m_max;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<115>";
+	pop_err();
+	return dbg_object(this).m_max;
 }
 c_Rectangle.prototype.p_CenterX=function(){
-	return this.p_X2()+this.p_Width()/2.0;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<147>";
+	var t_=this.p_X2()+this.p_Width()/2.0;
+	pop_err();
+	return t_;
 }
 c_Rectangle.prototype.p_CenterY=function(){
-	return this.p_Y2()+this.p_Height()/2.0;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/shapes/rectangle.monkey<153>";
+	var t_=this.p_Y2()+this.p_Height()/2.0;
+	pop_err();
+	return t_;
 }
 function c_Stack2(){
 	Object.call(this);
@@ -3789,45 +4821,78 @@ function c_Stack2(){
 	this.m_length=0;
 }
 c_Stack2.m_new=function(){
+	push_err();
+	pop_err();
 	return this;
 }
 c_Stack2.m_new2=function(t_data){
-	this.m_data=t_data.slice(0);
-	this.m_length=t_data.length;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<13>";
+	dbg_object(this).m_data=t_data.slice(0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<14>";
+	dbg_object(this).m_length=t_data.length;
+	pop_err();
 	return this;
 }
 c_Stack2.prototype.p_Push4=function(t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<67>";
 	if(this.m_length==this.m_data.length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<68>";
 		this.m_data=resize_object_array(this.m_data,this.m_length*2+10);
 	}
-	this.m_data[this.m_length]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<70>";
+	dbg_array(this.m_data,this.m_length)[dbg_index]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<71>";
 	this.m_length+=1;
+	pop_err();
 }
 c_Stack2.prototype.p_Push5=function(t_values,t_offset,t_count){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<79>";
 	for(var t_i=0;t_i<t_count;t_i=t_i+1){
-		this.p_Push4(t_values[t_offset+t_i]);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<80>";
+		this.p_Push4(dbg_array(t_values,t_offset+t_i)[dbg_index]);
 	}
+	pop_err();
 }
 c_Stack2.prototype.p_Push6=function(t_values,t_offset){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<75>";
 	this.p_Push5(t_values,t_offset,t_values.length-t_offset);
+	pop_err();
 }
 c_Stack2.prototype.p_Get=function(t_index){
-	return this.m_data[t_index];
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<100>";
+	pop_err();
+	return dbg_array(this.m_data,t_index)[dbg_index];
 }
 c_Stack2.m_NIL=null;
 c_Stack2.prototype.p_Length=function(t_newlength){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<41>";
 	if(t_newlength<this.m_length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<42>";
 		for(var t_i=t_newlength;t_i<this.m_length;t_i=t_i+1){
-			this.m_data[t_i]=c_Stack2.m_NIL;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<43>";
+			dbg_array(this.m_data,t_i)[dbg_index]=c_Stack2.m_NIL;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<45>";
 		if(t_newlength>this.m_data.length){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<46>";
 			this.m_data=resize_object_array(this.m_data,bb_math_Max(this.m_length*2+10,t_newlength));
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<48>";
 	this.m_length=t_newlength;
+	pop_err();
 }
 c_Stack2.prototype.p_Length2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<52>";
+	pop_err();
 	return this.m_length;
 }
 function c_Scene(){
@@ -3843,74 +4908,139 @@ function c_Scene(){
 	this.implments={c_iDrawable:1};
 }
 c_Scene.prototype.p_Cameras=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<83>";
+	pop_err();
 	return this.m__cameras;
 }
 c_Scene.prototype.p_AddCamera=function(t_camera){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<79>";
 	this.m__cameras.p_Push7(t_camera);
+	pop_err();
 }
 c_Scene.prototype.p_AutoCreate=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<31>";
+	pop_err();
 	return this.m__autocreate;
 }
 c_Scene.prototype.p_GetChildren=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<87>";
+	pop_err();
 	return this.m__children;
 }
 c_Scene.prototype.p_GetGui=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<91>";
+	pop_err();
 	return this.m__gui;
 }
 c_Scene.prototype.p_Loading=function(){
 }
 c_Scene.prototype.p_SetLoadingState=function(t_state){
-	this.m__loadingState=t_state;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<75>";
+	dbg_object(this).m__loadingState=t_state;
+	pop_err();
 }
 c_Scene.prototype.p_Update=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<39>";
 	if(!this.m__pause){
-		var t_=this.m__children.p_ObjectEnumerator();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<40>";
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<40>";
+		var t_=dbg_object(this).m__children.p_ObjectEnumerator();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<40>";
 		while(t_.p_HasNext()){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<40>";
 			var t_layer=t_.p_NextObject();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<41>";
 			t_layer.p_Update();
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<45>";
 	if(!this.m__pausegui){
-		var t_2=this.m__gui.p_ObjectEnumerator();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<46>";
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<46>";
+		var t_2=dbg_object(this).m__gui.p_ObjectEnumerator();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<46>";
 		while(t_2.p_HasNext()){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<46>";
 			var t_gui=t_2.p_NextObject();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<47>";
 			t_gui.p_Update();
 		}
 	}
+	pop_err();
 }
 c_Scene.prototype.p_Back=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<61>";
+	pop_err();
 	return 0;
 }
 c_Scene.prototype.p_Suspend=function(){
+	push_err();
+	pop_err();
 }
 c_Scene.prototype.p_LoadingRender=function(){
+	push_err();
+	pop_err();
 }
 c_Scene.prototype.p_GetLoadingState=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<71>";
+	pop_err();
 	return this.m__loadingState;
 }
 c_Scene.prototype.p_Render=function(){
-	var t_=this.m__children.p_ObjectEnumerator();
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<52>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<52>";
+	var t_=dbg_object(this).m__children.p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<52>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<52>";
 		var t_layer=t_.p_NextObject();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<53>";
 		t_layer.p_Render();
 	}
+	pop_err();
 }
 c_Scene.prototype.p_Parameters=function(t_m){
-	this.m__parameters=t_m;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<121>";
+	dbg_object(this).m__parameters=t_m;
+	pop_err();
 }
 c_Scene.prototype.p_Parameters2=function(){
-	return this.m__parameters;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<125>";
+	pop_err();
+	return dbg_object(this).m__parameters;
 }
 c_Scene.prototype.p_Create=function(){
+	push_err();
+	pop_err();
 }
 c_Scene.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<6>";
+	pop_err();
 	return this;
 }
 c_Scene.prototype.p_AddChild=function(t_layer,t_create){
-	this.m__children.p_AddLast(t_layer);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<95>";
+	dbg_object(this).m__children.p_AddLast(t_layer);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<97>";
 	if(t_create){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/scene.monkey<98>";
 		t_layer.p_Create();
 	}
+	pop_err();
 }
 function c_Stack3(){
 	Object.call(this);
@@ -3918,60 +5048,109 @@ function c_Stack3(){
 	this.m_length=0;
 }
 c_Stack3.m_new=function(){
+	push_err();
+	pop_err();
 	return this;
 }
 c_Stack3.m_new2=function(t_data){
-	this.m_data=t_data.slice(0);
-	this.m_length=t_data.length;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<13>";
+	dbg_object(this).m_data=t_data.slice(0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<14>";
+	dbg_object(this).m_length=t_data.length;
+	pop_err();
 	return this;
 }
 c_Stack3.m_NIL=null;
 c_Stack3.prototype.p_Length=function(t_newlength){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<41>";
 	if(t_newlength<this.m_length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<42>";
 		for(var t_i=t_newlength;t_i<this.m_length;t_i=t_i+1){
-			this.m_data[t_i]=c_Stack3.m_NIL;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<43>";
+			dbg_array(this.m_data,t_i)[dbg_index]=c_Stack3.m_NIL;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<45>";
 		if(t_newlength>this.m_data.length){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<46>";
 			this.m_data=resize_object_array(this.m_data,bb_math_Max(this.m_length*2+10,t_newlength));
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<48>";
 	this.m_length=t_newlength;
+	pop_err();
 }
 c_Stack3.prototype.p_Length2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<52>";
+	pop_err();
 	return this.m_length;
 }
 c_Stack3.prototype.p_Push7=function(t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<67>";
 	if(this.m_length==this.m_data.length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<68>";
 		this.m_data=resize_object_array(this.m_data,this.m_length*2+10);
 	}
-	this.m_data[this.m_length]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<70>";
+	dbg_array(this.m_data,this.m_length)[dbg_index]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<71>";
 	this.m_length+=1;
+	pop_err();
 }
 c_Stack3.prototype.p_Push8=function(t_values,t_offset,t_count){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<79>";
 	for(var t_i=0;t_i<t_count;t_i=t_i+1){
-		this.p_Push7(t_values[t_offset+t_i]);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<80>";
+		this.p_Push7(dbg_array(t_values,t_offset+t_i)[dbg_index]);
 	}
+	pop_err();
 }
 c_Stack3.prototype.p_Push9=function(t_values,t_offset){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<75>";
 	this.p_Push8(t_values,t_offset,t_values.length-t_offset);
+	pop_err();
 }
 c_Stack3.prototype.p_ObjectEnumerator=function(){
-	return c_Enumerator2.m_new.call(new c_Enumerator2,this);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<184>";
+	var t_=c_Enumerator2.m_new.call(new c_Enumerator2,this);
+	pop_err();
+	return t_;
 }
 c_Stack3.prototype.p_Get=function(t_index){
-	return this.m_data[t_index];
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<100>";
+	pop_err();
+	return dbg_array(this.m_data,t_index)[dbg_index];
 }
 function bb_math_Max(t_x,t_y){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<56>";
 	if(t_x>t_y){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<56>";
+		pop_err();
 		return t_x;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<57>";
+	pop_err();
 	return t_y;
 }
 function bb_math_Max2(t_x,t_y){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<83>";
 	if(t_x>t_y){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<83>";
+		pop_err();
 		return t_x;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<84>";
+	pop_err();
 	return t_y;
 }
 function c_List(){
@@ -3979,23 +5158,42 @@ function c_List(){
 	this.m__head=(c_HeadNode.m_new.call(new c_HeadNode));
 }
 c_List.m_new=function(){
+	push_err();
+	pop_err();
 	return this;
 }
 c_List.prototype.p_AddLast=function(t_data){
-	return c_Node2.m_new.call(new c_Node2,this.m__head,this.m__head.m__pred,t_data);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<108>";
+	var t_=c_Node2.m_new.call(new c_Node2,this.m__head,dbg_object(this.m__head).m__pred,t_data);
+	pop_err();
+	return t_;
 }
 c_List.m_new2=function(t_data){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 	var t_=t_data;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 	var t_2=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 	while(t_2<t_.length){
-		var t_t=t_[t_2];
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
+		var t_t=dbg_array(t_,t_2)[dbg_index];
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 		t_2=t_2+1;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<14>";
 		this.p_AddLast(t_t);
 	}
+	pop_err();
 	return this;
 }
 c_List.prototype.p_ObjectEnumerator=function(){
-	return c_Enumerator.m_new.call(new c_Enumerator,this);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<186>";
+	var t_=c_Enumerator.m_new.call(new c_Enumerator,this);
+	pop_err();
+	return t_;
 }
 function c_Node2(){
 	Object.call(this);
@@ -4004,14 +5202,24 @@ function c_Node2(){
 	this.m__data=null;
 }
 c_Node2.m_new=function(t_succ,t_pred,t_data){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<261>";
 	this.m__succ=t_succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<262>";
 	this.m__pred=t_pred;
-	this.m__succ.m__pred=this;
-	this.m__pred.m__succ=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<263>";
+	dbg_object(this.m__succ).m__pred=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<264>";
+	dbg_object(this.m__pred).m__succ=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<265>";
 	this.m__data=t_data;
+	pop_err();
 	return this;
 }
 c_Node2.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<258>";
+	pop_err();
 	return this;
 }
 function c_HeadNode(){
@@ -4019,9 +5227,14 @@ function c_HeadNode(){
 }
 c_HeadNode.prototype=extend_class(c_Node2);
 c_HeadNode.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<310>";
 	c_Node2.m_new2.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<311>";
 	this.m__succ=(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<312>";
 	this.m__pred=(this);
+	pop_err();
 	return this;
 }
 function c_Enumerator(){
@@ -4030,22 +5243,40 @@ function c_Enumerator(){
 	this.m__curr=null;
 }
 c_Enumerator.m_new=function(t_list){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<326>";
 	this.m__list=t_list;
-	this.m__curr=t_list.m__head.m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<327>";
+	this.m__curr=dbg_object(dbg_object(t_list).m__head).m__succ;
+	pop_err();
 	return this;
 }
 c_Enumerator.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<323>";
+	pop_err();
 	return this;
 }
 c_Enumerator.prototype.p_HasNext=function(){
-	while(this.m__curr.m__succ.m__pred!=this.m__curr){
-		this.m__curr=this.m__curr.m__succ;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<331>";
+	while(dbg_object(dbg_object(this.m__curr).m__succ).m__pred!=this.m__curr){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<332>";
+		this.m__curr=dbg_object(this.m__curr).m__succ;
 	}
-	return this.m__curr!=this.m__list.m__head;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<334>";
+	var t_=this.m__curr!=dbg_object(this.m__list).m__head;
+	pop_err();
+	return t_;
 }
 c_Enumerator.prototype.p_NextObject=function(){
-	var t_data=this.m__curr.m__data;
-	this.m__curr=this.m__curr.m__succ;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<338>";
+	var t_data=dbg_object(this.m__curr).m__data;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<339>";
+	this.m__curr=dbg_object(this.m__curr).m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<340>";
+	pop_err();
 	return t_data;
 }
 function c_Time(){
@@ -4058,64 +5289,113 @@ c_Time.m__time_last_update=0;
 c_Time.m__delta=0;
 c_Time.m__delta_secs=0;
 c_Time.m_processFrozen=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<24>";
 	if(c_Time.m__aux_time>=c_Time.m__frozen_time){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<25>";
 		c_Time.m__frozen=false;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<26>";
 		c_Time.m__aux_time=0;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<29>";
 	c_Time.m__aux_time+=bb_app_Millisecs()-c_Time.m__time_last_update;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<30>";
 	c_Time.m__time_last_update=bb_app_Millisecs();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<32>";
 	c_Time.m__delta=1;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<33>";
 	c_Time.m__delta_secs=0.001;
+	pop_err();
 }
 c_Time.m__slow_down=false;
 c_Time.m__slow_down_aux_time=0;
 c_Time.m__slow_down_time=0;
 c_Time.m__slow_down_factor=0;
 c_Time.m_processSlowDown=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<37>";
 	if(c_Time.m__slow_down_aux_time>=c_Time.m__slow_down_time){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<38>";
 		c_Time.m__slow_down=false;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<39>";
 		c_Time.m__slow_down_aux_time=0;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<42>";
 	c_Time.m__slow_down_aux_time+=c_Time.m__delta;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<44>";
 	c_Time.m__delta=(((c_Time.m__delta)*c_Time.m__slow_down_factor)|0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<45>";
 	c_Time.m__delta_secs*=c_Time.m__slow_down_factor;
+	pop_err();
 }
 c_Time.m_OnUpdate=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<52>";
 	if(c_Time.m__frozen){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<53>";
 		c_Time.m_processFrozen();
+		pop_err();
 		return;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<58>";
 	c_Time.m__delta=bb_app_Millisecs()-c_Time.m__time_last_update;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<59>";
 	c_Time.m__time_last_update=bb_app_Millisecs();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<62>";
 	c_Time.m__delta_secs=(c_Time.m__delta)/1000.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<64>";
 	if(c_Time.m__slow_down){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<65>";
 		c_Time.m_processSlowDown();
+		pop_err();
 		return;
 	}
+	pop_err();
 }
 c_Time.m_Delta=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<88>";
+	pop_err();
 	return c_Time.m__delta;
 }
 c_Time.m_DeltaSecs=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<93>";
+	pop_err();
 	return c_Time.m__delta_secs;
 }
 c_Time.m_SlowDown=function(t_factor,t_millis){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<78>";
 	if(!c_Time.m__slow_down){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<79>";
 		c_Time.m__slow_down=true;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<80>";
 		c_Time.m__slow_down_factor=t_factor;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<81>";
 		c_Time.m__slow_down_time=t_millis;
 	}
+	pop_err();
 	return 0;
 }
 c_Time.m_Freeze=function(t_millis){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<71>";
 	if(!c_Time.m__frozen){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<72>";
 		c_Time.m__frozen=true;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/time/time.monkey<73>";
 		c_Time.m__frozen_time=t_millis;
 	}
+	pop_err();
 	return 0;
 }
 function bb_app_Millisecs(){
-	return bb_app__game.Millisecs();
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<233>";
+	var t_=bb_app__game.Millisecs();
+	pop_err();
+	return t_;
 }
 var bb_game_LONENTERLOADING=0;
 var bb_game_LONLOADING=0;
@@ -4129,13 +5409,22 @@ function c_Popup(){
 c_Popup.prototype.p_Update=function(){
 }
 c_Popup.prototype.p_Back=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/popup.monkey<66>";
 	print("lpPopup.Back()");
+	pop_err();
 }
 c_Popup.prototype.p_ViewPort=function(){
-	return this.m_view_port;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/popup.monkey<70>";
+	pop_err();
+	return dbg_object(this).m_view_port;
 }
 c_Popup.prototype.p_GetBakgroundAlpha=function(){
-	return this.m_backgroundAlpha;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/popup.monkey<43>";
+	pop_err();
+	return dbg_object(this).m_backgroundAlpha;
 }
 c_Popup.prototype.p_Render=function(){
 }
@@ -4148,46 +5437,78 @@ function c_Stack4(){
 	this.m_length=0;
 }
 c_Stack4.m_new=function(){
+	push_err();
+	pop_err();
 	return this;
 }
 c_Stack4.m_new2=function(t_data){
-	this.m_data=t_data.slice(0);
-	this.m_length=t_data.length;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<13>";
+	dbg_object(this).m_data=t_data.slice(0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<14>";
+	dbg_object(this).m_length=t_data.length;
+	pop_err();
 	return this;
 }
 c_Stack4.m_NIL=null;
 c_Stack4.prototype.p_Length=function(t_newlength){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<41>";
 	if(t_newlength<this.m_length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<42>";
 		for(var t_i=t_newlength;t_i<this.m_length;t_i=t_i+1){
-			this.m_data[t_i]=c_Stack4.m_NIL;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<43>";
+			dbg_array(this.m_data,t_i)[dbg_index]=c_Stack4.m_NIL;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<45>";
 		if(t_newlength>this.m_data.length){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<46>";
 			this.m_data=resize_object_array(this.m_data,bb_math_Max(this.m_length*2+10,t_newlength));
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<48>";
 	this.m_length=t_newlength;
+	pop_err();
 }
 c_Stack4.prototype.p_Length2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<52>";
+	pop_err();
 	return this.m_length;
 }
 c_Stack4.prototype.p_Get=function(t_index){
-	return this.m_data[t_index];
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<100>";
+	pop_err();
+	return dbg_array(this.m_data,t_index)[dbg_index];
 }
 var bb_asyncevent__sources=null;
 function bb_asyncevent_UpdateAsyncEvents(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/brl/asyncevent.monkey<24>";
 	if((bb_asyncevent__current)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/brl/asyncevent.monkey<24>";
+		pop_err();
 		return 0;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/brl/asyncevent.monkey<25>";
 	var t_i=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/brl/asyncevent.monkey<26>";
 	while(t_i<bb_asyncevent__sources.p_Length2()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/brl/asyncevent.monkey<27>";
 		bb_asyncevent__current=bb_asyncevent__sources.p_Get(t_i);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/brl/asyncevent.monkey<28>";
 		bb_asyncevent__current.p_UpdateAsyncEvents();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/brl/asyncevent.monkey<29>";
 		if((bb_asyncevent__current)!=null){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/brl/asyncevent.monkey<29>";
 			t_i+=1;
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/brl/asyncevent.monkey<31>";
 	bb_asyncevent__current=null;
+	pop_err();
 	return 0;
 }
 function c_lpColor(){
@@ -4197,22 +5518,51 @@ function c_lpColor(){
 	this.m_b=.0;
 }
 c_lpColor.m_new=function(){
-	this.m_r=0.0;
-	this.m_g=0.0;
-	this.m_b=0.0;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpcolor.monkey<11>";
+	dbg_object(this).m_r=0.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpcolor.monkey<12>";
+	dbg_object(this).m_g=0.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpcolor.monkey<13>";
+	dbg_object(this).m_b=0.0;
+	pop_err();
 	return this;
 }
 c_lpColor.m_new2=function(t_r,t_g,t_b){
-	this.m_r=t_r;
-	this.m_g=t_g;
-	this.m_b=t_b;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpcolor.monkey<18>";
+	dbg_object(this).m_r=t_r;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpcolor.monkey<19>";
+	dbg_object(this).m_g=t_g;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpcolor.monkey<20>";
+	dbg_object(this).m_b=t_b;
+	pop_err();
 	return this;
 }
 c_lpColor.m_Black=function(){
-	return c_lpColor.m_new.call(new c_lpColor);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpcolor.monkey<45>";
+	var t_=c_lpColor.m_new.call(new c_lpColor);
+	pop_err();
+	return t_;
+}
+function bb_graphics_DebugRenderDevice(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<53>";
+	if(!((bb_graphics_renderDevice)!=null)){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<53>";
+		error("Rendering operations can only be performed inside OnRender");
+	}
+	pop_err();
+	return 0;
 }
 function bb_graphics_Cls(t_r,t_g,t_b){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<378>";
+	bb_graphics_DebugRenderDevice();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<380>";
 	bb_graphics_renderDevice.Cls(t_r,t_g,t_b);
+	pop_err();
 	return 0;
 }
 var bb_game_LONENTERSCENE=0;
@@ -4224,14 +5574,23 @@ function c_lpResources(){
 	this.m_translations=null;
 }
 c_lpResources.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<54>";
 	this.m_images=c_StringMap.m_new.call(new c_StringMap);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<55>";
 	this.m_pimages=c_StringMap.m_new.call(new c_StringMap);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<56>";
 	this.m_sounds=c_StringMap2.m_new.call(new c_StringMap2);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<57>";
 	this.m_translations=c_StringMap3.m_new.call(new c_StringMap3);
+	pop_err();
 	return this;
 }
 c_lpResources.m__instance=null;
 c_lpResources.m_GetInstance=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<71>";
+	pop_err();
 	return c_lpResources.m__instance;
 }
 function c_Map2(){
@@ -4239,161 +5598,282 @@ function c_Map2(){
 	this.m_root=null;
 }
 c_Map2.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<7>";
+	pop_err();
 	return this;
 }
 c_Map2.prototype.p_Values=function(){
-	return c_MapValues.m_new.call(new c_MapValues,this);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<117>";
+	var t_=c_MapValues.m_new.call(new c_MapValues,this);
+	pop_err();
+	return t_;
 }
 c_Map2.prototype.p_FirstNode=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<125>";
 	if(!((this.m_root)!=null)){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<125>";
+		pop_err();
 		return null;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<127>";
 	var t_node=this.m_root;
-	while((t_node.m_left)!=null){
-		t_node=t_node.m_left;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<128>";
+	while((dbg_object(t_node).m_left)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<129>";
+		t_node=dbg_object(t_node).m_left;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<131>";
+	pop_err();
 	return t_node;
 }
 c_Map2.prototype.p_Clear=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<13>";
 	this.m_root=null;
+	pop_err();
 	return 0;
 }
 c_Map2.prototype.p_Compare2=function(t_lhs,t_rhs){
 }
 c_Map2.prototype.p_FindNode2=function(t_key){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<157>";
 	var t_node=this.m_root;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<159>";
 	while((t_node)!=null){
-		var t_cmp=this.p_Compare2(t_key,t_node.m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<160>";
+		var t_cmp=this.p_Compare2(t_key,dbg_object(t_node).m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<161>";
 		if(t_cmp>0){
-			t_node=t_node.m_right;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<162>";
+			t_node=dbg_object(t_node).m_right;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<163>";
 			if(t_cmp<0){
-				t_node=t_node.m_left;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<164>";
+				t_node=dbg_object(t_node).m_left;
 			}else{
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<166>";
+				pop_err();
 				return t_node;
 			}
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<169>";
+	pop_err();
 	return t_node;
 }
 c_Map2.prototype.p_Contains2=function(t_key){
-	return this.p_FindNode2(t_key)!=null;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<25>";
+	var t_=this.p_FindNode2(t_key)!=null;
+	pop_err();
+	return t_;
 }
 c_Map2.prototype.p_RotateLeft2=function(t_node){
-	var t_child=t_node.m_right;
-	t_node.m_right=t_child.m_left;
-	if((t_child.m_left)!=null){
-		t_child.m_left.m_parent=t_node;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<251>";
+	var t_child=dbg_object(t_node).m_right;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<252>";
+	dbg_object(t_node).m_right=dbg_object(t_child).m_left;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<253>";
+	if((dbg_object(t_child).m_left)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<254>";
+		dbg_object(dbg_object(t_child).m_left).m_parent=t_node;
 	}
-	t_child.m_parent=t_node.m_parent;
-	if((t_node.m_parent)!=null){
-		if(t_node==t_node.m_parent.m_left){
-			t_node.m_parent.m_left=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<256>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<257>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<258>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<259>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
 		}else{
-			t_node.m_parent.m_right=t_child;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<261>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<264>";
 		this.m_root=t_child;
 	}
-	t_child.m_left=t_node;
-	t_node.m_parent=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<266>";
+	dbg_object(t_child).m_left=t_node;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<267>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
 	return 0;
 }
 c_Map2.prototype.p_RotateRight2=function(t_node){
-	var t_child=t_node.m_left;
-	t_node.m_left=t_child.m_right;
-	if((t_child.m_right)!=null){
-		t_child.m_right.m_parent=t_node;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<271>";
+	var t_child=dbg_object(t_node).m_left;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<272>";
+	dbg_object(t_node).m_left=dbg_object(t_child).m_right;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<273>";
+	if((dbg_object(t_child).m_right)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<274>";
+		dbg_object(dbg_object(t_child).m_right).m_parent=t_node;
 	}
-	t_child.m_parent=t_node.m_parent;
-	if((t_node.m_parent)!=null){
-		if(t_node==t_node.m_parent.m_right){
-			t_node.m_parent.m_right=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<276>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<277>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<278>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<279>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
 		}else{
-			t_node.m_parent.m_left=t_child;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<281>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<284>";
 		this.m_root=t_child;
 	}
-	t_child.m_right=t_node;
-	t_node.m_parent=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<286>";
+	dbg_object(t_child).m_right=t_node;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<287>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
 	return 0;
 }
 c_Map2.prototype.p_InsertFixup2=function(t_node){
-	while(((t_node.m_parent)!=null) && t_node.m_parent.m_color==-1 && ((t_node.m_parent.m_parent)!=null)){
-		if(t_node.m_parent==t_node.m_parent.m_parent.m_left){
-			var t_uncle=t_node.m_parent.m_parent.m_right;
-			if(((t_uncle)!=null) && t_uncle.m_color==-1){
-				t_node.m_parent.m_color=1;
-				t_uncle.m_color=1;
-				t_uncle.m_parent.m_color=-1;
-				t_node=t_uncle.m_parent;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<212>";
+	while(((dbg_object(t_node).m_parent)!=null) && dbg_object(dbg_object(t_node).m_parent).m_color==-1 && ((dbg_object(dbg_object(t_node).m_parent).m_parent)!=null)){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<213>";
+		if(dbg_object(t_node).m_parent==dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<214>";
+			var t_uncle=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_right;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<215>";
+			if(((t_uncle)!=null) && dbg_object(t_uncle).m_color==-1){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<216>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<217>";
+				dbg_object(t_uncle).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<218>";
+				dbg_object(dbg_object(t_uncle).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<219>";
+				t_node=dbg_object(t_uncle).m_parent;
 			}else{
-				if(t_node==t_node.m_parent.m_right){
-					t_node=t_node.m_parent;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<221>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<222>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<223>";
 					this.p_RotateLeft2(t_node);
 				}
-				t_node.m_parent.m_color=1;
-				t_node.m_parent.m_parent.m_color=-1;
-				this.p_RotateRight2(t_node.m_parent.m_parent);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<225>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<226>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<227>";
+				this.p_RotateRight2(dbg_object(dbg_object(t_node).m_parent).m_parent);
 			}
 		}else{
-			var t_uncle2=t_node.m_parent.m_parent.m_left;
-			if(((t_uncle2)!=null) && t_uncle2.m_color==-1){
-				t_node.m_parent.m_color=1;
-				t_uncle2.m_color=1;
-				t_uncle2.m_parent.m_color=-1;
-				t_node=t_uncle2.m_parent;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<230>";
+			var t_uncle2=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<231>";
+			if(((t_uncle2)!=null) && dbg_object(t_uncle2).m_color==-1){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<232>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<233>";
+				dbg_object(t_uncle2).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<234>";
+				dbg_object(dbg_object(t_uncle2).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<235>";
+				t_node=dbg_object(t_uncle2).m_parent;
 			}else{
-				if(t_node==t_node.m_parent.m_left){
-					t_node=t_node.m_parent;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<237>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<238>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<239>";
 					this.p_RotateRight2(t_node);
 				}
-				t_node.m_parent.m_color=1;
-				t_node.m_parent.m_parent.m_color=-1;
-				this.p_RotateLeft2(t_node.m_parent.m_parent);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<241>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<242>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<243>";
+				this.p_RotateLeft2(dbg_object(dbg_object(t_node).m_parent).m_parent);
 			}
 		}
 	}
-	this.m_root.m_color=1;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<247>";
+	dbg_object(this.m_root).m_color=1;
+	pop_err();
 	return 0;
 }
 c_Map2.prototype.p_Set2=function(t_key,t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<29>";
 	var t_node=this.m_root;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<30>";
 	var t_parent=null;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<30>";
 	var t_cmp=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<32>";
 	while((t_node)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<33>";
 		t_parent=t_node;
-		t_cmp=this.p_Compare2(t_key,t_node.m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<34>";
+		t_cmp=this.p_Compare2(t_key,dbg_object(t_node).m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<35>";
 		if(t_cmp>0){
-			t_node=t_node.m_right;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<36>";
+			t_node=dbg_object(t_node).m_right;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<37>";
 			if(t_cmp<0){
-				t_node=t_node.m_left;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<38>";
+				t_node=dbg_object(t_node).m_left;
 			}else{
-				t_node.m_value=t_value;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<40>";
+				dbg_object(t_node).m_value=t_value;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<41>";
+				pop_err();
 				return false;
 			}
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<45>";
 	t_node=c_Node3.m_new.call(new c_Node3,t_key,t_value,-1,t_parent);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<47>";
 	if((t_parent)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<48>";
 		if(t_cmp>0){
-			t_parent.m_right=t_node;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<49>";
+			dbg_object(t_parent).m_right=t_node;
 		}else{
-			t_parent.m_left=t_node;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<51>";
+			dbg_object(t_parent).m_left=t_node;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<53>";
 		this.p_InsertFixup2(t_node);
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<55>";
 		this.m_root=t_node;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<57>";
+	pop_err();
 	return true;
 }
 c_Map2.prototype.p_Get2=function(t_key){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<101>";
 	var t_node=this.p_FindNode2(t_key);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<102>";
 	if((t_node)!=null){
-		return t_node.m_value;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<102>";
+		pop_err();
+		return dbg_object(t_node).m_value;
 	}
+	pop_err();
 	return null;
 }
 function c_StringMap(){
@@ -4401,21 +5881,34 @@ function c_StringMap(){
 }
 c_StringMap.prototype=extend_class(c_Map2);
 c_StringMap.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<551>";
 	c_Map2.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<551>";
+	pop_err();
 	return this;
 }
 c_StringMap.prototype.p_Compare2=function(t_lhs,t_rhs){
-	return string_compare(t_lhs,t_rhs);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<554>";
+	var t_=string_compare(t_lhs,t_rhs);
+	pop_err();
+	return t_;
 }
 function c_Sound(){
 	Object.call(this);
 	this.m_sample=null;
 }
 c_Sound.prototype.p_Discard=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/audio.monkey<36>";
 	if((this.m_sample)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/audio.monkey<37>";
 		this.m_sample.Discard();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/audio.monkey<38>";
 		this.m_sample=null;
 	}
+	pop_err();
 	return 0;
 }
 function c_Map3(){
@@ -4423,23 +5916,42 @@ function c_Map3(){
 	this.m_root=null;
 }
 c_Map3.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<7>";
+	pop_err();
 	return this;
 }
 c_Map3.prototype.p_Values=function(){
-	return c_MapValues2.m_new.call(new c_MapValues2,this);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<117>";
+	var t_=c_MapValues2.m_new.call(new c_MapValues2,this);
+	pop_err();
+	return t_;
 }
 c_Map3.prototype.p_FirstNode=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<125>";
 	if(!((this.m_root)!=null)){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<125>";
+		pop_err();
 		return null;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<127>";
 	var t_node=this.m_root;
-	while((t_node.m_left)!=null){
-		t_node=t_node.m_left;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<128>";
+	while((dbg_object(t_node).m_left)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<129>";
+		t_node=dbg_object(t_node).m_left;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<131>";
+	pop_err();
 	return t_node;
 }
 c_Map3.prototype.p_Clear=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<13>";
 	this.m_root=null;
+	pop_err();
 	return 0;
 }
 function c_StringMap2(){
@@ -4447,7 +5959,11 @@ function c_StringMap2(){
 }
 c_StringMap2.prototype=extend_class(c_Map3);
 c_StringMap2.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<551>";
 	c_Map3.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<551>";
+	pop_err();
 	return this;
 }
 function c_Map4(){
@@ -4455,118 +5971,201 @@ function c_Map4(){
 	this.m_root=null;
 }
 c_Map4.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<7>";
+	pop_err();
 	return this;
 }
 c_Map4.prototype.p_Compare2=function(t_lhs,t_rhs){
 }
 c_Map4.prototype.p_RotateLeft3=function(t_node){
-	var t_child=t_node.m_right;
-	t_node.m_right=t_child.m_left;
-	if((t_child.m_left)!=null){
-		t_child.m_left.m_parent=t_node;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<251>";
+	var t_child=dbg_object(t_node).m_right;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<252>";
+	dbg_object(t_node).m_right=dbg_object(t_child).m_left;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<253>";
+	if((dbg_object(t_child).m_left)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<254>";
+		dbg_object(dbg_object(t_child).m_left).m_parent=t_node;
 	}
-	t_child.m_parent=t_node.m_parent;
-	if((t_node.m_parent)!=null){
-		if(t_node==t_node.m_parent.m_left){
-			t_node.m_parent.m_left=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<256>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<257>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<258>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<259>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
 		}else{
-			t_node.m_parent.m_right=t_child;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<261>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<264>";
 		this.m_root=t_child;
 	}
-	t_child.m_left=t_node;
-	t_node.m_parent=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<266>";
+	dbg_object(t_child).m_left=t_node;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<267>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
 	return 0;
 }
 c_Map4.prototype.p_RotateRight3=function(t_node){
-	var t_child=t_node.m_left;
-	t_node.m_left=t_child.m_right;
-	if((t_child.m_right)!=null){
-		t_child.m_right.m_parent=t_node;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<271>";
+	var t_child=dbg_object(t_node).m_left;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<272>";
+	dbg_object(t_node).m_left=dbg_object(t_child).m_right;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<273>";
+	if((dbg_object(t_child).m_right)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<274>";
+		dbg_object(dbg_object(t_child).m_right).m_parent=t_node;
 	}
-	t_child.m_parent=t_node.m_parent;
-	if((t_node.m_parent)!=null){
-		if(t_node==t_node.m_parent.m_right){
-			t_node.m_parent.m_right=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<276>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<277>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<278>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<279>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
 		}else{
-			t_node.m_parent.m_left=t_child;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<281>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<284>";
 		this.m_root=t_child;
 	}
-	t_child.m_right=t_node;
-	t_node.m_parent=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<286>";
+	dbg_object(t_child).m_right=t_node;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<287>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
 	return 0;
 }
 c_Map4.prototype.p_InsertFixup3=function(t_node){
-	while(((t_node.m_parent)!=null) && t_node.m_parent.m_color==-1 && ((t_node.m_parent.m_parent)!=null)){
-		if(t_node.m_parent==t_node.m_parent.m_parent.m_left){
-			var t_uncle=t_node.m_parent.m_parent.m_right;
-			if(((t_uncle)!=null) && t_uncle.m_color==-1){
-				t_node.m_parent.m_color=1;
-				t_uncle.m_color=1;
-				t_uncle.m_parent.m_color=-1;
-				t_node=t_uncle.m_parent;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<212>";
+	while(((dbg_object(t_node).m_parent)!=null) && dbg_object(dbg_object(t_node).m_parent).m_color==-1 && ((dbg_object(dbg_object(t_node).m_parent).m_parent)!=null)){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<213>";
+		if(dbg_object(t_node).m_parent==dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<214>";
+			var t_uncle=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_right;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<215>";
+			if(((t_uncle)!=null) && dbg_object(t_uncle).m_color==-1){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<216>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<217>";
+				dbg_object(t_uncle).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<218>";
+				dbg_object(dbg_object(t_uncle).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<219>";
+				t_node=dbg_object(t_uncle).m_parent;
 			}else{
-				if(t_node==t_node.m_parent.m_right){
-					t_node=t_node.m_parent;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<221>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<222>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<223>";
 					this.p_RotateLeft3(t_node);
 				}
-				t_node.m_parent.m_color=1;
-				t_node.m_parent.m_parent.m_color=-1;
-				this.p_RotateRight3(t_node.m_parent.m_parent);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<225>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<226>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<227>";
+				this.p_RotateRight3(dbg_object(dbg_object(t_node).m_parent).m_parent);
 			}
 		}else{
-			var t_uncle2=t_node.m_parent.m_parent.m_left;
-			if(((t_uncle2)!=null) && t_uncle2.m_color==-1){
-				t_node.m_parent.m_color=1;
-				t_uncle2.m_color=1;
-				t_uncle2.m_parent.m_color=-1;
-				t_node=t_uncle2.m_parent;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<230>";
+			var t_uncle2=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<231>";
+			if(((t_uncle2)!=null) && dbg_object(t_uncle2).m_color==-1){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<232>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<233>";
+				dbg_object(t_uncle2).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<234>";
+				dbg_object(dbg_object(t_uncle2).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<235>";
+				t_node=dbg_object(t_uncle2).m_parent;
 			}else{
-				if(t_node==t_node.m_parent.m_left){
-					t_node=t_node.m_parent;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<237>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<238>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<239>";
 					this.p_RotateRight3(t_node);
 				}
-				t_node.m_parent.m_color=1;
-				t_node.m_parent.m_parent.m_color=-1;
-				this.p_RotateLeft3(t_node.m_parent.m_parent);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<241>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<242>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<243>";
+				this.p_RotateLeft3(dbg_object(dbg_object(t_node).m_parent).m_parent);
 			}
 		}
 	}
-	this.m_root.m_color=1;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<247>";
+	dbg_object(this.m_root).m_color=1;
+	pop_err();
 	return 0;
 }
 c_Map4.prototype.p_Set3=function(t_key,t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<29>";
 	var t_node=this.m_root;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<30>";
 	var t_parent=null;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<30>";
 	var t_cmp=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<32>";
 	while((t_node)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<33>";
 		t_parent=t_node;
-		t_cmp=this.p_Compare2(t_key,t_node.m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<34>";
+		t_cmp=this.p_Compare2(t_key,dbg_object(t_node).m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<35>";
 		if(t_cmp>0){
-			t_node=t_node.m_right;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<36>";
+			t_node=dbg_object(t_node).m_right;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<37>";
 			if(t_cmp<0){
-				t_node=t_node.m_left;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<38>";
+				t_node=dbg_object(t_node).m_left;
 			}else{
-				t_node.m_value=t_value;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<40>";
+				dbg_object(t_node).m_value=t_value;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<41>";
+				pop_err();
 				return false;
 			}
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<45>";
 	t_node=c_Node12.m_new.call(new c_Node12,t_key,t_value,-1,t_parent);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<47>";
 	if((t_parent)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<48>";
 		if(t_cmp>0){
-			t_parent.m_right=t_node;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<49>";
+			dbg_object(t_parent).m_right=t_node;
 		}else{
-			t_parent.m_left=t_node;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<51>";
+			dbg_object(t_parent).m_left=t_node;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<53>";
 		this.p_InsertFixup3(t_node);
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<55>";
 		this.m_root=t_node;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<57>";
+	pop_err();
 	return true;
 }
 function c_StringMap3(){
@@ -4574,44 +6173,77 @@ function c_StringMap3(){
 }
 c_StringMap3.prototype=extend_class(c_Map4);
 c_StringMap3.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<551>";
 	c_Map4.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<551>";
+	pop_err();
 	return this;
 }
 c_StringMap3.prototype.p_Compare2=function(t_lhs,t_rhs){
-	return string_compare(t_lhs,t_rhs);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<554>";
+	var t_=string_compare(t_lhs,t_rhs);
+	pop_err();
+	return t_;
 }
 function c_MapValues(){
 	Object.call(this);
 	this.m_map=null;
 }
 c_MapValues.m_new=function(t_map){
-	this.m_map=t_map;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<519>";
+	dbg_object(this).m_map=t_map;
+	pop_err();
 	return this;
 }
 c_MapValues.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<516>";
+	pop_err();
 	return this;
 }
 c_MapValues.prototype.p_ObjectEnumerator=function(){
-	return c_ValueEnumerator.m_new.call(new c_ValueEnumerator,this.m_map.p_FirstNode());
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<523>";
+	var t_=c_ValueEnumerator.m_new.call(new c_ValueEnumerator,this.m_map.p_FirstNode());
+	pop_err();
+	return t_;
 }
 function c_ValueEnumerator(){
 	Object.call(this);
 	this.m_node=null;
 }
 c_ValueEnumerator.m_new=function(t_node){
-	this.m_node=t_node;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<481>";
+	dbg_object(this).m_node=t_node;
+	pop_err();
 	return this;
 }
 c_ValueEnumerator.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<478>";
+	pop_err();
 	return this;
 }
 c_ValueEnumerator.prototype.p_HasNext=function(){
-	return this.m_node!=null;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<485>";
+	var t_=this.m_node!=null;
+	pop_err();
+	return t_;
 }
 c_ValueEnumerator.prototype.p_NextObject=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<489>";
 	var t_t=this.m_node;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<490>";
 	this.m_node=this.m_node.p_NextNode();
-	return t_t.m_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<491>";
+	pop_err();
+	return dbg_object(t_t).m_value;
 }
 function c_Node3(){
 	Object.call(this);
@@ -4623,113 +6255,218 @@ function c_Node3(){
 	this.m_color=0;
 }
 c_Node3.prototype.p_NextNode=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<385>";
 	var t_node=null;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<386>";
 	if((this.m_right)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<387>";
 		t_node=this.m_right;
-		while((t_node.m_left)!=null){
-			t_node=t_node.m_left;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<388>";
+		while((dbg_object(t_node).m_left)!=null){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<389>";
+			t_node=dbg_object(t_node).m_left;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<391>";
+		pop_err();
 		return t_node;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<393>";
 	t_node=this;
-	var t_parent=this.m_parent;
-	while(((t_parent)!=null) && t_node==t_parent.m_right){
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<394>";
+	var t_parent=dbg_object(this).m_parent;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<395>";
+	while(((t_parent)!=null) && t_node==dbg_object(t_parent).m_right){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<396>";
 		t_node=t_parent;
-		t_parent=t_parent.m_parent;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<397>";
+		t_parent=dbg_object(t_parent).m_parent;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<399>";
+	pop_err();
 	return t_parent;
 }
 c_Node3.m_new=function(t_key,t_value,t_color,t_parent){
-	this.m_key=t_key;
-	this.m_value=t_value;
-	this.m_color=t_color;
-	this.m_parent=t_parent;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<364>";
+	dbg_object(this).m_key=t_key;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<365>";
+	dbg_object(this).m_value=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<366>";
+	dbg_object(this).m_color=t_color;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<367>";
+	dbg_object(this).m_parent=t_parent;
+	pop_err();
 	return this;
 }
 c_Node3.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<361>";
+	pop_err();
 	return this;
 }
 function bb_graphics_DrawImage(t_image,t_x,t_y,t_frame){
-	var t_f=t_image.m_frames[t_frame];
-	bb_graphics_context.p_Validate();
-	if((t_image.m_flags&65536)!=0){
-		bb_graphics_renderDevice.DrawSurface(t_image.m_surface,t_x-t_image.m_tx,t_y-t_image.m_ty);
-	}else{
-		bb_graphics_renderDevice.DrawSurface2(t_image.m_surface,t_x-t_image.m_tx,t_y-t_image.m_ty,t_f.m_x,t_f.m_y,t_image.m_width,t_image.m_height);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<452>";
+	bb_graphics_DebugRenderDevice();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<453>";
+	if(t_frame<0 || t_frame>=dbg_object(t_image).m_frames.length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<453>";
+		error("Invalid image frame");
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<456>";
+	var t_f=dbg_array(dbg_object(t_image).m_frames,t_frame)[dbg_index];
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<458>";
+	bb_graphics_context.p_Validate();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<460>";
+	if((dbg_object(t_image).m_flags&65536)!=0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<461>";
+		bb_graphics_renderDevice.DrawSurface(dbg_object(t_image).m_surface,t_x-dbg_object(t_image).m_tx,t_y-dbg_object(t_image).m_ty);
+	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<463>";
+		bb_graphics_renderDevice.DrawSurface2(dbg_object(t_image).m_surface,t_x-dbg_object(t_image).m_tx,t_y-dbg_object(t_image).m_ty,dbg_object(t_f).m_x,dbg_object(t_f).m_y,dbg_object(t_image).m_width,dbg_object(t_image).m_height);
+	}
+	pop_err();
 	return 0;
 }
 function bb_graphics_PushMatrix(){
-	var t_sp=bb_graphics_context.m_matrixSp;
-	if(t_sp==bb_graphics_context.m_matrixStack.length){
-		bb_graphics_context.m_matrixStack=resize_number_array(bb_graphics_context.m_matrixStack,t_sp*2);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<333>";
+	var t_sp=dbg_object(bb_graphics_context).m_matrixSp;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<334>";
+	if(t_sp==dbg_object(bb_graphics_context).m_matrixStack.length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<334>";
+		dbg_object(bb_graphics_context).m_matrixStack=resize_number_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp*2);
 	}
-	bb_graphics_context.m_matrixStack[t_sp+0]=bb_graphics_context.m_ix;
-	bb_graphics_context.m_matrixStack[t_sp+1]=bb_graphics_context.m_iy;
-	bb_graphics_context.m_matrixStack[t_sp+2]=bb_graphics_context.m_jx;
-	bb_graphics_context.m_matrixStack[t_sp+3]=bb_graphics_context.m_jy;
-	bb_graphics_context.m_matrixStack[t_sp+4]=bb_graphics_context.m_tx;
-	bb_graphics_context.m_matrixStack[t_sp+5]=bb_graphics_context.m_ty;
-	bb_graphics_context.m_matrixSp=t_sp+6;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<335>";
+	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+0)[dbg_index]=dbg_object(bb_graphics_context).m_ix;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<336>";
+	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+1)[dbg_index]=dbg_object(bb_graphics_context).m_iy;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<337>";
+	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+2)[dbg_index]=dbg_object(bb_graphics_context).m_jx;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<338>";
+	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+3)[dbg_index]=dbg_object(bb_graphics_context).m_jy;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<339>";
+	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+4)[dbg_index]=dbg_object(bb_graphics_context).m_tx;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<340>";
+	dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+5)[dbg_index]=dbg_object(bb_graphics_context).m_ty;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<341>";
+	dbg_object(bb_graphics_context).m_matrixSp=t_sp+6;
+	pop_err();
 	return 0;
 }
 function bb_graphics_Transform(t_ix,t_iy,t_jx,t_jy,t_tx,t_ty){
-	var t_ix2=t_ix*bb_graphics_context.m_ix+t_iy*bb_graphics_context.m_jx;
-	var t_iy2=t_ix*bb_graphics_context.m_iy+t_iy*bb_graphics_context.m_jy;
-	var t_jx2=t_jx*bb_graphics_context.m_ix+t_jy*bb_graphics_context.m_jx;
-	var t_jy2=t_jx*bb_graphics_context.m_iy+t_jy*bb_graphics_context.m_jy;
-	var t_tx2=t_tx*bb_graphics_context.m_ix+t_ty*bb_graphics_context.m_jx+bb_graphics_context.m_tx;
-	var t_ty2=t_tx*bb_graphics_context.m_iy+t_ty*bb_graphics_context.m_jy+bb_graphics_context.m_ty;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<355>";
+	var t_ix2=t_ix*dbg_object(bb_graphics_context).m_ix+t_iy*dbg_object(bb_graphics_context).m_jx;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<356>";
+	var t_iy2=t_ix*dbg_object(bb_graphics_context).m_iy+t_iy*dbg_object(bb_graphics_context).m_jy;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<357>";
+	var t_jx2=t_jx*dbg_object(bb_graphics_context).m_ix+t_jy*dbg_object(bb_graphics_context).m_jx;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<358>";
+	var t_jy2=t_jx*dbg_object(bb_graphics_context).m_iy+t_jy*dbg_object(bb_graphics_context).m_jy;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<359>";
+	var t_tx2=t_tx*dbg_object(bb_graphics_context).m_ix+t_ty*dbg_object(bb_graphics_context).m_jx+dbg_object(bb_graphics_context).m_tx;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<360>";
+	var t_ty2=t_tx*dbg_object(bb_graphics_context).m_iy+t_ty*dbg_object(bb_graphics_context).m_jy+dbg_object(bb_graphics_context).m_ty;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<361>";
 	bb_graphics_SetMatrix(t_ix2,t_iy2,t_jx2,t_jy2,t_tx2,t_ty2);
+	pop_err();
 	return 0;
 }
 function bb_graphics_Transform2(t_m){
-	bb_graphics_Transform(t_m[0],t_m[1],t_m[2],t_m[3],t_m[4],t_m[5]);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<351>";
+	bb_graphics_Transform(dbg_array(t_m,0)[dbg_index],dbg_array(t_m,1)[dbg_index],dbg_array(t_m,2)[dbg_index],dbg_array(t_m,3)[dbg_index],dbg_array(t_m,4)[dbg_index],dbg_array(t_m,5)[dbg_index]);
+	pop_err();
 	return 0;
 }
 function bb_graphics_Translate(t_x,t_y){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<365>";
 	bb_graphics_Transform(1.0,0.0,0.0,1.0,t_x,t_y);
+	pop_err();
 	return 0;
 }
 function bb_graphics_Rotate(t_angle){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<373>";
 	bb_graphics_Transform(Math.cos((t_angle)*D2R),-Math.sin((t_angle)*D2R),Math.sin((t_angle)*D2R),Math.cos((t_angle)*D2R),0.0,0.0);
+	pop_err();
 	return 0;
 }
 function bb_graphics_Scale(t_x,t_y){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<369>";
 	bb_graphics_Transform(t_x,0.0,0.0,t_y,0.0,0.0);
+	pop_err();
 	return 0;
 }
 function bb_graphics_PopMatrix(){
-	var t_sp=bb_graphics_context.m_matrixSp-6;
-	bb_graphics_SetMatrix(bb_graphics_context.m_matrixStack[t_sp+0],bb_graphics_context.m_matrixStack[t_sp+1],bb_graphics_context.m_matrixStack[t_sp+2],bb_graphics_context.m_matrixStack[t_sp+3],bb_graphics_context.m_matrixStack[t_sp+4],bb_graphics_context.m_matrixStack[t_sp+5]);
-	bb_graphics_context.m_matrixSp=t_sp;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<345>";
+	var t_sp=dbg_object(bb_graphics_context).m_matrixSp-6;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<346>";
+	bb_graphics_SetMatrix(dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+0)[dbg_index],dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+1)[dbg_index],dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+2)[dbg_index],dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+3)[dbg_index],dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+4)[dbg_index],dbg_array(dbg_object(bb_graphics_context).m_matrixStack,t_sp+5)[dbg_index]);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<347>";
+	dbg_object(bb_graphics_context).m_matrixSp=t_sp;
+	pop_err();
 	return 0;
 }
 function bb_graphics_DrawImage2(t_image,t_x,t_y,t_rotation,t_scaleX,t_scaleY,t_frame){
-	var t_f=t_image.m_frames[t_frame];
-	bb_graphics_PushMatrix();
-	bb_graphics_Translate(t_x,t_y);
-	bb_graphics_Rotate(t_rotation);
-	bb_graphics_Scale(t_scaleX,t_scaleY);
-	bb_graphics_Translate(-t_image.m_tx,-t_image.m_ty);
-	bb_graphics_context.p_Validate();
-	if((t_image.m_flags&65536)!=0){
-		bb_graphics_renderDevice.DrawSurface(t_image.m_surface,0.0,0.0);
-	}else{
-		bb_graphics_renderDevice.DrawSurface2(t_image.m_surface,0.0,0.0,t_f.m_x,t_f.m_y,t_image.m_width,t_image.m_height);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<470>";
+	bb_graphics_DebugRenderDevice();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<471>";
+	if(t_frame<0 || t_frame>=dbg_object(t_image).m_frames.length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<471>";
+		error("Invalid image frame");
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<474>";
+	var t_f=dbg_array(dbg_object(t_image).m_frames,t_frame)[dbg_index];
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<476>";
+	bb_graphics_PushMatrix();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<478>";
+	bb_graphics_Translate(t_x,t_y);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<479>";
+	bb_graphics_Rotate(t_rotation);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<480>";
+	bb_graphics_Scale(t_scaleX,t_scaleY);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<482>";
+	bb_graphics_Translate(-dbg_object(t_image).m_tx,-dbg_object(t_image).m_ty);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<484>";
+	bb_graphics_context.p_Validate();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<486>";
+	if((dbg_object(t_image).m_flags&65536)!=0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<487>";
+		bb_graphics_renderDevice.DrawSurface(dbg_object(t_image).m_surface,0.0,0.0);
+	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<489>";
+		bb_graphics_renderDevice.DrawSurface2(dbg_object(t_image).m_surface,0.0,0.0,dbg_object(t_f).m_x,dbg_object(t_f).m_y,dbg_object(t_image).m_width,dbg_object(t_image).m_height);
+	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<492>";
 	bb_graphics_PopMatrix();
+	pop_err();
 	return 0;
 }
 function bb_lpresources_lpLoadToVideoMemory(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<116>";
 	var t_r=c_lpResources.m_GetInstance();
-	var t_=t_r.m_images.p_Values().p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<118>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<118>";
+	var t_=dbg_object(t_r).m_images.p_Values().p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<118>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<118>";
 		var t_i=t_.p_NextObject();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<119>";
 		if((t_i)!=null){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<120>";
 			bb_graphics_DrawImage(t_i,0.0,0.0,0);
 		}
 	}
+	pop_err();
 }
 function c_Enumerator2(){
 	Object.call(this);
@@ -4737,34 +6474,67 @@ function c_Enumerator2(){
 	this.m_index=0;
 }
 c_Enumerator2.m_new=function(t_stack){
-	this.m_stack=t_stack;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<255>";
+	dbg_object(this).m_stack=t_stack;
+	pop_err();
 	return this;
 }
 c_Enumerator2.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<252>";
+	pop_err();
 	return this;
 }
 c_Enumerator2.prototype.p_HasNext=function(){
-	return this.m_index<this.m_stack.p_Length2();
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<259>";
+	var t_=this.m_index<this.m_stack.p_Length2();
+	pop_err();
+	return t_;
 }
 c_Enumerator2.prototype.p_NextObject=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<263>";
 	this.m_index+=1;
-	return this.m_stack.m_data[this.m_index-1];
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<264>";
+	var t_=dbg_array(dbg_object(this.m_stack).m_data,this.m_index-1)[dbg_index];
+	pop_err();
+	return t_;
 }
 function bb_graphics_GetMatrix(){
-	return [bb_graphics_context.m_ix,bb_graphics_context.m_iy,bb_graphics_context.m_jx,bb_graphics_context.m_jy,bb_graphics_context.m_tx,bb_graphics_context.m_ty];
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<323>";
+	var t_=[dbg_object(bb_graphics_context).m_ix,dbg_object(bb_graphics_context).m_iy,dbg_object(bb_graphics_context).m_jx,dbg_object(bb_graphics_context).m_jy,dbg_object(bb_graphics_context).m_tx,dbg_object(bb_graphics_context).m_ty];
+	pop_err();
+	return t_;
 }
 function bb_graphics_GetMatrix2(t_matrix){
-	t_matrix[0]=bb_graphics_context.m_ix;
-	t_matrix[1]=bb_graphics_context.m_iy;
-	t_matrix[2]=bb_graphics_context.m_jx;
-	t_matrix[3]=bb_graphics_context.m_jy;
-	t_matrix[4]=bb_graphics_context.m_tx;
-	t_matrix[5]=bb_graphics_context.m_ty;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<327>";
+	dbg_array(t_matrix,0)[dbg_index]=dbg_object(bb_graphics_context).m_ix;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<327>";
+	dbg_array(t_matrix,1)[dbg_index]=dbg_object(bb_graphics_context).m_iy;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<328>";
+	dbg_array(t_matrix,2)[dbg_index]=dbg_object(bb_graphics_context).m_jx;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<328>";
+	dbg_array(t_matrix,3)[dbg_index]=dbg_object(bb_graphics_context).m_jy;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<329>";
+	dbg_array(t_matrix,4)[dbg_index]=dbg_object(bb_graphics_context).m_tx;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<329>";
+	dbg_array(t_matrix,5)[dbg_index]=dbg_object(bb_graphics_context).m_ty;
+	pop_err();
 	return 0;
 }
 function bb_graphics_DrawRect(t_x,t_y,t_w,t_h){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<393>";
+	bb_graphics_DebugRenderDevice();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<395>";
 	bb_graphics_context.p_Validate();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<396>";
 	bb_graphics_renderDevice.DrawRect(t_x,t_y,t_w,t_h);
+	pop_err();
 	return 0;
 }
 function c_List2(){
@@ -4772,49 +6542,107 @@ function c_List2(){
 	this.m__head=(c_HeadNode2.m_new.call(new c_HeadNode2));
 }
 c_List2.prototype.p_Count=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<41>";
 	var t_n=0;
-	var t_node=this.m__head.m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<41>";
+	var t_node=dbg_object(this.m__head).m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<42>";
 	while(t_node!=this.m__head){
-		t_node=t_node.m__succ;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<43>";
+		t_node=dbg_object(t_node).m__succ;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<44>";
 		t_n+=1;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<46>";
+	pop_err();
 	return t_n;
 }
+c_List2.prototype.p_IsEmpty=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<50>";
+	var t_=dbg_object(this.m__head).m__succ==this.m__head;
+	pop_err();
+	return t_;
+}
 c_List2.prototype.p_RemoveLast=function(){
-	var t_data=this.m__head.m__pred.m__data;
-	this.m__head.m__pred.p_Remove();
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<96>";
+	if(this.p_IsEmpty()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<96>";
+		error("Illegal operation on empty list");
+	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<98>";
+	var t_data=dbg_object(dbg_object(this.m__head).m__pred).m__data;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<99>";
+	dbg_object(this.m__head).m__pred.p_Remove();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<100>";
+	pop_err();
 	return t_data;
 }
 c_List2.prototype.p_Equals=function(t_lhs,t_rhs){
-	return t_lhs==t_rhs;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<28>";
+	var t_=t_lhs==t_rhs;
+	pop_err();
+	return t_;
 }
 c_List2.prototype.p_FindLast=function(t_value,t_start){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<128>";
 	while(t_start!=this.m__head){
-		if(this.p_Equals(t_value,t_start.m__data)){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<129>";
+		if(this.p_Equals(t_value,dbg_object(t_start).m__data)){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<129>";
+			pop_err();
 			return t_start;
 		}
-		t_start=t_start.m__pred;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<130>";
+		t_start=dbg_object(t_start).m__pred;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<132>";
+	pop_err();
 	return null;
 }
 c_List2.prototype.p_FindLast2=function(t_value){
-	return this.p_FindLast(t_value,this.m__head.m__pred);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<124>";
+	var t_=this.p_FindLast(t_value,dbg_object(this.m__head).m__pred);
+	pop_err();
+	return t_;
 }
 c_List2.prototype.p_RemoveLast2=function(t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<146>";
 	var t_node=this.p_FindLast2(t_value);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<147>";
 	if((t_node)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<147>";
 		t_node.p_Remove();
 	}
+	pop_err();
 }
 c_List2.prototype.p_First=function(){
-	return this.m__head.m__succ.m__data;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<73>";
+	if(this.p_IsEmpty()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<73>";
+		error("Illegal operation on empty list");
+	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<75>";
+	pop_err();
+	return dbg_object(dbg_object(this.m__head).m__succ).m__data;
 }
 function c_StringList(){
 	c_List2.call(this);
 }
 c_StringList.prototype=extend_class(c_List2);
 c_StringList.prototype.p_Equals=function(t_lhs,t_rhs){
-	return t_lhs==t_rhs;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<439>";
+	var t_=t_lhs==t_rhs;
+	pop_err();
+	return t_;
 }
 function c_Node4(){
 	Object.call(this);
@@ -4823,19 +6651,38 @@ function c_Node4(){
 	this.m__data="";
 }
 c_Node4.m_new=function(t_succ,t_pred,t_data){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<261>";
 	this.m__succ=t_succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<262>";
 	this.m__pred=t_pred;
-	this.m__succ.m__pred=this;
-	this.m__pred.m__succ=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<263>";
+	dbg_object(this.m__succ).m__pred=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<264>";
+	dbg_object(this.m__pred).m__succ=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<265>";
 	this.m__data=t_data;
+	pop_err();
 	return this;
 }
 c_Node4.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<258>";
+	pop_err();
 	return this;
 }
 c_Node4.prototype.p_Remove=function(){
-	this.m__succ.m__pred=this.m__pred;
-	this.m__pred.m__succ=this.m__succ;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<274>";
+	if(dbg_object(this.m__succ).m__pred!=this){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<274>";
+		error("Illegal operation on removed node");
+	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<276>";
+	dbg_object(this.m__succ).m__pred=this.m__pred;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<277>";
+	dbg_object(this.m__pred).m__succ=this.m__succ;
+	pop_err();
 	return 0;
 }
 function c_HeadNode2(){
@@ -4843,18 +6690,32 @@ function c_HeadNode2(){
 }
 c_HeadNode2.prototype=extend_class(c_Node4);
 c_HeadNode2.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<310>";
 	c_Node4.m_new2.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<311>";
 	this.m__succ=(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<312>";
 	this.m__pred=(this);
+	pop_err();
 	return this;
 }
 function bb_graphics_GetColor(){
-	return [bb_graphics_context.m_color_r,bb_graphics_context.m_color_g,bb_graphics_context.m_color_b];
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<261>";
+	var t_=[dbg_object(bb_graphics_context).m_color_r,dbg_object(bb_graphics_context).m_color_g,dbg_object(bb_graphics_context).m_color_b];
+	pop_err();
+	return t_;
 }
 function bb_graphics_GetColor2(t_color){
-	t_color[0]=bb_graphics_context.m_color_r;
-	t_color[1]=bb_graphics_context.m_color_g;
-	t_color[2]=bb_graphics_context.m_color_b;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<265>";
+	dbg_array(t_color,0)[dbg_index]=dbg_object(bb_graphics_context).m_color_r;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<266>";
+	dbg_array(t_color,1)[dbg_index]=dbg_object(bb_graphics_context).m_color_g;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<267>";
+	dbg_array(t_color,2)[dbg_index]=dbg_object(bb_graphics_context).m_color_b;
+	pop_err();
 	return 0;
 }
 function c_AngelFont(){
@@ -4866,66 +6727,113 @@ function c_AngelFont(){
 	this.m_image=null;
 }
 c_AngelFont.prototype.p_TextHeight=function(t_txt){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<395>";
 	var t_h=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<396>";
 	for(var t_i=0;t_i<t_txt.length;t_i=t_i+1){
-		var t_asc=t_txt.charCodeAt(t_i);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<397>";
+		var t_asc=dbg_charCodeAt(t_txt,t_i);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<398>";
 		var t_ac=this.m__chars.p_Get(t_asc);
-		if(t_ac.m_height>t_h){
-			t_h=t_ac.m_height;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<399>";
+		if(dbg_object(t_ac).m_height>t_h){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<399>";
+			t_h=dbg_object(t_ac).m_height;
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<401>";
+	pop_err();
 	return t_h;
 }
 c_AngelFont.prototype.p_TextWidth=function(t_txt,t_letter_spacing){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<372>";
 	var t_prevChar="";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<373>";
 	var t_width=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<374>";
 	for(var t_i=0;t_i<t_txt.length;t_i=t_i+1){
-		var t_asc=t_txt.charCodeAt(t_i);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<375>";
+		var t_asc=dbg_charCodeAt(t_txt,t_i);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<376>";
 		var t_ac=this.m__chars.p_Get(t_asc);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<377>";
 		var t_thisChar=String.fromCharCode(t_asc);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<378>";
 		if(t_ac!=null){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<379>";
 			if(this.m_useKerning){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<380>";
 				var t_key=t_prevChar+"_"+t_thisChar;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<381>";
 				if(this.m_kernPairs.p_Contains2(t_key)){
-					t_width+=this.m_kernPairs.p_Get2(t_key).m_amount;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<383>";
+					t_width+=dbg_object(this.m_kernPairs.p_Get2(t_key)).m_amount;
 				}
 			}
-			t_width=(((t_width)+((t_ac.m_xAdvance)+t_letter_spacing))|0);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<387>";
+			t_width=(((t_width)+((dbg_object(t_ac).m_xAdvance)+t_letter_spacing))|0);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<388>";
 			t_prevChar=t_thisChar;
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<391>";
+	pop_err();
 	return t_width;
 }
 c_AngelFont.prototype.p_DrawText=function(t_txt,t_x,t_y,t_align,t_letter_spacing){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<244>";
 	var t_prevChar="";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<245>";
 	this.m_xOffset=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<247>";
 	var t_1=t_align;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<248>";
 	if(t_1==1){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<249>";
 		t_x-=((this.p_TextWidth(t_txt,0.0)/2)|0);
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<250>";
 		if(t_1==2){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<251>";
 			t_x-=this.p_TextWidth(t_txt,0.0);
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<252>";
 			if(t_1==0){
 			}
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<257>";
 	for(var t_i=0;t_i<t_txt.length;t_i=t_i+1){
-		var t_asc=t_txt.charCodeAt(t_i);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<258>";
+		var t_asc=dbg_charCodeAt(t_txt,t_i);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<259>";
 		var t_ac=this.m__chars.p_Get(t_asc);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<260>";
 		var t_thisChar=String.fromCharCode(t_asc);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<261>";
 		if(t_ac!=null){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<262>";
 			if(this.m_useKerning){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<263>";
 				var t_key=t_prevChar+"_"+t_thisChar;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<264>";
 				if(this.m_kernPairs.p_Contains2(t_key)){
-					this.m_xOffset+=this.m_kernPairs.p_Get2(t_key).m_amount;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<265>";
+					this.m_xOffset+=dbg_object(this.m_kernPairs.p_Get2(t_key)).m_amount;
 				}
 			}
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<268>";
 			t_ac.p_Draw(this.m_image,t_x+this.m_xOffset,t_y);
-			this.m_xOffset=(((this.m_xOffset)+((t_ac.m_xAdvance)+t_letter_spacing))|0);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<269>";
+			this.m_xOffset=(((this.m_xOffset)+((dbg_object(t_ac).m_xAdvance)+t_letter_spacing))|0);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/angelfont.monkey<270>";
 			t_prevChar=t_thisChar;
 		}
 	}
+	pop_err();
 }
 function c_Char(){
 	Object.call(this);
@@ -4938,7 +6846,10 @@ function c_Char(){
 	this.m_width=0;
 }
 c_Char.prototype.p_Draw=function(t_fontImage,t_linex,t_liney){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/angelfont/char.monkey<28>";
 	bb_graphics_DrawImageRect(t_fontImage,(t_linex+this.m_xOffset),(t_liney+this.m_yOffset),this.m_x,this.m_y,this.m_width,this.m_height,0);
+	pop_err();
 	return 0;
 }
 function c_Map5(){
@@ -4946,31 +6857,52 @@ function c_Map5(){
 	this.m_root=null;
 }
 c_Map5.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<7>";
+	pop_err();
 	return this;
 }
 c_Map5.prototype.p_Compare=function(t_lhs,t_rhs){
 }
 c_Map5.prototype.p_FindNode=function(t_key){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<157>";
 	var t_node=this.m_root;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<159>";
 	while((t_node)!=null){
-		var t_cmp=this.p_Compare(t_key,t_node.m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<160>";
+		var t_cmp=this.p_Compare(t_key,dbg_object(t_node).m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<161>";
 		if(t_cmp>0){
-			t_node=t_node.m_right;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<162>";
+			t_node=dbg_object(t_node).m_right;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<163>";
 			if(t_cmp<0){
-				t_node=t_node.m_left;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<164>";
+				t_node=dbg_object(t_node).m_left;
 			}else{
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<166>";
+				pop_err();
 				return t_node;
 			}
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<169>";
+	pop_err();
 	return t_node;
 }
 c_Map5.prototype.p_Get=function(t_key){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<101>";
 	var t_node=this.p_FindNode(t_key);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<102>";
 	if((t_node)!=null){
-		return t_node.m_value;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<102>";
+		pop_err();
+		return dbg_object(t_node).m_value;
 	}
+	pop_err();
 	return null;
 }
 function c_IntMap2(){
@@ -4978,11 +6910,19 @@ function c_IntMap2(){
 }
 c_IntMap2.prototype=extend_class(c_Map5);
 c_IntMap2.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<534>";
 	c_Map5.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<534>";
+	pop_err();
 	return this;
 }
 c_IntMap2.prototype.p_Compare=function(t_lhs,t_rhs){
-	return t_lhs-t_rhs;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<537>";
+	var t_=t_lhs-t_rhs;
+	pop_err();
+	return t_;
 }
 function c_Node5(){
 	Object.call(this);
@@ -5000,34 +6940,59 @@ function c_Map6(){
 	this.m_root=null;
 }
 c_Map6.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<7>";
+	pop_err();
 	return this;
 }
 c_Map6.prototype.p_Compare2=function(t_lhs,t_rhs){
 }
 c_Map6.prototype.p_FindNode2=function(t_key){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<157>";
 	var t_node=this.m_root;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<159>";
 	while((t_node)!=null){
-		var t_cmp=this.p_Compare2(t_key,t_node.m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<160>";
+		var t_cmp=this.p_Compare2(t_key,dbg_object(t_node).m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<161>";
 		if(t_cmp>0){
-			t_node=t_node.m_right;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<162>";
+			t_node=dbg_object(t_node).m_right;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<163>";
 			if(t_cmp<0){
-				t_node=t_node.m_left;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<164>";
+				t_node=dbg_object(t_node).m_left;
 			}else{
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<166>";
+				pop_err();
 				return t_node;
 			}
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<169>";
+	pop_err();
 	return t_node;
 }
 c_Map6.prototype.p_Contains2=function(t_key){
-	return this.p_FindNode2(t_key)!=null;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<25>";
+	var t_=this.p_FindNode2(t_key)!=null;
+	pop_err();
+	return t_;
 }
 c_Map6.prototype.p_Get2=function(t_key){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<101>";
 	var t_node=this.p_FindNode2(t_key);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<102>";
 	if((t_node)!=null){
-		return t_node.m_value;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<102>";
+		pop_err();
+		return dbg_object(t_node).m_value;
 	}
+	pop_err();
 	return null;
 }
 function c_StringMap4(){
@@ -5035,11 +7000,19 @@ function c_StringMap4(){
 }
 c_StringMap4.prototype=extend_class(c_Map6);
 c_StringMap4.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<551>";
 	c_Map6.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<551>";
+	pop_err();
 	return this;
 }
 c_StringMap4.prototype.p_Compare2=function(t_lhs,t_rhs){
-	return string_compare(t_lhs,t_rhs);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<554>";
+	var t_=string_compare(t_lhs,t_rhs);
+	pop_err();
+	return t_;
 }
 function c_Node6(){
 	Object.call(this);
@@ -5049,76 +7022,160 @@ function c_Node6(){
 	this.m_value=null;
 }
 function bb_graphics_DrawImageRect(t_image,t_x,t_y,t_srcX,t_srcY,t_srcWidth,t_srcHeight,t_frame){
-	var t_f=t_image.m_frames[t_frame];
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<498>";
+	bb_graphics_DebugRenderDevice();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<499>";
+	if(t_frame<0 || t_frame>=dbg_object(t_image).m_frames.length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<499>";
+		error("Invalid image frame");
+	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<500>";
+	if(t_srcX<0 || t_srcY<0 || t_srcX+t_srcWidth>dbg_object(t_image).m_width || t_srcY+t_srcHeight>dbg_object(t_image).m_height){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<500>";
+		error("Invalid image rectangle");
+	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<503>";
+	var t_f=dbg_array(dbg_object(t_image).m_frames,t_frame)[dbg_index];
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<505>";
 	bb_graphics_context.p_Validate();
-	bb_graphics_renderDevice.DrawSurface2(t_image.m_surface,-t_image.m_tx+t_x,-t_image.m_ty+t_y,t_srcX+t_f.m_x,t_srcY+t_f.m_y,t_srcWidth,t_srcHeight);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<507>";
+	bb_graphics_renderDevice.DrawSurface2(dbg_object(t_image).m_surface,-dbg_object(t_image).m_tx+t_x,-dbg_object(t_image).m_ty+t_y,t_srcX+dbg_object(t_f).m_x,t_srcY+dbg_object(t_f).m_y,t_srcWidth,t_srcHeight);
+	pop_err();
 	return 0;
 }
 function bb_graphics_DrawImageRect2(t_image,t_x,t_y,t_srcX,t_srcY,t_srcWidth,t_srcHeight,t_rotation,t_scaleX,t_scaleY,t_frame){
-	var t_f=t_image.m_frames[t_frame];
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<513>";
+	bb_graphics_DebugRenderDevice();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<514>";
+	if(t_frame<0 || t_frame>=dbg_object(t_image).m_frames.length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<514>";
+		error("Invalid image frame");
+	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<515>";
+	if(t_srcX<0 || t_srcY<0 || t_srcX+t_srcWidth>dbg_object(t_image).m_width || t_srcY+t_srcHeight>dbg_object(t_image).m_height){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<515>";
+		error("Invalid image rectangle");
+	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<518>";
+	var t_f=dbg_array(dbg_object(t_image).m_frames,t_frame)[dbg_index];
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<520>";
 	bb_graphics_PushMatrix();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<522>";
 	bb_graphics_Translate(t_x,t_y);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<523>";
 	bb_graphics_Rotate(t_rotation);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<524>";
 	bb_graphics_Scale(t_scaleX,t_scaleY);
-	bb_graphics_Translate(-t_image.m_tx,-t_image.m_ty);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<525>";
+	bb_graphics_Translate(-dbg_object(t_image).m_tx,-dbg_object(t_image).m_ty);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<527>";
 	bb_graphics_context.p_Validate();
-	bb_graphics_renderDevice.DrawSurface2(t_image.m_surface,0.0,0.0,t_srcX+t_f.m_x,t_srcY+t_f.m_y,t_srcWidth,t_srcHeight);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<529>";
+	bb_graphics_renderDevice.DrawSurface2(dbg_object(t_image).m_surface,0.0,0.0,t_srcX+dbg_object(t_f).m_x,t_srcY+dbg_object(t_f).m_y,t_srcWidth,t_srcHeight);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<531>";
 	bb_graphics_PopMatrix();
+	pop_err();
 	return 0;
 }
 function bb_graphics_DrawText(t_text,t_x,t_y,t_xalign,t_yalign){
-	if(!((bb_graphics_context.m_font)!=null)){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<577>";
+	bb_graphics_DebugRenderDevice();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<579>";
+	if(!((dbg_object(bb_graphics_context).m_font)!=null)){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<579>";
+		pop_err();
 		return 0;
 	}
-	var t_w=bb_graphics_context.m_font.p_Width();
-	var t_h=bb_graphics_context.m_font.p_Height();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<581>";
+	var t_w=dbg_object(bb_graphics_context).m_font.p_Width();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<582>";
+	var t_h=dbg_object(bb_graphics_context).m_font.p_Height();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<584>";
 	t_x-=Math.floor((t_w*t_text.length)*t_xalign);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<585>";
 	t_y-=Math.floor((t_h)*t_yalign);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<587>";
 	for(var t_i=0;t_i<t_text.length;t_i=t_i+1){
-		var t_ch=t_text.charCodeAt(t_i)-bb_graphics_context.m_firstChar;
-		if(t_ch>=0 && t_ch<bb_graphics_context.m_font.p_Frames()){
-			bb_graphics_DrawImage(bb_graphics_context.m_font,t_x+(t_i*t_w),t_y,t_ch);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<588>";
+		var t_ch=dbg_charCodeAt(t_text,t_i)-dbg_object(bb_graphics_context).m_firstChar;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<589>";
+		if(t_ch>=0 && t_ch<dbg_object(bb_graphics_context).m_font.p_Frames()){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<590>";
+			bb_graphics_DrawImage(dbg_object(bb_graphics_context).m_font,t_x+(t_i*t_w),t_y,t_ch);
 		}
 	}
+	pop_err();
 	return 0;
 }
 var bb_app__updateRate=0;
 function bb_app_SetUpdateRate(t_hertz){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<224>";
 	bb_app__updateRate=t_hertz;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<225>";
 	bb_app__game.SetUpdateRate(t_hertz);
+	pop_err();
 }
 function c_MapValues2(){
 	Object.call(this);
 	this.m_map=null;
 }
 c_MapValues2.m_new=function(t_map){
-	this.m_map=t_map;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<519>";
+	dbg_object(this).m_map=t_map;
+	pop_err();
 	return this;
 }
 c_MapValues2.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<516>";
+	pop_err();
 	return this;
 }
 c_MapValues2.prototype.p_ObjectEnumerator=function(){
-	return c_ValueEnumerator2.m_new.call(new c_ValueEnumerator2,this.m_map.p_FirstNode());
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<523>";
+	var t_=c_ValueEnumerator2.m_new.call(new c_ValueEnumerator2,this.m_map.p_FirstNode());
+	pop_err();
+	return t_;
 }
 function c_ValueEnumerator2(){
 	Object.call(this);
 	this.m_node=null;
 }
 c_ValueEnumerator2.m_new=function(t_node){
-	this.m_node=t_node;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<481>";
+	dbg_object(this).m_node=t_node;
+	pop_err();
 	return this;
 }
 c_ValueEnumerator2.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<478>";
+	pop_err();
 	return this;
 }
 c_ValueEnumerator2.prototype.p_HasNext=function(){
-	return this.m_node!=null;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<485>";
+	var t_=this.m_node!=null;
+	pop_err();
+	return t_;
 }
 c_ValueEnumerator2.prototype.p_NextObject=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<489>";
 	var t_t=this.m_node;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<490>";
 	this.m_node=this.m_node.p_NextNode();
-	return t_t.m_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<491>";
+	pop_err();
+	return dbg_object(t_t).m_value;
 }
 function c_Node7(){
 	Object.call(this);
@@ -5128,40 +7185,72 @@ function c_Node7(){
 	this.m_value=null;
 }
 c_Node7.prototype.p_NextNode=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<385>";
 	var t_node=null;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<386>";
 	if((this.m_right)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<387>";
 		t_node=this.m_right;
-		while((t_node.m_left)!=null){
-			t_node=t_node.m_left;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<388>";
+		while((dbg_object(t_node).m_left)!=null){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<389>";
+			t_node=dbg_object(t_node).m_left;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<391>";
+		pop_err();
 		return t_node;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<393>";
 	t_node=this;
-	var t_parent=this.m_parent;
-	while(((t_parent)!=null) && t_node==t_parent.m_right){
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<394>";
+	var t_parent=dbg_object(this).m_parent;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<395>";
+	while(((t_parent)!=null) && t_node==dbg_object(t_parent).m_right){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<396>";
 		t_node=t_parent;
-		t_parent=t_parent.m_parent;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<397>";
+		t_parent=dbg_object(t_parent).m_parent;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<399>";
+	pop_err();
 	return t_parent;
 }
 function bb_lpresources_lpFreeMemory(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<142>";
 	var t_r=c_lpResources.m_GetInstance();
-	var t_=t_r.m_images.p_Values().p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<144>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<144>";
+	var t_=dbg_object(t_r).m_images.p_Values().p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<144>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<144>";
 		var t_i=t_.p_NextObject();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<145>";
 		if((t_i)!=null){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<146>";
 			t_i.p_Discard();
 		}
 	}
-	var t_2=t_r.m_sounds.p_Values().p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<150>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<150>";
+	var t_2=dbg_object(t_r).m_sounds.p_Values().p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<150>";
 	while(t_2.p_HasNext()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<150>";
 		var t_i2=t_2.p_NextObject();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<151>";
 		if((t_i2)!=null){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<152>";
 			t_i2.p_Discard();
 		}
 	}
-	t_r.m_images.p_Clear();
-	t_r.m_sounds.p_Clear();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<157>";
+	dbg_object(t_r).m_images.p_Clear();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<158>";
+	dbg_object(t_r).m_sounds.p_Clear();
+	pop_err();
 }
 function c_GameScene(){
 	c_Scene.call(this);
@@ -5171,31 +7260,55 @@ function c_GameScene(){
 }
 c_GameScene.prototype=extend_class(c_Scene);
 c_GameScene.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/scenes/gamescene.monkey<5>";
 	c_Scene.m_new.call(this);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/scenes/gamescene.monkey<5>";
+	pop_err();
 	return this;
 }
 c_GameScene.prototype.p_Loading=function(){
-	this.m_loading_step-=1;
-	var t_1=this.m_loading_step;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/scenes/gamescene.monkey<12>";
+	dbg_object(this).m_loading_step-=1;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/scenes/gamescene.monkey<14>";
+	var t_1=dbg_object(this).m_loading_step;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/scenes/gamescene.monkey<15>";
 	if(t_1==9){
-		this.p_Cameras().p_Get(0).m_ViewPort.p_Width2(160.0);
-		this.p_Cameras().p_Get(0).m_ViewPort.p_Height2(144.0);
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/scenes/gamescene.monkey<16>";
+		dbg_object(this.p_Cameras().p_Get(0)).m_ViewPort.p_Width2(160.0);
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/scenes/gamescene.monkey<17>";
+		dbg_object(this.p_Cameras().p_Get(0)).m_ViewPort.p_Height2(144.0);
 	}else{
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/scenes/gamescene.monkey<19>";
 		if(t_1==8){
-			this.m_game_play_space=c_GamePlaySpace.m_new.call(new c_GamePlaySpace);
-			this.p_AddChild((this.m_game_play_space),false);
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/scenes/gamescene.monkey<20>";
+			dbg_object(this).m_game_play_space=c_GamePlaySpace.m_new.call(new c_GamePlaySpace);
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/scenes/gamescene.monkey<21>";
+			this.p_AddChild((dbg_object(this).m_game_play_space),false);
 		}
 	}
-	return this.m_loading_step;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/scenes/gamescene.monkey<24>";
+	pop_err();
+	return dbg_object(this).m_loading_step;
 }
 c_GameScene.prototype.p_LoadingRender=function(){
-	bb_graphics_SetColor((bb_consts2_COLOR_4[0]),(bb_consts2_COLOR_4[1]),(bb_consts2_COLOR_4[2]));
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/scenes/gamescene.monkey<28>";
+	bb_graphics_SetColor((dbg_array(bb_consts2_COLOR_4,0)[dbg_index]),(dbg_array(bb_consts2_COLOR_4,1)[dbg_index]),(dbg_array(bb_consts2_COLOR_4,2)[dbg_index]));
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/scenes/gamescene.monkey<29>";
 	bb_graphics_DrawRect(0.0,0.0,640.0,576.0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/scenes/gamescene.monkey<30>";
 	bb_graphics_SetColor(255.0,255.0,255.0);
+	pop_err();
 }
 c_GameScene.prototype.p_Render=function(){
-	bb_graphics_Cls((bb_consts2_COLOR_1[0]),(bb_consts2_COLOR_1[1]),(bb_consts2_COLOR_1[2]));
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/scenes/gamescene.monkey<34>";
+	bb_graphics_Cls((dbg_array(bb_consts2_COLOR_1,0)[dbg_index]),(dbg_array(bb_consts2_COLOR_1,1)[dbg_index]),(dbg_array(bb_consts2_COLOR_1,2)[dbg_index]));
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/scenes/gamescene.monkey<35>";
 	c_Scene.prototype.p_Render.call(this);
+	pop_err();
 }
 function c_Space(){
 	Object.call(this);
@@ -5203,27 +7316,49 @@ function c_Space(){
 	this.implments={c_iDrawable:1};
 }
 c_Space.prototype.p_Create=function(){
+	push_err();
+	pop_err();
 }
 c_Space.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/space.monkey<15>";
 	this.p_Create();
+	pop_err();
 	return this;
 }
 c_Space.prototype.p_Update=function(){
-	var t_=this.m_children.p_ObjectEnumerator();
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/space.monkey<22>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/space.monkey<22>";
+	var t_=dbg_object(this).m_children.p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/space.monkey<22>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/space.monkey<22>";
 		var t_c=t_.p_NextObject();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/space.monkey<23>";
 		t_c.p_Update();
 	}
+	pop_err();
 }
 c_Space.prototype.p_Render=function(){
-	var t_=this.m_children.p_ObjectEnumerator();
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/space.monkey<29>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/space.monkey<29>";
+	var t_=dbg_object(this).m_children.p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/space.monkey<29>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/space.monkey<29>";
 		var t_c=t_.p_NextObject();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/space.monkey<30>";
 		t_c.p_Render();
 	}
+	pop_err();
 }
 c_Space.prototype.p_AddChild2=function(t_child){
-	this.m_children.p_Push10(t_child);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/space.monkey<35>";
+	dbg_object(this).m_children.p_Push10(t_child);
+	pop_err();
 }
 function c_GamePlaySpace(){
 	c_Space.call(this);
@@ -5238,58 +7373,102 @@ function c_GamePlaySpace(){
 }
 c_GamePlaySpace.prototype=extend_class(c_Space);
 c_GamePlaySpace.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<7>";
 	c_Space.m_new.call(this);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<7>";
+	pop_err();
 	return this;
 }
 c_GamePlaySpace.prototype.p_AddElements=function(t_objects){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<57>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<57>";
 	var t_=t_objects.p_ObjectEnumerator();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<57>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<57>";
 		var t_o=t_.p_NextObject();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<59>";
 		var t_enemy=null;
-		if(String(t_o.m_gid)=="200"){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<61>";
+		if(String(dbg_object(t_o).m_gid)=="200"){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<62>";
 			this.p_AddChild2(c_PowerUp.m_new.call(new c_PowerUp,(t_o)));
 		}else{
-			if(String(t_o.m_gid)=="4097" || String(t_o.m_gid)=="4098" || String(t_o.m_gid)=="4099"){
-				t_enemy=c_Enemy.m_new.call(new c_Enemy,(t_o),String(t_o.m_gid));
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<63>";
+			if(String(dbg_object(t_o).m_gid)=="4097" || String(dbg_object(t_o).m_gid)=="4098" || String(dbg_object(t_o).m_gid)=="4099"){
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<65>";
+				t_enemy=c_Enemy.m_new.call(new c_Enemy,(t_o),String(dbg_object(t_o).m_gid));
 			}else{
-				if(String(t_o.m_gid)=="4100" || String(t_o.m_gid)=="4101"){
-					t_enemy=(c_EnemyTurret.m_new.call(new c_EnemyTurret,(t_o),String(t_o.m_gid)));
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<66>";
+				if(String(dbg_object(t_o).m_gid)=="4100" || String(dbg_object(t_o).m_gid)=="4101"){
+					err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<67>";
+					t_enemy=(c_EnemyTurret.m_new.call(new c_EnemyTurret,(t_o),String(dbg_object(t_o).m_gid)));
 				}else{
-					if(String(t_o.m_gid)=="4102"){
+					err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<68>";
+					if(String(dbg_object(t_o).m_gid)=="4102"){
+						err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<69>";
 						t_enemy=(c_EnemyWave.m_new.call(new c_EnemyWave,(t_o)));
 					}else{
-						if(String(t_o.m_gid)=="4103"){
-							t_enemy=(c_EnemyRectLine.m_new.call(new c_EnemyRectLine,(t_o),String(t_o.m_gid)));
+						err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<70>";
+						if(String(dbg_object(t_o).m_gid)=="4103"){
+							err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<71>";
+							t_enemy=(c_EnemyRectLine.m_new.call(new c_EnemyRectLine,(t_o),String(dbg_object(t_o).m_gid)));
 						}
 					}
 				}
 			}
 		}
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<74>";
 		if(t_enemy!=null){
-			t_enemy.m_player_position=this.m_player.m_position;
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<75>";
+			dbg_object(t_enemy).m_player_position=dbg_object(dbg_object(this).m_player).m_position;
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<76>";
 			this.p_AddChild2(t_enemy);
 		}
 	}
+	pop_err();
 }
 c_GamePlaySpace.prototype.p_Create=function(){
-	this.m_world=c_World.m_new.call(new c_World);
-	this.p_AddChild2(this.m_world);
-	this.m_collision_engine=c_CollisionEngine.m_Instance2();
-	this.p_AddChild2(this.m_collision_engine);
-	this.m_tile_map_collider=c_TileMapCollider.m_new.call(new c_TileMapCollider,this.m_world.p_GetCollisionsLayer());
-	this.p_AddChild2(this.m_tile_map_collider);
-	this.m_bullets_engine=c_BulletsEngine.m_new.call(new c_BulletsEngine);
-	this.p_AddChild2(this.m_bullets_engine);
-	this.m_player=c_Player.m_new.call(new c_Player);
-	this.p_AddChild2(this.m_player);
-	this.p_AddElements(this.m_world.p_RemoveElements().m_objects);
-	this.p_AddChild2(this.m_world.p_RemoveForeground());
-	this.m_screen_clamp=c_ClampToScreen.m_new.call(new c_ClampToScreen,this.m_player.m_position);
-	this.m_screen_clamp.m_camera_viewport=c_Game.m_Instance().p_GetCurrentCamera().m_ViewPort;
-	this.p_AddChild2(this.m_screen_clamp);
-	this.m_camera_control=c_CameraControl.m_new.call(new c_CameraControl,c_Game.m_Instance().p_GetCurrentCamera().m_ViewPort);
-	this.m_camera_control.m_player=this.m_player.m_position;
-	this.p_AddChild2(this.m_camera_control);
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<22>";
+	dbg_object(this).m_world=c_World.m_new.call(new c_World);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<23>";
+	this.p_AddChild2(dbg_object(this).m_world);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<27>";
+	dbg_object(this).m_collision_engine=c_CollisionEngine.m_Instance2();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<28>";
+	this.p_AddChild2(dbg_object(this).m_collision_engine);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<30>";
+	dbg_object(this).m_tile_map_collider=c_TileMapCollider.m_new.call(new c_TileMapCollider,dbg_object(this).m_world.p_GetCollisionsLayer());
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<31>";
+	this.p_AddChild2(dbg_object(this).m_tile_map_collider);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<33>";
+	dbg_object(this).m_bullets_engine=c_BulletsEngine.m_new.call(new c_BulletsEngine);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<34>";
+	this.p_AddChild2(dbg_object(this).m_bullets_engine);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<37>";
+	dbg_object(this).m_player=c_Player.m_new.call(new c_Player);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<38>";
+	this.p_AddChild2(dbg_object(this).m_player);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<40>";
+	this.p_AddElements(dbg_object(dbg_object(this).m_world.p_RemoveElements()).m_objects);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<43>";
+	this.p_AddChild2(dbg_object(this).m_world.p_RemoveForeground());
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<46>";
+	dbg_object(this).m_screen_clamp=c_ClampToScreen.m_new.call(new c_ClampToScreen,dbg_object(dbg_object(this).m_player).m_position);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<47>";
+	dbg_object(dbg_object(this).m_screen_clamp).m_camera_viewport=dbg_object(c_Game.m_Instance().p_GetCurrentCamera()).m_ViewPort;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<48>";
+	this.p_AddChild2(dbg_object(this).m_screen_clamp);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<51>";
+	dbg_object(this).m_camera_control=c_CameraControl.m_new.call(new c_CameraControl,dbg_object(c_Game.m_Instance().p_GetCurrentCamera()).m_ViewPort);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<52>";
+	dbg_object(dbg_object(this).m_camera_control).m_player=dbg_object(dbg_object(this).m_player).m_position;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/spaces/gameplay.monkey<53>";
+	this.p_AddChild2(dbg_object(this).m_camera_control);
+	pop_err();
 }
 var bb_consts2_COLOR_4=[];
 var bb_consts2_COLOR_1=[];
@@ -5299,46 +7478,80 @@ function c_Stack5(){
 	this.m_length=0;
 }
 c_Stack5.m_new=function(){
+	push_err();
+	pop_err();
 	return this;
 }
 c_Stack5.m_new2=function(t_data){
-	this.m_data=t_data.slice(0);
-	this.m_length=t_data.length;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<13>";
+	dbg_object(this).m_data=t_data.slice(0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<14>";
+	dbg_object(this).m_length=t_data.length;
+	pop_err();
 	return this;
 }
 c_Stack5.prototype.p_ObjectEnumerator=function(){
-	return c_Enumerator3.m_new.call(new c_Enumerator3,this);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<184>";
+	var t_=c_Enumerator3.m_new.call(new c_Enumerator3,this);
+	pop_err();
+	return t_;
 }
 c_Stack5.m_NIL=null;
 c_Stack5.prototype.p_Length=function(t_newlength){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<41>";
 	if(t_newlength<this.m_length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<42>";
 		for(var t_i=t_newlength;t_i<this.m_length;t_i=t_i+1){
-			this.m_data[t_i]=c_Stack5.m_NIL;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<43>";
+			dbg_array(this.m_data,t_i)[dbg_index]=c_Stack5.m_NIL;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<45>";
 		if(t_newlength>this.m_data.length){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<46>";
 			this.m_data=resize_object_array(this.m_data,bb_math_Max(this.m_length*2+10,t_newlength));
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<48>";
 	this.m_length=t_newlength;
+	pop_err();
 }
 c_Stack5.prototype.p_Length2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<52>";
+	pop_err();
 	return this.m_length;
 }
 c_Stack5.prototype.p_Push10=function(t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<67>";
 	if(this.m_length==this.m_data.length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<68>";
 		this.m_data=resize_object_array(this.m_data,this.m_length*2+10);
 	}
-	this.m_data[this.m_length]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<70>";
+	dbg_array(this.m_data,this.m_length)[dbg_index]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<71>";
 	this.m_length+=1;
+	pop_err();
 }
 c_Stack5.prototype.p_Push11=function(t_values,t_offset,t_count){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<79>";
 	for(var t_i=0;t_i<t_count;t_i=t_i+1){
-		this.p_Push10(t_values[t_offset+t_i]);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<80>";
+		this.p_Push10(dbg_array(t_values,t_offset+t_i)[dbg_index]);
 	}
+	pop_err();
 }
 c_Stack5.prototype.p_Push12=function(t_values,t_offset){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<75>";
 	this.p_Push11(t_values,t_offset,t_values.length-t_offset);
+	pop_err();
 }
 function c_Enumerator3(){
 	Object.call(this);
@@ -5346,18 +7559,33 @@ function c_Enumerator3(){
 	this.m_index=0;
 }
 c_Enumerator3.m_new=function(t_stack){
-	this.m_stack=t_stack;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<255>";
+	dbg_object(this).m_stack=t_stack;
+	pop_err();
 	return this;
 }
 c_Enumerator3.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<252>";
+	pop_err();
 	return this;
 }
 c_Enumerator3.prototype.p_HasNext=function(){
-	return this.m_index<this.m_stack.p_Length2();
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<259>";
+	var t_=this.m_index<this.m_stack.p_Length2();
+	pop_err();
+	return t_;
 }
 c_Enumerator3.prototype.p_NextObject=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<263>";
 	this.m_index+=1;
-	return this.m_stack.m_data[this.m_index-1];
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<264>";
+	var t_=dbg_array(dbg_object(this.m_stack).m_data,this.m_index-1)[dbg_index];
+	pop_err();
+	return t_;
 }
 function c_World(){
 	Object.call(this);
@@ -5365,26 +7593,50 @@ function c_World(){
 	this.implments={c_iDrawable:1};
 }
 c_World.prototype.p_Create=function(){
-	this.m_tile_map=c_TileMap.m_new.call(new c_TileMap,"level_1.json");
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/world.monkey<17>";
+	dbg_object(this).m_tile_map=c_TileMap.m_new.call(new c_TileMap,"level_1.json");
+	pop_err();
 }
 c_World.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/world.monkey<11>";
 	this.p_Create();
+	pop_err();
 	return this;
 }
 c_World.prototype.p_GetCollisionsLayer=function(){
-	return object_downcast((this.m_tile_map.p_RemoveLayer("collisions")),c_TileLayer);
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/world.monkey<38>";
+	var t_=object_downcast((dbg_object(this).m_tile_map.p_GetLayer("collisions")),c_TileLayer);
+	pop_err();
+	return t_;
 }
 c_World.prototype.p_RemoveElements=function(){
-	return object_downcast((this.m_tile_map.p_RemoveLayer("elements")),c_ObjectGroup);
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/world.monkey<33>";
+	var t_=object_downcast((dbg_object(this).m_tile_map.p_RemoveLayer("elements")),c_ObjectGroup);
+	pop_err();
+	return t_;
 }
 c_World.prototype.p_RemoveForeground=function(){
-	return this.m_tile_map.p_RemoveLayer("foreground");
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/world.monkey<29>";
+	var t_=dbg_object(this).m_tile_map.p_RemoveLayer("foreground");
+	pop_err();
+	return t_;
 }
 c_World.prototype.p_Update=function(){
-	this.m_tile_map.p_Update();
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/world.monkey<21>";
+	dbg_object(this).m_tile_map.p_Update();
+	pop_err();
 }
 c_World.prototype.p_Render=function(){
-	this.m_tile_map.p_Render();
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/world.monkey<25>";
+	dbg_object(this).m_tile_map.p_Render();
+	pop_err();
 }
 function c_TileMap(){
 	c_Space.call(this);
@@ -5400,147 +7652,302 @@ function c_TileMap(){
 }
 c_TileMap.prototype=extend_class(c_Space);
 c_TileMap.prototype.p_GetTileSet=function(t_id){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<237>";
 	var t_ts=null;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<239>";
 	for(var t_i=0;t_i<this.m_tileSets.p_Length2();t_i=t_i+1){
-		if(t_id>=this.m_tileSets.p_Get(t_i).m_firstgid){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<241>";
+		if(t_id>=dbg_object(this.m_tileSets.p_Get(t_i)).m_firstgid){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<242>";
 			t_ts=this.m_tileSets.p_Get(t_i);
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<245>";
+	pop_err();
 	return t_ts;
 }
 c_TileMap.prototype.p_LoadTileMap=function(t_tilemapUri){
-	this.m_tileSets.p_Clear();
-	this.m_layers.p_Clear();
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<250>";
+	dbg_object(this).m_tileSets.p_Clear();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<251>";
+	dbg_object(this).m_layers.p_Clear();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<253>";
 	var t_content=bb_app_LoadString(t_tilemapUri);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<254>";
 	var t_data=c_JSONData.m_ReadJSON(t_content);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<255>";
 	var t_jsonObject=object_downcast((t_data),c_JSONObject);
-	this.m_height=parseInt((t_jsonObject.p_GetItem("height").p_ToString()),10);
-	this.m_width=parseInt((t_jsonObject.p_GetItem("width").p_ToString()),10);
-	this.m_version=(parseInt((t_jsonObject.p_GetItem("version").p_ToString()),10));
-	this.m_tileHeight=(parseInt((t_jsonObject.p_GetItem("tileheight").p_ToString()),10));
-	this.m_tileWidth=(parseInt((t_jsonObject.p_GetItem("tilewidth").p_ToString()),10));
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<257>";
+	dbg_object(this).m_height=parseInt((t_jsonObject.p_GetItem("height").p_ToString()),10);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<258>";
+	dbg_object(this).m_width=parseInt((t_jsonObject.p_GetItem("width").p_ToString()),10);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<259>";
+	dbg_object(this).m_version=(parseInt((t_jsonObject.p_GetItem("version").p_ToString()),10));
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<260>";
+	dbg_object(this).m_tileHeight=(parseInt((t_jsonObject.p_GetItem("tileheight").p_ToString()),10));
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<261>";
+	dbg_object(this).m_tileWidth=(parseInt((t_jsonObject.p_GetItem("tilewidth").p_ToString()),10));
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<263>";
 	var t_jsonArrayT=object_downcast((t_jsonObject.p_GetItem("tilesets")),c_JSONArray);
-	var t_=t_jsonArrayT.m_values.p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<265>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<265>";
+	var t_=dbg_object(t_jsonArrayT).m_values.p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<265>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<265>";
 		var t_di=t_.p_NextObject();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<266>";
 		var t_jo=object_downcast((t_di),c_JSONObject);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<267>";
 		var t_ts=c_TileSet.m_new.call(new c_TileSet);
-		t_ts.m_firstgid=parseInt((t_jo.p_GetItem("firstgid").p_ToString()),10);
-		t_ts.m_image=t_jo.p_GetItem("image").p_ToString();
-		t_ts.m_imageHeight=parseInt((t_jo.p_GetItem("imageheight").p_ToString()),10);
-		t_ts.m_imageWidth=parseInt((t_jo.p_GetItem("imagewidth").p_ToString()),10);
-		t_ts.m_margin=parseInt((t_jo.p_GetItem("margin").p_ToString()),10);
-		t_ts.m_name=t_jo.p_GetItem("name").p_ToString();
-		t_ts.m_spacing=parseInt((t_jo.p_GetItem("spacing").p_ToString()),10);
-		t_ts.m_tileHeight=parseInt((t_jo.p_GetItem("tileheight").p_ToString()),10);
-		t_ts.m_tileWidth=parseInt((t_jo.p_GetItem("tilewidth").p_ToString()),10);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<269>";
+		dbg_object(t_ts).m_firstgid=parseInt((t_jo.p_GetItem("firstgid").p_ToString()),10);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<270>";
+		dbg_object(t_ts).m_image=t_jo.p_GetItem("image").p_ToString();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<271>";
+		dbg_object(t_ts).m_imageHeight=parseInt((t_jo.p_GetItem("imageheight").p_ToString()),10);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<272>";
+		dbg_object(t_ts).m_imageWidth=parseInt((t_jo.p_GetItem("imagewidth").p_ToString()),10);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<273>";
+		dbg_object(t_ts).m_margin=parseInt((t_jo.p_GetItem("margin").p_ToString()),10);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<274>";
+		dbg_object(t_ts).m_name=t_jo.p_GetItem("name").p_ToString();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<275>";
+		dbg_object(t_ts).m_spacing=parseInt((t_jo.p_GetItem("spacing").p_ToString()),10);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<276>";
+		dbg_object(t_ts).m_tileHeight=parseInt((t_jo.p_GetItem("tileheight").p_ToString()),10);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<277>";
+		dbg_object(t_ts).m_tileWidth=parseInt((t_jo.p_GetItem("tilewidth").p_ToString()),10);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<278>";
 		t_ts.p_CalculateTiles();
-		this.m_tileSets.p_Push13(t_ts);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<280>";
+		dbg_object(this).m_tileSets.p_Push13(t_ts);
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<283>";
 	var t_jsonArrayL=object_downcast((t_jsonObject.p_GetItem("layers")),c_JSONArray);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<285>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<285>";
 	var t_2=t_jsonArrayL.p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<285>";
 	while(t_2.p_HasNext()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<285>";
 		var t_di2=t_2.p_NextObject();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<286>";
 		var t_jo2=object_downcast((t_di2),c_JSONObject);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<288>";
 		if(t_jo2.p_GetItem("type").p_ToString()=="tilelayer"){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<290>";
 			var t_ja=object_downcast((t_jo2.p_GetItem("data")),c_JSONArray);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<291>";
 			var t_tileLayer=c_TileLayer.m_new.call(new c_TileLayer,this);
-			t_tileLayer.m_x=t_jo2.p_GetItem("x").p_ToInt();
-			t_tileLayer.m_y=t_jo2.p_GetItem("y").p_ToInt();
-			t_tileLayer.m_width=t_jo2.p_GetItem("width").p_ToInt();
-			t_tileLayer.m_height=t_jo2.p_GetItem("height").p_ToInt();
-			t_tileLayer.m_name=t_jo2.p_GetItem("name").p_ToString();
-			t_tileLayer.m_opacity=t_jo2.p_GetItem("opacity").p_ToFloat();
-			t_tileLayer.m_type=t_jo2.p_GetItem("type").p_ToString();
-			t_tileLayer.m_visible=t_jo2.p_GetItem("visible").p_ToBool();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<293>";
+			dbg_object(t_tileLayer).m_x=t_jo2.p_GetItem("x").p_ToInt();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<294>";
+			dbg_object(t_tileLayer).m_y=t_jo2.p_GetItem("y").p_ToInt();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<295>";
+			dbg_object(t_tileLayer).m_width=t_jo2.p_GetItem("width").p_ToInt();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<296>";
+			dbg_object(t_tileLayer).m_height=t_jo2.p_GetItem("height").p_ToInt();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<298>";
+			dbg_object(t_tileLayer).m_name=t_jo2.p_GetItem("name").p_ToString();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<299>";
+			dbg_object(t_tileLayer).m_opacity=t_jo2.p_GetItem("opacity").p_ToFloat();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<300>";
+			dbg_object(t_tileLayer).m_type=t_jo2.p_GetItem("type").p_ToString();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<301>";
+			dbg_object(t_tileLayer).m_visible=t_jo2.p_GetItem("visible").p_ToBool();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<303>";
 			var t_dataList=c_List4.m_new.call(new c_List4);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<305>";
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<305>";
 			var t_3=t_ja.p_ObjectEnumerator();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<305>";
 			while(t_3.p_HasNext()){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<305>";
 				var t_i=t_3.p_NextObject();
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<306>";
 				var t_jsonInt=object_downcast((t_i),c_JSONInteger);
-				t_dataList.p_AddLast3(t_jsonInt.m_value);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<307>";
+				t_dataList.p_AddLast3(dbg_object(t_jsonInt).m_value);
 			}
-			t_tileLayer.m_data=t_dataList.p_ToArray();
-			this.m_layers.p_Push16(t_tileLayer);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<310>";
+			dbg_object(t_tileLayer).m_data=t_dataList.p_ToArray();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<314>";
+			dbg_object(this).m_layers.p_Push16(t_tileLayer);
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<317>";
 			var t_ja2=object_downcast((t_jo2.p_GetItem("objects")),c_JSONArray);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<318>";
 			var t_objectGroup=c_ObjectGroup.m_new.call(new c_ObjectGroup,this);
-			t_objectGroup.m_x=t_jo2.p_GetItem("x").p_ToInt();
-			t_objectGroup.m_y=t_jo2.p_GetItem("y").p_ToInt();
-			t_objectGroup.m_width=t_jo2.p_GetItem("width").p_ToInt();
-			t_objectGroup.m_height=t_jo2.p_GetItem("height").p_ToInt();
-			t_objectGroup.m_name=t_jo2.p_GetItem("name").p_ToString();
-			t_objectGroup.m_opacity=t_jo2.p_GetItem("opacity").p_ToFloat();
-			t_objectGroup.m_type=t_jo2.p_GetItem("type").p_ToString();
-			t_objectGroup.m_visible=t_jo2.p_GetItem("visible").p_ToBool();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<320>";
+			dbg_object(t_objectGroup).m_x=t_jo2.p_GetItem("x").p_ToInt();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<321>";
+			dbg_object(t_objectGroup).m_y=t_jo2.p_GetItem("y").p_ToInt();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<322>";
+			dbg_object(t_objectGroup).m_width=t_jo2.p_GetItem("width").p_ToInt();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<323>";
+			dbg_object(t_objectGroup).m_height=t_jo2.p_GetItem("height").p_ToInt();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<325>";
+			dbg_object(t_objectGroup).m_name=t_jo2.p_GetItem("name").p_ToString();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<326>";
+			dbg_object(t_objectGroup).m_opacity=t_jo2.p_GetItem("opacity").p_ToFloat();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<327>";
+			dbg_object(t_objectGroup).m_type=t_jo2.p_GetItem("type").p_ToString();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<328>";
+			dbg_object(t_objectGroup).m_visible=t_jo2.p_GetItem("visible").p_ToBool();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<330>";
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<330>";
 			var t_4=t_ja2.p_ObjectEnumerator();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<330>";
 			while(t_4.p_HasNext()){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<330>";
 				var t_dataRect=t_4.p_NextObject();
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<331>";
 				var t_jRect=object_downcast((t_dataRect),c_JSONObject);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<336>";
 				var t_rect=c_TileObject.m_new.call(new c_TileObject,t_jRect.p_GetItem("x").p_ToInt(),t_jRect.p_GetItem("y").p_ToInt(),t_jRect.p_GetItem("width").p_ToInt(),t_jRect.p_GetItem("height").p_ToInt());
-				t_rect.m_gid=t_jRect.p_GetItem3("gid",0);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<337>";
+				dbg_object(t_rect).m_gid=t_jRect.p_GetItem3("gid",0);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<339>";
 				if(t_rect.p_Width()==0.0 && t_rect.p_Height()==0.0){
-					var t_tileSet=this.p_GetTileSet(t_rect.m_gid);
-					var t_tile=t_tileSet.m_tiles.p_Get(t_rect.m_gid);
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<340>";
+					var t_tileSet=this.p_GetTileSet(dbg_object(t_rect).m_gid);
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<341>";
+					var t_tile=dbg_object(t_tileSet).m_tiles.p_Get(dbg_object(t_rect).m_gid);
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<343>";
 					t_rect.p_Width2(t_tile.p_Width());
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<344>";
 					t_rect.p_Height2(t_tile.p_Height());
 				}
-				t_rect.m_properties=c_StringMap3.m_new.call(new c_StringMap3);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<347>";
+				dbg_object(t_rect).m_properties=c_StringMap3.m_new.call(new c_StringMap3);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<349>";
 				var t_jsonProperties=object_downcast((t_jRect.p_GetItem("properties")),c_JSONObject);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<350>";
 				var t_keys=c_Stack9.m_new.call(new c_Stack9);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<351>";
 				var t_values=c_Stack9.m_new.call(new c_Stack9);
-				var t_5=t_jsonProperties.m_values.p_Keys().p_ObjectEnumerator();
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<353>";
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<353>";
+				var t_5=dbg_object(t_jsonProperties).m_values.p_Keys().p_ObjectEnumerator();
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<353>";
 				while(t_5.p_HasNext()){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<353>";
 					var t_j=t_5.p_NextObject();
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<354>";
 					t_keys.p_Push22(t_j);
 				}
-				var t_6=t_jsonProperties.m_values.p_Values().p_ObjectEnumerator();
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<357>";
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<357>";
+				var t_6=dbg_object(t_jsonProperties).m_values.p_Values().p_ObjectEnumerator();
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<357>";
 				while(t_6.p_HasNext()){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<357>";
 					var t_v=t_6.p_NextObject();
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<358>";
 					t_values.p_Push22(t_v.p_ToString());
 				}
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<361>";
 				for(var t_i2=0;t_i2<t_keys.p_Length2();t_i2=t_i2+1){
-					t_rect.m_properties.p_Set3(t_keys.p_Get(t_i2),t_values.p_Get(t_i2));
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<362>";
+					dbg_object(t_rect).m_properties.p_Set3(t_keys.p_Get(t_i2),t_values.p_Get(t_i2));
 				}
-				t_rect.m_parent=(t_objectGroup);
-				t_objectGroup.m_objects.p_Push19(t_rect);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<364>";
+				dbg_object(t_rect).m_parent=(t_objectGroup);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<366>";
+				dbg_object(t_objectGroup).m_objects.p_Push19(t_rect);
 			}
-			this.m_layers.p_Push16(t_objectGroup);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<371>";
+			dbg_object(this).m_layers.p_Push16(t_objectGroup);
 		}
 	}
+	pop_err();
 }
 c_TileMap.m_new=function(t_tilemapUri){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<194>";
 	c_Space.m_new.call(this);
-	this.m_tilemapUri=t_tilemapUri;
-	this.m_tileSets=c_Stack6.m_new.call(new c_Stack6);
-	this.m_layers=c_Stack7.m_new.call(new c_Stack7);
-	this.p_LoadTileMap(this.m_tilemapUri);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<195>";
+	dbg_object(this).m_tilemapUri=t_tilemapUri;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<196>";
+	dbg_object(this).m_tileSets=c_Stack6.m_new.call(new c_Stack6);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<197>";
+	dbg_object(this).m_layers=c_Stack7.m_new.call(new c_Stack7);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<199>";
+	this.p_LoadTileMap(dbg_object(this).m_tilemapUri);
+	pop_err();
 	return this;
 }
 c_TileMap.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<179>";
 	c_Space.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<179>";
+	pop_err();
 	return this;
 }
-c_TileMap.prototype.p_RemoveLayer=function(t_name){
-	for(var t_i=0;t_i<this.m_layers.p_Length2();t_i=t_i+1){
-		if(this.m_layers.p_Get(t_i).m_name==t_name){
-			var t_m=this.m_layers.p_Get(t_i);
-			this.m_layers.p_Remove2(t_i);
+c_TileMap.prototype.p_GetLayer=function(t_name){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<216>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<216>";
+	var t_=dbg_object(this).m_layers.p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<216>";
+	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<216>";
+		var t_m=t_.p_NextObject();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<217>";
+		if(dbg_object(t_m).m_name==t_name){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<217>";
+			pop_err();
 			return t_m;
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<220>";
+	pop_err();
+	return null;
+}
+c_TileMap.prototype.p_RemoveLayer=function(t_name){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<225>";
+	for(var t_i=0;t_i<dbg_object(this).m_layers.p_Length2();t_i=t_i+1){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<226>";
+		if(dbg_object(dbg_object(this).m_layers.p_Get(t_i)).m_name==t_name){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<227>";
+			var t_m=dbg_object(this).m_layers.p_Get(t_i);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<228>";
+			dbg_object(this).m_layers.p_Remove2(t_i);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<229>";
+			pop_err();
+			return t_m;
+		}
+	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<233>";
+	pop_err();
 	return null;
 }
 c_TileMap.prototype.p_Update=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<203>";
 	c_Space.prototype.p_Update.call(this);
+	pop_err();
 }
 c_TileMap.prototype.p_Render=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<207>";
 	c_Space.prototype.p_Render.call(this);
-	var t_=this.m_layers.p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<209>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<209>";
+	var t_=dbg_object(this).m_layers.p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<209>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<209>";
 		var t_layer=t_.p_NextObject();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<210>";
 		t_layer.p_Render();
 	}
+	pop_err();
 }
 function c_TileSet(){
 	Object.call(this);
@@ -5557,18 +7964,30 @@ function c_TileSet(){
 	this.m_drawableImage=null;
 }
 c_TileSet.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<9>";
+	pop_err();
 	return this;
 }
 c_TileSet.prototype.p_CalculateTiles=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<25>";
 	var t_i=this.m_firstgid;
-	this.m_tiles=c_IntMap3.m_new.call(new c_IntMap3);
-	this.m_drawableImage=bb_graphics_LoadImage(this.m_image,1,c_Image.m_DefaultFlags);
-	for(var t_y=0;t_y<((this.m_imageHeight/this.m_tileHeight)|0);t_y=t_y+1){
-		for(var t_x=0;t_x<((this.m_imageWidth/this.m_tileWidth)|0);t_x=t_x+1){
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<26>";
+	dbg_object(this).m_tiles=c_IntMap3.m_new.call(new c_IntMap3);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<27>";
+	dbg_object(this).m_drawableImage=bb_graphics_LoadImage(dbg_object(this).m_image,1,c_Image.m_DefaultFlags);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<29>";
+	for(var t_y=0;t_y<((this.m_imageHeight/dbg_object(this).m_tileHeight)|0);t_y=t_y+1){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<30>";
+		for(var t_x=0;t_x<((this.m_imageWidth/dbg_object(this).m_tileWidth)|0);t_x=t_x+1){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<36>";
 			this.m_tiles.p_Set5(t_i,c_Rectangle.m_new3.call(new c_Rectangle,(t_x*this.m_tileWidth),(t_y*this.m_tileHeight),(this.m_tileWidth),(this.m_tileHeight)));
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<37>";
 			t_i=t_i+1;
 		}
 	}
+	pop_err();
 }
 function c_Stack6(){
 	Object.call(this);
@@ -5576,52 +7995,90 @@ function c_Stack6(){
 	this.m_length=0;
 }
 c_Stack6.m_new=function(){
+	push_err();
+	pop_err();
 	return this;
 }
 c_Stack6.m_new2=function(t_data){
-	this.m_data=t_data.slice(0);
-	this.m_length=t_data.length;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<13>";
+	dbg_object(this).m_data=t_data.slice(0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<14>";
+	dbg_object(this).m_length=t_data.length;
+	pop_err();
 	return this;
 }
 c_Stack6.m_NIL=null;
 c_Stack6.prototype.p_Clear=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<34>";
 	for(var t_i=0;t_i<this.m_length;t_i=t_i+1){
-		this.m_data[t_i]=c_Stack6.m_NIL;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<35>";
+		dbg_array(this.m_data,t_i)[dbg_index]=c_Stack6.m_NIL;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<37>";
 	this.m_length=0;
+	pop_err();
 }
 c_Stack6.prototype.p_Push13=function(t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<67>";
 	if(this.m_length==this.m_data.length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<68>";
 		this.m_data=resize_object_array(this.m_data,this.m_length*2+10);
 	}
-	this.m_data[this.m_length]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<70>";
+	dbg_array(this.m_data,this.m_length)[dbg_index]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<71>";
 	this.m_length+=1;
+	pop_err();
 }
 c_Stack6.prototype.p_Push14=function(t_values,t_offset,t_count){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<79>";
 	for(var t_i=0;t_i<t_count;t_i=t_i+1){
-		this.p_Push13(t_values[t_offset+t_i]);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<80>";
+		this.p_Push13(dbg_array(t_values,t_offset+t_i)[dbg_index]);
 	}
+	pop_err();
 }
 c_Stack6.prototype.p_Push15=function(t_values,t_offset){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<75>";
 	this.p_Push14(t_values,t_offset,t_values.length-t_offset);
+	pop_err();
 }
 c_Stack6.prototype.p_Length=function(t_newlength){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<41>";
 	if(t_newlength<this.m_length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<42>";
 		for(var t_i=t_newlength;t_i<this.m_length;t_i=t_i+1){
-			this.m_data[t_i]=c_Stack6.m_NIL;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<43>";
+			dbg_array(this.m_data,t_i)[dbg_index]=c_Stack6.m_NIL;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<45>";
 		if(t_newlength>this.m_data.length){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<46>";
 			this.m_data=resize_object_array(this.m_data,bb_math_Max(this.m_length*2+10,t_newlength));
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<48>";
 	this.m_length=t_newlength;
+	pop_err();
 }
 c_Stack6.prototype.p_Length2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<52>";
+	pop_err();
 	return this.m_length;
 }
 c_Stack6.prototype.p_Get=function(t_index){
-	return this.m_data[t_index];
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<100>";
+	pop_err();
+	return dbg_array(this.m_data,t_index)[dbg_index];
 }
 function c_MidLayer(){
 	c_Space.call(this);
@@ -5639,12 +8096,20 @@ function c_MidLayer(){
 }
 c_MidLayer.prototype=extend_class(c_Space);
 c_MidLayer.m_new=function(t_parent){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<60>";
 	c_Space.m_new.call(this);
-	this.m_parent=t_parent;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<61>";
+	dbg_object(this).m_parent=t_parent;
+	pop_err();
 	return this;
 }
 c_MidLayer.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<44>";
 	c_Space.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<44>";
+	pop_err();
 	return this;
 }
 function c_Stack7(){
@@ -5653,228 +8118,428 @@ function c_Stack7(){
 	this.m_length=0;
 }
 c_Stack7.m_new=function(){
+	push_err();
+	pop_err();
 	return this;
 }
 c_Stack7.m_new2=function(t_data){
-	this.m_data=t_data.slice(0);
-	this.m_length=t_data.length;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<13>";
+	dbg_object(this).m_data=t_data.slice(0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<14>";
+	dbg_object(this).m_length=t_data.length;
+	pop_err();
 	return this;
 }
 c_Stack7.m_NIL=null;
 c_Stack7.prototype.p_Clear=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<34>";
 	for(var t_i=0;t_i<this.m_length;t_i=t_i+1){
-		this.m_data[t_i]=c_Stack7.m_NIL;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<35>";
+		dbg_array(this.m_data,t_i)[dbg_index]=c_Stack7.m_NIL;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<37>";
 	this.m_length=0;
+	pop_err();
 }
 c_Stack7.prototype.p_Push16=function(t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<67>";
 	if(this.m_length==this.m_data.length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<68>";
 		this.m_data=resize_object_array(this.m_data,this.m_length*2+10);
 	}
-	this.m_data[this.m_length]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<70>";
+	dbg_array(this.m_data,this.m_length)[dbg_index]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<71>";
 	this.m_length+=1;
+	pop_err();
 }
 c_Stack7.prototype.p_Push17=function(t_values,t_offset,t_count){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<79>";
 	for(var t_i=0;t_i<t_count;t_i=t_i+1){
-		this.p_Push16(t_values[t_offset+t_i]);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<80>";
+		this.p_Push16(dbg_array(t_values,t_offset+t_i)[dbg_index]);
 	}
+	pop_err();
 }
 c_Stack7.prototype.p_Push18=function(t_values,t_offset){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<75>";
 	this.p_Push17(t_values,t_offset,t_values.length-t_offset);
+	pop_err();
+}
+c_Stack7.prototype.p_ObjectEnumerator=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<184>";
+	var t_=c_Enumerator6.m_new.call(new c_Enumerator6,this);
+	pop_err();
+	return t_;
 }
 c_Stack7.prototype.p_Length=function(t_newlength){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<41>";
 	if(t_newlength<this.m_length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<42>";
 		for(var t_i=t_newlength;t_i<this.m_length;t_i=t_i+1){
-			this.m_data[t_i]=c_Stack7.m_NIL;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<43>";
+			dbg_array(this.m_data,t_i)[dbg_index]=c_Stack7.m_NIL;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<45>";
 		if(t_newlength>this.m_data.length){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<46>";
 			this.m_data=resize_object_array(this.m_data,bb_math_Max(this.m_length*2+10,t_newlength));
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<48>";
 	this.m_length=t_newlength;
+	pop_err();
 }
 c_Stack7.prototype.p_Length2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<52>";
+	pop_err();
 	return this.m_length;
 }
 c_Stack7.prototype.p_Get=function(t_index){
-	return this.m_data[t_index];
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<100>";
+	pop_err();
+	return dbg_array(this.m_data,t_index)[dbg_index];
 }
 c_Stack7.prototype.p_Remove2=function(t_index){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<133>";
 	for(var t_i=t_index;t_i<this.m_length-1;t_i=t_i+1){
-		this.m_data[t_i]=this.m_data[t_i+1];
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<134>";
+		dbg_array(this.m_data,t_i)[dbg_index]=dbg_array(this.m_data,t_i+1)[dbg_index];
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<136>";
 	this.m_length-=1;
-	this.m_data[this.m_length]=c_Stack7.m_NIL;
-}
-c_Stack7.prototype.p_ObjectEnumerator=function(){
-	return c_Enumerator8.m_new.call(new c_Enumerator8,this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<137>";
+	dbg_array(this.m_data,this.m_length)[dbg_index]=c_Stack7.m_NIL;
+	pop_err();
 }
 function bb_app_LoadString(t_path){
-	return bb_app__game.LoadString(bb_data_FixDataPath(t_path));
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/app.monkey<220>";
+	var t_=bb_app__game.LoadString(bb_data_FixDataPath(t_path));
+	pop_err();
+	return t_;
 }
 function c_JSONDataItem(){
 	Object.call(this);
 	this.m_dataType=7;
 }
 c_JSONDataItem.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<366>";
+	pop_err();
 	return this;
 }
 c_JSONDataItem.prototype.p_ToString=function(){
 }
 c_JSONDataItem.prototype.p_ToInt=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<371>";
 	print("Unsupported conversion to Int for "+this.p_ToString());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<372>";
+	pop_err();
 	return -1;
 }
 c_JSONDataItem.prototype.p_ToFloat=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<376>";
 	print("Unsupported conversion to Float for "+this.p_ToString());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<377>";
+	pop_err();
 	return -1.0;
 }
 c_JSONDataItem.prototype.p_ToBool=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<381>";
 	print("Unsupported conversion to Bool for "+this.p_ToString());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<382>";
+	pop_err();
 	return false;
 }
 function c_JSONData(){
 	Object.call(this);
 }
 c_JSONData.m_GetJSONObject=function(t_tokeniser){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<131>";
 	var t_jsonObject=c_JSONObject.m_new.call(new c_JSONObject);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<132>";
 	var t_data1=null;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<133>";
 	var t_data2=null;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<136>";
 	t_data1=c_JSONData.m_GetJSONDataItem(t_tokeniser);
-	if(t_data1.m_dataType==9 && object_downcast((t_data1),c_JSONNonData).m_value.m_tokenType==2){
-		return (t_jsonObject);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<137>";
+	if(dbg_object(t_data1).m_dataType==9 && dbg_object(dbg_object(object_downcast((t_data1),c_JSONNonData)).m_value).m_tokenType==2){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<139>";
+		var t_=(t_jsonObject);
+		pop_err();
+		return t_;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<142>";
 	do{
-		if(t_data1.m_dataType!=5){
-			return (c_JSONDataError.m_new.call(new c_JSONDataError,"Expected item name, got "+(t_data1.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<143>";
+		if(dbg_object(t_data1).m_dataType!=5){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<144>";
+			var t_2=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected item name, got "+(t_data1.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+			pop_err();
+			return t_2;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<147>";
 		t_data2=c_JSONData.m_GetJSONDataItem(t_tokeniser);
-		if(t_data2.m_dataType!=9){
-			return (c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ':', got "+(t_data2.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<149>";
+		if(dbg_object(t_data2).m_dataType!=9){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<150>";
+			var t_3=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ':', got "+(t_data2.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+			pop_err();
+			return t_3;
 		}else{
-			if(object_downcast((t_data2),c_JSONNonData).m_value.m_tokenType!=6){
-				return (c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ':', got "+(object_downcast((t_data2),c_JSONNonData).m_value.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<152>";
+			if(dbg_object(dbg_object(object_downcast((t_data2),c_JSONNonData)).m_value).m_tokenType!=6){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<153>";
+				var t_4=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ':', got "+(dbg_object(object_downcast((t_data2),c_JSONNonData)).m_value.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+				pop_err();
+				return t_4;
 			}
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<157>";
 		t_data2=c_JSONData.m_GetJSONDataItem(t_tokeniser);
-		if(t_data2.m_dataType==-1){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<159>";
+		if(dbg_object(t_data2).m_dataType==-1){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<160>";
+			pop_err();
 			return t_data2;
 		}else{
-			if(t_data2.m_dataType==9){
-				return (c_JSONDataError.m_new.call(new c_JSONDataError,"Expected item value, got "+(object_downcast((t_data2),c_JSONNonData).m_value.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<161>";
+			if(dbg_object(t_data2).m_dataType==9){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<162>";
+				var t_5=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected item value, got "+(dbg_object(object_downcast((t_data2),c_JSONNonData)).m_value.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+				pop_err();
+				return t_5;
 			}
 		}
-		t_jsonObject.p_AddItem(object_downcast((t_data1),c_JSONString).m_value,t_data2);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<165>";
+		t_jsonObject.p_AddItem(dbg_object(object_downcast((t_data1),c_JSONString)).m_value,t_data2);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<166>";
 		t_data2=c_JSONData.m_GetJSONDataItem(t_tokeniser);
-		if(t_data2.m_dataType!=9){
-			return (c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ',' or '}', got "+(t_data2.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<168>";
+		if(dbg_object(t_data2).m_dataType!=9){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<169>";
+			var t_6=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ',' or '}', got "+(t_data2.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+			pop_err();
+			return t_6;
 		}else{
-			if(object_downcast((t_data2),c_JSONNonData).m_value.m_tokenType==2){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<171>";
+			if(dbg_object(dbg_object(object_downcast((t_data2),c_JSONNonData)).m_value).m_tokenType==2){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<172>";
 				break;
 			}else{
-				if(object_downcast((t_data2),c_JSONNonData).m_value.m_tokenType!=0){
-					return (c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ',' or '}', got "+(object_downcast((t_data2),c_JSONNonData).m_value.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<173>";
+				if(dbg_object(dbg_object(object_downcast((t_data2),c_JSONNonData)).m_value).m_tokenType!=0){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<174>";
+					var t_7=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ',' or '}', got "+(dbg_object(object_downcast((t_data2),c_JSONNonData)).m_value.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+					pop_err();
+					return t_7;
 				}
 			}
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<177>";
 		t_data1=c_JSONData.m_GetJSONDataItem(t_tokeniser);
 	}while(!(false));
-	return (t_jsonObject);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<180>";
+	var t_8=(t_jsonObject);
+	pop_err();
+	return t_8;
 }
 c_JSONData.m_GetJSONArray=function(t_tokeniser){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<184>";
 	var t_jsonArray=c_JSONArray.m_new.call(new c_JSONArray);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<185>";
 	var t_data=null;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<188>";
 	t_data=c_JSONData.m_GetJSONDataItem(t_tokeniser);
-	if(t_data.m_dataType==9 && object_downcast((t_data),c_JSONNonData).m_value.m_tokenType==4){
-		return (t_jsonArray);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<189>";
+	if(dbg_object(t_data).m_dataType==9 && dbg_object(dbg_object(object_downcast((t_data),c_JSONNonData)).m_value).m_tokenType==4){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<190>";
+		var t_=(t_jsonArray);
+		pop_err();
+		return t_;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<193>";
 	do{
-		if(t_data.m_dataType==9){
-			return (c_JSONDataError.m_new.call(new c_JSONDataError,"Expected data value, got "+(t_data.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<194>";
+		if(dbg_object(t_data).m_dataType==9){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<195>";
+			var t_2=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected data value, got "+(t_data.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+			pop_err();
+			return t_2;
 		}else{
-			if(t_data.m_dataType==-1){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<196>";
+			if(dbg_object(t_data).m_dataType==-1){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<197>";
+				pop_err();
 				return t_data;
 			}
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<199>";
 		t_jsonArray.p_AddItem2(t_data);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<201>";
 		t_data=c_JSONData.m_GetJSONDataItem(t_tokeniser);
-		if(t_data.m_dataType==9){
-			var t_token=object_downcast((t_data),c_JSONNonData).m_value;
-			if(t_token.m_tokenType==0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<203>";
+		if(dbg_object(t_data).m_dataType==9){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<204>";
+			var t_token=dbg_object(object_downcast((t_data),c_JSONNonData)).m_value;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<205>";
+			if(dbg_object(t_token).m_tokenType==0){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<206>";
 				t_data=c_JSONData.m_GetJSONDataItem(t_tokeniser);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<207>";
 				continue;
 			}else{
-				if(t_token.m_tokenType==4){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<208>";
+				if(dbg_object(t_token).m_tokenType==4){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<209>";
 					break;
 				}else{
-					return (c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ',' or '], got "+(t_token.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<211>";
+					var t_3=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ',' or '], got "+(t_token.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+					pop_err();
+					return t_3;
 				}
 			}
 		}else{
-			return (c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ',' or '], got "+(t_data.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<214>";
+			var t_4=(c_JSONDataError.m_new.call(new c_JSONDataError,"Expected ',' or '], got "+(t_data.p_ToString()),t_tokeniser.p_GetCurrentSectionString(20,20)));
+			pop_err();
+			return t_4;
 		}
 	}while(!(false));
-	return (t_jsonArray);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<218>";
+	var t_5=(t_jsonArray);
+	pop_err();
+	return t_5;
 }
 c_JSONData.m_HexCharToInt=function(t_char){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<331>";
 	if(t_char>=48 && t_char<=57){
-		return t_char-48;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<332>";
+		var t_=t_char-48;
+		pop_err();
+		return t_;
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<333>";
 		if(t_char>=65 && t_char<=70){
-			return t_char-55;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<334>";
+			var t_2=t_char-55;
+			pop_err();
+			return t_2;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<335>";
 			if(t_char>=97 && t_char<=102){
-				return t_char-87;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<336>";
+				var t_3=t_char-87;
+				pop_err();
+				return t_3;
 			}
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<338>";
+	pop_err();
 	return 0;
 }
 c_JSONData.m_UnEscapeUnicode=function(t_hexString){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<342>";
 	var t_charCode=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<343>";
 	for(var t_i=0;t_i<4;t_i=t_i+1){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<344>";
 		t_charCode<<=4;
-		t_charCode+=c_JSONData.m_HexCharToInt(t_hexString.charCodeAt(t_i));
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<345>";
+		t_charCode+=c_JSONData.m_HexCharToInt(dbg_charCodeAt(t_hexString,t_i));
 	}
-	return String.fromCharCode(t_charCode);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<347>";
+	var t_=String.fromCharCode(t_charCode);
+	pop_err();
+	return t_;
 }
 c_JSONData.m_UnEscapeJSON=function(t_input){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<287>";
 	var t_escIndex=t_input.indexOf("\\",0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<289>";
 	if(t_escIndex==-1){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<290>";
+		pop_err();
 		return t_input;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<293>";
 	var t_copyStartIndex=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<294>";
 	var t_retString=c_StringBuilder.m_new.call(new c_StringBuilder,t_input.length);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<296>";
 	while(t_escIndex!=-1){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<297>";
 		t_retString.p_AddString(t_input.slice(t_copyStartIndex,t_escIndex));
-		var t_2=t_input.charCodeAt(t_escIndex+1);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<298>";
+		var t_2=dbg_charCodeAt(t_input,t_escIndex+1);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<299>";
 		if(t_2==110){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<300>";
 			t_retString.p_AddString("\n");
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<301>";
 			if(t_2==34){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<302>";
 				t_retString.p_AddString("\"");
 			}else{
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<303>";
 				if(t_2==116){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<304>";
 					t_retString.p_AddString("\t");
 				}else{
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<305>";
 					if(t_2==92){
+						err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<306>";
 						t_retString.p_AddString("\\");
 					}else{
+						err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<307>";
 						if(t_2==47){
+							err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<308>";
 							t_retString.p_AddString("/");
 						}else{
+							err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<309>";
 							if(t_2==114){
+								err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<310>";
 								t_retString.p_AddString("\r");
 							}else{
+								err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<311>";
 								if(t_2==102){
+									err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<312>";
 									t_retString.p_AddString(String.fromCharCode(12));
 								}else{
+									err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<313>";
 									if(t_2==98){
+										err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<314>";
 										t_retString.p_AddString(String.fromCharCode(8));
 									}else{
+										err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<315>";
 										if(t_2==117){
+											err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<316>";
 											t_retString.p_AddString(c_JSONData.m_UnEscapeUnicode(t_input.slice(t_escIndex+2,t_escIndex+6)));
+											err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<317>";
 											t_escIndex+=4;
 										}
 									}
@@ -5885,45 +8550,94 @@ c_JSONData.m_UnEscapeJSON=function(t_input){
 				}
 			}
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<319>";
 		t_copyStartIndex=t_escIndex+2;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<320>";
 		t_escIndex=t_input.indexOf("\\",t_copyStartIndex);
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<323>";
 	if(t_copyStartIndex<t_input.length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<324>";
 		t_retString.p_AddString(t_input.slice(t_copyStartIndex));
 	}
-	return t_retString.p_ToString();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<327>";
+	var t_=t_retString.p_ToString();
+	pop_err();
+	return t_;
 }
 c_JSONData.m_GetJSONDataItem=function(t_tokeniser){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<104>";
 	var t_token=t_tokeniser.p_NextToken();
-	var t_1=t_token.m_tokenType;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<106>";
+	var t_1=dbg_object(t_token).m_tokenType;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<107>";
 	if(t_1==1){
-		return c_JSONData.m_GetJSONObject(t_tokeniser);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<108>";
+		var t_=c_JSONData.m_GetJSONObject(t_tokeniser);
+		pop_err();
+		return t_;
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<109>";
 		if(t_1==3){
-			return c_JSONData.m_GetJSONArray(t_tokeniser);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<110>";
+			var t_2=c_JSONData.m_GetJSONArray(t_tokeniser);
+			pop_err();
+			return t_2;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<111>";
 			if(t_1==10){
-				return (c_JSONString.m_new.call(new c_JSONString,(object_downcast((t_token.m_value),c_StringObject).p_ToString()),false));
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<112>";
+				var t_3=(c_JSONString.m_new.call(new c_JSONString,(object_downcast((dbg_object(t_token).m_value),c_StringObject).p_ToString()),false));
+				pop_err();
+				return t_3;
 			}else{
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<113>";
 				if(t_1==11){
-					return (c_JSONFloat.m_new.call(new c_JSONFloat,object_downcast((t_token.m_value),c_FloatObject).p_ToFloat()));
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<114>";
+					var t_4=(c_JSONFloat.m_new.call(new c_JSONFloat,object_downcast((dbg_object(t_token).m_value),c_FloatObject).p_ToFloat()));
+					pop_err();
+					return t_4;
 				}else{
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<115>";
 					if(t_1==12){
-						return (c_JSONFloat.m_new2.call(new c_JSONFloat,object_downcast((t_token.m_value),c_StringObject).p_ToString()));
+						err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<116>";
+						var t_5=(c_JSONFloat.m_new2.call(new c_JSONFloat,object_downcast((dbg_object(t_token).m_value),c_StringObject).p_ToString()));
+						pop_err();
+						return t_5;
 					}else{
+						err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<117>";
 						if(t_1==13){
-							return (c_JSONInteger.m_new.call(new c_JSONInteger,(object_downcast((t_token.m_value),c_IntObject).p_ToInt())));
+							err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<118>";
+							var t_6=(c_JSONInteger.m_new.call(new c_JSONInteger,(object_downcast((dbg_object(t_token).m_value),c_IntObject).p_ToInt())));
+							pop_err();
+							return t_6;
 						}else{
+							err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<119>";
 							if(t_1==7){
-								return (c_JSONBool.m_new.call(new c_JSONBool,true));
+								err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<120>";
+								var t_7=(c_JSONBool.m_new.call(new c_JSONBool,true));
+								pop_err();
+								return t_7;
 							}else{
+								err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<121>";
 								if(t_1==8){
-									return (c_JSONBool.m_new.call(new c_JSONBool,false));
+									err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<122>";
+									var t_8=(c_JSONBool.m_new.call(new c_JSONBool,false));
+									pop_err();
+									return t_8;
 								}else{
+									err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<123>";
 									if(t_1==9){
-										return (c_JSONNull.m_new.call(new c_JSONNull));
+										err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<124>";
+										var t_9=(c_JSONNull.m_new.call(new c_JSONNull));
+										pop_err();
+										return t_9;
 									}else{
-										return (c_JSONNonData.m_new.call(new c_JSONNonData,t_token));
+										err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<126>";
+										var t_10=(c_JSONNonData.m_new.call(new c_JSONNonData,t_token));
+										pop_err();
+										return t_10;
 									}
 								}
 							}
@@ -5935,19 +8649,34 @@ c_JSONData.m_GetJSONDataItem=function(t_tokeniser){
 	}
 }
 c_JSONData.m_ReadJSON=function(t_jsonString){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<71>";
 	var t_tokeniser=c_JSONTokeniser.m_new.call(new c_JSONTokeniser,t_jsonString,false);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<73>";
 	var t_data=c_JSONData.m_GetJSONDataItem(t_tokeniser);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<75>";
 	if(t_data==null){
-		return (c_JSONDataError.m_new.call(new c_JSONDataError,"Unknown JSON error.",t_tokeniser.p_GetCurrentSectionString(20,20)));
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<76>";
+		var t_=(c_JSONDataError.m_new.call(new c_JSONDataError,"Unknown JSON error.",t_tokeniser.p_GetCurrentSectionString(20,20)));
+		pop_err();
+		return t_;
 	}else{
-		if(t_data.m_dataType==-1){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<77>";
+		if(dbg_object(t_data).m_dataType==-1){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<78>";
 			print(t_data.p_ToString());
 		}else{
-			if(t_data.m_dataType!=1 && t_data.m_dataType!=2){
-				return (c_JSONDataError.m_new.call(new c_JSONDataError,"JSON Document malformed. Root node is not an object or an array",t_tokeniser.p_GetCurrentSectionString(20,20)));
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<79>";
+			if(dbg_object(t_data).m_dataType!=1 && dbg_object(t_data).m_dataType!=2){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<80>";
+				var t_2=(c_JSONDataError.m_new.call(new c_JSONDataError,"JSON Document malformed. Root node is not an object or an array",t_tokeniser.p_GetCurrentSectionString(20,20)));
+				pop_err();
+				return t_2;
 			}
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<83>";
+	pop_err();
 	return t_data;
 }
 function c_JSONTokeniser(){
@@ -5958,160 +8687,294 @@ function c_JSONTokeniser(){
 	this.m_char=0;
 }
 c_JSONTokeniser.prototype.p_NextChar=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<197>";
 	if(this.m_stringIndex>=this.m_jsonString.length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<198>";
 		this.m_char=0;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<199>";
+		pop_err();
 		return this.m_char;
 	}
-	this.m_char=this.m_jsonString.charCodeAt(this.m_stringIndex);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<201>";
+	this.m_char=dbg_charCodeAt(this.m_jsonString,this.m_stringIndex);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<202>";
 	this.m_stringIndex+=1;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<203>";
+	pop_err();
 	return this.m_char;
 }
 c_JSONTokeniser.m_new=function(t_jsonString,t_silent){
-	this.m_silent=t_silent;
-	this.m_jsonString=t_jsonString;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<120>";
+	dbg_object(this).m_silent=t_silent;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<121>";
+	dbg_object(this).m_jsonString=t_jsonString;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<122>";
 	this.p_NextChar();
+	pop_err();
 	return this;
 }
 c_JSONTokeniser.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<108>";
+	pop_err();
 	return this;
 }
 c_JSONTokeniser.prototype.p_SkipWhitespace=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<252>";
 	var t_index=this.m_stringIndex;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<253>";
 	while(this.m_char<=32 && this.m_char!=0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<254>";
 		this.p_NextChar();
 	}
-	return this.m_stringIndex-t_index;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<256>";
+	var t_=this.m_stringIndex-t_index;
+	pop_err();
+	return t_;
 }
 c_JSONTokeniser.prototype.p_GetCurrentSectionString=function(t_backwards,t_forwards){
-	return "Section: "+this.m_jsonString.slice(bb_math_Max(this.m_stringIndex-t_backwards,0),bb_math_Min(this.m_stringIndex+t_forwards,this.m_jsonString.length));
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<126>";
+	var t_="Section: "+this.m_jsonString.slice(bb_math_Max(this.m_stringIndex-t_backwards,0),bb_math_Min(this.m_stringIndex+t_forwards,this.m_jsonString.length));
+	pop_err();
+	return t_;
 }
 c_JSONTokeniser.prototype.p_ParseFailure=function(t_description){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<290>";
 	if(this.m_silent){
+		pop_err();
 		return;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<293>";
 	print("JSON parse error at index: "+String(this.m_stringIndex));
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<294>";
 	print(t_description);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<295>";
 	print(this.p_GetCurrentSectionString(20,20));
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<296>";
 	this.m_stringIndex=this.m_jsonString.length;
+	pop_err();
 }
 c_JSONTokeniser.prototype.p_SkipComments=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<260>";
 	var t_index=this.m_stringIndex;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<261>";
 	if(this.m_char==47){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<262>";
 		this.p_NextChar();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<263>";
 		if(this.m_char==47){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<264>";
 			while(this.m_char!=13 && this.m_char!=10 && this.m_char!=0){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<265>";
 				this.p_NextChar();
 			}
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<267>";
 			if(this.m_char==42){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<268>";
 				do{
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<269>";
 					this.p_NextChar();
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<270>";
 					if(this.m_char==42){
+						err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<271>";
 						this.p_NextChar();
+						err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<272>";
 						if(this.m_char==47){
+							err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<273>";
 							break;
 						}
 					}
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<276>";
 					if(this.m_char==0){
+						err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<277>";
 						this.p_ParseFailure("Unterminated comment");
+						err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<278>";
 						break;
 					}
 				}while(!(false));
 			}else{
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<282>";
 				this.p_ParseFailure("Unrecognised comment opening");
 			}
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<284>";
 		this.p_NextChar();
 	}
-	return this.m_stringIndex-t_index;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<286>";
+	var t_=this.m_stringIndex-t_index;
+	pop_err();
+	return t_;
 }
 c_JSONTokeniser.prototype.p_SkipIgnored=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<243>";
 	var t_ignoredCount=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<244>";
 	do{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<245>";
 		t_ignoredCount=0;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<246>";
 		t_ignoredCount+=this.p_SkipWhitespace();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<247>";
 		t_ignoredCount+=this.p_SkipComments();
 	}while(!(t_ignoredCount==0));
+	pop_err();
 }
 c_JSONTokeniser.prototype.p_IsDigit=function(t_char){
-	return t_char>=48 && t_char<=58;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<239>";
+	var t_=t_char>=48 && t_char<=58;
+	pop_err();
+	return t_;
 }
 c_JSONTokeniser.prototype.p_ParseInteger=function(t_str){
-	return parseInt((t_str),10);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<230>";
+	var t_=parseInt((t_str),10);
+	pop_err();
+	return t_;
 }
 c_JSONTokeniser.prototype.p_ParseNumberToken=function(t_firstChar){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<207>";
 	var t_index=this.m_stringIndex-1;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<210>";
 	while(this.m_char!=32 && this.m_char!=44 && this.m_char!=125 && this.m_char!=93 && this.m_char!=0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<211>";
 		this.p_NextChar();
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<213>";
 	if(this.m_char==0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<214>";
 		this.p_ParseFailure("Unterminated Number");
-		return c_JSONToken.m_CreateToken4(-1,null);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<215>";
+		var t_=c_JSONToken.m_CreateToken4(-1,null);
+		pop_err();
+		return t_;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<218>";
 	var t_numberString=this.m_jsonString.slice(t_index,this.m_stringIndex-1);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<220>";
 	if(t_numberString.indexOf(".",0)!=-1 || t_numberString.indexOf("e",0)!=-1 || t_numberString.indexOf("E",0)!=-1){
-		return c_JSONToken.m_CreateToken3(12,t_numberString);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<221>";
+		var t_2=c_JSONToken.m_CreateToken3(12,t_numberString);
+		pop_err();
+		return t_2;
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<223>";
 		var t_value=this.p_ParseInteger(t_numberString);
-		return c_JSONToken.m_CreateToken2(13,t_value);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<224>";
+		var t_3=c_JSONToken.m_CreateToken2(13,t_value);
+		pop_err();
+		return t_3;
 	}
 }
 c_JSONTokeniser.prototype.p_NextToken=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<130>";
 	var t_retToken=null;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<131>";
 	this.p_SkipIgnored();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<133>";
 	var t_2=this.m_char;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<135>";
 	if(t_2==123){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<136>";
 		t_retToken=c_JSONToken.m_CreateToken3(1,"{");
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<137>";
 		if(t_2==125){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<138>";
 			t_retToken=c_JSONToken.m_CreateToken3(2,"}");
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<139>";
 			if(t_2==91){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<140>";
 				t_retToken=c_JSONToken.m_CreateToken3(3,"[");
 			}else{
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<141>";
 				if(t_2==93){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<142>";
 					t_retToken=c_JSONToken.m_CreateToken3(4,"]");
 				}else{
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<143>";
 					if(t_2==44){
+						err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<144>";
 						t_retToken=c_JSONToken.m_CreateToken3(0,",");
 					}else{
+						err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<145>";
 						if(t_2==58){
+							err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<146>";
 							t_retToken=c_JSONToken.m_CreateToken3(6,":");
 						}else{
+							err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<147>";
 							if(t_2==116){
+								err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<148>";
 								if(string_compare(this.m_jsonString.slice(this.m_stringIndex,this.m_stringIndex+3),"rue")==0){
+									err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<149>";
 									this.m_stringIndex+=3;
+									err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<150>";
 									t_retToken=c_JSONToken.m_CreateToken3(7,"true");
 								}
 							}else{
+								err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<152>";
 								if(t_2==102){
+									err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<153>";
 									if(string_compare(this.m_jsonString.slice(this.m_stringIndex,this.m_stringIndex+4),"alse")==0){
+										err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<154>";
 										this.m_stringIndex+=4;
+										err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<155>";
 										t_retToken=c_JSONToken.m_CreateToken3(8,"false");
 									}
 								}else{
+									err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<157>";
 									if(t_2==110){
+										err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<158>";
 										if(string_compare(this.m_jsonString.slice(this.m_stringIndex,this.m_stringIndex+3),"ull")==0){
+											err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<159>";
 											this.m_stringIndex+=3;
+											err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<160>";
 											t_retToken=c_JSONToken.m_CreateToken3(9,"null");
 										}
 									}else{
+										err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<162>";
 										if(t_2==34){
+											err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<163>";
 											var t_startIndex=this.m_stringIndex;
+											err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<164>";
 											var t_endIndex=this.m_jsonString.indexOf("\"",this.m_stringIndex);
-											while(t_endIndex!=-1 && this.m_jsonString.charCodeAt(t_endIndex-1)==92){
+											err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<165>";
+											while(t_endIndex!=-1 && dbg_charCodeAt(this.m_jsonString,t_endIndex-1)==92){
+												err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<166>";
 												t_endIndex=this.m_jsonString.indexOf("\"",t_endIndex+1);
 											}
+											err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<168>";
 											if(t_endIndex==-1){
+												err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<169>";
 												this.p_ParseFailure("Unterminated string");
 											}
+											err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<172>";
 											t_retToken=c_JSONToken.m_CreateToken3(10,this.m_jsonString.slice(t_startIndex,t_endIndex));
+											err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<173>";
 											this.m_stringIndex=t_endIndex+1;
 										}else{
+											err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<177>";
 											if(this.m_char==45 || this.p_IsDigit(this.m_char)){
-												return this.p_ParseNumberToken(this.m_char);
+												err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<178>";
+												var t_=this.p_ParseNumberToken(this.m_char);
+												pop_err();
+												return t_;
 											}else{
+												err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<179>";
 												if(this.m_char==0){
+													err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<180>";
 													t_retToken=null;
 												}
 											}
@@ -6125,12 +8988,18 @@ c_JSONTokeniser.prototype.p_NextToken=function(){
 			}
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<184>";
 	if(t_retToken==null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<185>";
 		this.p_ParseFailure("Unknown token, char: "+String.fromCharCode(this.m_char));
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<186>";
 		t_retToken=c_JSONToken.m_CreateToken4(-1,null);
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<188>";
 		this.p_NextChar();
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<190>";
+	pop_err();
 	return t_retToken;
 }
 function c_ASCIICodes(){
@@ -6142,48 +9011,94 @@ function c_JSONToken(){
 	this.m_value=null;
 }
 c_JSONToken.m_new=function(t_tokenType,t_value){
-	this.m_tokenType=t_tokenType;
-	this.m_value=t_value;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<54>";
+	dbg_object(this).m_tokenType=t_tokenType;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<55>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
 	return this;
 }
 c_JSONToken.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<30>";
+	pop_err();
 	return this;
 }
 c_JSONToken.m_reusableToken=null;
 c_JSONToken.m_CreateToken=function(t_tokenType,t_value){
-	c_JSONToken.m_reusableToken.m_tokenType=t_tokenType;
-	c_JSONToken.m_reusableToken.m_value=(c_FloatObject.m_new2.call(new c_FloatObject,t_value));
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<61>";
+	dbg_object(c_JSONToken.m_reusableToken).m_tokenType=t_tokenType;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<62>";
+	dbg_object(c_JSONToken.m_reusableToken).m_value=(c_FloatObject.m_new2.call(new c_FloatObject,t_value));
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<63>";
+	pop_err();
 	return c_JSONToken.m_reusableToken;
 }
 c_JSONToken.m_CreateToken2=function(t_tokenType,t_value){
-	c_JSONToken.m_reusableToken.m_tokenType=t_tokenType;
-	c_JSONToken.m_reusableToken.m_value=(c_IntObject.m_new.call(new c_IntObject,t_value));
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<67>";
+	dbg_object(c_JSONToken.m_reusableToken).m_tokenType=t_tokenType;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<68>";
+	dbg_object(c_JSONToken.m_reusableToken).m_value=(c_IntObject.m_new.call(new c_IntObject,t_value));
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<69>";
+	pop_err();
 	return c_JSONToken.m_reusableToken;
 }
 c_JSONToken.m_CreateToken3=function(t_tokenType,t_value){
-	c_JSONToken.m_reusableToken.m_tokenType=t_tokenType;
-	c_JSONToken.m_reusableToken.m_value=(c_StringObject.m_new3.call(new c_StringObject,t_value));
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<73>";
+	dbg_object(c_JSONToken.m_reusableToken).m_tokenType=t_tokenType;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<74>";
+	dbg_object(c_JSONToken.m_reusableToken).m_value=(c_StringObject.m_new3.call(new c_StringObject,t_value));
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<75>";
+	pop_err();
 	return c_JSONToken.m_reusableToken;
 }
 c_JSONToken.m_CreateToken4=function(t_tokenType,t_value){
-	c_JSONToken.m_reusableToken.m_tokenType=t_tokenType;
-	c_JSONToken.m_reusableToken.m_value=t_value;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<79>";
+	dbg_object(c_JSONToken.m_reusableToken).m_tokenType=t_tokenType;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<80>";
+	dbg_object(c_JSONToken.m_reusableToken).m_value=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<81>";
+	pop_err();
 	return c_JSONToken.m_reusableToken;
 }
 c_JSONToken.prototype.p_GetValueString=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<89>";
 	var t_1=this.m_tokenType;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<90>";
 	if(t_1==11){
-		return ""+(object_downcast((this.m_value),c_FloatObject).p_ToString());
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<91>";
+		var t_=""+(object_downcast((this.m_value),c_FloatObject).p_ToString());
+		pop_err();
+		return t_;
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<92>";
 		if(t_1==13){
-			return ""+(object_downcast((this.m_value),c_IntObject).p_ToString());
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<93>";
+			var t_2=""+(object_downcast((this.m_value),c_IntObject).p_ToString());
+			pop_err();
+			return t_2;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<94>";
 			if(t_1==9){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<95>";
+				pop_err();
 				return "NULL";
 			}else{
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<97>";
 				if((this.m_value)!=null){
-					return (object_downcast((this.m_value),c_StringObject).p_ToString());
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<98>";
+					var t_3=(object_downcast((this.m_value),c_StringObject).p_ToString());
+					pop_err();
+					return t_3;
 				}else{
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<100>";
+					pop_err();
 					return "Null value";
 				}
 			}
@@ -6191,18 +9106,34 @@ c_JSONToken.prototype.p_GetValueString=function(){
 	}
 }
 c_JSONToken.prototype.p_ToString=function(){
-	return "JSONToken - type: "+String(this.m_tokenType)+", value: "+this.p_GetValueString();
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/tokeniser.monkey<85>";
+	var t_="JSONToken - type: "+String(this.m_tokenType)+", value: "+this.p_GetValueString();
+	pop_err();
+	return t_;
 }
 function bb_math_Min(t_x,t_y){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<51>";
 	if(t_x<t_y){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<51>";
+		pop_err();
 		return t_x;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<52>";
+	pop_err();
 	return t_y;
 }
 function bb_math_Min2(t_x,t_y){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<78>";
 	if(t_x<t_y){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<78>";
+		pop_err();
 		return t_x;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<79>";
+	pop_err();
 	return t_y;
 }
 function c_FloatObject(){
@@ -6210,20 +9141,36 @@ function c_FloatObject(){
 	this.m_value=.0;
 }
 c_FloatObject.m_new=function(t_value){
-	this.m_value=(t_value);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/boxes.monkey<59>";
+	dbg_object(this).m_value=(t_value);
+	pop_err();
 	return this;
 }
 c_FloatObject.m_new2=function(t_value){
-	this.m_value=t_value;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/boxes.monkey<63>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
 	return this;
 }
 c_FloatObject.m_new3=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/boxes.monkey<55>";
+	pop_err();
 	return this;
 }
 c_FloatObject.prototype.p_ToString=function(){
-	return String(this.m_value);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/boxes.monkey<75>";
+	var t_=String(this.m_value);
+	pop_err();
+	return t_;
 }
 c_FloatObject.prototype.p_ToFloat=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/boxes.monkey<71>";
+	pop_err();
 	return this.m_value;
 }
 function c_IntObject(){
@@ -6231,20 +9178,36 @@ function c_IntObject(){
 	this.m_value=0;
 }
 c_IntObject.m_new=function(t_value){
-	this.m_value=t_value;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/boxes.monkey<27>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
 	return this;
 }
 c_IntObject.m_new2=function(t_value){
-	this.m_value=((t_value)|0);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/boxes.monkey<31>";
+	dbg_object(this).m_value=((t_value)|0);
+	pop_err();
 	return this;
 }
 c_IntObject.m_new3=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/boxes.monkey<23>";
+	pop_err();
 	return this;
 }
 c_IntObject.prototype.p_ToString=function(){
-	return String(this.m_value);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/boxes.monkey<43>";
+	var t_=String(this.m_value);
+	pop_err();
+	return t_;
 }
 c_IntObject.prototype.p_ToInt=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/boxes.monkey<35>";
+	pop_err();
 	return this.m_value;
 }
 function c_StringObject(){
@@ -6252,21 +9215,36 @@ function c_StringObject(){
 	this.m_value="";
 }
 c_StringObject.m_new=function(t_value){
-	this.m_value=String(t_value);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/boxes.monkey<92>";
+	dbg_object(this).m_value=String(t_value);
+	pop_err();
 	return this;
 }
 c_StringObject.m_new2=function(t_value){
-	this.m_value=String(t_value);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/boxes.monkey<96>";
+	dbg_object(this).m_value=String(t_value);
+	pop_err();
 	return this;
 }
 c_StringObject.m_new3=function(t_value){
-	this.m_value=t_value;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/boxes.monkey<100>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
 	return this;
 }
 c_StringObject.m_new4=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/boxes.monkey<88>";
+	pop_err();
 	return this;
 }
 c_StringObject.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/boxes.monkey<104>";
+	pop_err();
 	return this.m_value;
 }
 function c_JSONObject(){
@@ -6275,63 +9253,125 @@ function c_JSONObject(){
 }
 c_JSONObject.prototype=extend_class(c_JSONDataItem);
 c_JSONObject.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<663>";
 	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<664>";
 	this.m_dataType=1;
+	pop_err();
 	return this;
 }
 c_JSONObject.prototype.p_AddItem=function(t_name,t_dataItem){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<684>";
 	this.m_values.p_Set4(t_name,t_dataItem);
+	pop_err();
 }
 c_JSONObject.prototype.p_GetItem=function(t_name){
-	return this.m_values.p_Get2(t_name);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<692>";
+	var t_=this.m_values.p_Get2(t_name);
+	pop_err();
+	return t_;
 }
 c_JSONObject.prototype.p_GetItem2=function(t_name,t_defaultValue){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<704>";
 	var t_item=this.m_values.p_Get2(t_name);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<705>";
 	if(t_item!=null){
-		return (t_item.p_ToString());
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<706>";
+		var t_=(t_item.p_ToString());
+		pop_err();
+		return t_;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<708>";
+	pop_err();
 	return t_defaultValue;
 }
 c_JSONObject.prototype.p_GetItem3=function(t_name,t_defaultValue){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<712>";
 	var t_item=this.m_values.p_Get2(t_name);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<713>";
 	if(t_item!=null){
-		return (t_item.p_ToInt());
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<714>";
+		var t_=(t_item.p_ToInt());
+		pop_err();
+		return t_;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<716>";
+	pop_err();
 	return t_defaultValue;
 }
 c_JSONObject.prototype.p_GetItem4=function(t_name,t_defaultValue){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<720>";
 	var t_item=this.m_values.p_Get2(t_name);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<721>";
 	if(t_item!=null){
-		return (t_item.p_ToFloat());
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<722>";
+		var t_=(t_item.p_ToFloat());
+		pop_err();
+		return t_;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<724>";
+	pop_err();
 	return t_defaultValue;
 }
 c_JSONObject.prototype.p_GetItem5=function(t_name,t_defaultValue){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<728>";
 	var t_item=this.m_values.p_Get2(t_name);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<729>";
 	if(t_item!=null){
-		return (t_item.p_ToBool());
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<730>";
+		var t_=(t_item.p_ToBool());
+		pop_err();
+		return t_;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<732>";
+	pop_err();
 	return t_defaultValue;
 }
 c_JSONObject.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<758>";
 	var t_retString=c_StringBuilder.m_new.call(new c_StringBuilder,this.m_values.p_Count()*5+5);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<759>";
 	var t_first=true;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<761>";
 	t_retString.p_AddString("{");
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<763>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<763>";
 	var t_=this.m_values.p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<763>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<763>";
 		var t_v=t_.p_NextObject();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<764>";
 		if(t_first){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<765>";
 			t_first=false;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<767>";
 			t_retString.p_AddString(",");
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<769>";
 		t_retString.p_AddString("\"");
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<770>";
 		t_retString.p_AddString(t_v.p_Key());
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<771>";
 		t_retString.p_AddString("\":");
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<772>";
 		t_retString.p_AddString(t_v.p_Value().p_ToString());
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<774>";
 	t_retString.p_AddString("}");
-	return t_retString.p_ToString();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<775>";
+	var t_2=t_retString.p_ToString();
+	pop_err();
+	return t_2;
 }
 function c_JSONDataType(){
 	Object.call(this);
@@ -6342,16 +9382,28 @@ function c_JSONNonData(){
 }
 c_JSONNonData.prototype=extend_class(c_JSONDataItem);
 c_JSONNonData.m_new=function(t_token){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<408>";
 	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<409>";
 	this.m_dataType=9;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<410>";
 	this.m_value=t_token;
+	pop_err();
 	return this;
 }
 c_JSONNonData.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<405>";
 	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<405>";
+	pop_err();
 	return this;
 }
 c_JSONNonData.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<414>";
+	pop_err();
 	return "Non Data";
 }
 function c_JSONDataError(){
@@ -6360,16 +9412,28 @@ function c_JSONDataError(){
 }
 c_JSONDataError.prototype=extend_class(c_JSONDataItem);
 c_JSONDataError.m_new=function(t_errorDescription,t_location){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<395>";
 	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<396>";
 	this.m_dataType=-1;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<397>";
 	this.m_value=t_errorDescription+"\nJSON Location: "+t_location;
+	pop_err();
 	return this;
 }
 c_JSONDataError.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<392>";
 	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<392>";
+	pop_err();
 	return this;
 }
 c_JSONDataError.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<401>";
+	pop_err();
 	return this.m_value;
 }
 function c_JSONString(){
@@ -6379,21 +9443,36 @@ function c_JSONString(){
 }
 c_JSONString.prototype=extend_class(c_JSONDataItem);
 c_JSONString.m_new=function(t_value,t_isMonkeyString){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<489>";
 	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<490>";
 	this.m_dataType=5;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<491>";
 	if(!t_isMonkeyString){
-		this.m_value=c_JSONData.m_UnEscapeJSON(t_value);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<492>";
+		dbg_object(this).m_value=c_JSONData.m_UnEscapeJSON(t_value);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<493>";
 		this.m_jsonReady="\""+t_value+"\"";
 	}else{
-		this.m_value=t_value;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<495>";
+		dbg_object(this).m_value=t_value;
 	}
+	pop_err();
 	return this;
 }
 c_JSONString.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<481>";
 	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<481>";
+	pop_err();
 	return this;
 }
 c_JSONString.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<507>";
+	pop_err();
 	return this.m_value;
 }
 function c_Map7(){
@@ -6401,178 +9480,314 @@ function c_Map7(){
 	this.m_root=null;
 }
 c_Map7.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<7>";
+	pop_err();
 	return this;
 }
 c_Map7.prototype.p_Compare2=function(t_lhs,t_rhs){
 }
 c_Map7.prototype.p_RotateLeft4=function(t_node){
-	var t_child=t_node.m_right;
-	t_node.m_right=t_child.m_left;
-	if((t_child.m_left)!=null){
-		t_child.m_left.m_parent=t_node;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<251>";
+	var t_child=dbg_object(t_node).m_right;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<252>";
+	dbg_object(t_node).m_right=dbg_object(t_child).m_left;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<253>";
+	if((dbg_object(t_child).m_left)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<254>";
+		dbg_object(dbg_object(t_child).m_left).m_parent=t_node;
 	}
-	t_child.m_parent=t_node.m_parent;
-	if((t_node.m_parent)!=null){
-		if(t_node==t_node.m_parent.m_left){
-			t_node.m_parent.m_left=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<256>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<257>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<258>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<259>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
 		}else{
-			t_node.m_parent.m_right=t_child;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<261>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<264>";
 		this.m_root=t_child;
 	}
-	t_child.m_left=t_node;
-	t_node.m_parent=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<266>";
+	dbg_object(t_child).m_left=t_node;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<267>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
 	return 0;
 }
 c_Map7.prototype.p_RotateRight4=function(t_node){
-	var t_child=t_node.m_left;
-	t_node.m_left=t_child.m_right;
-	if((t_child.m_right)!=null){
-		t_child.m_right.m_parent=t_node;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<271>";
+	var t_child=dbg_object(t_node).m_left;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<272>";
+	dbg_object(t_node).m_left=dbg_object(t_child).m_right;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<273>";
+	if((dbg_object(t_child).m_right)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<274>";
+		dbg_object(dbg_object(t_child).m_right).m_parent=t_node;
 	}
-	t_child.m_parent=t_node.m_parent;
-	if((t_node.m_parent)!=null){
-		if(t_node==t_node.m_parent.m_right){
-			t_node.m_parent.m_right=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<276>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<277>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<278>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<279>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
 		}else{
-			t_node.m_parent.m_left=t_child;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<281>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<284>";
 		this.m_root=t_child;
 	}
-	t_child.m_right=t_node;
-	t_node.m_parent=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<286>";
+	dbg_object(t_child).m_right=t_node;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<287>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
 	return 0;
 }
 c_Map7.prototype.p_InsertFixup4=function(t_node){
-	while(((t_node.m_parent)!=null) && t_node.m_parent.m_color==-1 && ((t_node.m_parent.m_parent)!=null)){
-		if(t_node.m_parent==t_node.m_parent.m_parent.m_left){
-			var t_uncle=t_node.m_parent.m_parent.m_right;
-			if(((t_uncle)!=null) && t_uncle.m_color==-1){
-				t_node.m_parent.m_color=1;
-				t_uncle.m_color=1;
-				t_uncle.m_parent.m_color=-1;
-				t_node=t_uncle.m_parent;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<212>";
+	while(((dbg_object(t_node).m_parent)!=null) && dbg_object(dbg_object(t_node).m_parent).m_color==-1 && ((dbg_object(dbg_object(t_node).m_parent).m_parent)!=null)){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<213>";
+		if(dbg_object(t_node).m_parent==dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<214>";
+			var t_uncle=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_right;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<215>";
+			if(((t_uncle)!=null) && dbg_object(t_uncle).m_color==-1){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<216>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<217>";
+				dbg_object(t_uncle).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<218>";
+				dbg_object(dbg_object(t_uncle).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<219>";
+				t_node=dbg_object(t_uncle).m_parent;
 			}else{
-				if(t_node==t_node.m_parent.m_right){
-					t_node=t_node.m_parent;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<221>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<222>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<223>";
 					this.p_RotateLeft4(t_node);
 				}
-				t_node.m_parent.m_color=1;
-				t_node.m_parent.m_parent.m_color=-1;
-				this.p_RotateRight4(t_node.m_parent.m_parent);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<225>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<226>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<227>";
+				this.p_RotateRight4(dbg_object(dbg_object(t_node).m_parent).m_parent);
 			}
 		}else{
-			var t_uncle2=t_node.m_parent.m_parent.m_left;
-			if(((t_uncle2)!=null) && t_uncle2.m_color==-1){
-				t_node.m_parent.m_color=1;
-				t_uncle2.m_color=1;
-				t_uncle2.m_parent.m_color=-1;
-				t_node=t_uncle2.m_parent;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<230>";
+			var t_uncle2=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<231>";
+			if(((t_uncle2)!=null) && dbg_object(t_uncle2).m_color==-1){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<232>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<233>";
+				dbg_object(t_uncle2).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<234>";
+				dbg_object(dbg_object(t_uncle2).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<235>";
+				t_node=dbg_object(t_uncle2).m_parent;
 			}else{
-				if(t_node==t_node.m_parent.m_left){
-					t_node=t_node.m_parent;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<237>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<238>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<239>";
 					this.p_RotateRight4(t_node);
 				}
-				t_node.m_parent.m_color=1;
-				t_node.m_parent.m_parent.m_color=-1;
-				this.p_RotateLeft4(t_node.m_parent.m_parent);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<241>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<242>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<243>";
+				this.p_RotateLeft4(dbg_object(dbg_object(t_node).m_parent).m_parent);
 			}
 		}
 	}
-	this.m_root.m_color=1;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<247>";
+	dbg_object(this.m_root).m_color=1;
+	pop_err();
 	return 0;
 }
 c_Map7.prototype.p_Set4=function(t_key,t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<29>";
 	var t_node=this.m_root;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<30>";
 	var t_parent=null;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<30>";
 	var t_cmp=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<32>";
 	while((t_node)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<33>";
 		t_parent=t_node;
-		t_cmp=this.p_Compare2(t_key,t_node.m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<34>";
+		t_cmp=this.p_Compare2(t_key,dbg_object(t_node).m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<35>";
 		if(t_cmp>0){
-			t_node=t_node.m_right;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<36>";
+			t_node=dbg_object(t_node).m_right;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<37>";
 			if(t_cmp<0){
-				t_node=t_node.m_left;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<38>";
+				t_node=dbg_object(t_node).m_left;
 			}else{
-				t_node.m_value=t_value;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<40>";
+				dbg_object(t_node).m_value=t_value;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<41>";
+				pop_err();
 				return false;
 			}
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<45>";
 	t_node=c_Node8.m_new.call(new c_Node8,t_key,t_value,-1,t_parent);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<47>";
 	if((t_parent)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<48>";
 		if(t_cmp>0){
-			t_parent.m_right=t_node;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<49>";
+			dbg_object(t_parent).m_right=t_node;
 		}else{
-			t_parent.m_left=t_node;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<51>";
+			dbg_object(t_parent).m_left=t_node;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<53>";
 		this.p_InsertFixup4(t_node);
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<55>";
 		this.m_root=t_node;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<57>";
+	pop_err();
 	return true;
 }
 c_Map7.prototype.p_FindNode2=function(t_key){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<157>";
 	var t_node=this.m_root;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<159>";
 	while((t_node)!=null){
-		var t_cmp=this.p_Compare2(t_key,t_node.m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<160>";
+		var t_cmp=this.p_Compare2(t_key,dbg_object(t_node).m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<161>";
 		if(t_cmp>0){
-			t_node=t_node.m_right;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<162>";
+			t_node=dbg_object(t_node).m_right;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<163>";
 			if(t_cmp<0){
-				t_node=t_node.m_left;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<164>";
+				t_node=dbg_object(t_node).m_left;
 			}else{
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<166>";
+				pop_err();
 				return t_node;
 			}
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<169>";
+	pop_err();
 	return t_node;
 }
 c_Map7.prototype.p_Get2=function(t_key){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<101>";
 	var t_node=this.p_FindNode2(t_key);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<102>";
 	if((t_node)!=null){
-		return t_node.m_value;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<102>";
+		pop_err();
+		return dbg_object(t_node).m_value;
 	}
+	pop_err();
 	return null;
 }
 c_Map7.prototype.p_Keys=function(){
-	return c_MapKeys.m_new.call(new c_MapKeys,this);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<113>";
+	var t_=c_MapKeys.m_new.call(new c_MapKeys,this);
+	pop_err();
+	return t_;
 }
 c_Map7.prototype.p_FirstNode=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<125>";
 	if(!((this.m_root)!=null)){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<125>";
+		pop_err();
 		return null;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<127>";
 	var t_node=this.m_root;
-	while((t_node.m_left)!=null){
-		t_node=t_node.m_left;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<128>";
+	while((dbg_object(t_node).m_left)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<129>";
+		t_node=dbg_object(t_node).m_left;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<131>";
+	pop_err();
 	return t_node;
 }
 c_Map7.prototype.p_Values=function(){
-	return c_MapValues3.m_new.call(new c_MapValues3,this);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<117>";
+	var t_=c_MapValues3.m_new.call(new c_MapValues3,this);
+	pop_err();
+	return t_;
 }
 c_Map7.prototype.p_Count=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<17>";
 	if((this.m_root)!=null){
-		return this.m_root.p_Count2(0);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<17>";
+		var t_=this.m_root.p_Count2(0);
+		pop_err();
+		return t_;
 	}
+	pop_err();
 	return 0;
 }
 c_Map7.prototype.p_ObjectEnumerator=function(){
-	return c_NodeEnumerator.m_new.call(new c_NodeEnumerator,this.p_FirstNode());
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<121>";
+	var t_=c_NodeEnumerator.m_new.call(new c_NodeEnumerator,this.p_FirstNode());
+	pop_err();
+	return t_;
 }
 function c_StringMap5(){
 	c_Map7.call(this);
 }
 c_StringMap5.prototype=extend_class(c_Map7);
 c_StringMap5.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<551>";
 	c_Map7.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<551>";
+	pop_err();
 	return this;
 }
 c_StringMap5.prototype.p_Compare2=function(t_lhs,t_rhs){
-	return string_compare(t_lhs,t_rhs);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<554>";
+	var t_=string_compare(t_lhs,t_rhs);
+	pop_err();
+	return t_;
 }
 function c_Node8(){
 	Object.call(this);
@@ -6584,45 +9799,83 @@ function c_Node8(){
 	this.m_parent=null;
 }
 c_Node8.m_new=function(t_key,t_value,t_color,t_parent){
-	this.m_key=t_key;
-	this.m_value=t_value;
-	this.m_color=t_color;
-	this.m_parent=t_parent;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<364>";
+	dbg_object(this).m_key=t_key;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<365>";
+	dbg_object(this).m_value=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<366>";
+	dbg_object(this).m_color=t_color;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<367>";
+	dbg_object(this).m_parent=t_parent;
+	pop_err();
 	return this;
 }
 c_Node8.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<361>";
+	pop_err();
 	return this;
 }
 c_Node8.prototype.p_NextNode=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<385>";
 	var t_node=null;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<386>";
 	if((this.m_right)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<387>";
 		t_node=this.m_right;
-		while((t_node.m_left)!=null){
-			t_node=t_node.m_left;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<388>";
+		while((dbg_object(t_node).m_left)!=null){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<389>";
+			t_node=dbg_object(t_node).m_left;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<391>";
+		pop_err();
 		return t_node;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<393>";
 	t_node=this;
-	var t_parent=this.m_parent;
-	while(((t_parent)!=null) && t_node==t_parent.m_right){
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<394>";
+	var t_parent=dbg_object(this).m_parent;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<395>";
+	while(((t_parent)!=null) && t_node==dbg_object(t_parent).m_right){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<396>";
 		t_node=t_parent;
-		t_parent=t_parent.m_parent;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<397>";
+		t_parent=dbg_object(t_parent).m_parent;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<399>";
+	pop_err();
 	return t_parent;
 }
 c_Node8.prototype.p_Count2=function(t_n){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<371>";
 	if((this.m_left)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<371>";
 		t_n=this.m_left.p_Count2(t_n);
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<372>";
 	if((this.m_right)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<372>";
 		t_n=this.m_right.p_Count2(t_n);
 	}
-	return t_n+1;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<373>";
+	var t_=t_n+1;
+	pop_err();
+	return t_;
 }
 c_Node8.prototype.p_Key=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<377>";
+	pop_err();
 	return this.m_key;
 }
 c_Node8.prototype.p_Value=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<381>";
+	pop_err();
 	return this.m_value;
 }
 function c_JSONArray(){
@@ -6631,63 +9884,117 @@ function c_JSONArray(){
 }
 c_JSONArray.prototype=extend_class(c_JSONDataItem);
 c_JSONArray.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<554>";
 	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<555>";
 	this.m_dataType=2;
+	pop_err();
 	return this;
 }
 c_JSONArray.prototype.p_AddItem2=function(t_dataItem){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<575>";
 	this.m_values.p_AddLast2(t_dataItem);
+	pop_err();
 }
 c_JSONArray.prototype.p_ObjectEnumerator=function(){
-	return this.m_values.p_ObjectEnumerator();
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<621>";
+	var t_=this.m_values.p_ObjectEnumerator();
+	pop_err();
+	return t_;
 }
 c_JSONArray.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<601>";
 	var t_retString=c_StringBuilder.m_new.call(new c_StringBuilder,this.m_values.p_Count()*2+5);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<602>";
 	var t_first=true;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<604>";
 	t_retString.p_AddString("[");
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<606>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<606>";
 	var t_=this.m_values.p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<606>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<606>";
 		var t_v=t_.p_NextObject();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<607>";
 		if(t_first){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<608>";
 			t_first=false;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<610>";
 			t_retString.p_AddString(",");
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<612>";
 		t_retString.p_AddString(t_v.p_ToString());
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<615>";
 	t_retString.p_AddString("]");
-	return t_retString.p_ToString();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<617>";
+	var t_2=t_retString.p_ToString();
+	pop_err();
+	return t_2;
 }
 function c_List3(){
 	Object.call(this);
 	this.m__head=(c_HeadNode3.m_new.call(new c_HeadNode3));
 }
 c_List3.m_new=function(){
+	push_err();
+	pop_err();
 	return this;
 }
 c_List3.prototype.p_AddLast2=function(t_data){
-	return c_Node9.m_new.call(new c_Node9,this.m__head,this.m__head.m__pred,t_data);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<108>";
+	var t_=c_Node9.m_new.call(new c_Node9,this.m__head,dbg_object(this.m__head).m__pred,t_data);
+	pop_err();
+	return t_;
 }
 c_List3.m_new2=function(t_data){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 	var t_=t_data;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 	var t_2=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 	while(t_2<t_.length){
-		var t_t=t_[t_2];
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
+		var t_t=dbg_array(t_,t_2)[dbg_index];
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 		t_2=t_2+1;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<14>";
 		this.p_AddLast2(t_t);
 	}
+	pop_err();
 	return this;
 }
 c_List3.prototype.p_ObjectEnumerator=function(){
-	return c_Enumerator4.m_new.call(new c_Enumerator4,this);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<186>";
+	var t_=c_Enumerator4.m_new.call(new c_Enumerator4,this);
+	pop_err();
+	return t_;
 }
 c_List3.prototype.p_Count=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<41>";
 	var t_n=0;
-	var t_node=this.m__head.m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<41>";
+	var t_node=dbg_object(this.m__head).m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<42>";
 	while(t_node!=this.m__head){
-		t_node=t_node.m__succ;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<43>";
+		t_node=dbg_object(t_node).m__succ;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<44>";
 		t_n+=1;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<46>";
+	pop_err();
 	return t_n;
 }
 function c_Node9(){
@@ -6697,14 +10004,24 @@ function c_Node9(){
 	this.m__data=null;
 }
 c_Node9.m_new=function(t_succ,t_pred,t_data){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<261>";
 	this.m__succ=t_succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<262>";
 	this.m__pred=t_pred;
-	this.m__succ.m__pred=this;
-	this.m__pred.m__succ=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<263>";
+	dbg_object(this.m__succ).m__pred=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<264>";
+	dbg_object(this.m__pred).m__succ=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<265>";
 	this.m__data=t_data;
+	pop_err();
 	return this;
 }
 c_Node9.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<258>";
+	pop_err();
 	return this;
 }
 function c_HeadNode3(){
@@ -6712,9 +10029,14 @@ function c_HeadNode3(){
 }
 c_HeadNode3.prototype=extend_class(c_Node9);
 c_HeadNode3.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<310>";
 	c_Node9.m_new2.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<311>";
 	this.m__succ=(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<312>";
 	this.m__pred=(this);
+	pop_err();
 	return this;
 }
 function c_StringBuilder(){
@@ -6723,24 +10045,42 @@ function c_StringBuilder(){
 	this.m_index=0;
 }
 c_StringBuilder.m_new=function(t_initialSize){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<39>";
 	if(t_initialSize<1){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<40>";
 		t_initialSize=1;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<42>";
 	this.m_retStrings=new_string_array(t_initialSize);
+	pop_err();
 	return this;
 }
 c_StringBuilder.prototype.p_AddString=function(t_add){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<46>";
 	if(this.m_index==this.m_retStrings.length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<47>";
 		this.m_retStrings=resize_string_array(this.m_retStrings,this.m_retStrings.length*2);
 	}
-	this.m_retStrings[this.m_index]=t_add;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<49>";
+	dbg_array(this.m_retStrings,this.m_index)[dbg_index]=t_add;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<50>";
 	this.m_index+=1;
+	pop_err();
 }
 c_StringBuilder.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<54>";
 	if(this.m_index<2){
-		return this.m_retStrings[0];
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<55>";
+		pop_err();
+		return dbg_array(this.m_retStrings,0)[dbg_index];
 	}else{
-		return this.m_retStrings.slice(0,this.m_index).join("");
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<57>";
+		var t_=this.m_retStrings.slice(0,this.m_index).join("");
+		pop_err();
+		return t_;
 	}
 }
 function c_JSONFloat(){
@@ -6751,39 +10091,73 @@ function c_JSONFloat(){
 }
 c_JSONFloat.prototype=extend_class(c_JSONDataItem);
 c_JSONFloat.m_new=function(t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<423>";
 	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<424>";
 	this.m_dataType=3;
-	this.m_value=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<425>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
 	return this;
 }
 c_JSONFloat.m_new2=function(t_unparsedStr){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<431>";
 	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<432>";
 	this.m_dataType=3;
-	this.m_unparsedStr=t_unparsedStr;
-	this.m_unparsed=true;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<433>";
+	dbg_object(this).m_unparsedStr=t_unparsedStr;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<434>";
+	dbg_object(this).m_unparsed=true;
+	pop_err();
 	return this;
 }
 c_JSONFloat.m_new3=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<418>";
 	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<418>";
+	pop_err();
 	return this;
 }
 c_JSONFloat.prototype.p_Parse=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<438>";
 	if(this.m_unparsed){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<439>";
 		this.m_value=parseFloat(this.m_unparsedStr);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<440>";
 		this.m_unparsed=false;
 	}
+	pop_err();
 }
 c_JSONFloat.prototype.p_ToInt=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<445>";
 	this.p_Parse();
-	return ((this.m_value)|0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<446>";
+	var t_=((this.m_value)|0);
+	pop_err();
+	return t_;
 }
 c_JSONFloat.prototype.p_ToFloat=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<450>";
 	this.p_Parse();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<451>";
+	pop_err();
 	return this.m_value;
 }
 c_JSONFloat.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<455>";
 	this.p_Parse();
-	return String(this.m_value);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<456>";
+	var t_=String(this.m_value);
+	pop_err();
+	return t_;
 }
 function c_JSONInteger(){
 	c_JSONDataItem.call(this);
@@ -6791,23 +10165,43 @@ function c_JSONInteger(){
 }
 c_JSONInteger.prototype=extend_class(c_JSONDataItem);
 c_JSONInteger.m_new=function(t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<463>";
 	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<464>";
 	this.m_dataType=4;
-	this.m_value=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<465>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
 	return this;
 }
 c_JSONInteger.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<460>";
 	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<460>";
+	pop_err();
 	return this;
 }
 c_JSONInteger.prototype.p_ToInt=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<469>";
+	pop_err();
 	return this.m_value;
 }
 c_JSONInteger.prototype.p_ToFloat=function(){
-	return (this.m_value);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<473>";
+	var t_=(this.m_value);
+	pop_err();
+	return t_;
 }
 c_JSONInteger.prototype.p_ToString=function(){
-	return String(this.m_value);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<477>";
+	var t_=String(this.m_value);
+	pop_err();
+	return t_;
 }
 function c_JSONBool(){
 	c_JSONDataItem.call(this);
@@ -6815,22 +10209,40 @@ function c_JSONBool(){
 }
 c_JSONBool.prototype=extend_class(c_JSONDataItem);
 c_JSONBool.m_new=function(t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<515>";
 	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<516>";
 	this.m_dataType=6;
-	this.m_value=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<517>";
+	dbg_object(this).m_value=t_value;
+	pop_err();
 	return this;
 }
 c_JSONBool.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<512>";
 	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<512>";
+	pop_err();
 	return this;
 }
 c_JSONBool.prototype.p_ToBool=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<521>";
+	pop_err();
 	return this.m_value;
 }
 c_JSONBool.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<525>";
 	if(this.m_value){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<526>";
+		pop_err();
 		return "True";
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<528>";
+		pop_err();
 		return "False";
 	}
 }
@@ -6839,11 +10251,19 @@ function c_JSONNull(){
 }
 c_JSONNull.prototype=extend_class(c_JSONDataItem);
 c_JSONNull.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<542>";
 	c_JSONDataItem.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<542>";
+	pop_err();
 	return this;
 }
 c_JSONNull.prototype.p_ToString=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<546>";
 	this.m_dataType=7;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/json/jsondata.monkey<547>";
+	pop_err();
 	return "NULL";
 }
 function c_Enumerator4(){
@@ -6852,22 +10272,40 @@ function c_Enumerator4(){
 	this.m__curr=null;
 }
 c_Enumerator4.m_new=function(t_list){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<326>";
 	this.m__list=t_list;
-	this.m__curr=t_list.m__head.m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<327>";
+	this.m__curr=dbg_object(dbg_object(t_list).m__head).m__succ;
+	pop_err();
 	return this;
 }
 c_Enumerator4.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<323>";
+	pop_err();
 	return this;
 }
 c_Enumerator4.prototype.p_HasNext=function(){
-	while(this.m__curr.m__succ.m__pred!=this.m__curr){
-		this.m__curr=this.m__curr.m__succ;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<331>";
+	while(dbg_object(dbg_object(this.m__curr).m__succ).m__pred!=this.m__curr){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<332>";
+		this.m__curr=dbg_object(this.m__curr).m__succ;
 	}
-	return this.m__curr!=this.m__list.m__head;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<334>";
+	var t_=this.m__curr!=dbg_object(this.m__list).m__head;
+	pop_err();
+	return t_;
 }
 c_Enumerator4.prototype.p_NextObject=function(){
-	var t_data=this.m__curr.m__data;
-	this.m__curr=this.m__curr.m__succ;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<338>";
+	var t_data=dbg_object(this.m__curr).m__data;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<339>";
+	this.m__curr=dbg_object(this.m__curr).m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<340>";
+	pop_err();
 	return t_data;
 }
 function c_Map8(){
@@ -6875,141 +10313,242 @@ function c_Map8(){
 	this.m_root=null;
 }
 c_Map8.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<7>";
+	pop_err();
 	return this;
 }
 c_Map8.prototype.p_Compare=function(t_lhs,t_rhs){
 }
 c_Map8.prototype.p_RotateLeft5=function(t_node){
-	var t_child=t_node.m_right;
-	t_node.m_right=t_child.m_left;
-	if((t_child.m_left)!=null){
-		t_child.m_left.m_parent=t_node;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<251>";
+	var t_child=dbg_object(t_node).m_right;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<252>";
+	dbg_object(t_node).m_right=dbg_object(t_child).m_left;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<253>";
+	if((dbg_object(t_child).m_left)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<254>";
+		dbg_object(dbg_object(t_child).m_left).m_parent=t_node;
 	}
-	t_child.m_parent=t_node.m_parent;
-	if((t_node.m_parent)!=null){
-		if(t_node==t_node.m_parent.m_left){
-			t_node.m_parent.m_left=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<256>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<257>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<258>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<259>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
 		}else{
-			t_node.m_parent.m_right=t_child;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<261>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<264>";
 		this.m_root=t_child;
 	}
-	t_child.m_left=t_node;
-	t_node.m_parent=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<266>";
+	dbg_object(t_child).m_left=t_node;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<267>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
 	return 0;
 }
 c_Map8.prototype.p_RotateRight5=function(t_node){
-	var t_child=t_node.m_left;
-	t_node.m_left=t_child.m_right;
-	if((t_child.m_right)!=null){
-		t_child.m_right.m_parent=t_node;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<271>";
+	var t_child=dbg_object(t_node).m_left;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<272>";
+	dbg_object(t_node).m_left=dbg_object(t_child).m_right;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<273>";
+	if((dbg_object(t_child).m_right)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<274>";
+		dbg_object(dbg_object(t_child).m_right).m_parent=t_node;
 	}
-	t_child.m_parent=t_node.m_parent;
-	if((t_node.m_parent)!=null){
-		if(t_node==t_node.m_parent.m_right){
-			t_node.m_parent.m_right=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<276>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<277>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<278>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<279>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
 		}else{
-			t_node.m_parent.m_left=t_child;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<281>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<284>";
 		this.m_root=t_child;
 	}
-	t_child.m_right=t_node;
-	t_node.m_parent=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<286>";
+	dbg_object(t_child).m_right=t_node;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<287>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
 	return 0;
 }
 c_Map8.prototype.p_InsertFixup5=function(t_node){
-	while(((t_node.m_parent)!=null) && t_node.m_parent.m_color==-1 && ((t_node.m_parent.m_parent)!=null)){
-		if(t_node.m_parent==t_node.m_parent.m_parent.m_left){
-			var t_uncle=t_node.m_parent.m_parent.m_right;
-			if(((t_uncle)!=null) && t_uncle.m_color==-1){
-				t_node.m_parent.m_color=1;
-				t_uncle.m_color=1;
-				t_uncle.m_parent.m_color=-1;
-				t_node=t_uncle.m_parent;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<212>";
+	while(((dbg_object(t_node).m_parent)!=null) && dbg_object(dbg_object(t_node).m_parent).m_color==-1 && ((dbg_object(dbg_object(t_node).m_parent).m_parent)!=null)){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<213>";
+		if(dbg_object(t_node).m_parent==dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<214>";
+			var t_uncle=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_right;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<215>";
+			if(((t_uncle)!=null) && dbg_object(t_uncle).m_color==-1){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<216>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<217>";
+				dbg_object(t_uncle).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<218>";
+				dbg_object(dbg_object(t_uncle).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<219>";
+				t_node=dbg_object(t_uncle).m_parent;
 			}else{
-				if(t_node==t_node.m_parent.m_right){
-					t_node=t_node.m_parent;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<221>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<222>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<223>";
 					this.p_RotateLeft5(t_node);
 				}
-				t_node.m_parent.m_color=1;
-				t_node.m_parent.m_parent.m_color=-1;
-				this.p_RotateRight5(t_node.m_parent.m_parent);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<225>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<226>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<227>";
+				this.p_RotateRight5(dbg_object(dbg_object(t_node).m_parent).m_parent);
 			}
 		}else{
-			var t_uncle2=t_node.m_parent.m_parent.m_left;
-			if(((t_uncle2)!=null) && t_uncle2.m_color==-1){
-				t_node.m_parent.m_color=1;
-				t_uncle2.m_color=1;
-				t_uncle2.m_parent.m_color=-1;
-				t_node=t_uncle2.m_parent;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<230>";
+			var t_uncle2=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<231>";
+			if(((t_uncle2)!=null) && dbg_object(t_uncle2).m_color==-1){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<232>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<233>";
+				dbg_object(t_uncle2).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<234>";
+				dbg_object(dbg_object(t_uncle2).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<235>";
+				t_node=dbg_object(t_uncle2).m_parent;
 			}else{
-				if(t_node==t_node.m_parent.m_left){
-					t_node=t_node.m_parent;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<237>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<238>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<239>";
 					this.p_RotateRight5(t_node);
 				}
-				t_node.m_parent.m_color=1;
-				t_node.m_parent.m_parent.m_color=-1;
-				this.p_RotateLeft5(t_node.m_parent.m_parent);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<241>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<242>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<243>";
+				this.p_RotateLeft5(dbg_object(dbg_object(t_node).m_parent).m_parent);
 			}
 		}
 	}
-	this.m_root.m_color=1;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<247>";
+	dbg_object(this.m_root).m_color=1;
+	pop_err();
 	return 0;
 }
 c_Map8.prototype.p_Set5=function(t_key,t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<29>";
 	var t_node=this.m_root;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<30>";
 	var t_parent=null;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<30>";
 	var t_cmp=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<32>";
 	while((t_node)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<33>";
 		t_parent=t_node;
-		t_cmp=this.p_Compare(t_key,t_node.m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<34>";
+		t_cmp=this.p_Compare(t_key,dbg_object(t_node).m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<35>";
 		if(t_cmp>0){
-			t_node=t_node.m_right;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<36>";
+			t_node=dbg_object(t_node).m_right;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<37>";
 			if(t_cmp<0){
-				t_node=t_node.m_left;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<38>";
+				t_node=dbg_object(t_node).m_left;
 			}else{
-				t_node.m_value=t_value;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<40>";
+				dbg_object(t_node).m_value=t_value;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<41>";
+				pop_err();
 				return false;
 			}
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<45>";
 	t_node=c_Node10.m_new.call(new c_Node10,t_key,t_value,-1,t_parent);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<47>";
 	if((t_parent)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<48>";
 		if(t_cmp>0){
-			t_parent.m_right=t_node;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<49>";
+			dbg_object(t_parent).m_right=t_node;
 		}else{
-			t_parent.m_left=t_node;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<51>";
+			dbg_object(t_parent).m_left=t_node;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<53>";
 		this.p_InsertFixup5(t_node);
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<55>";
 		this.m_root=t_node;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<57>";
+	pop_err();
 	return true;
 }
 c_Map8.prototype.p_FindNode=function(t_key){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<157>";
 	var t_node=this.m_root;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<159>";
 	while((t_node)!=null){
-		var t_cmp=this.p_Compare(t_key,t_node.m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<160>";
+		var t_cmp=this.p_Compare(t_key,dbg_object(t_node).m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<161>";
 		if(t_cmp>0){
-			t_node=t_node.m_right;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<162>";
+			t_node=dbg_object(t_node).m_right;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<163>";
 			if(t_cmp<0){
-				t_node=t_node.m_left;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<164>";
+				t_node=dbg_object(t_node).m_left;
 			}else{
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<166>";
+				pop_err();
 				return t_node;
 			}
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<169>";
+	pop_err();
 	return t_node;
 }
 c_Map8.prototype.p_Get=function(t_key){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<101>";
 	var t_node=this.p_FindNode(t_key);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<102>";
 	if((t_node)!=null){
-		return t_node.m_value;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<102>";
+		pop_err();
+		return dbg_object(t_node).m_value;
 	}
+	pop_err();
 	return null;
 }
 function c_IntMap3(){
@@ -7017,11 +10556,19 @@ function c_IntMap3(){
 }
 c_IntMap3.prototype=extend_class(c_Map8);
 c_IntMap3.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<534>";
 	c_Map8.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<534>";
+	pop_err();
 	return this;
 }
 c_IntMap3.prototype.p_Compare=function(t_lhs,t_rhs){
-	return t_lhs-t_rhs;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<537>";
+	var t_=t_lhs-t_rhs;
+	pop_err();
+	return t_;
 }
 function c_Node10(){
 	Object.call(this);
@@ -7033,13 +10580,22 @@ function c_Node10(){
 	this.m_parent=null;
 }
 c_Node10.m_new=function(t_key,t_value,t_color,t_parent){
-	this.m_key=t_key;
-	this.m_value=t_value;
-	this.m_color=t_color;
-	this.m_parent=t_parent;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<364>";
+	dbg_object(this).m_key=t_key;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<365>";
+	dbg_object(this).m_value=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<366>";
+	dbg_object(this).m_color=t_color;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<367>";
+	dbg_object(this).m_parent=t_parent;
+	pop_err();
 	return this;
 }
 c_Node10.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<361>";
+	pop_err();
 	return this;
 }
 function c_TileLayer(){
@@ -7050,86 +10606,159 @@ function c_TileLayer(){
 }
 c_TileLayer.prototype=extend_class(c_MidLayer);
 c_TileLayer.m_new=function(t_parent){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<70>";
 	c_MidLayer.m_new.call(this,t_parent);
+	pop_err();
 	return this;
 }
 c_TileLayer.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<65>";
 	c_MidLayer.m_new2.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<65>";
+	pop_err();
 	return this;
 }
 c_TileLayer.prototype.p_Render=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<74>";
 	c_Space.prototype.p_Render.call(this);
-	if(this.m_visible){
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<76>";
+	if(dbg_object(this).m_visible){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<77>";
 		bb_graphics_PushMatrix();
-		bb_graphics_SetAlpha(this.m_opacity);
-		this.m_camera=c_Game.m_Instance().p_GetCurrentCamera();
-		var t_minCounterX=((this.m_camera.m_ViewPort.p_X2()/this.m_parent.m_tileWidth)|0);
-		var t_maxCounterX=(((this.m_camera.m_ViewPort.p_X2()+this.m_camera.m_ViewPort.p_Width())/this.m_parent.m_tileWidth+1.0)|0);
-		var t_minCounterY=((this.m_camera.m_ViewPort.p_Y2()/this.m_parent.m_tileHeight)|0);
-		var t_maxCounterY=(((this.m_camera.m_ViewPort.p_Y2()+this.m_camera.m_ViewPort.p_Height())/this.m_parent.m_tileHeight+1.0)|0);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<78>";
+		bb_graphics_SetAlpha(dbg_object(this).m_opacity);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<80>";
+		dbg_object(this).m_camera=c_Game.m_Instance().p_GetCurrentCamera();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<82>";
+		var t_minCounterX=((dbg_object(dbg_object(this).m_camera).m_ViewPort.p_X2()/dbg_object(this.m_parent).m_tileWidth)|0);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<83>";
+		var t_maxCounterX=(((dbg_object(dbg_object(this).m_camera).m_ViewPort.p_X2()+dbg_object(dbg_object(this).m_camera).m_ViewPort.p_Width())/dbg_object(this.m_parent).m_tileWidth+1.0)|0);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<85>";
+		var t_minCounterY=((dbg_object(dbg_object(this).m_camera).m_ViewPort.p_Y2()/dbg_object(this.m_parent).m_tileHeight)|0);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<86>";
+		var t_maxCounterY=(((dbg_object(dbg_object(this).m_camera).m_ViewPort.p_Y2()+dbg_object(dbg_object(this).m_camera).m_ViewPort.p_Height())/dbg_object(this.m_parent).m_tileHeight+1.0)|0);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<88>";
 		t_minCounterX=bb_math_Clamp(t_minCounterX,0,this.m_width);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<89>";
 		t_maxCounterX=bb_math_Clamp(t_maxCounterX,0,this.m_width);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<90>";
 		t_minCounterY=bb_math_Clamp(t_minCounterY,0,this.m_height);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<91>";
 		t_maxCounterY=bb_math_Clamp(t_maxCounterY,0,this.m_height);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<93>";
 		var t_tx=0;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<94>";
 		var t_ty=0;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<96>";
 		for(t_ty=t_minCounterY;t_ty<t_maxCounterY;t_ty=t_ty+1){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<97>";
 			for(t_tx=t_minCounterX;t_tx<t_maxCounterX;t_tx=t_tx+1){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<98>";
 				var t_index=t_tx+this.m_width*t_ty;
-				if(this.m_data[t_index]>0){
-					var t_tileSet=this.m_parent.p_GetTileSet(this.m_data[t_index]);
-					var t_tile=t_tileSet.m_tiles.p_Get(this.m_data[t_index]);
-					this.m_final_position[0]=(this.m_x)+(t_tile.p_Width()-(t_tileSet.m_margin)+(t_tileSet.m_spacing))*(t_tx);
-					this.m_final_position[1]=(this.m_y)+(t_tile.p_Height()-(t_tileSet.m_margin)+(t_tileSet.m_spacing))*(t_ty);
-					bb_graphics_DrawImageRect(t_tileSet.m_drawableImage,this.m_final_position[0],this.m_final_position[1],((t_tile.p_X2())|0),((t_tile.p_Y2())|0),((t_tile.p_Width())|0),((t_tile.p_Height())|0),0);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<99>";
+				if(dbg_array(this.m_data,t_index)[dbg_index]>0){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<100>";
+					var t_tileSet=this.m_parent.p_GetTileSet(dbg_array(this.m_data,t_index)[dbg_index]);
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<102>";
+					var t_tile=dbg_object(t_tileSet).m_tiles.p_Get(dbg_array(this.m_data,t_index)[dbg_index]);
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<104>";
+					dbg_array(this.m_final_position,0)[dbg_index]=(dbg_object(this).m_x)+(t_tile.p_Width()-(dbg_object(t_tileSet).m_margin)+(dbg_object(t_tileSet).m_spacing))*(t_tx);
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<105>";
+					dbg_array(this.m_final_position,1)[dbg_index]=(dbg_object(this).m_y)+(t_tile.p_Height()-(dbg_object(t_tileSet).m_margin)+(dbg_object(t_tileSet).m_spacing))*(t_ty);
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<114>";
+					bb_graphics_DrawImageRect(dbg_object(t_tileSet).m_drawableImage,dbg_array(this.m_final_position,0)[dbg_index],dbg_array(this.m_final_position,1)[dbg_index],((t_tile.p_X2())|0),((t_tile.p_Y2())|0),((t_tile.p_Width())|0),((t_tile.p_Height())|0),0);
 				}
 			}
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<119>";
 		bb_graphics_SetAlpha(1.0);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<120>";
 		bb_graphics_PopMatrix();
 	}
+	pop_err();
 }
 function c_List4(){
 	Object.call(this);
 	this.m__head=(c_HeadNode4.m_new.call(new c_HeadNode4));
 }
 c_List4.m_new=function(){
+	push_err();
+	pop_err();
 	return this;
 }
 c_List4.prototype.p_AddLast3=function(t_data){
-	return c_Node11.m_new.call(new c_Node11,this.m__head,this.m__head.m__pred,t_data);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<108>";
+	var t_=c_Node11.m_new.call(new c_Node11,this.m__head,dbg_object(this.m__head).m__pred,t_data);
+	pop_err();
+	return t_;
 }
 c_List4.m_new2=function(t_data){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 	var t_=t_data;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 	var t_2=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 	while(t_2<t_.length){
-		var t_t=t_[t_2];
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
+		var t_t=dbg_array(t_,t_2)[dbg_index];
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 		t_2=t_2+1;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<14>";
 		this.p_AddLast3(t_t);
 	}
+	pop_err();
 	return this;
 }
 c_List4.prototype.p_Count=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<41>";
 	var t_n=0;
-	var t_node=this.m__head.m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<41>";
+	var t_node=dbg_object(this.m__head).m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<42>";
 	while(t_node!=this.m__head){
-		t_node=t_node.m__succ;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<43>";
+		t_node=dbg_object(t_node).m__succ;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<44>";
 		t_n+=1;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<46>";
+	pop_err();
 	return t_n;
 }
 c_List4.prototype.p_ObjectEnumerator=function(){
-	return c_Enumerator5.m_new.call(new c_Enumerator5,this);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<186>";
+	var t_=c_Enumerator5.m_new.call(new c_Enumerator5,this);
+	pop_err();
+	return t_;
 }
 c_List4.prototype.p_ToArray=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<19>";
 	var t_arr=new_number_array(this.p_Count());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<19>";
 	var t_i=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<20>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<20>";
 	var t_=this.p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<20>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<20>";
 		var t_t=t_.p_NextObject();
-		t_arr[t_i]=t_t;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<21>";
+		dbg_array(t_arr,t_i)[dbg_index]=t_t;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<22>";
 		t_i+=1;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<24>";
+	pop_err();
 	return t_arr;
 }
 function c_Node11(){
@@ -7139,14 +10768,24 @@ function c_Node11(){
 	this.m__data=0;
 }
 c_Node11.m_new=function(t_succ,t_pred,t_data){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<261>";
 	this.m__succ=t_succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<262>";
 	this.m__pred=t_pred;
-	this.m__succ.m__pred=this;
-	this.m__pred.m__succ=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<263>";
+	dbg_object(this.m__succ).m__pred=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<264>";
+	dbg_object(this.m__pred).m__succ=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<265>";
 	this.m__data=t_data;
+	pop_err();
 	return this;
 }
 c_Node11.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<258>";
+	pop_err();
 	return this;
 }
 function c_HeadNode4(){
@@ -7154,9 +10793,14 @@ function c_HeadNode4(){
 }
 c_HeadNode4.prototype=extend_class(c_Node11);
 c_HeadNode4.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<310>";
 	c_Node11.m_new2.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<311>";
 	this.m__succ=(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<312>";
 	this.m__pred=(this);
+	pop_err();
 	return this;
 }
 function c_Enumerator5(){
@@ -7165,22 +10809,40 @@ function c_Enumerator5(){
 	this.m__curr=null;
 }
 c_Enumerator5.m_new=function(t_list){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<326>";
 	this.m__list=t_list;
-	this.m__curr=t_list.m__head.m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<327>";
+	this.m__curr=dbg_object(dbg_object(t_list).m__head).m__succ;
+	pop_err();
 	return this;
 }
 c_Enumerator5.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<323>";
+	pop_err();
 	return this;
 }
 c_Enumerator5.prototype.p_HasNext=function(){
-	while(this.m__curr.m__succ.m__pred!=this.m__curr){
-		this.m__curr=this.m__curr.m__succ;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<331>";
+	while(dbg_object(dbg_object(this.m__curr).m__succ).m__pred!=this.m__curr){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<332>";
+		this.m__curr=dbg_object(this.m__curr).m__succ;
 	}
-	return this.m__curr!=this.m__list.m__head;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<334>";
+	var t_=this.m__curr!=dbg_object(this.m__list).m__head;
+	pop_err();
+	return t_;
 }
 c_Enumerator5.prototype.p_NextObject=function(){
-	var t_data=this.m__curr.m__data;
-	this.m__curr=this.m__curr.m__succ;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<338>";
+	var t_data=dbg_object(this.m__curr).m__data;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<339>";
+	this.m__curr=dbg_object(this.m__curr).m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<340>";
+	pop_err();
 	return t_data;
 }
 function c_ObjectGroup(){
@@ -7190,25 +10852,44 @@ function c_ObjectGroup(){
 }
 c_ObjectGroup.prototype=extend_class(c_MidLayer);
 c_ObjectGroup.m_new=function(t_parent){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<163>";
 	c_MidLayer.m_new.call(this,t_parent);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<164>";
 	this.m_objects=c_Stack8.m_new.call(new c_Stack8);
+	pop_err();
 	return this;
 }
 c_ObjectGroup.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<159>";
 	c_MidLayer.m_new2.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<159>";
+	pop_err();
 	return this;
 }
 c_ObjectGroup.prototype.p_Render=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<168>";
 	c_Space.prototype.p_Render.call(this);
-	bb_graphics_SetAlpha(this.m_opacity);
-	if(this.m_visible && c_Game.m_Instance().p_GetCurrentCamera()!=null){
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<169>";
+	bb_graphics_SetAlpha(dbg_object(this).m_opacity);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<170>";
+	if(dbg_object(this).m_visible && c_Game.m_Instance().p_GetCurrentCamera()!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<171>";
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<171>";
 		var t_=this.m_objects.p_ObjectEnumerator();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<171>";
 		while(t_.p_HasNext()){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<171>";
 			var t_ob=t_.p_NextObject();
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<172>";
 			t_ob.p_Render();
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<175>";
 	bb_graphics_SetAlpha(1.0);
+	pop_err();
 }
 function c_TileObject(){
 	c_Rectangle.call(this);
@@ -7218,22 +10899,38 @@ function c_TileObject(){
 }
 c_TileObject.prototype=extend_class(c_Rectangle);
 c_TileObject.m_new=function(t_x,t_y,t_w,t_h){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<133>";
 	c_Rectangle.m_new3.call(this,(t_x),(t_y),(t_w),(t_h));
+	pop_err();
 	return this;
 }
 c_TileObject.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<126>";
 	c_Rectangle.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<126>";
+	pop_err();
 	return this;
 }
 c_TileObject.prototype.p_Render=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<137>";
 	if(this.m_gid>0){
-		var t_tileSet=this.m_parent.m_parent.p_GetTileSet(this.m_gid);
-		var t_tile=t_tileSet.m_tiles.p_Get(this.m_gid);
-		var t_finalPosition=c_Vec2.m_new.call(new c_Vec2,(this.m_parent.m_x)+this.p_X2(),(this.m_parent.m_y)+this.p_Y2()-t_tile.p_Height());
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<138>";
+		var t_tileSet=dbg_object(this.m_parent).m_parent.p_GetTileSet(this.m_gid);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<139>";
+		var t_tile=dbg_object(t_tileSet).m_tiles.p_Get(this.m_gid);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<141>";
+		var t_finalPosition=c_Vec2.m_new.call(new c_Vec2,(dbg_object(this.m_parent).m_x)+this.p_X2(),(dbg_object(this.m_parent).m_y)+this.p_Y2()-t_tile.p_Height());
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<142>";
 		var t_correctedPosition=t_finalPosition;
-		bb_graphics_DrawImageRect(t_tileSet.m_drawableImage,((t_correctedPosition.m_X)|0),((t_correctedPosition.m_Y)|0),((t_tile.p_X2())|0),((t_tile.p_Y2())|0),((t_tile.p_Width())|0),((t_tile.p_Height())|0),0);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<149>";
+		bb_graphics_DrawImageRect(dbg_object(t_tileSet).m_drawableImage,((dbg_object(t_correctedPosition).m_X)|0),((dbg_object(t_correctedPosition).m_Y)|0),((t_tile.p_X2())|0),((t_tile.p_Y2())|0),((t_tile.p_Width())|0),((t_tile.p_Height())|0),0);
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/tilemap.monkey<150>";
 	}
+	pop_err();
 }
 function c_Stack8(){
 	Object.call(this);
@@ -7241,45 +10938,79 @@ function c_Stack8(){
 	this.m_length=0;
 }
 c_Stack8.m_new=function(){
+	push_err();
+	pop_err();
 	return this;
 }
 c_Stack8.m_new2=function(t_data){
-	this.m_data=t_data.slice(0);
-	this.m_length=t_data.length;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<13>";
+	dbg_object(this).m_data=t_data.slice(0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<14>";
+	dbg_object(this).m_length=t_data.length;
+	pop_err();
 	return this;
 }
 c_Stack8.prototype.p_Push19=function(t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<67>";
 	if(this.m_length==this.m_data.length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<68>";
 		this.m_data=resize_object_array(this.m_data,this.m_length*2+10);
 	}
-	this.m_data[this.m_length]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<70>";
+	dbg_array(this.m_data,this.m_length)[dbg_index]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<71>";
 	this.m_length+=1;
+	pop_err();
 }
 c_Stack8.prototype.p_Push20=function(t_values,t_offset,t_count){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<79>";
 	for(var t_i=0;t_i<t_count;t_i=t_i+1){
-		this.p_Push19(t_values[t_offset+t_i]);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<80>";
+		this.p_Push19(dbg_array(t_values,t_offset+t_i)[dbg_index]);
 	}
+	pop_err();
 }
 c_Stack8.prototype.p_Push21=function(t_values,t_offset){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<75>";
 	this.p_Push20(t_values,t_offset,t_values.length-t_offset);
+	pop_err();
 }
 c_Stack8.prototype.p_ObjectEnumerator=function(){
-	return c_Enumerator7.m_new.call(new c_Enumerator7,this);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<184>";
+	var t_=c_Enumerator8.m_new.call(new c_Enumerator8,this);
+	pop_err();
+	return t_;
 }
 c_Stack8.m_NIL=null;
 c_Stack8.prototype.p_Length=function(t_newlength){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<41>";
 	if(t_newlength<this.m_length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<42>";
 		for(var t_i=t_newlength;t_i<this.m_length;t_i=t_i+1){
-			this.m_data[t_i]=c_Stack8.m_NIL;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<43>";
+			dbg_array(this.m_data,t_i)[dbg_index]=c_Stack8.m_NIL;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<45>";
 		if(t_newlength>this.m_data.length){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<46>";
 			this.m_data=resize_object_array(this.m_data,bb_math_Max(this.m_length*2+10,t_newlength));
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<48>";
 	this.m_length=t_newlength;
+	pop_err();
 }
 c_Stack8.prototype.p_Length2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<52>";
+	pop_err();
 	return this.m_length;
 }
 function c_Stack9(){
@@ -7288,112 +11019,195 @@ function c_Stack9(){
 	this.m_length=0;
 }
 c_Stack9.m_new=function(){
+	push_err();
+	pop_err();
 	return this;
 }
 c_Stack9.m_new2=function(t_data){
-	this.m_data=t_data.slice(0);
-	this.m_length=t_data.length;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<13>";
+	dbg_object(this).m_data=t_data.slice(0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<14>";
+	dbg_object(this).m_length=t_data.length;
+	pop_err();
 	return this;
 }
 c_Stack9.prototype.p_Push22=function(t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<67>";
 	if(this.m_length==this.m_data.length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<68>";
 		this.m_data=resize_string_array(this.m_data,this.m_length*2+10);
 	}
-	this.m_data[this.m_length]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<70>";
+	dbg_array(this.m_data,this.m_length)[dbg_index]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<71>";
 	this.m_length+=1;
+	pop_err();
 }
 c_Stack9.prototype.p_Push23=function(t_values,t_offset,t_count){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<79>";
 	for(var t_i=0;t_i<t_count;t_i=t_i+1){
-		this.p_Push22(t_values[t_offset+t_i]);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<80>";
+		this.p_Push22(dbg_array(t_values,t_offset+t_i)[dbg_index]);
 	}
+	pop_err();
 }
 c_Stack9.prototype.p_Push24=function(t_values,t_offset){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<75>";
 	this.p_Push23(t_values,t_offset,t_values.length-t_offset);
+	pop_err();
 }
 c_Stack9.m_NIL="";
 c_Stack9.prototype.p_Length=function(t_newlength){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<41>";
 	if(t_newlength<this.m_length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<42>";
 		for(var t_i=t_newlength;t_i<this.m_length;t_i=t_i+1){
-			this.m_data[t_i]=c_Stack9.m_NIL;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<43>";
+			dbg_array(this.m_data,t_i)[dbg_index]=c_Stack9.m_NIL;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<45>";
 		if(t_newlength>this.m_data.length){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<46>";
 			this.m_data=resize_string_array(this.m_data,bb_math_Max(this.m_length*2+10,t_newlength));
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<48>";
 	this.m_length=t_newlength;
+	pop_err();
 }
 c_Stack9.prototype.p_Length2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<52>";
+	pop_err();
 	return this.m_length;
 }
 c_Stack9.prototype.p_Get=function(t_index){
-	return this.m_data[t_index];
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<100>";
+	pop_err();
+	return dbg_array(this.m_data,t_index)[dbg_index];
 }
 function c_MapKeys(){
 	Object.call(this);
 	this.m_map=null;
 }
 c_MapKeys.m_new=function(t_map){
-	this.m_map=t_map;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<503>";
+	dbg_object(this).m_map=t_map;
+	pop_err();
 	return this;
 }
 c_MapKeys.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<500>";
+	pop_err();
 	return this;
 }
 c_MapKeys.prototype.p_ObjectEnumerator=function(){
-	return c_KeyEnumerator.m_new.call(new c_KeyEnumerator,this.m_map.p_FirstNode());
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<507>";
+	var t_=c_KeyEnumerator.m_new.call(new c_KeyEnumerator,this.m_map.p_FirstNode());
+	pop_err();
+	return t_;
 }
 function c_KeyEnumerator(){
 	Object.call(this);
 	this.m_node=null;
 }
 c_KeyEnumerator.m_new=function(t_node){
-	this.m_node=t_node;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<459>";
+	dbg_object(this).m_node=t_node;
+	pop_err();
 	return this;
 }
 c_KeyEnumerator.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<456>";
+	pop_err();
 	return this;
 }
 c_KeyEnumerator.prototype.p_HasNext=function(){
-	return this.m_node!=null;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<463>";
+	var t_=this.m_node!=null;
+	pop_err();
+	return t_;
 }
 c_KeyEnumerator.prototype.p_NextObject=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<467>";
 	var t_t=this.m_node;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<468>";
 	this.m_node=this.m_node.p_NextNode();
-	return t_t.m_key;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<469>";
+	pop_err();
+	return dbg_object(t_t).m_key;
 }
 function c_MapValues3(){
 	Object.call(this);
 	this.m_map=null;
 }
 c_MapValues3.m_new=function(t_map){
-	this.m_map=t_map;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<519>";
+	dbg_object(this).m_map=t_map;
+	pop_err();
 	return this;
 }
 c_MapValues3.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<516>";
+	pop_err();
 	return this;
 }
 c_MapValues3.prototype.p_ObjectEnumerator=function(){
-	return c_ValueEnumerator3.m_new.call(new c_ValueEnumerator3,this.m_map.p_FirstNode());
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<523>";
+	var t_=c_ValueEnumerator3.m_new.call(new c_ValueEnumerator3,this.m_map.p_FirstNode());
+	pop_err();
+	return t_;
 }
 function c_ValueEnumerator3(){
 	Object.call(this);
 	this.m_node=null;
 }
 c_ValueEnumerator3.m_new=function(t_node){
-	this.m_node=t_node;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<481>";
+	dbg_object(this).m_node=t_node;
+	pop_err();
 	return this;
 }
 c_ValueEnumerator3.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<478>";
+	pop_err();
 	return this;
 }
 c_ValueEnumerator3.prototype.p_HasNext=function(){
-	return this.m_node!=null;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<485>";
+	var t_=this.m_node!=null;
+	pop_err();
+	return t_;
 }
 c_ValueEnumerator3.prototype.p_NextObject=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<489>";
 	var t_t=this.m_node;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<490>";
 	this.m_node=this.m_node.p_NextNode();
-	return t_t.m_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<491>";
+	pop_err();
+	return dbg_object(t_t).m_value;
 }
 function c_Node12(){
 	Object.call(this);
@@ -7405,13 +11219,22 @@ function c_Node12(){
 	this.m_parent=null;
 }
 c_Node12.m_new=function(t_key,t_value,t_color,t_parent){
-	this.m_key=t_key;
-	this.m_value=t_value;
-	this.m_color=t_color;
-	this.m_parent=t_parent;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<364>";
+	dbg_object(this).m_key=t_key;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<365>";
+	dbg_object(this).m_value=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<366>";
+	dbg_object(this).m_color=t_color;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<367>";
+	dbg_object(this).m_parent=t_parent;
+	pop_err();
 	return this;
 }
 c_Node12.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<361>";
+	pop_err();
 	return this;
 }
 function c_CollisionEngine(){
@@ -7423,69 +11246,128 @@ function c_CollisionEngine(){
 }
 c_CollisionEngine.m_instance=null;
 c_CollisionEngine.prototype.p_Create=function(){
-	this.m_objects=c_Stack10.m_new.call(new c_Stack10);
-	this.m_static_objects=c_Stack10.m_new.call(new c_Stack10);
-	this.m_delegates=c_Stack11.m_new.call(new c_Stack11);
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<25>";
+	dbg_object(this).m_objects=c_Stack10.m_new.call(new c_Stack10);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<26>";
+	dbg_object(this).m_static_objects=c_Stack10.m_new.call(new c_Stack10);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<27>";
+	dbg_object(this).m_delegates=c_Stack11.m_new.call(new c_Stack11);
+	pop_err();
 }
 c_CollisionEngine.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<20>";
 	this.p_Create();
+	pop_err();
 	return this;
 }
 c_CollisionEngine.m_Instance2=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<84>";
 	if(c_CollisionEngine.m_instance==null){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<85>";
 		c_CollisionEngine.m_instance=c_CollisionEngine.m_new.call(new c_CollisionEngine);
 	}
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<88>";
+	pop_err();
 	return c_CollisionEngine.m_instance;
 }
 c_CollisionEngine.prototype.p_RegisterDelegate=function(t_collision_engine){
-	t_collision_engine.m_objects=this.m_objects;
-	t_collision_engine.m_static_objects=this.m_static_objects;
-	this.m_delegates.p_Push28(t_collision_engine);
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<77>";
+	dbg_object(t_collision_engine).m_objects=dbg_object(this).m_objects;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<78>";
+	dbg_object(t_collision_engine).m_static_objects=dbg_object(this).m_static_objects;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<80>";
+	dbg_object(this).m_delegates.p_Push28(t_collision_engine);
+	pop_err();
 }
 c_CollisionEngine.prototype.p_AddBody=function(t_body){
-	this.m_objects.p_Push25(t_body);
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<59>";
+	dbg_object(this).m_objects.p_Push25(t_body);
+	pop_err();
 }
 c_CollisionEngine.prototype.p_AddStaticBody=function(t_body){
-	this.m_static_objects.p_Push25(t_body);
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<63>";
+	dbg_object(this).m_static_objects.p_Push25(t_body);
+	pop_err();
 	return 0;
 }
 c_CollisionEngine.prototype.p_Update=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<32>";
 	var t_collision_count=0;
-	var t_=this.m_objects.p_ObjectEnumerator();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<35>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<35>";
+	var t_=dbg_object(this).m_objects.p_ObjectEnumerator();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<35>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<35>";
 		var t_o=t_.p_NextObject();
-		var t_2=this.m_objects.p_ObjectEnumerator();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<36>";
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<36>";
+		var t_2=dbg_object(this).m_objects.p_ObjectEnumerator();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<36>";
 		while(t_2.p_HasNext()){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<36>";
 			var t_other=t_2.p_NextObject();
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<37>";
 			if(t_o!=t_other){
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<38>";
 				if(c_Collision.m_AABBIntersects(t_o.p_GetBox(),t_other.p_GetBox())){
+					err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<39>";
 					t_o.p_OnCollide(t_other.p_GetName());
 				}
 			}
 		}
 	}
-	var t_3=this.m_objects.p_ObjectEnumerator();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<45>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<45>";
+	var t_3=dbg_object(this).m_objects.p_ObjectEnumerator();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<45>";
 	while(t_3.p_HasNext()){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<45>";
 		var t_o2=t_3.p_NextObject();
-		var t_4=this.m_static_objects.p_ObjectEnumerator();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<46>";
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<46>";
+		var t_4=dbg_object(this).m_static_objects.p_ObjectEnumerator();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<46>";
 		while(t_4.p_HasNext()){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<46>";
 			var t_other2=t_4.p_NextObject();
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<47>";
 			if(c_Collision.m_AABBIntersects(t_o2.p_GetBox(),t_other2.p_GetBox())){
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<48>";
 				t_o2.p_OnCollide(t_other2.p_GetName());
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<49>";
 				t_other2.p_OnCollide(t_o2.p_GetName());
 			}
 		}
 	}
+	pop_err();
 }
 c_CollisionEngine.prototype.p_Render=function(){
+	push_err();
+	pop_err();
 }
 c_CollisionEngine.prototype.p_Destroy=function(t_element){
-	this.m_objects.p_RemoveEach(t_element);
-	this.m_static_objects.p_RemoveEach(t_element);
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<67>";
+	dbg_object(this).m_objects.p_RemoveEach(t_element);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<68>";
+	dbg_object(this).m_static_objects.p_RemoveEach(t_element);
+	pop_err();
 }
 c_CollisionEngine.prototype.p_DestroyAll=function(){
-	this.m_objects.p_Clear();
-	this.m_static_objects.p_Clear();
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<72>";
+	dbg_object(this).m_objects.p_Clear();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/collision_engine.monkey<73>";
+	dbg_object(this).m_static_objects.p_Clear();
+	pop_err();
 }
 function c_Stack10(){
 	Object.call(this);
@@ -7493,82 +11375,147 @@ function c_Stack10(){
 	this.m_length=0;
 }
 c_Stack10.m_new=function(){
+	push_err();
+	pop_err();
 	return this;
 }
 c_Stack10.m_new2=function(t_data){
-	this.m_data=t_data.slice(0);
-	this.m_length=t_data.length;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<13>";
+	dbg_object(this).m_data=t_data.slice(0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<14>";
+	dbg_object(this).m_length=t_data.length;
+	pop_err();
 	return this;
 }
 c_Stack10.prototype.p_Push25=function(t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<67>";
 	if(this.m_length==this.m_data.length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<68>";
 		this.m_data=resize_object_array(this.m_data,this.m_length*2+10);
 	}
-	this.m_data[this.m_length]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<70>";
+	dbg_array(this.m_data,this.m_length)[dbg_index]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<71>";
 	this.m_length+=1;
+	pop_err();
 }
 c_Stack10.prototype.p_Push26=function(t_values,t_offset,t_count){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<79>";
 	for(var t_i=0;t_i<t_count;t_i=t_i+1){
-		this.p_Push25(t_values[t_offset+t_i]);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<80>";
+		this.p_Push25(dbg_array(t_values,t_offset+t_i)[dbg_index]);
 	}
+	pop_err();
 }
 c_Stack10.prototype.p_Push27=function(t_values,t_offset){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<75>";
 	this.p_Push26(t_values,t_offset,t_values.length-t_offset);
+	pop_err();
 }
 c_Stack10.prototype.p_ObjectEnumerator=function(){
-	return c_Enumerator9.m_new.call(new c_Enumerator9,this);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<184>";
+	var t_=c_Enumerator9.m_new.call(new c_Enumerator9,this);
+	pop_err();
+	return t_;
 }
 c_Stack10.m_NIL=null;
 c_Stack10.prototype.p_Length=function(t_newlength){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<41>";
 	if(t_newlength<this.m_length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<42>";
 		for(var t_i=t_newlength;t_i<this.m_length;t_i=t_i+1){
-			this.m_data[t_i]=c_Stack10.m_NIL;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<43>";
+			dbg_array(this.m_data,t_i)[dbg_index]=c_Stack10.m_NIL;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<45>";
 		if(t_newlength>this.m_data.length){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<46>";
 			this.m_data=resize_object_array(this.m_data,bb_math_Max(this.m_length*2+10,t_newlength));
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<48>";
 	this.m_length=t_newlength;
+	pop_err();
 }
 c_Stack10.prototype.p_Length2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<52>";
+	pop_err();
 	return this.m_length;
 }
 c_Stack10.prototype.p_Equals2=function(t_lhs,t_rhs){
-	return t_lhs==t_rhs;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<26>";
+	var t_=t_lhs==t_rhs;
+	pop_err();
+	return t_;
 }
 c_Stack10.prototype.p_RemoveEach=function(t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<151>";
 	var t_i=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<151>";
 	var t_j=this.m_length;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<152>";
 	while(t_i<this.m_length){
-		if(!this.p_Equals2(this.m_data[t_i],t_value)){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<153>";
+		if(!this.p_Equals2(dbg_array(this.m_data,t_i)[dbg_index],t_value)){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<154>";
 			t_i+=1;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<155>";
 			continue;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<157>";
 		var t_b=t_i;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<157>";
 		var t_e=t_i+1;
-		while(t_e<this.m_length && this.p_Equals2(this.m_data[t_e],t_value)){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<158>";
+		while(t_e<this.m_length && this.p_Equals2(dbg_array(this.m_data,t_e)[dbg_index],t_value)){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<159>";
 			t_e+=1;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<161>";
 		while(t_e<this.m_length){
-			this.m_data[t_b]=this.m_data[t_e];
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<162>";
+			dbg_array(this.m_data,t_b)[dbg_index]=dbg_array(this.m_data,t_e)[dbg_index];
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<163>";
 			t_b+=1;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<164>";
 			t_e+=1;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<166>";
 		this.m_length-=t_e-t_b;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<167>";
 		t_i+=1;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<169>";
 	t_i=this.m_length;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<170>";
 	while(t_i<t_j){
-		this.m_data[t_i]=c_Stack10.m_NIL;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<171>";
+		dbg_array(this.m_data,t_i)[dbg_index]=c_Stack10.m_NIL;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<172>";
 		t_i+=1;
 	}
+	pop_err();
 }
 c_Stack10.prototype.p_Clear=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<34>";
 	for(var t_i=0;t_i<this.m_length;t_i=t_i+1){
-		this.m_data[t_i]=c_Stack10.m_NIL;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<35>";
+		dbg_array(this.m_data,t_i)[dbg_index]=c_Stack10.m_NIL;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<37>";
 	this.m_length=0;
+	pop_err();
 }
 function c_Stack11(){
 	Object.call(this);
@@ -7576,27 +11523,46 @@ function c_Stack11(){
 	this.m_length=0;
 }
 c_Stack11.m_new=function(){
+	push_err();
+	pop_err();
 	return this;
 }
 c_Stack11.m_new2=function(t_data){
-	this.m_data=t_data.slice(0);
-	this.m_length=t_data.length;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<13>";
+	dbg_object(this).m_data=t_data.slice(0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<14>";
+	dbg_object(this).m_length=t_data.length;
+	pop_err();
 	return this;
 }
 c_Stack11.prototype.p_Push28=function(t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<67>";
 	if(this.m_length==this.m_data.length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<68>";
 		this.m_data=resize_object_array(this.m_data,this.m_length*2+10);
 	}
-	this.m_data[this.m_length]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<70>";
+	dbg_array(this.m_data,this.m_length)[dbg_index]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<71>";
 	this.m_length+=1;
+	pop_err();
 }
 c_Stack11.prototype.p_Push29=function(t_values,t_offset,t_count){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<79>";
 	for(var t_i=0;t_i<t_count;t_i=t_i+1){
-		this.p_Push28(t_values[t_offset+t_i]);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<80>";
+		this.p_Push28(dbg_array(t_values,t_offset+t_i)[dbg_index]);
 	}
+	pop_err();
 }
 c_Stack11.prototype.p_Push30=function(t_values,t_offset){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<75>";
 	this.p_Push29(t_values,t_offset,t_values.length-t_offset);
+	pop_err();
 }
 function c_TileMapCollider(){
 	c_CollisionEngine.call(this);
@@ -7609,71 +11575,160 @@ function c_TileMapCollider(){
 }
 c_TileMapCollider.prototype=extend_class(c_CollisionEngine);
 c_TileMapCollider.m_new=function(t_tile_layer){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<17>";
 	c_CollisionEngine.m_new.call(this);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<18>";
 	c_CollisionEngine.m_Instance2().p_RegisterDelegate(this);
-	this.m_tile_layer=t_tile_layer;
-	this.m_view_port=c_Game.m_Instance().p_GetCurrentCamera().m_ViewPort;
-	this.m_tile_position=c_Rectangle.m_new.call(new c_Rectangle);
-	this.m_aux_sat=c_Vec2.m_new2.call(new c_Vec2);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<20>";
+	dbg_object(this).m_tile_layer=t_tile_layer;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<21>";
+	dbg_object(this).m_view_port=dbg_object(c_Game.m_Instance().p_GetCurrentCamera()).m_ViewPort;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<24>";
+	dbg_object(this).m_tile_position=c_Rectangle.m_new.call(new c_Rectangle);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<25>";
+	dbg_object(this).m_aux_sat=c_Vec2.m_new2.call(new c_Vec2);
+	pop_err();
 	return this;
 }
 c_TileMapCollider.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<7>";
 	c_CollisionEngine.m_new.call(this);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<7>";
+	pop_err();
 	return this;
 }
 c_TileMapCollider.prototype.p_GetTileGridPosition=function(t_cx,t_cy){
-	this.m_tile_grid_position[0]=((Math.floor((t_cx)/this.m_tile_layer.m_parent.m_tileWidth))|0);
-	this.m_tile_grid_position[1]=((Math.floor((t_cy)/this.m_tile_layer.m_parent.m_tileHeight))|0);
-	return this.m_tile_grid_position;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<43>";
+	dbg_array(dbg_object(this).m_tile_grid_position,0)[dbg_index]=((Math.floor((t_cx)/dbg_object(dbg_object(dbg_object(this).m_tile_layer).m_parent).m_tileWidth))|0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<44>";
+	dbg_array(dbg_object(this).m_tile_grid_position,1)[dbg_index]=((Math.floor((t_cy)/dbg_object(dbg_object(dbg_object(this).m_tile_layer).m_parent).m_tileHeight))|0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<46>";
+	pop_err();
+	return dbg_object(this).m_tile_grid_position;
 }
 c_TileMapCollider.prototype.p_GetTileID=function(t_cx,t_cy){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<50>";
 	var t_tile_position=this.p_GetTileGridPosition(t_cx,t_cy);
-	var t_index=t_tile_position[0]+this.m_tile_layer.m_width*t_tile_position[1];
-	if(t_index<this.m_tile_layer.m_data.length-1 && t_index>0){
-		return this.m_tile_layer.m_data[t_index];
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<51>";
+	var t_index=dbg_array(t_tile_position,0)[dbg_index]+dbg_object(dbg_object(this).m_tile_layer).m_width*dbg_array(t_tile_position,1)[dbg_index];
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<53>";
+	if(t_index<dbg_object(dbg_object(this).m_tile_layer).m_data.length-1 && t_index>0){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<54>";
+		pop_err();
+		return dbg_array(dbg_object(dbg_object(this).m_tile_layer).m_data,t_index)[dbg_index];
 	}
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<57>";
+	pop_err();
 	return 0;
 }
 c_TileMapCollider.prototype.p_GetTileDataPosition=function(t_cx,t_cy){
-	this.m_tile_position.p_Width2(this.m_tile_layer.m_parent.m_tileWidth);
-	this.m_tile_position.p_Height2(this.m_tile_layer.m_parent.m_tileHeight);
-	this.m_tile_position.p_X(Math.floor((t_cx)/this.m_tile_position.p_Width())*this.m_tile_layer.m_parent.m_tileWidth);
-	this.m_tile_position.p_Y(Math.floor((t_cy)/this.m_tile_position.p_Height())*this.m_tile_layer.m_parent.m_tileHeight);
-	return this.m_tile_position;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<33>";
+	dbg_object(this).m_tile_position.p_Width2(dbg_object(dbg_object(dbg_object(this).m_tile_layer).m_parent).m_tileWidth);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<34>";
+	dbg_object(this).m_tile_position.p_Height2(dbg_object(dbg_object(dbg_object(this).m_tile_layer).m_parent).m_tileHeight);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<36>";
+	dbg_object(this).m_tile_position.p_X(Math.floor((t_cx)/dbg_object(this).m_tile_position.p_Width())*dbg_object(dbg_object(dbg_object(this).m_tile_layer).m_parent).m_tileWidth);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<37>";
+	dbg_object(this).m_tile_position.p_Y(Math.floor((t_cy)/dbg_object(this).m_tile_position.p_Height())*dbg_object(dbg_object(dbg_object(this).m_tile_layer).m_parent).m_tileHeight);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<39>";
+	pop_err();
+	return dbg_object(this).m_tile_position;
 }
 c_TileMapCollider.prototype.p_Update=function(){
-	var t_=this.m_objects.p_ObjectEnumerator();
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<61>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<61>";
+	var t_=dbg_object(this).m_objects.p_ObjectEnumerator();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<61>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<61>";
 		var t_o=t_.p_NextObject();
-		for(var t_x=Math.floor(t_o.p_GetBox().p_X2()/this.m_tile_layer.m_parent.m_tileWidth);t_x<=Math.floor((t_o.p_GetBox().p_X2()+t_o.p_GetBox().p_Width())/this.m_tile_layer.m_parent.m_tileWidth);t_x=t_x+1.0){
-			for(var t_y=Math.floor(t_o.p_GetBox().p_Y2()/this.m_tile_layer.m_parent.m_tileHeight);t_y<=Math.floor((t_o.p_GetBox().p_Y2()+t_o.p_GetBox().p_Height())/this.m_tile_layer.m_parent.m_tileHeight);t_y=t_y+1.0){
-				var t_tile=this.p_GetTileID(((this.m_tile_layer.m_parent.m_tileWidth*t_x)|0),((this.m_tile_layer.m_parent.m_tileHeight*t_y)|0));
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<63>";
+		for(var t_x=Math.floor(t_o.p_GetBox().p_X2()/dbg_object(dbg_object(dbg_object(this).m_tile_layer).m_parent).m_tileWidth);t_x<=Math.floor((t_o.p_GetBox().p_X2()+t_o.p_GetBox().p_Width())/dbg_object(dbg_object(dbg_object(this).m_tile_layer).m_parent).m_tileWidth);t_x=t_x+1.0){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<64>";
+			for(var t_y=Math.floor(t_o.p_GetBox().p_Y2()/dbg_object(dbg_object(dbg_object(this).m_tile_layer).m_parent).m_tileHeight);t_y<=Math.floor((t_o.p_GetBox().p_Y2()+t_o.p_GetBox().p_Height())/dbg_object(dbg_object(dbg_object(this).m_tile_layer).m_parent).m_tileHeight);t_y=t_y+1.0){
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<67>";
+				var t_tile=this.p_GetTileID(((dbg_object(dbg_object(dbg_object(this).m_tile_layer).m_parent).m_tileWidth*t_x)|0),((dbg_object(dbg_object(dbg_object(this).m_tile_layer).m_parent).m_tileHeight*t_y)|0));
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<68>";
 				if(t_tile!=0){
+					err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<69>";
 					t_o.p_OnCollide("wall");
-					var t_tile_position=this.p_GetTileDataPosition(((this.m_tile_layer.m_parent.m_tileWidth*t_x)|0),((this.m_tile_layer.m_parent.m_tileHeight*t_y)|0));
+					err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<74>";
+					var t_tile_position=this.p_GetTileDataPosition(((dbg_object(dbg_object(dbg_object(this).m_tile_layer).m_parent).m_tileWidth*t_x)|0),((dbg_object(dbg_object(dbg_object(this).m_tile_layer).m_parent).m_tileHeight*t_y)|0));
+					err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<76>";
 					c_SAT.m_Collide(t_o.p_GetBox(),t_tile_position,this.m_aux_sat);
-					if((t_tile==4103 || t_tile==4102 || t_tile==4104 || t_tile==4108) && this.m_aux_sat.m_Y>0.0){
+					err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<78>";
+					if((t_tile==4103 || t_tile==4102 || t_tile==4104 || t_tile==4108) && dbg_object(this.m_aux_sat).m_Y>0.0){
+						err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<79>";
 						var t_2=t_o.p_GetBox();
-						t_o.p_GetBox().p_Y(t_2.p_Y2()-this.m_aux_sat.m_Y);
+						t_o.p_GetBox().p_Y(t_2.p_Y2()-dbg_object(this.m_aux_sat).m_Y);
 					}
-					if((t_tile==4105 || t_tile==4106 || t_tile==4107 || t_tile==4108) && this.m_aux_sat.m_Y<0.0){
+					err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<82>";
+					if((t_tile==4105 || t_tile==4106 || t_tile==4107 || t_tile==4108) && dbg_object(this.m_aux_sat).m_Y<0.0){
+						err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<83>";
 						var t_3=t_o.p_GetBox();
-						t_o.p_GetBox().p_Y(t_3.p_Y2()-this.m_aux_sat.m_Y);
+						t_o.p_GetBox().p_Y(t_3.p_Y2()-dbg_object(this.m_aux_sat).m_Y);
 					}
-					if((t_tile==4102 || t_tile==4105 || t_tile==4109 || t_tile==4108) && this.m_aux_sat.m_X>0.0){
+					err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<86>";
+					if((t_tile==4102 || t_tile==4105 || t_tile==4109 || t_tile==4108) && dbg_object(this.m_aux_sat).m_X>0.0){
+						err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<87>";
 						var t_4=t_o.p_GetBox();
-						t_o.p_GetBox().p_X(t_4.p_X2()-this.m_aux_sat.m_X);
+						t_o.p_GetBox().p_X(t_4.p_X2()-dbg_object(this.m_aux_sat).m_X);
 					}
-					if((t_tile==4104 || t_tile==4110 || t_tile==4111 || t_tile==4108) && this.m_aux_sat.m_X<0.0){
+					err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<90>";
+					if((t_tile==4104 || t_tile==4110 || t_tile==4111 || t_tile==4108) && dbg_object(this.m_aux_sat).m_X<0.0){
+						err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/tile_map_collider.monkey<91>";
 						var t_5=t_o.p_GetBox();
-						t_o.p_GetBox().p_X(t_5.p_X2()-this.m_aux_sat.m_X);
+						t_o.p_GetBox().p_X(t_5.p_X2()-dbg_object(this.m_aux_sat).m_X);
 					}
 				}
 			}
 		}
 	}
+	pop_err();
 }
 c_TileMapCollider.prototype.p_Render=function(){
+	push_err();
+	pop_err();
+}
+function c_Enumerator6(){
+	Object.call(this);
+	this.m_stack=null;
+	this.m_index=0;
+}
+c_Enumerator6.m_new=function(t_stack){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<255>";
+	dbg_object(this).m_stack=t_stack;
+	pop_err();
+	return this;
+}
+c_Enumerator6.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<252>";
+	pop_err();
+	return this;
+}
+c_Enumerator6.prototype.p_HasNext=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<259>";
+	var t_=this.m_index<this.m_stack.p_Length2();
+	pop_err();
+	return t_;
+}
+c_Enumerator6.prototype.p_NextObject=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<263>";
+	this.m_index+=1;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<264>";
+	var t_=dbg_array(dbg_object(this.m_stack).m_data,this.m_index-1)[dbg_index];
+	pop_err();
+	return t_;
 }
 function c_Vec2(){
 	Object.call(this);
@@ -7681,50 +11736,102 @@ function c_Vec2(){
 	this.m_Y=.0;
 }
 c_Vec2.m_new=function(t_x,t_y){
-	this.m_X=t_x;
-	this.m_Y=t_y;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<13>";
+	dbg_object(this).m_X=t_x;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<14>";
+	dbg_object(this).m_Y=t_y;
+	pop_err();
 	return this;
 }
 c_Vec2.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<6>";
+	pop_err();
 	return this;
 }
 c_Vec2.m_Zero=function(){
-	return c_Vec2.m_new.call(new c_Vec2,0.0,0.0);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<209>";
+	var t_=c_Vec2.m_new.call(new c_Vec2,0.0,0.0);
+	pop_err();
+	return t_;
 }
 c_Vec2.prototype.p_Perp=function(t_rtn){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<163>";
 	if(t_rtn==null){
-		this.m_X=-this.m_Y;
-		this.m_Y=this.m_X;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<164>";
+		dbg_object(this).m_X=-dbg_object(this).m_Y;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<165>";
+		dbg_object(this).m_Y=dbg_object(this).m_X;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<166>";
+		pop_err();
 		return this;
 	}
-	t_rtn.m_X=-this.m_Y;
-	t_rtn.m_Y=this.m_X;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<169>";
+	dbg_object(t_rtn).m_X=-dbg_object(this).m_Y;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<170>";
+	dbg_object(t_rtn).m_Y=dbg_object(this).m_X;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<171>";
+	pop_err();
 	return t_rtn;
 }
 c_Vec2.m_Dot=function(t_x1,t_y1,t_x2,t_y2){
-	return t_x1*t_x2+t_y1*t_y2;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<184>";
+	var t_=t_x1*t_x2+t_y1*t_y2;
+	pop_err();
+	return t_;
 }
 c_Vec2.m_Dot2=function(t_v1,t_v2){
-	return c_Vec2.m_Dot(t_v1.m_X,t_v1.m_Y,t_v2.m_X,t_v2.m_Y);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<179>";
+	var t_=c_Vec2.m_Dot(dbg_object(t_v1).m_X,dbg_object(t_v1).m_Y,dbg_object(t_v2).m_X,dbg_object(t_v2).m_Y);
+	pop_err();
+	return t_;
 }
 c_Vec2.prototype.p_Dot=function(t_other){
-	return c_Vec2.m_Dot(this.m_X,this.m_Y,t_other.m_X,t_other.m_Y);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<175>";
+	var t_=c_Vec2.m_Dot(this.m_X,this.m_Y,dbg_object(t_other).m_X,dbg_object(t_other).m_Y);
+	pop_err();
+	return t_;
 }
 c_Vec2.m_DotSquared=function(t_x1,t_y1){
-	return t_x1*t_x1+t_y1*t_y1;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<189>";
+	var t_=t_x1*t_x1+t_y1*t_y1;
+	pop_err();
+	return t_;
 }
 c_Vec2.prototype.p_Magnitude=function(){
-	return Math.sqrt(Math.pow(this.m_X,2.0)+Math.pow(this.m_Y,2.0));
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<105>";
+	var t_=Math.sqrt(Math.pow(dbg_object(this).m_X,2.0)+Math.pow(dbg_object(this).m_Y,2.0));
+	pop_err();
+	return t_;
 }
 c_Vec2.prototype.p_UnitVector=function(t_rtn){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<110>";
 	var t_magnitude=this.p_Magnitude();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<111>";
 	if(t_rtn==null){
-		this.m_X/=t_magnitude;
-		this.m_Y/=t_magnitude;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<112>";
+		dbg_object(this).m_X/=t_magnitude;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<113>";
+		dbg_object(this).m_Y/=t_magnitude;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<115>";
+		pop_err();
 		return this;
 	}
-	t_rtn.m_X=this.m_X/t_magnitude;
-	t_rtn.m_Y=this.m_Y/t_magnitude;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<118>";
+	dbg_object(t_rtn).m_X=dbg_object(this).m_X/t_magnitude;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<119>";
+	dbg_object(t_rtn).m_Y=dbg_object(this).m_Y/t_magnitude;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/vec2.monkey<121>";
+	pop_err();
 	return t_rtn;
 }
 function c_BulletsEngine(){
@@ -7735,52 +11842,94 @@ function c_BulletsEngine(){
 }
 c_BulletsEngine.m_instance=null;
 c_BulletsEngine.prototype.p_Create=function(){
-	this.m_bullets=c_List5.m_new.call(new c_List5);
-	this.m_discard_list=c_List5.m_new.call(new c_List5);
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<17>";
+	dbg_object(this).m_bullets=c_List5.m_new.call(new c_List5);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<18>";
+	dbg_object(this).m_discard_list=c_List5.m_new.call(new c_List5);
+	pop_err();
 }
 c_BulletsEngine.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<11>";
 	c_BulletsEngine.m_instance=this;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<12>";
 	this.p_Create();
+	pop_err();
 	return this;
 }
 c_BulletsEngine.prototype.p_Update=function(){
-	var t_=this.m_bullets.p_ObjectEnumerator();
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<22>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<22>";
+	var t_=dbg_object(this).m_bullets.p_ObjectEnumerator();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<22>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<22>";
 		var t_b=t_.p_NextObject();
-		var t_2=t_b.m_Position;
-		t_b.m_Position.p_X(t_2.p_X2()+(t_b.m_speed)*c_Time.m_DeltaSecs()*t_b.m_direction.m_X);
-		var t_3=t_b.m_Position;
-		t_b.m_Position.p_Y(t_3.p_Y2()+(t_b.m_speed)*c_Time.m_DeltaSecs()*t_b.m_direction.m_Y);
-		t_b.m_current_live_time+=c_Time.m_DeltaSecs();
-		if(t_b.m_max_live_time<=t_b.m_current_live_time){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<23>";
+		var t_2=dbg_object(t_b).m_Position;
+		dbg_object(t_b).m_Position.p_X(t_2.p_X2()+(dbg_object(t_b).m_speed)*c_Time.m_DeltaSecs()*dbg_object(dbg_object(t_b).m_direction).m_X);
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<24>";
+		var t_3=dbg_object(t_b).m_Position;
+		dbg_object(t_b).m_Position.p_Y(t_3.p_Y2()+(dbg_object(t_b).m_speed)*c_Time.m_DeltaSecs()*dbg_object(dbg_object(t_b).m_direction).m_Y);
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<26>";
+		dbg_object(t_b).m_current_live_time+=c_Time.m_DeltaSecs();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<28>";
+		if(dbg_object(t_b).m_max_live_time<=dbg_object(t_b).m_current_live_time){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<29>";
 			t_b.p_Destroy2();
-			this.m_discard_list.p_AddLast4(t_b);
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<30>";
+			dbg_object(this).m_discard_list.p_AddLast4(t_b);
 		}
 	}
-	var t_4=this.m_discard_list.p_ObjectEnumerator();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<36>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<36>";
+	var t_4=dbg_object(this).m_discard_list.p_ObjectEnumerator();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<36>";
 	while(t_4.p_HasNext()){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<36>";
 		var t_db=t_4.p_NextObject();
-		this.m_bullets.p_RemoveEach2(t_db);
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<37>";
+		dbg_object(this).m_bullets.p_RemoveEach2(t_db);
 	}
-	this.m_discard_list.p_Clear();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<40>";
+	dbg_object(this).m_discard_list.p_Clear();
+	pop_err();
 }
 c_BulletsEngine.prototype.p_Render=function(){
-	var t_=this.m_bullets.p_ObjectEnumerator();
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<44>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<44>";
+	var t_=dbg_object(this).m_bullets.p_ObjectEnumerator();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<44>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<44>";
 		var t_b=t_.p_NextObject();
-		if(t_b.m_visible){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<45>";
+		if(dbg_object(t_b).m_visible){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<46>";
 			t_b.p_Render();
 		}else{
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<48>";
 			t_b.p_Destroy2();
-			this.m_discard_list.p_AddLast4(t_b);
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<49>";
+			dbg_object(this).m_discard_list.p_AddLast4(t_b);
 		}
 	}
+	pop_err();
 }
 c_BulletsEngine.m_Instance2=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<60>";
+	pop_err();
 	return c_BulletsEngine.m_instance;
 }
 c_BulletsEngine.prototype.p_AddBullet=function(t_bullet){
-	this.m_bullets.p_AddLast4(t_bullet);
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/bullets_engine.monkey<56>";
+	dbg_object(this).m_bullets.p_AddLast4(t_bullet);
+	pop_err();
 }
 function c_lpImage(){
 	Object.call(this);
@@ -7801,84 +11950,154 @@ function c_lpImage(){
 	this.implments={c_iDrawable:1};
 }
 c_lpImage.prototype.p_Create=function(){
+	push_err();
+	pop_err();
 }
 c_lpImage.prototype.p__init3=function(t_img,t_position,t_margin){
-	this.m__img=t_img;
-	if((this.m__img)!=null){
-		this.m_Position=c_Rectangle.m_new3.call(new c_Rectangle,t_position.m_X,t_position.m_Y,(this.m__img.p_Width())-t_margin,(this.m__img.p_Height())-t_margin);
-		this.m_DiscardThread=c_DiscardProcess.m_new.call(new c_DiscardProcess,this.m__img);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<25>";
+	dbg_object(this).m__img=t_img;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<27>";
+	if((dbg_object(this).m__img)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<32>";
+		dbg_object(this).m_Position=c_Rectangle.m_new3.call(new c_Rectangle,dbg_object(t_position).m_X,dbg_object(t_position).m_Y,(this.m__img.p_Width())-t_margin,(this.m__img.p_Height())-t_margin);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<34>";
+		this.m_DiscardThread=c_DiscardProcess.m_new.call(new c_DiscardProcess,dbg_object(this).m__img);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<36>";
 		this.p_Create();
 	}
+	pop_err();
 }
 c_lpImage.m_new=function(t_image,t_position,t_l){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<62>";
 	var t_img=bb_lpresources_lpLoadImage(t_image,1,c_Image.m_DefaultFlags);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<63>";
 	this.p__init3(t_img,t_position,0.0);
+	pop_err();
 	return this;
 }
 c_lpImage.m_new2=function(t_image,t_position){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<69>";
 	this.p__init3(t_image,t_position,0.0);
+	pop_err();
 	return this;
 }
 c_lpImage.m_new3=function(t_image,t_position,t_margin){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<75>";
 	var t_img=bb_lpresources_lpLoadImage(t_image,1,c_Image.m_DefaultFlags);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<76>";
 	this.p__init3(t_img,t_position,t_margin);
+	pop_err();
 	return this;
 }
 c_lpImage.m_new4=function(t_image,t_position,t_margin){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<82>";
 	this.p__init3(t_image,t_position,t_margin);
+	pop_err();
 	return this;
 }
 c_lpImage.m_new5=function(t_other){
-	this.m__img=t_other.m__img;
-	this.m__scaled=t_other.m__scaled;
-	this.m__scalex=t_other.m__scalex;
-	this.m__scaley=t_other.m__scaley;
-	this.m__flipped=t_other.m__flipped;
-	this.m__angle=t_other.m__angle;
-	this.m__rotated=t_other.m__rotated;
-	this.m__rotationPivot.m_X=t_other.m__rotationPivot.m_X;
-	this.m__rotationPivot.m_Y=t_other.m__rotationPivot.m_Y;
-	this.m_did=t_other.m_did;
-	this.m_Debug=t_other.m_Debug;
-	this.m_isDestroyed=t_other.m_isDestroyed;
-	this.m_Position=c_Rectangle.m_new.call(new c_Rectangle);
-	this.m_Position.p_X(t_other.m_Position.p_X2());
-	this.m_Position.p_Y(t_other.m_Position.p_Y2());
-	this.m_Position.p_Width2(t_other.m_Position.p_Width());
-	this.m_Position.p_Height2(t_other.m_Position.p_Height());
-	this.m_correctPosition=c_Rectangle.m_new.call(new c_Rectangle);
-	this.m_correctPosition.p_X(t_other.m_correctPosition.p_X2());
-	this.m_correctPosition.p_Y(t_other.m_correctPosition.p_Y2());
-	this.m_correctPosition.p_Width2(t_other.m_correctPosition.p_Width());
-	this.m_correctPosition.p_Height2(t_other.m_correctPosition.p_Height());
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<91>";
+	dbg_object(this).m__img=dbg_object(t_other).m__img;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<92>";
+	dbg_object(this).m__scaled=dbg_object(t_other).m__scaled;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<93>";
+	dbg_object(this).m__scalex=dbg_object(t_other).m__scalex;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<94>";
+	dbg_object(this).m__scaley=dbg_object(t_other).m__scaley;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<95>";
+	dbg_object(this).m__flipped=dbg_object(t_other).m__flipped;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<96>";
+	dbg_object(this).m__angle=dbg_object(t_other).m__angle;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<97>";
+	dbg_object(this).m__rotated=dbg_object(t_other).m__rotated;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<98>";
+	dbg_object(dbg_object(this).m__rotationPivot).m_X=dbg_object(dbg_object(t_other).m__rotationPivot).m_X;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<99>";
+	dbg_object(dbg_object(this).m__rotationPivot).m_Y=dbg_object(dbg_object(t_other).m__rotationPivot).m_Y;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<100>";
+	dbg_object(this).m_did=dbg_object(t_other).m_did;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<101>";
+	dbg_object(this).m_Debug=dbg_object(t_other).m_Debug;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<102>";
+	dbg_object(this).m_isDestroyed=dbg_object(t_other).m_isDestroyed;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<104>";
+	dbg_object(this).m_Position=c_Rectangle.m_new.call(new c_Rectangle);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<105>";
+	dbg_object(this).m_Position.p_X(dbg_object(t_other).m_Position.p_X2());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<106>";
+	dbg_object(this).m_Position.p_Y(dbg_object(t_other).m_Position.p_Y2());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<107>";
+	dbg_object(this).m_Position.p_Width2(dbg_object(t_other).m_Position.p_Width());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<108>";
+	dbg_object(this).m_Position.p_Height2(dbg_object(t_other).m_Position.p_Height());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<110>";
+	dbg_object(this).m_correctPosition=c_Rectangle.m_new.call(new c_Rectangle);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<111>";
+	dbg_object(this).m_correctPosition.p_X(dbg_object(t_other).m_correctPosition.p_X2());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<112>";
+	dbg_object(this).m_correctPosition.p_Y(dbg_object(t_other).m_correctPosition.p_Y2());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<113>";
+	dbg_object(this).m_correctPosition.p_Width2(dbg_object(t_other).m_correctPosition.p_Width());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<114>";
+	dbg_object(this).m_correctPosition.p_Height2(dbg_object(t_other).m_correctPosition.p_Height());
+	pop_err();
 	return this;
 }
 c_lpImage.m_new6=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<22>";
+	pop_err();
 	return this;
 }
 c_lpImage.prototype.p_Render=function(){
-	if(!this.m_isDestroyed){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<129>";
+	if(!dbg_object(this).m_isDestroyed){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<131>";
 		var t_flipCorrection=0.0;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<133>";
 		bb_graphics_PushMatrix();
-		t_flipCorrection=this.m_Position.p_Width();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<134>";
+		t_flipCorrection=dbg_object(this).m_Position.p_Width();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<136>";
 		if(this.m__rotated){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<137>";
 			t_flipCorrection=0.0;
-			bb_graphics_Translate(this.m_correctPosition.p_X2()+this.m__rotationPivot.m_X,this.m_correctPosition.p_Y2()+this.m__rotationPivot.m_Y);
-			this.m__img.p_SetHandle(this.m_correctPosition.p_X2()+this.m__rotationPivot.m_X,this.m_correctPosition.p_Y2()+this.m__rotationPivot.m_Y);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<138>";
+			bb_graphics_Translate(this.m_correctPosition.p_X2()+dbg_object(this.m__rotationPivot).m_X,this.m_correctPosition.p_Y2()+dbg_object(this.m__rotationPivot).m_Y);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<139>";
+			dbg_object(this).m__img.p_SetHandle(this.m_correctPosition.p_X2()+dbg_object(this.m__rotationPivot).m_X,this.m_correctPosition.p_Y2()+dbg_object(this.m__rotationPivot).m_Y);
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<142>";
 		if(this.m__flipped){
-			bb_graphics_DrawImage2(this.m__img,this.m_Position.p_X2()+t_flipCorrection,this.m_Position.p_Y2(),this.m__angle,-this.m__scalex,this.m__scaley,0);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<143>";
+			bb_graphics_DrawImage2(dbg_object(this).m__img,dbg_object(this).m_Position.p_X2()+t_flipCorrection,dbg_object(this).m_Position.p_Y2(),this.m__angle,-this.m__scalex,this.m__scaley,0);
 		}else{
-			bb_graphics_DrawImage2(this.m__img,this.m_Position.p_X2(),this.m_Position.p_Y2(),this.m__angle,this.m__scalex,this.m__scaley,0);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<145>";
+			bb_graphics_DrawImage2(dbg_object(this).m__img,dbg_object(this).m_Position.p_X2(),dbg_object(this).m_Position.p_Y2(),this.m__angle,this.m__scalex,this.m__scaley,0);
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<148>";
 		bb_graphics_PopMatrix();
 	}
+	pop_err();
 }
 c_lpImage.prototype.p_Update=function(){
+	push_err();
+	pop_err();
 }
 c_lpImage.prototype.p_SetRotation=function(t_angle){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<207>";
 	this.m__angle=t_angle;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<208>";
 	this.m__rotated=true;
+	pop_err();
 }
 function c_EnemyBullet(){
 	c_lpImage.call(this);
@@ -7891,29 +12110,53 @@ function c_EnemyBullet(){
 }
 c_EnemyBullet.prototype=extend_class(c_lpImage);
 c_EnemyBullet.prototype.p_Destroy2=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/enemy_cannon.monkey<35>";
 	c_CollisionEngine.m_Instance2().p_Destroy(this);
-	this.m_visible=false;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/enemy_cannon.monkey<36>";
+	dbg_object(this).m_visible=false;
+	pop_err();
 }
 c_EnemyBullet.prototype.p_GetBox=function(){
-	return this.m_Position;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/enemy_cannon.monkey<23>";
+	pop_err();
+	return dbg_object(this).m_Position;
 }
 c_EnemyBullet.prototype.p_OnCollide=function(t_name){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/enemy_cannon.monkey<26>";
 	if(t_name=="wall" || t_name=="player"){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/enemy_cannon.monkey<27>";
 		this.p_Destroy2();
 	}
+	pop_err();
 }
 c_EnemyBullet.prototype.p_GetName=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/enemy_cannon.monkey<31>";
+	pop_err();
 	return "enemy_bullet";
 }
 c_EnemyBullet.m_new=function(t_position,t_direction){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/enemy_cannon.monkey<15>";
 	c_lpImage.m_new.call(this,"bullet_enemy.png",t_position,0);
-	this.m_direction=t_direction;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/enemy_cannon.monkey<17>";
+	dbg_object(this).m_direction=t_direction;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/enemy_cannon.monkey<18>";
 	c_CollisionEngine.m_Instance2().p_AddBody(this);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/enemy_cannon.monkey<19>";
 	c_BulletsEngine.m_Instance2().p_AddBullet(this);
+	pop_err();
 	return this;
 }
 c_EnemyBullet.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/enemy_cannon.monkey<5>";
 	c_lpImage.m_new6.call(this);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/enemy_cannon.monkey<5>";
+	pop_err();
 	return this;
 }
 function c_List5(){
@@ -7921,41 +12164,76 @@ function c_List5(){
 	this.m__head=(c_HeadNode5.m_new.call(new c_HeadNode5));
 }
 c_List5.m_new=function(){
+	push_err();
+	pop_err();
 	return this;
 }
 c_List5.prototype.p_AddLast4=function(t_data){
-	return c_Node13.m_new.call(new c_Node13,this.m__head,this.m__head.m__pred,t_data);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<108>";
+	var t_=c_Node13.m_new.call(new c_Node13,this.m__head,dbg_object(this.m__head).m__pred,t_data);
+	pop_err();
+	return t_;
 }
 c_List5.m_new2=function(t_data){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 	var t_=t_data;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 	var t_2=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 	while(t_2<t_.length){
-		var t_t=t_[t_2];
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
+		var t_t=dbg_array(t_,t_2)[dbg_index];
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 		t_2=t_2+1;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<14>";
 		this.p_AddLast4(t_t);
 	}
+	pop_err();
 	return this;
 }
 c_List5.prototype.p_ObjectEnumerator=function(){
-	return c_Enumerator10.m_new.call(new c_Enumerator10,this);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<186>";
+	var t_=c_Enumerator10.m_new.call(new c_Enumerator10,this);
+	pop_err();
+	return t_;
 }
 c_List5.prototype.p_Equals3=function(t_lhs,t_rhs){
-	return t_lhs==t_rhs;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<28>";
+	var t_=t_lhs==t_rhs;
+	pop_err();
+	return t_;
 }
 c_List5.prototype.p_RemoveEach2=function(t_value){
-	var t_node=this.m__head.m__succ;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<151>";
+	var t_node=dbg_object(this.m__head).m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<152>";
 	while(t_node!=this.m__head){
-		var t_succ=t_node.m__succ;
-		if(this.p_Equals3(t_node.m__data,t_value)){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<153>";
+		var t_succ=dbg_object(t_node).m__succ;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<154>";
+		if(this.p_Equals3(dbg_object(t_node).m__data,t_value)){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<154>";
 			t_node.p_Remove();
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<155>";
 		t_node=t_succ;
 	}
+	pop_err();
 	return 0;
 }
 c_List5.prototype.p_Clear=function(){
-	this.m__head.m__succ=this.m__head;
-	this.m__head.m__pred=this.m__head;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<36>";
+	dbg_object(this.m__head).m__succ=this.m__head;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<37>";
+	dbg_object(this.m__head).m__pred=this.m__head;
+	pop_err();
 	return 0;
 }
 function c_Node13(){
@@ -7965,19 +12243,38 @@ function c_Node13(){
 	this.m__data=null;
 }
 c_Node13.m_new=function(t_succ,t_pred,t_data){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<261>";
 	this.m__succ=t_succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<262>";
 	this.m__pred=t_pred;
-	this.m__succ.m__pred=this;
-	this.m__pred.m__succ=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<263>";
+	dbg_object(this.m__succ).m__pred=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<264>";
+	dbg_object(this.m__pred).m__succ=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<265>";
 	this.m__data=t_data;
+	pop_err();
 	return this;
 }
 c_Node13.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<258>";
+	pop_err();
 	return this;
 }
 c_Node13.prototype.p_Remove=function(){
-	this.m__succ.m__pred=this.m__pred;
-	this.m__pred.m__succ=this.m__succ;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<274>";
+	if(dbg_object(this.m__succ).m__pred!=this){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<274>";
+		error("Illegal operation on removed node");
+	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<276>";
+	dbg_object(this.m__succ).m__pred=this.m__pred;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<277>";
+	dbg_object(this.m__pred).m__succ=this.m__succ;
+	pop_err();
 	return 0;
 }
 function c_HeadNode5(){
@@ -7985,9 +12282,14 @@ function c_HeadNode5(){
 }
 c_HeadNode5.prototype=extend_class(c_Node13);
 c_HeadNode5.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<310>";
 	c_Node13.m_new2.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<311>";
 	this.m__succ=(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<312>";
 	this.m__pred=(this);
+	pop_err();
 	return this;
 }
 function c_Player(){
@@ -8003,98 +12305,177 @@ function c_Player(){
 	this.implments={c_iDrawable:1,c_iOnCollide:1};
 }
 c_Player.prototype.p_Create=function(){
-	this.m_position=c_Rectangle.m_new3.call(new c_Rectangle,30.0,60.0,23.0,8.0);
-	this.m_box=c_Rectangle.m_new3.call(new c_Rectangle,0.0,0.0,10.0,4.0);
-	this.m_sprite=c_AnimatedSprite.m_new.call(new c_AnimatedSprite,"ship.png",c_Vec2.m_new.call(new c_Vec2,0.0,0.0),23.0,8.0,2,0.0);
-	this.m_sprite.p_AddSequence("fly",[0,1]);
-	this.m_sprite.p_PlaySequence("fly",83,true);
-	this.m_control=c_SpaceShooterControl.m_new.call(new c_SpaceShooterControl,(this.m_position));
-	this.m_cannon=c_SpaceShooterCannon.m_new.call(new c_SpaceShooterCannon,(this.m_position));
-	this.m_cannon.p_Offset().p_X(25.0);
-	this.m_cannon.p_Offset().p_Y(4.0);
-	this.m_cannon.p_AddSprite("bullet_level_0.png");
-	this.m_cannon.p_AddSprite("bullet_level_1.png");
-	this.m_cannon.p_AddSprite("bullet_level_2.png");
-	this.m_cannon.p_AddSprite("bullet_level_3.png");
-	this.m_particles_emitter=c_ParticleEmitter.m_new.call(new c_ParticleEmitter,null,0);
-	this.m_particles_emitter.p_LoadFromJson(bb_app_LoadString("ship_booster.json"));
-	this.m_particles_emitter.m_Position.p_X(0.0);
-	this.m_particles_emitter.m_Position.p_Y(0.0);
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<30>";
+	dbg_object(this).m_position=c_Rectangle.m_new3.call(new c_Rectangle,30.0,60.0,23.0,8.0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<31>";
+	dbg_object(this).m_box=c_Rectangle.m_new3.call(new c_Rectangle,0.0,0.0,10.0,4.0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<34>";
+	dbg_object(this).m_sprite=c_AnimatedSprite.m_new.call(new c_AnimatedSprite,"ship.png",c_Vec2.m_new.call(new c_Vec2,0.0,0.0),23.0,8.0,2,0.0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<35>";
+	dbg_object(this).m_sprite.p_AddSequence("fly",[0,1]);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<36>";
+	dbg_object(this).m_sprite.p_PlaySequence("fly",83,true);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<39>";
+	dbg_object(this).m_control=c_SpaceShooterControl.m_new.call(new c_SpaceShooterControl,(dbg_object(this).m_position));
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<42>";
+	dbg_object(this).m_cannon=c_SpaceShooterCannon.m_new.call(new c_SpaceShooterCannon,(dbg_object(this).m_position));
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<44>";
+	dbg_object(this).m_cannon.p_Offset().p_X(25.0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<45>";
+	dbg_object(this).m_cannon.p_Offset().p_Y(4.0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<47>";
+	dbg_object(this).m_cannon.p_AddSprite("bullet_level_0.png");
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<48>";
+	dbg_object(this).m_cannon.p_AddSprite("bullet_level_1.png");
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<49>";
+	dbg_object(this).m_cannon.p_AddSprite("bullet_level_2.png");
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<50>";
+	dbg_object(this).m_cannon.p_AddSprite("bullet_level_3.png");
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<52>";
+	dbg_object(this).m_particles_emitter=c_ParticleEmitter.m_new.call(new c_ParticleEmitter,null,0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<53>";
+	dbg_object(this).m_particles_emitter.p_LoadFromJson(bb_app_LoadString("ship_booster.json"));
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<54>";
+	dbg_object(dbg_object(this).m_particles_emitter).m_Position.p_X(0.0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<55>";
+	dbg_object(dbg_object(this).m_particles_emitter).m_Position.p_Y(0.0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<57>";
 	c_CollisionEngine.m_Instance2().p_AddBody(this);
-	this.m_explosion=c_AnimatedSprite.m_new.call(new c_AnimatedSprite,"explosion.png",c_Vec2.m_new.call(new c_Vec2,0.0,0.0),9.0,9.0,14,0.0);
-	this.m_explosion.p_AddSequence("explode",[0,1,2,3,4,5,6,7,8,9,10,11,12,13]);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<60>";
+	dbg_object(this).m_explosion=c_AnimatedSprite.m_new.call(new c_AnimatedSprite,"explosion.png",c_Vec2.m_new.call(new c_Vec2,0.0,0.0),9.0,9.0,14,0.0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<61>";
+	dbg_object(this).m_explosion.p_AddSequence("explode",[0,1,2,3,4,5,6,7,8,9,10,11,12,13]);
+	pop_err();
 }
 c_Player.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<25>";
 	this.p_Create();
+	pop_err();
 	return this;
 }
 c_Player.prototype.p_Update=function(){
-	if(this.m_state==0){
-		this.m_sprite.p_Update();
-		this.m_control.p_Update();
-		this.m_cannon.p_Update();
-		this.m_particles_emitter.p_Update();
-		if(this.m_control.p_Shot()){
-			this.m_cannon.p_Shot();
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<66>";
+	if(dbg_object(this).m_state==0){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<67>";
+		dbg_object(this).m_sprite.p_Update();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<68>";
+		dbg_object(this).m_control.p_Update();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<69>";
+		dbg_object(this).m_cannon.p_Update();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<70>";
+		dbg_object(this).m_particles_emitter.p_Update();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<72>";
+		if(dbg_object(this).m_control.p_Shot()){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<73>";
+			dbg_object(this).m_cannon.p_Shot();
 		}
-		this.m_box.p_X(this.m_position.p_X2()+10.0);
-		this.m_box.p_Y(this.m_position.p_Y2()+2.0);
-		this.m_particles_emitter.m_Position.p_X(this.m_position.p_X2()+7.0);
-		this.m_particles_emitter.m_Position.p_Y(this.m_position.p_Y2()+this.m_position.p_Height()/2.0);
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<76>";
+		dbg_object(this).m_box.p_X(dbg_object(this).m_position.p_X2()+10.0);
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<77>";
+		dbg_object(this).m_box.p_Y(dbg_object(this).m_position.p_Y2()+2.0);
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<79>";
+		dbg_object(dbg_object(this).m_particles_emitter).m_Position.p_X(dbg_object(this).m_position.p_X2()+7.0);
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<80>";
+		dbg_object(dbg_object(this).m_particles_emitter).m_Position.p_Y(dbg_object(this).m_position.p_Y2()+dbg_object(this).m_position.p_Height()/2.0);
 	}else{
-		if(this.m_state==1){
-			this.m_explosion.p_Update();
-			if(this.m_explosion.p_IsLastFrame()){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<81>";
+		if(dbg_object(this).m_state==1){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<82>";
+			dbg_object(this).m_explosion.p_Update();
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<84>";
+			if(dbg_object(this).m_explosion.p_IsLastFrame()){
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<85>";
 				c_Game.m_Instance().p_SetScene(0,null);
 			}
 		}
 	}
+	pop_err();
 }
 c_Player.prototype.p_Render=function(){
-	if(this.m_state==0){
-		this.m_particles_emitter.p_Render();
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<93>";
+	if(dbg_object(this).m_state==0){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<94>";
+		dbg_object(this).m_particles_emitter.p_Render();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<96>";
 		bb_graphics_PushMatrix();
-		bb_graphics_Translate(this.m_position.p_X2(),this.m_position.p_Y2());
-		this.m_sprite.p_Render();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<97>";
+		bb_graphics_Translate(dbg_object(this).m_position.p_X2(),dbg_object(this).m_position.p_Y2());
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<98>";
+		dbg_object(this).m_sprite.p_Render();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<99>";
 		bb_graphics_PopMatrix();
-		this.m_cannon.p_Render();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<101>";
+		dbg_object(this).m_cannon.p_Render();
 	}else{
-		if(this.m_state==1){
-			this.m_explosion.p_Render();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<102>";
+		if(dbg_object(this).m_state==1){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<103>";
+			dbg_object(this).m_explosion.p_Render();
 		}
 	}
+	pop_err();
 }
 c_Player.prototype.p_GetBox=function(){
-	return this.m_box;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<110>";
+	pop_err();
+	return dbg_object(this).m_box;
 }
 c_Player.prototype.p_Die=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<131>";
 	c_CollisionEngine.m_Instance2().p_Destroy(this);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<132>";
 	c_CollisionEngine.m_Instance2().p_DestroyAll();
-	this.m_state=1;
-	this.m_explosion.m_Position.p_X(this.m_position.p_X2()+10.0);
-	this.m_explosion.m_Position.p_Y(this.m_position.p_Y2());
-	this.m_explosion.p_PlaySequence("explode",100,true);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<134>";
+	dbg_object(this).m_state=1;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<136>";
+	dbg_object(dbg_object(this).m_explosion).m_Position.p_X(dbg_object(this).m_position.p_X2()+10.0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<137>";
+	dbg_object(dbg_object(this).m_explosion).m_Position.p_Y(dbg_object(this).m_position.p_Y2());
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<138>";
+	dbg_object(this).m_explosion.p_PlaySequence("explode",100,true);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<140>";
 	c_Time.m_SlowDown(0.5,1000);
+	pop_err();
 }
 c_Player.prototype.p_OnCollide=function(t_name){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<114>";
 	if(t_name=="powerup"){
-		this.m_cannon.p_LevelUp();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<115>";
+		dbg_object(this).m_cannon.p_LevelUp();
 	}else{
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<116>";
 		if(t_name=="enemy" || t_name=="enemy_bullet"){
-			if(this.m_cannon.m_level==0){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<118>";
+			if(dbg_object(dbg_object(this).m_cannon).m_level==0){
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<119>";
 				this.p_Die();
 			}else{
-				this.m_cannon.p_LevelDown();
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<121>";
+				dbg_object(this).m_cannon.p_LevelDown();
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<122>";
 				c_Time.m_Freeze(200);
 			}
 		}else{
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<124>";
 			if(t_name=="wall"){
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<125>";
 				this.p_Die();
 			}
 		}
 	}
+	pop_err();
 }
 c_Player.prototype.p_GetName=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/player.monkey<145>";
+	pop_err();
 	return "player";
 }
 function c_AnimatedSprite(){
@@ -8114,123 +12495,223 @@ function c_AnimatedSprite(){
 }
 c_AnimatedSprite.prototype=extend_class(c_lpImage);
 c_AnimatedSprite.prototype.p__initialize=function(t_img,t_position,t_frames,t_margin){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<28>";
 	this.p__init3(t_img,t_position,0.0);
-	this.m__margin=t_margin;
-	this.m__maxIndex=t_frames;
-	this.m__currentIndex=0;
-	this.m_Pause=true;
-	this.m__sequences=c_StringMap6.m_new.call(new c_StringMap6);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<32>";
+	dbg_object(this).m__margin=t_margin;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<34>";
+	dbg_object(this).m__maxIndex=t_frames;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<36>";
+	dbg_object(this).m__currentIndex=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<37>";
+	dbg_object(this).m_Pause=true;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<38>";
+	dbg_object(this).m__sequences=c_StringMap6.m_new.call(new c_StringMap6);
+	pop_err();
 }
 c_AnimatedSprite.m_new=function(t_image,t_position,t_tileW,t_tileH,t_frames,t_margin){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<45>";
 	c_lpImage.m_new6.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<47>";
 	var t_img=bb_lpresources_lpLoadImage2(t_image,((t_tileW)|0),((t_tileH)|0),t_frames,c_Image.m_DefaultFlags);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<49>";
 	this.p__initialize(t_img,t_position,((t_margin)|0),(t_frames));
+	pop_err();
 	return this;
 }
 c_AnimatedSprite.m_new2=function(t_img,t_position,t_frames,t_margin){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<52>";
 	c_lpImage.m_new6.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<53>";
 	this.p__initialize(t_img,t_position,((t_margin)|0),(t_frames));
+	pop_err();
 	return this;
 }
 c_AnimatedSprite.m_new3=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<12>";
 	c_lpImage.m_new6.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<12>";
+	pop_err();
 	return this;
 }
 c_AnimatedSprite.prototype.p_AddSequence=function(t_name,t_seq){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<60>";
 	if(t_name!=this.m__currentSequenceName){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<63>";
 		var t_stack=c_IntStack.m_new2.call(new c_IntStack);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<65>";
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<65>";
 		var t_=t_seq;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<65>";
 		var t_2=0;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<65>";
 		while(t_2<t_.length){
-			var t_i=t_[t_2];
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<65>";
+			var t_i=dbg_array(t_,t_2)[dbg_index];
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<65>";
 			t_2=t_2+1;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<66>";
 			t_stack.p_Push31(t_i);
 		}
-		this.m__sequences.p_Set6(t_name,t_stack);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<69>";
+		dbg_object(this).m__sequences.p_Set6(t_name,t_stack);
 	}
+	pop_err();
 }
 c_AnimatedSprite.prototype.p_PlaySequence=function(t_name,t_frameTime,t_looped){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<87>";
 	if(this.m__currentSequenceName!=t_name){
-		this.m__currentSequence=this.m__sequences.p_Get2(t_name);
-		this.m__maxIndex=this.m__currentSequence.p_Length2();
-		this.m_Pause=false;
-		this.m__frameTime=t_frameTime;
-		this.m__currentSequenceName=t_name;
-		this.m__lastSequenceName=t_name;
-		this.m__currentIndex=0;
-		this.m__looped=t_looped;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<89>";
+		dbg_object(this).m__currentSequence=dbg_object(this).m__sequences.p_Get2(t_name);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<90>";
+		dbg_object(this).m__maxIndex=dbg_object(this).m__currentSequence.p_Length2();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<91>";
+		dbg_object(this).m_Pause=false;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<92>";
+		dbg_object(this).m__frameTime=t_frameTime;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<94>";
+		dbg_object(this).m__currentSequenceName=t_name;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<95>";
+		dbg_object(this).m__lastSequenceName=t_name;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<97>";
+		dbg_object(this).m__currentIndex=0;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<99>";
+		dbg_object(this).m__looped=t_looped;
 	}
+	pop_err();
 }
 c_AnimatedSprite.prototype.p_IsLastFrame=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<173>";
 	if(this.m__maxIndex-1==this.m__currentIndex){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<174>";
+		pop_err();
 		return true;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<177>";
+	pop_err();
 	return false;
 }
 c_AnimatedSprite.prototype.p_Update=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<119>";
 	if(!this.m_Pause){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<120>";
 		this.m__elapsedTime=c_Time.m_Delta()+this.m__elapsedTime;
-		if(this.m__elapsedTime>this.m__frameTime){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<122>";
+		if(this.m__elapsedTime>dbg_object(this).m__frameTime){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<124>";
 			if(!this.m_Pause){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<125>";
 				if(this.p_IsLastFrame()){
-					this.m__currentIndex=0;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<126>";
+					dbg_object(this).m__currentIndex=0;
 				}else{
-					this.m__currentIndex=this.m__currentIndex+1;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<128>";
+					dbg_object(this).m__currentIndex=dbg_object(this).m__currentIndex+1;
 				}
 			}
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<132>";
 			this.m__elapsedTime=0;
 		}
 	}
-	if(!this.m__looped){
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<137>";
+	if(!dbg_object(this).m__looped){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<138>";
 		if(this.p_IsLastFrame()){
-			this.m_Pause=true;
-			this.m__currentIndex=this.m__maxIndex;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<139>";
+			dbg_object(this).m_Pause=true;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<140>";
+			dbg_object(this).m__currentIndex=this.m__maxIndex;
 		}
 	}
+	pop_err();
 }
 c_AnimatedSprite.prototype.p_Render=function(){
-	if(!this.m_isDestroyed && this.m__currentSequenceName!=""){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<148>";
+	if(!dbg_object(this).m_isDestroyed && dbg_object(this).m__currentSequenceName!=""){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<150>";
 		var t_flipCorrection=0.0;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<152>";
 		bb_graphics_PushMatrix();
-		t_flipCorrection=this.m_Position.p_Width();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<154>";
+		t_flipCorrection=dbg_object(this).m_Position.p_Width();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<156>";
 		if(this.m__rotated){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<157>";
 			t_flipCorrection=0.0;
-			bb_graphics_Translate(this.m_correctPosition.p_X2()+this.m__rotationPivot.m_X,this.m_correctPosition.p_Y2()+this.m__rotationPivot.m_Y);
-			this.m__img.p_SetHandle(this.m_correctPosition.p_X2()+this.m__rotationPivot.m_X,this.m_correctPosition.p_Y2()+this.m__rotationPivot.m_Y);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<158>";
+			bb_graphics_Translate(this.m_correctPosition.p_X2()+dbg_object(this.m__rotationPivot).m_X,this.m_correctPosition.p_Y2()+dbg_object(this.m__rotationPivot).m_Y);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<159>";
+			dbg_object(this).m__img.p_SetHandle(this.m_correctPosition.p_X2()+dbg_object(this.m__rotationPivot).m_X,this.m_correctPosition.p_Y2()+dbg_object(this.m__rotationPivot).m_Y);
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<162>";
 		if(this.m__flipped){
-			bb_graphics_DrawImage2(this.m__img,this.m_Position.p_X2()+t_flipCorrection,this.m_Position.p_Y2(),this.m__angle,-this.m__scalex,this.m__scaley,this.m__currentSequence.p_Get(this.m__currentIndex));
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<163>";
+			bb_graphics_DrawImage2(dbg_object(this).m__img,dbg_object(this).m_Position.p_X2()+t_flipCorrection,dbg_object(this).m_Position.p_Y2(),this.m__angle,-this.m__scalex,this.m__scaley,this.m__currentSequence.p_Get(this.m__currentIndex));
 		}else{
-			bb_graphics_DrawImage2(this.m__img,this.m_Position.p_X2(),this.m_Position.p_Y2(),this.m__angle,this.m__scalex,this.m__scaley,this.m__currentSequence.p_Get(this.m__currentIndex));
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<165>";
+			bb_graphics_DrawImage2(dbg_object(this).m__img,dbg_object(this).m_Position.p_X2(),dbg_object(this).m_Position.p_Y2(),this.m__angle,this.m__scalex,this.m__scaley,this.m__currentSequence.p_Get(this.m__currentIndex));
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/animatedsprite.monkey<168>";
 		bb_graphics_PopMatrix();
 	}
+	pop_err();
 }
 function bb_lpresources_lpLoadImage(t_path,t_frameCount,t_flags){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<91>";
 	var t_lkey=""+t_path+String(t_frameCount)+String(t_flags);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<92>";
 	var t_r=c_lpResources.m_GetInstance();
-	if(!t_r.m_images.p_Contains2(t_lkey)){
-		t_r.m_images.p_Set2(t_lkey,bb_graphics_LoadImage(t_path,t_frameCount,t_flags));
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<94>";
+	if(!dbg_object(t_r).m_images.p_Contains2(t_lkey)){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<95>";
+		dbg_object(t_r).m_images.p_Set2(t_lkey,bb_graphics_LoadImage(t_path,t_frameCount,t_flags));
 	}
-	return t_r.m_images.p_Get2(t_lkey);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<98>";
+	var t_=dbg_object(t_r).m_images.p_Get2(t_lkey);
+	pop_err();
+	return t_;
 }
 function bb_lpresources_lpLoadImage2(t_path,t_frameWidth,t_frameHeight,t_frameCount,t_flags){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<103>";
 	var t_lkey=""+t_path+String(t_frameCount)+String(t_frameWidth)+String(t_frameHeight)+String(t_frameCount)+String(t_flags);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<104>";
 	var t_r=c_lpResources.m_GetInstance();
-	if(!t_r.m_images.p_Contains2(t_lkey)){
-		t_r.m_images.p_Set2(t_lkey,bb_graphics_LoadImage2(t_path,t_frameWidth,t_frameHeight,t_frameCount,t_flags));
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<106>";
+	if(!dbg_object(t_r).m_images.p_Contains2(t_lkey)){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<107>";
+		dbg_object(t_r).m_images.p_Set2(t_lkey,bb_graphics_LoadImage2(t_path,t_frameWidth,t_frameHeight,t_frameCount,t_flags));
 	}
-	return t_r.m_images.p_Get2(t_lkey);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpresources.monkey<110>";
+	var t_=dbg_object(t_r).m_images.p_Get2(t_lkey);
+	pop_err();
+	return t_;
 }
 function c_DiscardProcess(){
 	Object.call(this);
 	this.m_img=null;
 }
 c_DiscardProcess.m_new=function(t_i){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<11>";
 	this.m_img=t_i;
+	pop_err();
 	return this;
 }
 c_DiscardProcess.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/lpimage.monkey<8>";
+	pop_err();
 	return this;
 }
 function c_Stack12(){
@@ -8239,57 +12720,97 @@ function c_Stack12(){
 	this.m_length=0;
 }
 c_Stack12.m_new=function(){
+	push_err();
+	pop_err();
 	return this;
 }
 c_Stack12.m_new2=function(t_data){
-	this.m_data=t_data.slice(0);
-	this.m_length=t_data.length;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<13>";
+	dbg_object(this).m_data=t_data.slice(0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<14>";
+	dbg_object(this).m_length=t_data.length;
+	pop_err();
 	return this;
 }
 c_Stack12.prototype.p_Push31=function(t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<67>";
 	if(this.m_length==this.m_data.length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<68>";
 		this.m_data=resize_number_array(this.m_data,this.m_length*2+10);
 	}
-	this.m_data[this.m_length]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<70>";
+	dbg_array(this.m_data,this.m_length)[dbg_index]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<71>";
 	this.m_length+=1;
+	pop_err();
 }
 c_Stack12.prototype.p_Push32=function(t_values,t_offset,t_count){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<79>";
 	for(var t_i=0;t_i<t_count;t_i=t_i+1){
-		this.p_Push31(t_values[t_offset+t_i]);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<80>";
+		this.p_Push31(dbg_array(t_values,t_offset+t_i)[dbg_index]);
 	}
+	pop_err();
 }
 c_Stack12.prototype.p_Push33=function(t_values,t_offset){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<75>";
 	this.p_Push32(t_values,t_offset,t_values.length-t_offset);
+	pop_err();
 }
 c_Stack12.m_NIL=0;
 c_Stack12.prototype.p_Length=function(t_newlength){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<41>";
 	if(t_newlength<this.m_length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<42>";
 		for(var t_i=t_newlength;t_i<this.m_length;t_i=t_i+1){
-			this.m_data[t_i]=c_Stack12.m_NIL;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<43>";
+			dbg_array(this.m_data,t_i)[dbg_index]=c_Stack12.m_NIL;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<45>";
 		if(t_newlength>this.m_data.length){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<46>";
 			this.m_data=resize_number_array(this.m_data,bb_math_Max(this.m_length*2+10,t_newlength));
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<48>";
 	this.m_length=t_newlength;
+	pop_err();
 }
 c_Stack12.prototype.p_Length2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<52>";
+	pop_err();
 	return this.m_length;
 }
 c_Stack12.prototype.p_Get=function(t_index){
-	return this.m_data[t_index];
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<100>";
+	pop_err();
+	return dbg_array(this.m_data,t_index)[dbg_index];
 }
 function c_IntStack(){
 	c_Stack12.call(this);
 }
 c_IntStack.prototype=extend_class(c_Stack12);
 c_IntStack.m_new=function(t_data){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<318>";
 	c_Stack12.m_new2.call(this,t_data);
+	pop_err();
 	return this;
 }
 c_IntStack.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<315>";
 	c_Stack12.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<315>";
+	pop_err();
 	return this;
 }
 function c_Map9(){
@@ -8297,141 +12818,242 @@ function c_Map9(){
 	this.m_root=null;
 }
 c_Map9.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<7>";
+	pop_err();
 	return this;
 }
 c_Map9.prototype.p_Compare2=function(t_lhs,t_rhs){
 }
 c_Map9.prototype.p_RotateLeft6=function(t_node){
-	var t_child=t_node.m_right;
-	t_node.m_right=t_child.m_left;
-	if((t_child.m_left)!=null){
-		t_child.m_left.m_parent=t_node;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<251>";
+	var t_child=dbg_object(t_node).m_right;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<252>";
+	dbg_object(t_node).m_right=dbg_object(t_child).m_left;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<253>";
+	if((dbg_object(t_child).m_left)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<254>";
+		dbg_object(dbg_object(t_child).m_left).m_parent=t_node;
 	}
-	t_child.m_parent=t_node.m_parent;
-	if((t_node.m_parent)!=null){
-		if(t_node==t_node.m_parent.m_left){
-			t_node.m_parent.m_left=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<256>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<257>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<258>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<259>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
 		}else{
-			t_node.m_parent.m_right=t_child;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<261>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<264>";
 		this.m_root=t_child;
 	}
-	t_child.m_left=t_node;
-	t_node.m_parent=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<266>";
+	dbg_object(t_child).m_left=t_node;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<267>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
 	return 0;
 }
 c_Map9.prototype.p_RotateRight6=function(t_node){
-	var t_child=t_node.m_left;
-	t_node.m_left=t_child.m_right;
-	if((t_child.m_right)!=null){
-		t_child.m_right.m_parent=t_node;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<271>";
+	var t_child=dbg_object(t_node).m_left;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<272>";
+	dbg_object(t_node).m_left=dbg_object(t_child).m_right;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<273>";
+	if((dbg_object(t_child).m_right)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<274>";
+		dbg_object(dbg_object(t_child).m_right).m_parent=t_node;
 	}
-	t_child.m_parent=t_node.m_parent;
-	if((t_node.m_parent)!=null){
-		if(t_node==t_node.m_parent.m_right){
-			t_node.m_parent.m_right=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<276>";
+	dbg_object(t_child).m_parent=dbg_object(t_node).m_parent;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<277>";
+	if((dbg_object(t_node).m_parent)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<278>";
+		if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<279>";
+			dbg_object(dbg_object(t_node).m_parent).m_right=t_child;
 		}else{
-			t_node.m_parent.m_left=t_child;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<281>";
+			dbg_object(dbg_object(t_node).m_parent).m_left=t_child;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<284>";
 		this.m_root=t_child;
 	}
-	t_child.m_right=t_node;
-	t_node.m_parent=t_child;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<286>";
+	dbg_object(t_child).m_right=t_node;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<287>";
+	dbg_object(t_node).m_parent=t_child;
+	pop_err();
 	return 0;
 }
 c_Map9.prototype.p_InsertFixup6=function(t_node){
-	while(((t_node.m_parent)!=null) && t_node.m_parent.m_color==-1 && ((t_node.m_parent.m_parent)!=null)){
-		if(t_node.m_parent==t_node.m_parent.m_parent.m_left){
-			var t_uncle=t_node.m_parent.m_parent.m_right;
-			if(((t_uncle)!=null) && t_uncle.m_color==-1){
-				t_node.m_parent.m_color=1;
-				t_uncle.m_color=1;
-				t_uncle.m_parent.m_color=-1;
-				t_node=t_uncle.m_parent;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<212>";
+	while(((dbg_object(t_node).m_parent)!=null) && dbg_object(dbg_object(t_node).m_parent).m_color==-1 && ((dbg_object(dbg_object(t_node).m_parent).m_parent)!=null)){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<213>";
+		if(dbg_object(t_node).m_parent==dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<214>";
+			var t_uncle=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_right;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<215>";
+			if(((t_uncle)!=null) && dbg_object(t_uncle).m_color==-1){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<216>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<217>";
+				dbg_object(t_uncle).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<218>";
+				dbg_object(dbg_object(t_uncle).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<219>";
+				t_node=dbg_object(t_uncle).m_parent;
 			}else{
-				if(t_node==t_node.m_parent.m_right){
-					t_node=t_node.m_parent;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<221>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_right){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<222>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<223>";
 					this.p_RotateLeft6(t_node);
 				}
-				t_node.m_parent.m_color=1;
-				t_node.m_parent.m_parent.m_color=-1;
-				this.p_RotateRight6(t_node.m_parent.m_parent);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<225>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<226>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<227>";
+				this.p_RotateRight6(dbg_object(dbg_object(t_node).m_parent).m_parent);
 			}
 		}else{
-			var t_uncle2=t_node.m_parent.m_parent.m_left;
-			if(((t_uncle2)!=null) && t_uncle2.m_color==-1){
-				t_node.m_parent.m_color=1;
-				t_uncle2.m_color=1;
-				t_uncle2.m_parent.m_color=-1;
-				t_node=t_uncle2.m_parent;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<230>";
+			var t_uncle2=dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_left;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<231>";
+			if(((t_uncle2)!=null) && dbg_object(t_uncle2).m_color==-1){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<232>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<233>";
+				dbg_object(t_uncle2).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<234>";
+				dbg_object(dbg_object(t_uncle2).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<235>";
+				t_node=dbg_object(t_uncle2).m_parent;
 			}else{
-				if(t_node==t_node.m_parent.m_left){
-					t_node=t_node.m_parent;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<237>";
+				if(t_node==dbg_object(dbg_object(t_node).m_parent).m_left){
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<238>";
+					t_node=dbg_object(t_node).m_parent;
+					err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<239>";
 					this.p_RotateRight6(t_node);
 				}
-				t_node.m_parent.m_color=1;
-				t_node.m_parent.m_parent.m_color=-1;
-				this.p_RotateLeft6(t_node.m_parent.m_parent);
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<241>";
+				dbg_object(dbg_object(t_node).m_parent).m_color=1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<242>";
+				dbg_object(dbg_object(dbg_object(t_node).m_parent).m_parent).m_color=-1;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<243>";
+				this.p_RotateLeft6(dbg_object(dbg_object(t_node).m_parent).m_parent);
 			}
 		}
 	}
-	this.m_root.m_color=1;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<247>";
+	dbg_object(this.m_root).m_color=1;
+	pop_err();
 	return 0;
 }
 c_Map9.prototype.p_Set6=function(t_key,t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<29>";
 	var t_node=this.m_root;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<30>";
 	var t_parent=null;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<30>";
 	var t_cmp=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<32>";
 	while((t_node)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<33>";
 		t_parent=t_node;
-		t_cmp=this.p_Compare2(t_key,t_node.m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<34>";
+		t_cmp=this.p_Compare2(t_key,dbg_object(t_node).m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<35>";
 		if(t_cmp>0){
-			t_node=t_node.m_right;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<36>";
+			t_node=dbg_object(t_node).m_right;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<37>";
 			if(t_cmp<0){
-				t_node=t_node.m_left;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<38>";
+				t_node=dbg_object(t_node).m_left;
 			}else{
-				t_node.m_value=t_value;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<40>";
+				dbg_object(t_node).m_value=t_value;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<41>";
+				pop_err();
 				return false;
 			}
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<45>";
 	t_node=c_Node14.m_new.call(new c_Node14,t_key,t_value,-1,t_parent);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<47>";
 	if((t_parent)!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<48>";
 		if(t_cmp>0){
-			t_parent.m_right=t_node;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<49>";
+			dbg_object(t_parent).m_right=t_node;
 		}else{
-			t_parent.m_left=t_node;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<51>";
+			dbg_object(t_parent).m_left=t_node;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<53>";
 		this.p_InsertFixup6(t_node);
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<55>";
 		this.m_root=t_node;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<57>";
+	pop_err();
 	return true;
 }
 c_Map9.prototype.p_FindNode2=function(t_key){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<157>";
 	var t_node=this.m_root;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<159>";
 	while((t_node)!=null){
-		var t_cmp=this.p_Compare2(t_key,t_node.m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<160>";
+		var t_cmp=this.p_Compare2(t_key,dbg_object(t_node).m_key);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<161>";
 		if(t_cmp>0){
-			t_node=t_node.m_right;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<162>";
+			t_node=dbg_object(t_node).m_right;
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<163>";
 			if(t_cmp<0){
-				t_node=t_node.m_left;
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<164>";
+				t_node=dbg_object(t_node).m_left;
 			}else{
+				err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<166>";
+				pop_err();
 				return t_node;
 			}
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<169>";
+	pop_err();
 	return t_node;
 }
 c_Map9.prototype.p_Get2=function(t_key){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<101>";
 	var t_node=this.p_FindNode2(t_key);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<102>";
 	if((t_node)!=null){
-		return t_node.m_value;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<102>";
+		pop_err();
+		return dbg_object(t_node).m_value;
 	}
+	pop_err();
 	return null;
 }
 function c_StringMap6(){
@@ -8439,11 +13061,19 @@ function c_StringMap6(){
 }
 c_StringMap6.prototype=extend_class(c_Map9);
 c_StringMap6.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<551>";
 	c_Map9.m_new.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<551>";
+	pop_err();
 	return this;
 }
 c_StringMap6.prototype.p_Compare2=function(t_lhs,t_rhs){
-	return string_compare(t_lhs,t_rhs);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<554>";
+	var t_=string_compare(t_lhs,t_rhs);
+	pop_err();
+	return t_;
 }
 function c_Node14(){
 	Object.call(this);
@@ -8455,13 +13085,22 @@ function c_Node14(){
 	this.m_parent=null;
 }
 c_Node14.m_new=function(t_key,t_value,t_color,t_parent){
-	this.m_key=t_key;
-	this.m_value=t_value;
-	this.m_color=t_color;
-	this.m_parent=t_parent;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<364>";
+	dbg_object(this).m_key=t_key;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<365>";
+	dbg_object(this).m_value=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<366>";
+	dbg_object(this).m_color=t_color;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<367>";
+	dbg_object(this).m_parent=t_parent;
+	pop_err();
 	return this;
 }
 c_Node14.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<361>";
+	pop_err();
 	return this;
 }
 function c_SpaceShooterControl(){
@@ -8471,36 +13110,58 @@ function c_SpaceShooterControl(){
 	this.m_speed=50;
 }
 c_SpaceShooterControl.m_new=function(t_target){
-	this.m_target=t_target;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_control.monkey<10>";
+	dbg_object(this).m_target=t_target;
+	pop_err();
 	return this;
 }
 c_SpaceShooterControl.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_control.monkey<3>";
+	pop_err();
 	return this;
 }
 c_SpaceShooterControl.prototype.p_Update=function(){
-	this.m_shot=false;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_control.monkey<14>";
+	dbg_object(this).m_shot=false;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_control.monkey<16>";
 	if(((bb_input_KeyDown(38))!=0) || ((bb_input_KeyDown(87))!=0)){
-		var t_=this.m_target;
-		this.m_target.p_Y(t_.p_Y2()-(this.m_speed)*c_Time.m_DeltaSecs());
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_control.monkey<17>";
+		var t_=dbg_object(this).m_target;
+		dbg_object(this).m_target.p_Y(t_.p_Y2()-(dbg_object(this).m_speed)*c_Time.m_DeltaSecs());
 	}
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_control.monkey<20>";
 	if(((bb_input_KeyDown(40))!=0) || ((bb_input_KeyDown(83))!=0)){
-		var t_2=this.m_target;
-		this.m_target.p_Y(t_2.p_Y2()+(this.m_speed)*c_Time.m_DeltaSecs());
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_control.monkey<21>";
+		var t_2=dbg_object(this).m_target;
+		dbg_object(this).m_target.p_Y(t_2.p_Y2()+(dbg_object(this).m_speed)*c_Time.m_DeltaSecs());
 	}
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_control.monkey<24>";
 	if(((bb_input_KeyDown(37))!=0) || ((bb_input_KeyDown(65))!=0)){
-		var t_3=this.m_target;
-		this.m_target.p_X(t_3.p_X2()-(this.m_speed)*c_Time.m_DeltaSecs());
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_control.monkey<25>";
+		var t_3=dbg_object(this).m_target;
+		dbg_object(this).m_target.p_X(t_3.p_X2()-(dbg_object(this).m_speed)*c_Time.m_DeltaSecs());
 	}
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_control.monkey<28>";
 	if(((bb_input_KeyDown(39))!=0) || ((bb_input_KeyDown(68))!=0)){
-		var t_4=this.m_target;
-		this.m_target.p_X(t_4.p_X2()+(this.m_speed)*c_Time.m_DeltaSecs());
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_control.monkey<29>";
+		var t_4=dbg_object(this).m_target;
+		dbg_object(this).m_target.p_X(t_4.p_X2()+(dbg_object(this).m_speed)*c_Time.m_DeltaSecs());
 	}
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_control.monkey<32>";
 	if(((bb_input_KeyHit(32))!=0) || ((bb_input_KeyHit(88))!=0)){
-		this.m_shot=true;
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_control.monkey<33>";
+		dbg_object(this).m_shot=true;
 	}
+	pop_err();
 }
 c_SpaceShooterControl.prototype.p_Shot=function(){
-	return this.m_shot;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_control.monkey<39>";
+	pop_err();
+	return dbg_object(this).m_shot;
 }
 function c_SpaceShooterCannon(){
 	Object.call(this);
@@ -8514,77 +13175,144 @@ function c_SpaceShooterCannon(){
 	this.implments={c_iDrawable:1,c_iOnDestroy:1};
 }
 c_SpaceShooterCannon.prototype.p_Create=function(){
-	this.m_offset=c_Point.m_new2.call(new c_Point,0.0,0.0);
-	this.m_bullets=c_List6.m_new.call(new c_List6);
-	this.m_discard_list=c_List6.m_new.call(new c_List6);
-	this.m_camera_fx=c_CameraFX.m_new.call(new c_CameraFX,c_Game.m_Instance().p_GetCurrentCamera().m_ViewPort);
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<111>";
+	dbg_object(this).m_offset=c_Point.m_new2.call(new c_Point,0.0,0.0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<112>";
+	dbg_object(this).m_bullets=c_List6.m_new.call(new c_List6);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<113>";
+	dbg_object(this).m_discard_list=c_List6.m_new.call(new c_List6);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<114>";
+	dbg_object(this).m_camera_fx=c_CameraFX.m_new.call(new c_CameraFX,dbg_object(c_Game.m_Instance().p_GetCurrentCamera()).m_ViewPort);
+	pop_err();
 }
 c_SpaceShooterCannon.m_new=function(t_target){
-	this.m_target=t_target;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<105>";
+	dbg_object(this).m_target=t_target;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<106>";
 	this.p_Create();
+	pop_err();
 	return this;
 }
 c_SpaceShooterCannon.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<91>";
+	pop_err();
 	return this;
 }
 c_SpaceShooterCannon.prototype.p_Offset=function(){
-	return this.m_offset;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<153>";
+	pop_err();
+	return dbg_object(this).m_offset;
 }
 c_SpaceShooterCannon.prototype.p_AddSprite=function(t_sprite_name){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<184>";
 	var t_imgs=c_List7.m_new2.call(new c_List7,this.m_sprites);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<186>";
 	t_imgs.p_AddLast6(bb_lpresources_lpLoadImage(t_sprite_name,1,c_Image.m_DefaultFlags));
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<188>";
 	this.m_sprites=t_imgs.p_ToArray();
+	pop_err();
 }
 c_SpaceShooterCannon.prototype.p_LevelUp=function(){
-	this.m_level+=1;
-	if(this.m_sprites.length<=this.m_level){
-		this.m_level=this.m_sprites.length-1;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<169>";
+	dbg_object(this).m_level+=1;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<170>";
+	if(dbg_object(this).m_sprites.length<=dbg_object(this).m_level){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<171>";
+		dbg_object(this).m_level=dbg_object(this).m_sprites.length-1;
 	}
+	pop_err();
 }
 c_SpaceShooterCannon.prototype.p_LevelDown=function(){
-	this.m_level-=1;
-	if(this.m_level<0){
-		this.m_level=0;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<176>";
+	dbg_object(this).m_level-=1;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<177>";
+	if(dbg_object(this).m_level<0){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<178>";
+		dbg_object(this).m_level=0;
 	}
+	pop_err();
 }
 c_SpaceShooterCannon.prototype.p_Update=function(){
-	var t_=this.m_bullets.p_ObjectEnumerator();
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<118>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<118>";
+	var t_=dbg_object(this).m_bullets.p_ObjectEnumerator();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<118>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<118>";
 		var t_b=t_.p_NextObject();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<119>";
 		t_b.p_Update();
 	}
-	var t_2=this.m_discard_list.p_ObjectEnumerator();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<123>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<123>";
+	var t_2=dbg_object(this).m_discard_list.p_ObjectEnumerator();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<123>";
 	while(t_2.p_HasNext()){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<123>";
 		var t_db=t_2.p_NextObject();
-		this.m_bullets.p_RemoveEach3(t_db);
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<124>";
+		dbg_object(this).m_bullets.p_RemoveEach3(t_db);
 	}
-	this.m_discard_list.p_Clear();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<127>";
+	dbg_object(this).m_discard_list.p_Clear();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<130>";
 	if((bb_input_KeyHit(81))!=0){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<131>";
 		this.p_LevelUp();
 	}
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<134>";
 	if((bb_input_KeyHit(69))!=0){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<135>";
 		this.p_LevelDown();
 	}
-	this.m_camera_fx.p_Update();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<138>";
+	dbg_object(this).m_camera_fx.p_Update();
+	pop_err();
 }
 c_SpaceShooterCannon.prototype.p_Shot=function(){
-	var t_img=c_Bullet.m_new.call(new c_Bullet,this.m_sprites[this.m_level],c_Vec2.m_new.call(new c_Vec2,this.m_target.p_X2()+this.m_offset.p_X2(),this.m_target.p_Y2()+this.m_offset.p_Y2()));
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<161>";
+	var t_img=c_Bullet.m_new.call(new c_Bullet,dbg_array(this.m_sprites,dbg_object(this).m_level)[dbg_index],c_Vec2.m_new.call(new c_Vec2,dbg_object(this).m_target.p_X2()+dbg_object(this).m_offset.p_X2(),dbg_object(this).m_target.p_Y2()+dbg_object(this).m_offset.p_Y2()));
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<162>";
 	t_img.p_OnDestroyListener(this);
-	this.m_bullets.p_AddLast5(t_img);
-	this.m_camera_fx.p_Recoil();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<164>";
+	dbg_object(this).m_bullets.p_AddLast5(t_img);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<165>";
+	dbg_object(this).m_camera_fx.p_Recoil();
+	pop_err();
 }
 c_SpaceShooterCannon.prototype.p_Render=function(){
-	var t_=this.m_bullets.p_ObjectEnumerator();
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<143>";
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<143>";
+	var t_=dbg_object(this).m_bullets.p_ObjectEnumerator();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<143>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<143>";
 		var t_b=t_.p_NextObject();
-		if(t_b.m_visible){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<144>";
+		if(dbg_object(t_b).m_visible){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<145>";
 			t_b.p_Render();
 		}
 	}
-	this.m_camera_fx.p_Render();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<149>";
+	dbg_object(this).m_camera_fx.p_Render();
+	pop_err();
 }
 c_SpaceShooterCannon.prototype.p_OnDestroy=function(t_e){
-	this.m_discard_list.p_AddLast5(object_downcast((t_e),c_Bullet));
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<192>";
+	dbg_object(this).m_discard_list.p_AddLast5(object_downcast((t_e),c_Bullet));
+	pop_err();
 	return 0;
 }
 function c_Bullet(){
@@ -8600,55 +13328,99 @@ function c_Bullet(){
 }
 c_Bullet.prototype=extend_class(c_AnimatedSprite);
 c_Bullet.prototype.p_Destroy2=function(){
-	this.m_destroy_listener.p_OnDestroy(this);
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<83>";
+	dbg_object(this).m_destroy_listener.p_OnDestroy(this);
+	pop_err();
 }
 c_Bullet.prototype.p_Update=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<40>";
 	c_AnimatedSprite.prototype.p_Update.call(this);
-	if(this.m_state==0){
-		var t_=this.m_Position;
-		this.m_Position.p_X(t_.p_X2()+(this.m_speed)*c_Time.m_DeltaSecs());
-		if(this.m_max_live_time*(1+this.m_level)<=this.m_current_live_time){
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<42>";
+	if(dbg_object(this).m_state==0){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<44>";
+		var t_=dbg_object(this).m_Position;
+		dbg_object(this).m_Position.p_X(t_.p_X2()+(dbg_object(this).m_speed)*c_Time.m_DeltaSecs());
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<45>";
+		if(dbg_object(this).m_max_live_time*(1+dbg_object(this).m_level)<=dbg_object(this).m_current_live_time){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<46>";
 			c_CollisionEngine.m_Instance2().p_Destroy(this);
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<47>";
 			this.p_Destroy2();
 		}
 	}else{
-		if(this.m_state==1){
-			if(this.m_max_live_time<=this.m_current_live_time){
-				this.m_visible=false;
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<50>";
+		if(dbg_object(this).m_state==1){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<52>";
+			if(dbg_object(this).m_max_live_time<=dbg_object(this).m_current_live_time){
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<53>";
+				dbg_object(this).m_visible=false;
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<54>";
 				this.p_Destroy2();
 			}
 		}
 	}
-	this.m_current_live_time+=c_Time.m_DeltaSecs();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<59>";
+	dbg_object(this).m_current_live_time+=c_Time.m_DeltaSecs();
+	pop_err();
 }
 c_Bullet.m_new=function(t_img,t_position){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<29>";
 	c_AnimatedSprite.m_new.call(this,"bullet_level_0.png",t_position,8.0,4.0,2,0.0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<31>";
 	this.p_AddSequence("shot",[0]);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<32>";
 	this.p_AddSequence("explode",[1]);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<34>";
 	this.p_PlaySequence("shot",100,true);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<36>";
 	c_CollisionEngine.m_Instance2().p_AddBody(this);
+	pop_err();
 	return this;
 }
 c_Bullet.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<10>";
 	c_AnimatedSprite.m_new3.call(this);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<10>";
+	pop_err();
 	return this;
 }
 c_Bullet.prototype.p_OnDestroyListener=function(t_l){
-	this.m_destroy_listener=t_l;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<87>";
+	dbg_object(this).m_destroy_listener=t_l;
+	pop_err();
 }
 c_Bullet.prototype.p_GetBox=function(){
-	return this.m_Position;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<64>";
+	pop_err();
+	return dbg_object(this).m_Position;
 }
 c_Bullet.prototype.p_OnCollide=function(t_name){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<68>";
 	if(t_name=="wall" || t_name=="enemy"){
-		this.m_state=1;
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<69>";
+		dbg_object(this).m_state=1;
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<71>";
 		c_CollisionEngine.m_Instance2().p_Destroy(this);
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<72>";
 		this.p_PlaySequence("explode",100,true);
-		this.m_current_live_time=0.0;
-		this.m_max_live_time=0.1;
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<74>";
+		dbg_object(this).m_current_live_time=0.0;
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<75>";
+		dbg_object(this).m_max_live_time=0.1;
 	}
+	pop_err();
 }
 c_Bullet.prototype.p_GetName=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/space_shooter_cannon.monkey<79>";
+	pop_err();
 	return "player_bullet";
 }
 function c_List6(){
@@ -8656,41 +13428,76 @@ function c_List6(){
 	this.m__head=(c_HeadNode6.m_new.call(new c_HeadNode6));
 }
 c_List6.m_new=function(){
+	push_err();
+	pop_err();
 	return this;
 }
 c_List6.prototype.p_AddLast5=function(t_data){
-	return c_Node15.m_new.call(new c_Node15,this.m__head,this.m__head.m__pred,t_data);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<108>";
+	var t_=c_Node15.m_new.call(new c_Node15,this.m__head,dbg_object(this.m__head).m__pred,t_data);
+	pop_err();
+	return t_;
 }
 c_List6.m_new2=function(t_data){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 	var t_=t_data;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 	var t_2=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 	while(t_2<t_.length){
-		var t_t=t_[t_2];
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
+		var t_t=dbg_array(t_,t_2)[dbg_index];
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 		t_2=t_2+1;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<14>";
 		this.p_AddLast5(t_t);
 	}
+	pop_err();
 	return this;
 }
 c_List6.prototype.p_ObjectEnumerator=function(){
-	return c_Enumerator11.m_new.call(new c_Enumerator11,this);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<186>";
+	var t_=c_Enumerator11.m_new.call(new c_Enumerator11,this);
+	pop_err();
+	return t_;
 }
 c_List6.prototype.p_Equals4=function(t_lhs,t_rhs){
-	return t_lhs==t_rhs;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<28>";
+	var t_=t_lhs==t_rhs;
+	pop_err();
+	return t_;
 }
 c_List6.prototype.p_RemoveEach3=function(t_value){
-	var t_node=this.m__head.m__succ;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<151>";
+	var t_node=dbg_object(this.m__head).m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<152>";
 	while(t_node!=this.m__head){
-		var t_succ=t_node.m__succ;
-		if(this.p_Equals4(t_node.m__data,t_value)){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<153>";
+		var t_succ=dbg_object(t_node).m__succ;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<154>";
+		if(this.p_Equals4(dbg_object(t_node).m__data,t_value)){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<154>";
 			t_node.p_Remove();
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<155>";
 		t_node=t_succ;
 	}
+	pop_err();
 	return 0;
 }
 c_List6.prototype.p_Clear=function(){
-	this.m__head.m__succ=this.m__head;
-	this.m__head.m__pred=this.m__head;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<36>";
+	dbg_object(this.m__head).m__succ=this.m__head;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<37>";
+	dbg_object(this.m__head).m__pred=this.m__head;
+	pop_err();
 	return 0;
 }
 function c_Node15(){
@@ -8700,19 +13507,38 @@ function c_Node15(){
 	this.m__data=null;
 }
 c_Node15.m_new=function(t_succ,t_pred,t_data){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<261>";
 	this.m__succ=t_succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<262>";
 	this.m__pred=t_pred;
-	this.m__succ.m__pred=this;
-	this.m__pred.m__succ=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<263>";
+	dbg_object(this.m__succ).m__pred=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<264>";
+	dbg_object(this.m__pred).m__succ=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<265>";
 	this.m__data=t_data;
+	pop_err();
 	return this;
 }
 c_Node15.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<258>";
+	pop_err();
 	return this;
 }
 c_Node15.prototype.p_Remove=function(){
-	this.m__succ.m__pred=this.m__pred;
-	this.m__pred.m__succ=this.m__succ;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<274>";
+	if(dbg_object(this.m__succ).m__pred!=this){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<274>";
+		error("Illegal operation on removed node");
+	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<276>";
+	dbg_object(this.m__succ).m__pred=this.m__pred;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<277>";
+	dbg_object(this.m__pred).m__succ=this.m__succ;
+	pop_err();
 	return 0;
 }
 function c_HeadNode6(){
@@ -8720,9 +13546,14 @@ function c_HeadNode6(){
 }
 c_HeadNode6.prototype=extend_class(c_Node15);
 c_HeadNode6.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<310>";
 	c_Node15.m_new2.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<311>";
 	this.m__succ=(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<312>";
 	this.m__pred=(this);
+	pop_err();
 	return this;
 }
 function c_CameraFX(){
@@ -8738,94 +13569,167 @@ function c_CameraFX(){
 	this.m_recoil_fx=0.0;
 }
 c_CameraFX.prototype.p_CameraView=function(t_value){
-	this.m_camera_view=t_value;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<39>";
+	dbg_object(this).m_camera_view=t_value;
+	pop_err();
 }
 c_CameraFX.prototype.p_CameraView2=function(){
-	return this.m_camera_view;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<43>";
+	pop_err();
+	return dbg_object(this).m_camera_view;
 }
 c_CameraFX.m_new=function(t_camera_view){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<32>";
 	if(t_camera_view!=null){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<33>";
 		this.p_CameraView(t_camera_view);
 	}
+	pop_err();
 	return this;
 }
 c_CameraFX.prototype.p_Update=function(){
-	if(this.m_state==1){
-		if(this.m_timer<this.m_time){
-			this.m_timer+=c_Time.m_Delta();
-			var t_v_x=c_Math.m_Round(bb_random_Rnd2(-this.m_force_x,this.m_force_x));
-			var t_v_y=c_Math.m_Round(bb_random_Rnd2(-this.m_force_y,this.m_force_y));
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<47>";
+	if(dbg_object(this).m_state==1){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<48>";
+		if(dbg_object(this).m_timer<dbg_object(this).m_time){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<49>";
+			dbg_object(this).m_timer+=c_Time.m_Delta();
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<51>";
+			var t_v_x=c_Math.m_Round(bb_random_Rnd2(-dbg_object(this).m_force_x,dbg_object(this).m_force_x));
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<52>";
+			var t_v_y=c_Math.m_Round(bb_random_Rnd2(-dbg_object(this).m_force_y,dbg_object(this).m_force_y));
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<53>";
 			this.m_correction_x+=t_v_x;
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<54>";
 			this.m_correction_y+=t_v_y;
-			var t_=this.m_camera_view;
-			this.m_camera_view.p_X(t_.p_X2()+t_v_x);
-			var t_2=this.m_camera_view;
-			this.m_camera_view.p_Y(t_2.p_Y2()+t_v_y);
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<55>";
+			var t_=dbg_object(this).m_camera_view;
+			dbg_object(this).m_camera_view.p_X(t_.p_X2()+t_v_x);
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<56>";
+			var t_2=dbg_object(this).m_camera_view;
+			dbg_object(this).m_camera_view.p_Y(t_2.p_Y2()+t_v_y);
 		}else{
-			var t_3=this.m_camera_view;
-			this.m_camera_view.p_X(t_3.p_X2()-this.m_correction_x);
-			var t_4=this.m_camera_view;
-			this.m_camera_view.p_Y(t_4.p_Y2()-this.m_correction_y);
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<59>";
+			var t_3=dbg_object(this).m_camera_view;
+			dbg_object(this).m_camera_view.p_X(t_3.p_X2()-this.m_correction_x);
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<60>";
+			var t_4=dbg_object(this).m_camera_view;
+			dbg_object(this).m_camera_view.p_Y(t_4.p_Y2()-this.m_correction_y);
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<62>";
 			this.m_correction_x=0.0;
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<63>";
 			this.m_correction_y=0.0;
-			this.m_state=0;
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<64>";
+			dbg_object(this).m_state=0;
 		}
 	}
-	if(this.m_recoil_fx>0.0){
-		var t_5=this.m_camera_view;
-		this.m_camera_view.p_X(t_5.p_X2()-this.m_recoil_fx);
-		this.m_recoil_fx-=0.5;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<68>";
+	if(dbg_object(this).m_recoil_fx>0.0){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<69>";
+		var t_5=dbg_object(this).m_camera_view;
+		dbg_object(this).m_camera_view.p_X(t_5.p_X2()-dbg_object(this).m_recoil_fx);
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<70>";
+		dbg_object(this).m_recoil_fx-=0.5;
 	}
+	pop_err();
 }
 c_CameraFX.prototype.p_Recoil=function(){
-	this.m_recoil_fx=0.5;
-	var t_=this.m_camera_view;
-	this.m_camera_view.p_X(t_.p_X2()+0.5);
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<95>";
+	dbg_object(this).m_recoil_fx=0.5;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camerafx.monkey<96>";
+	var t_=dbg_object(this).m_camera_view;
+	dbg_object(this).m_camera_view.p_X(t_.p_X2()+0.5);
+	pop_err();
 	return 0;
 }
 c_CameraFX.prototype.p_Render=function(){
+	push_err();
+	pop_err();
 }
 function c_List7(){
 	Object.call(this);
 	this.m__head=(c_HeadNode7.m_new.call(new c_HeadNode7));
 }
 c_List7.m_new=function(){
+	push_err();
+	pop_err();
 	return this;
 }
 c_List7.prototype.p_AddLast6=function(t_data){
-	return c_Node16.m_new.call(new c_Node16,this.m__head,this.m__head.m__pred,t_data);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<108>";
+	var t_=c_Node16.m_new.call(new c_Node16,this.m__head,dbg_object(this.m__head).m__pred,t_data);
+	pop_err();
+	return t_;
 }
 c_List7.m_new2=function(t_data){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 	var t_=t_data;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 	var t_2=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 	while(t_2<t_.length){
-		var t_t=t_[t_2];
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
+		var t_t=dbg_array(t_,t_2)[dbg_index];
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<13>";
 		t_2=t_2+1;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<14>";
 		this.p_AddLast6(t_t);
 	}
+	pop_err();
 	return this;
 }
 c_List7.prototype.p_Count=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<41>";
 	var t_n=0;
-	var t_node=this.m__head.m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<41>";
+	var t_node=dbg_object(this.m__head).m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<42>";
 	while(t_node!=this.m__head){
-		t_node=t_node.m__succ;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<43>";
+		t_node=dbg_object(t_node).m__succ;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<44>";
 		t_n+=1;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<46>";
+	pop_err();
 	return t_n;
 }
 c_List7.prototype.p_ObjectEnumerator=function(){
-	return c_Enumerator6.m_new.call(new c_Enumerator6,this);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<186>";
+	var t_=c_Enumerator7.m_new.call(new c_Enumerator7,this);
+	pop_err();
+	return t_;
 }
 c_List7.prototype.p_ToArray=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<19>";
 	var t_arr=new_object_array(this.p_Count());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<19>";
 	var t_i=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<20>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<20>";
 	var t_=this.p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<20>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<20>";
 		var t_t=t_.p_NextObject();
-		t_arr[t_i]=t_t;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<21>";
+		dbg_array(t_arr,t_i)[dbg_index]=t_t;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<22>";
 		t_i+=1;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<24>";
+	pop_err();
 	return t_arr;
 }
 function c_Node16(){
@@ -8835,14 +13739,24 @@ function c_Node16(){
 	this.m__data=null;
 }
 c_Node16.m_new=function(t_succ,t_pred,t_data){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<261>";
 	this.m__succ=t_succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<262>";
 	this.m__pred=t_pred;
-	this.m__succ.m__pred=this;
-	this.m__pred.m__succ=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<263>";
+	dbg_object(this.m__succ).m__pred=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<264>";
+	dbg_object(this.m__pred).m__succ=this;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<265>";
 	this.m__data=t_data;
+	pop_err();
 	return this;
 }
 c_Node16.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<258>";
+	pop_err();
 	return this;
 }
 function c_HeadNode7(){
@@ -8850,33 +13764,56 @@ function c_HeadNode7(){
 }
 c_HeadNode7.prototype=extend_class(c_Node16);
 c_HeadNode7.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<310>";
 	c_Node16.m_new2.call(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<311>";
 	this.m__succ=(this);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<312>";
 	this.m__pred=(this);
+	pop_err();
 	return this;
 }
-function c_Enumerator6(){
+function c_Enumerator7(){
 	Object.call(this);
 	this.m__list=null;
 	this.m__curr=null;
 }
-c_Enumerator6.m_new=function(t_list){
+c_Enumerator7.m_new=function(t_list){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<326>";
 	this.m__list=t_list;
-	this.m__curr=t_list.m__head.m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<327>";
+	this.m__curr=dbg_object(dbg_object(t_list).m__head).m__succ;
+	pop_err();
 	return this;
 }
-c_Enumerator6.m_new2=function(){
+c_Enumerator7.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<323>";
+	pop_err();
 	return this;
 }
-c_Enumerator6.prototype.p_HasNext=function(){
-	while(this.m__curr.m__succ.m__pred!=this.m__curr){
-		this.m__curr=this.m__curr.m__succ;
+c_Enumerator7.prototype.p_HasNext=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<331>";
+	while(dbg_object(dbg_object(this.m__curr).m__succ).m__pred!=this.m__curr){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<332>";
+		this.m__curr=dbg_object(this.m__curr).m__succ;
 	}
-	return this.m__curr!=this.m__list.m__head;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<334>";
+	var t_=this.m__curr!=dbg_object(this.m__list).m__head;
+	pop_err();
+	return t_;
 }
-c_Enumerator6.prototype.p_NextObject=function(){
-	var t_data=this.m__curr.m__data;
-	this.m__curr=this.m__curr.m__succ;
+c_Enumerator7.prototype.p_NextObject=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<338>";
+	var t_data=dbg_object(this.m__curr).m__data;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<339>";
+	this.m__curr=dbg_object(this.m__curr).m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<340>";
+	pop_err();
 	return t_data;
 }
 function c_ParticleEmitter(){
@@ -8916,183 +13853,336 @@ function c_ParticleEmitter(){
 c_ParticleEmitter.m_TYPE_CIRCLE=0;
 c_ParticleEmitter.m_COLOR_RANDOM=0;
 c_ParticleEmitter.prototype.p__addParticle=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<30>";
 	var t_c=null;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<32>";
 	if(this.m_ColorStack.p_Length2()>0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<33>";
 		t_c=this.m_ColorStack.p_Get((bb_random_Rnd2(0.0,(this.m_ColorStack.p_Length2())))|0);
 	}else{
-		t_c=this.m_BaseColor;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<35>";
+		t_c=dbg_object(this).m_BaseColor;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<38>";
 	var t_positionX=0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<39>";
 	var t_positionY=0;
-	if(this.m_EmitterType==c_ParticleEmitter.m_TYPE_CIRCLE){
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<41>";
+	if(dbg_object(this).m_EmitterType==c_ParticleEmitter.m_TYPE_CIRCLE){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<42>";
 		t_positionX=((bb_random_Rnd2(this.m_Position.p_X2()-this.m_Radius/2.0,this.m_Position.p_X2()+this.m_Radius/2.0))|0);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<43>";
 		t_positionY=((bb_random_Rnd2(this.m_Position.p_Y2()-this.m_Radius/2.0,this.m_Position.p_Y2()+this.m_Radius/2.0))|0);
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<45>";
 		t_positionX=((bb_random_Rnd2(this.m_Position.p_X2(),this.m_Position.p_X2()+this.m_Position.p_Width()))|0);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<46>";
 		t_positionY=((bb_random_Rnd2(this.m_Position.p_Y2(),this.m_Position.p_Y2()+this.m_Position.p_Height()))|0);
 	}
-	this.m__unused.p_Push34(c_Particle.m_new.call(new c_Particle,(t_positionX),(t_positionY),bb_random_Rnd2(this.m_minParticleRadius,this.m_maxParticleRadius),t_c,this.m_LifeTime,this.m_Force.m_X,this.m_Force.m_Y,this.m_AlphaChannel,this,c_Vec2.m_new.call(new c_Vec2,bb_random_Rnd2(this.m_xminVelocity,this.m_xmaxVelocity),bb_random_Rnd2(this.m_yminVelocity,this.m_ymaxVelocity)),this.m_ColorType,this.m_ParticleType,this.m_DrawableImage));
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<63>";
+	this.m__unused.p_Push34(c_Particle.m_new.call(new c_Particle,(t_positionX),(t_positionY),bb_random_Rnd2(this.m_minParticleRadius,this.m_maxParticleRadius),t_c,this.m_LifeTime,dbg_object(this.m_Force).m_X,dbg_object(this.m_Force).m_Y,this.m_AlphaChannel,this,c_Vec2.m_new.call(new c_Vec2,bb_random_Rnd2(this.m_xminVelocity,this.m_xmaxVelocity),bb_random_Rnd2(this.m_yminVelocity,this.m_ymaxVelocity)),this.m_ColorType,this.m_ParticleType,this.m_DrawableImage));
+	pop_err();
 }
 c_ParticleEmitter.prototype.p_SetMaxAllocations=function(t_maxAllocation){
-	this.m__maxAllocations=t_maxAllocation;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<219>";
+	dbg_object(this).m__maxAllocations=t_maxAllocation;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<220>";
 	if(t_maxAllocation<=0){
+		pop_err();
 		return;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<224>";
 	this.m__unused.p_Clear();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<225>";
 	this.m__tail.p_Clear();
-	for(var t_i=0;t_i<this.m__maxAllocations;t_i=t_i+1){
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<228>";
+	for(var t_i=0;t_i<dbg_object(this).m__maxAllocations;t_i=t_i+1){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<229>";
 		this.p__addParticle();
 	}
+	pop_err();
 }
 c_ParticleEmitter.prototype.p_Create=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<195>";
 	this.m_Position=c_Rectangle.m_new3.call(new c_Rectangle,0.0,0.0,0.0,0.0);
-	this.m_BaseColor=c_Color.m_White();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<196>";
+	dbg_object(this).m_BaseColor=c_Color.m_White();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<197>";
 	this.m__tail=c_Stack13.m_new.call(new c_Stack13);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<198>";
 	this.m__unused=c_Stack13.m_new.call(new c_Stack13);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<199>";
 	this.m_ColorStack=c_Stack14.m_new.call(new c_Stack14);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<200>";
 	this.m_Force=c_Vec2.m_Zero();
+	pop_err();
 }
 c_ParticleEmitter.m_new=function(t_img,t_PRELOADED){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<187>";
 	this.m_DrawableImage=null;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<189>";
 	this.p_SetMaxAllocations(t_PRELOADED);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<190>";
 	this.p_Create();
+	pop_err();
 	return this;
 }
 c_ParticleEmitter.prototype.p_SetAutoEmit=function(t_a){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<238>";
 	this.m_autoEmit=t_a;
+	pop_err();
 }
 c_ParticleEmitter.prototype.p_LoadFromJson=function(t_json_string){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<384>";
 	var t_json_object=object_downcast((c_JSONData.m_ReadJSON(t_json_string)),c_JSONObject);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<385>";
 	var t_json_position=object_downcast((t_json_object.p_GetItem("position")),c_JSONObject);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<386>";
 	var t_json_color_stack=object_downcast((t_json_object.p_GetItem("color_stack")),c_JSONArray);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<388>";
 	this.p_SetMaxAllocations(t_json_object.p_GetItem("max_allocations").p_ToInt());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<390>";
 	if((t_json_object.p_GetItem("auto_emmit").p_ToInt())==1){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<391>";
 		this.p_SetAutoEmit(true);
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<393>";
 		this.p_SetAutoEmit(false);
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<396>";
 	if((t_json_object.p_GetItem("fade_inout").p_ToInt())==1){
-		this.m_FadeInOut=true;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<397>";
+		dbg_object(this).m_FadeInOut=true;
 	}else{
-		this.m_FadeInOut=false;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<399>";
+		dbg_object(this).m_FadeInOut=false;
 	}
-	this.m_AlphaChannel=(t_json_object.p_GetItem("aplha_cannel").p_ToFloat());
-	this.m_SpanTime=(t_json_object.p_GetItem("span_time").p_ToInt());
-	this.m_SpanAmount=(t_json_object.p_GetItem("span_amount").p_ToFloat());
-	this.m_Radius=(t_json_object.p_GetItem("radius").p_ToFloat());
-	this.m_minParticleRadius=(t_json_object.p_GetItem("min_particle_radius").p_ToFloat());
-	this.m_maxParticleRadius=(t_json_object.p_GetItem("max_particle_radius").p_ToFloat());
-	this.m_yminVelocity=(t_json_object.p_GetItem("y_min_velocity").p_ToFloat());
-	this.m_ymaxVelocity=(t_json_object.p_GetItem("y_max_velocity").p_ToFloat());
-	this.m_xminVelocity=(t_json_object.p_GetItem("x_min_velocity").p_ToFloat());
-	this.m_xmaxVelocity=(t_json_object.p_GetItem("x_max_velocity").p_ToFloat());
-	this.m_LifeTime=(t_json_object.p_GetItem("life_time").p_ToFloat());
-	this.m_ColorType=(t_json_object.p_GetItem("color_type").p_ToInt());
-	this.m_BaseColor=c_Color.m_White();
-	this.m_Position.p_X(t_json_position.p_GetItem("x").p_ToFloat());
-	this.m_Position.p_Y(t_json_position.p_GetItem("y").p_ToFloat());
-	this.m_Position.p_Width2(t_json_position.p_GetItem("width").p_ToFloat());
-	this.m_Position.p_Height2(t_json_position.p_GetItem("height").p_ToFloat());
-	this.m_ParticleType=(t_json_object.p_GetItem("particle_type").p_ToInt());
-	this.m_blend=(t_json_object.p_GetItem("blending").p_ToInt());
-	var t_=t_json_color_stack.m_values.p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<403>";
+	dbg_object(this).m_AlphaChannel=(t_json_object.p_GetItem("aplha_cannel").p_ToFloat());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<404>";
+	dbg_object(this).m_SpanTime=(t_json_object.p_GetItem("span_time").p_ToInt());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<405>";
+	dbg_object(this).m_SpanAmount=(t_json_object.p_GetItem("span_amount").p_ToFloat());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<406>";
+	dbg_object(this).m_Radius=(t_json_object.p_GetItem("radius").p_ToFloat());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<407>";
+	dbg_object(this).m_minParticleRadius=(t_json_object.p_GetItem("min_particle_radius").p_ToFloat());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<408>";
+	dbg_object(this).m_maxParticleRadius=(t_json_object.p_GetItem("max_particle_radius").p_ToFloat());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<409>";
+	dbg_object(this).m_yminVelocity=(t_json_object.p_GetItem("y_min_velocity").p_ToFloat());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<410>";
+	dbg_object(this).m_ymaxVelocity=(t_json_object.p_GetItem("y_max_velocity").p_ToFloat());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<411>";
+	dbg_object(this).m_xminVelocity=(t_json_object.p_GetItem("x_min_velocity").p_ToFloat());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<412>";
+	dbg_object(this).m_xmaxVelocity=(t_json_object.p_GetItem("x_max_velocity").p_ToFloat());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<414>";
+	dbg_object(this).m_LifeTime=(t_json_object.p_GetItem("life_time").p_ToFloat());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<415>";
+	dbg_object(this).m_ColorType=(t_json_object.p_GetItem("color_type").p_ToInt());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<416>";
+	dbg_object(this).m_BaseColor=c_Color.m_White();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<418>";
+	dbg_object(this).m_Position.p_X(t_json_position.p_GetItem("x").p_ToFloat());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<419>";
+	dbg_object(this).m_Position.p_Y(t_json_position.p_GetItem("y").p_ToFloat());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<420>";
+	dbg_object(this).m_Position.p_Width2(t_json_position.p_GetItem("width").p_ToFloat());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<421>";
+	dbg_object(this).m_Position.p_Height2(t_json_position.p_GetItem("height").p_ToFloat());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<423>";
+	dbg_object(this).m_ParticleType=(t_json_object.p_GetItem("particle_type").p_ToInt());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<426>";
+	dbg_object(this).m_blend=(t_json_object.p_GetItem("blending").p_ToInt());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<428>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<428>";
+	var t_=dbg_object(t_json_color_stack).m_values.p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<428>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<428>";
 		var t_json_color=t_.p_NextObject();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<429>";
 		var t_json_color_obj=object_downcast((t_json_color),c_JSONObject);
-		this.m_ColorStack.p_Push37(c_Color.m_new2.call(new c_Color,(t_json_color_obj.p_GetItem("r").p_ToFloat()),(t_json_color_obj.p_GetItem("g").p_ToFloat()),(t_json_color_obj.p_GetItem("b").p_ToFloat()),1.0));
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<432>";
+		dbg_object(this).m_ColorStack.p_Push37(c_Color.m_new2.call(new c_Color,(t_json_color_obj.p_GetItem("r").p_ToFloat()),(t_json_color_obj.p_GetItem("g").p_ToFloat()),(t_json_color_obj.p_GetItem("b").p_ToFloat()),1.0));
 	}
+	pop_err();
 }
 c_ParticleEmitter.prototype.p__recycle=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<68>";
 	if(this.m__unused.p_Length2()>0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<69>";
 		var t_c=null;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<71>";
 		if(this.m_ColorStack.p_Length2()>0){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<72>";
 			t_c=this.m_ColorStack.p_Get((bb_random_Rnd2(0.0,(this.m_ColorStack.p_Length2())))|0);
 		}else{
-			t_c=this.m_BaseColor;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<74>";
+			t_c=dbg_object(this).m_BaseColor;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<77>";
 		var t_positionX=0;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<78>";
 		var t_positionY=0;
-		if(this.m_EmitterType==c_ParticleEmitter.m_TYPE_CIRCLE){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<80>";
+		if(dbg_object(this).m_EmitterType==c_ParticleEmitter.m_TYPE_CIRCLE){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<81>";
 			t_positionX=((bb_random_Rnd2(this.m_Position.p_X2()-this.m_Radius/2.0,this.m_Position.p_X2()+this.m_Radius/2.0))|0);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<82>";
 			t_positionY=((bb_random_Rnd2(this.m_Position.p_Y2()-this.m_Radius/2.0,this.m_Position.p_Y2()+this.m_Radius/2.0))|0);
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<84>";
 			t_positionX=((bb_random_Rnd2(this.m_Position.p_X2(),this.m_Position.p_X2()+this.m_Position.p_Width()))|0);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<85>";
 			t_positionY=((bb_random_Rnd2(this.m_Position.p_Y2(),this.m_Position.p_Y2()+this.m_Position.p_Height()))|0);
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<88>";
 		var t_p=this.m__unused.p_Get(0);
-		t_p.m_Position.p_X(t_positionX);
-		t_p.m_Position.p_Y(t_positionY);
-		t_p.m_Radius=bb_random_Rnd2(this.m_minParticleRadius,this.m_maxParticleRadius);
-		t_p.m_color=t_c;
-		t_p.m_Velocity.m_X=bb_random_Rnd2(this.m_xminVelocity,this.m_xmaxVelocity);
-		t_p.m_Velocity.m_Y=bb_random_Rnd2(this.m_yminVelocity,this.m_ymaxVelocity);
-		t_p.m_DrawableImage=this.m_DrawableImage;
-		t_p.m_LifeTime=this.m_LifeTime;
-		t_p.m_type=this.m_ParticleType;
-		t_p.m_Forcex=this.m_Force.m_X;
-		t_p.m_Forcey=this.m_Force.m_Y;
-		t_p.m_InitAlpha=this.m_AlphaChannel;
-		t_p.m_ColorType=this.m_ColorType;
-		t_p.m_ParentEmitter=this;
-		t_p.m_RotationSpeed=bb_random_Rnd2(this.m_RotationSpeedMin,this.m_RotationSpeedMax);
-		t_p.m_FadeInOut=this.m_FadeInOut;
-		if(t_p.m_DrawableImage!=null){
-			t_p.m__scale=t_p.m_Radius*2.0/t_p.m_DrawableImage.m_Position.p_Width();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<90>";
+		dbg_object(t_p).m_Position.p_X(t_positionX);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<91>";
+		dbg_object(t_p).m_Position.p_Y(t_positionY);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<93>";
+		dbg_object(t_p).m_Radius=bb_random_Rnd2(this.m_minParticleRadius,this.m_maxParticleRadius);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<94>";
+		dbg_object(t_p).m_color=t_c;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<96>";
+		dbg_object(dbg_object(t_p).m_Velocity).m_X=bb_random_Rnd2(this.m_xminVelocity,this.m_xmaxVelocity);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<97>";
+		dbg_object(dbg_object(t_p).m_Velocity).m_Y=bb_random_Rnd2(this.m_yminVelocity,this.m_ymaxVelocity);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<98>";
+		dbg_object(t_p).m_DrawableImage=this.m_DrawableImage;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<99>";
+		dbg_object(t_p).m_LifeTime=this.m_LifeTime;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<100>";
+		dbg_object(t_p).m_type=this.m_ParticleType;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<101>";
+		dbg_object(t_p).m_Forcex=dbg_object(this.m_Force).m_X;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<102>";
+		dbg_object(t_p).m_Forcey=dbg_object(this.m_Force).m_Y;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<103>";
+		dbg_object(t_p).m_InitAlpha=this.m_AlphaChannel;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<104>";
+		dbg_object(t_p).m_ColorType=dbg_object(this).m_ColorType;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<105>";
+		dbg_object(t_p).m_ParentEmitter=this;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<106>";
+		dbg_object(t_p).m_RotationSpeed=bb_random_Rnd2(dbg_object(this).m_RotationSpeedMin,dbg_object(this).m_RotationSpeedMax);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<107>";
+		dbg_object(t_p).m_FadeInOut=dbg_object(this).m_FadeInOut;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<109>";
+		if(dbg_object(t_p).m_DrawableImage!=null){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<110>";
+			dbg_object(t_p).m__scale=dbg_object(t_p).m_Radius*2.0/dbg_object(dbg_object(t_p).m_DrawableImage).m_Position.p_Width();
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<114>";
 		if(this.m__updaterEnabled){
-			this.m__updater.p_SetParticle(t_p);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<114>";
+			dbg_object(this).m__updater.p_SetParticle(t_p);
 		}
-		t_p.m__life=t_p.m_LifeTime;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<116>";
+		dbg_object(t_p).m__life=dbg_object(t_p).m_LifeTime;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<118>";
 		this.m__tail.p_Push34(t_p);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<119>";
 		this.m__unused.p_Remove2(0);
 	}
+	pop_err();
 }
 c_ParticleEmitter.prototype.p_Emit=function(t_amount){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<250>";
 	if(t_amount==-1){
-		t_amount=((this.m_SpanAmount)|0);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<250>";
+		t_amount=((dbg_object(this).m_SpanAmount)|0);
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<252>";
 	for(var t_i=0;t_i<t_amount;t_i=t_i+1){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<253>";
 		this.p__recycle();
 	}
+	pop_err();
 }
 c_ParticleEmitter.prototype.p_Update=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<262>";
 	if(this.m__maxAllocations<=0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<263>";
 		error("you must use SetMaxAllocations() to set allocation number");
+		pop_err();
 		return;
 	}
-	if(this.m_autoEmit){
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<267>";
+	if(dbg_object(this).m_autoEmit){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<268>";
 		this.m__counter=this.m__counter+(c_Time.m_Delta());
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<270>";
 		if(this.m__counter>=(this.m_SpanTime)){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<271>";
 			this.p_Emit(-1);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<272>";
 			this.m__counter=0.0;
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<276>";
 	for(var t_i=0;t_i<this.m__tail.p_Length2();t_i=t_i+1){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<278>";
 		var t_current_particle=this.m__tail.p_Get(t_i);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<279>";
 		t_current_particle.p_Update();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<281>";
 		if(this.m__updaterEnabled){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<281>";
 			this.m__updater.p_Update2(t_current_particle,c_Time.m_Delta());
 		}
-		if(this.m__tail.p_Get(t_i).m_LifeTime<=0.0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<283>";
+		if(dbg_object(this.m__tail.p_Get(t_i)).m_LifeTime<=0.0){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<285>";
 			this.m__unused.p_Push34(t_current_particle);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<286>";
 			this.m__tail.p_Remove2(t_i);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<288>";
 			t_i-=1;
 		}
 	}
+	pop_err();
 }
 c_ParticleEmitter.prototype.p_Render=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<298>";
 	bb_graphics_PushMatrix();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<299>";
 	bb_graphics_SetBlend(this.m_blend);
-	bb_graphics_SetColor(this.m_BaseColor.m_r,this.m_BaseColor.m_g,this.m_BaseColor.m_b);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<300>";
+	bb_graphics_SetColor(dbg_object(dbg_object(this).m_BaseColor).m_r,dbg_object(dbg_object(this).m_BaseColor).m_g,dbg_object(dbg_object(this).m_BaseColor).m_b);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<302>";
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<302>";
 	var t_=this.m__tail.p_ObjectEnumerator();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<302>";
 	while(t_.p_HasNext()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<302>";
 		var t_t=t_.p_NextObject();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<303>";
 		t_t.p_Render();
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<305>";
 	bb_graphics_SetBlend(0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<306>";
 	bb_graphics_SetAlpha(1.0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<307>";
 	bb_graphics_PopMatrix();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particleemitter.monkey<308>";
 	bb_graphics_SetColor(255.0,255.0,255.0);
+	pop_err();
 }
 function c_Particle(){
 	Object.call(this);
@@ -9117,85 +14207,149 @@ function c_Particle(){
 	this.implments={c_iDrawable:1};
 }
 c_Particle.m_new=function(t_x,t_y,t_rad,t_c,t_lt,t_forcex,t_forcey,t_alpha,t_parent,t_vel,t_colorT,t_t,t_img){
-	this.m_Position=c_Rectangle.m_new3.call(new c_Rectangle,0.0,0.0,0.0,0.0);
-	this.m_Position.p_X(t_x);
-	this.m_Position.p_Y(t_y);
-	this.m_Radius=t_rad;
-	this.m_Velocity=t_vel;
-	this.m_color=t_c;
-	this.m_LifeTime=t_lt;
-	this.m__life=t_lt;
-	this.m_type=t_t;
-	this.m_DrawableImage=t_img;
-	this.m_InitAlpha=t_alpha;
-	this.m_Forcex=t_forcex;
-	this.m_Forcey=t_forcey;
-	if(this.m_DrawableImage!=null){
-		this.m__scale=t_rad*2.0/this.m_DrawableImage.m_Position.p_Width();
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<58>";
+	dbg_object(this).m_Position=c_Rectangle.m_new3.call(new c_Rectangle,0.0,0.0,0.0,0.0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<59>";
+	dbg_object(this).m_Position.p_X(t_x);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<60>";
+	dbg_object(this).m_Position.p_Y(t_y);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<61>";
+	dbg_object(this).m_Radius=t_rad;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<62>";
+	dbg_object(this).m_Velocity=t_vel;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<63>";
+	dbg_object(this).m_color=t_c;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<64>";
+	dbg_object(this).m_LifeTime=t_lt;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<65>";
+	dbg_object(this).m__life=t_lt;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<67>";
+	dbg_object(this).m_type=t_t;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<69>";
+	dbg_object(this).m_DrawableImage=t_img;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<70>";
+	dbg_object(this).m_InitAlpha=t_alpha;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<72>";
+	dbg_object(this).m_Forcex=t_forcex;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<73>";
+	dbg_object(this).m_Forcey=t_forcey;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<75>";
+	if(dbg_object(this).m_DrawableImage!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<76>";
+		dbg_object(this).m__scale=t_rad*2.0/dbg_object(dbg_object(this).m_DrawableImage).m_Position.p_Width();
 	}
-	this.m_ColorType=t_colorT;
-	this.m_ParentEmitter=t_parent;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<79>";
+	dbg_object(this).m_ColorType=t_colorT;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<80>";
+	dbg_object(this).m_ParentEmitter=t_parent;
+	pop_err();
 	return this;
 }
 c_Particle.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<22>";
+	pop_err();
 	return this;
 }
 c_Particle.prototype.p_Update=function(){
-	var t_=this.m_Position;
-	this.m_Position.p_X(t_.p_X2()+this.m_Velocity.m_X*c_Time.m_DeltaSecs());
-	var t_2=this.m_Position;
-	this.m_Position.p_Y(t_2.p_Y2()+this.m_Velocity.m_Y*c_Time.m_DeltaSecs());
-	this.m_Velocity.m_X+=this.m_Forcex*c_Time.m_DeltaSecs();
-	this.m_Velocity.m_Y+=this.m_Forcey*c_Time.m_DeltaSecs();
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<91>";
+	var t_=dbg_object(this).m_Position;
+	dbg_object(this).m_Position.p_X(t_.p_X2()+dbg_object(this.m_Velocity).m_X*c_Time.m_DeltaSecs());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<92>";
+	var t_2=dbg_object(this).m_Position;
+	dbg_object(this).m_Position.p_Y(t_2.p_Y2()+dbg_object(this.m_Velocity).m_Y*c_Time.m_DeltaSecs());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<94>";
+	dbg_object(this.m_Velocity).m_X+=this.m_Forcex*c_Time.m_DeltaSecs();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<95>";
+	dbg_object(this.m_Velocity).m_Y+=this.m_Forcey*c_Time.m_DeltaSecs();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<97>";
 	if(this.m_Forcex!=0.0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<97>";
 		this.m_Forcex-=this.m_Forcex*c_Time.m_DeltaSecs();
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<98>";
 	if(this.m_Forcey!=0.0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<98>";
 		this.m_Forcey-=this.m_Forcey*c_Time.m_DeltaSecs();
 	}
-	this.m_LifeTime=this.m_LifeTime-(c_Time.m_Delta());
-	if(!this.m_FadeInOut){
-		this.m__alpha=this.m_InitAlpha*(this.m_LifeTime/this.m__life);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<100>";
+	dbg_object(this).m_LifeTime=dbg_object(this).m_LifeTime-(c_Time.m_Delta());
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<102>";
+	if(!dbg_object(this).m_FadeInOut){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<103>";
+		dbg_object(this).m__alpha=dbg_object(this).m_InitAlpha*(dbg_object(this).m_LifeTime/dbg_object(this).m__life);
 	}else{
-		var t_hlife=this.m__life*0.5;
-		if(this.m_LifeTime>t_hlife){
-			this.m__alpha=this.m__life*this.m_InitAlpha/this.m_LifeTime-this.m_InitAlpha;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<105>";
+		var t_hlife=dbg_object(this).m__life*0.5;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<106>";
+		if(dbg_object(this).m_LifeTime>t_hlife){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<107>";
+			dbg_object(this).m__alpha=this.m__life*this.m_InitAlpha/this.m_LifeTime-dbg_object(this).m_InitAlpha;
 		}else{
-			this.m__alpha=this.m_InitAlpha*(this.m_LifeTime/t_hlife);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<109>";
+			dbg_object(this).m__alpha=dbg_object(this).m_InitAlpha*(dbg_object(this).m_LifeTime/t_hlife);
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<115>";
 	if(this.m_RotationSpeed!=0.0){
-		this.m_Angle+=this.m_RotationSpeed*c_Time.m_DeltaSecs();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<116>";
+		dbg_object(this).m_Angle+=this.m_RotationSpeed*c_Time.m_DeltaSecs();
 	}
+	pop_err();
 }
 c_Particle.prototype.p_Render=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<121>";
 	bb_graphics_PushMatrix();
-	if(this.m_ColorType==c_ParticleEmitter.m_COLOR_RANDOM){
-		bb_graphics_SetColor(this.m_color.m_r,this.m_color.m_g,this.m_color.m_b);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<122>";
+	if(dbg_object(this).m_ColorType==c_ParticleEmitter.m_COLOR_RANDOM){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<123>";
+		bb_graphics_SetColor(dbg_object(this.m_color).m_r,dbg_object(this.m_color).m_g,dbg_object(this.m_color).m_b);
 	}else{
-		var t_colorIndex=((this.m_LifeTime/(this.m__life/(this.m_ParentEmitter.m_ColorStack.p_Length2())))|0);
-		t_colorIndex=bb_math_Max(0,bb_math_Min(t_colorIndex,this.m_ParentEmitter.m_ColorStack.p_Length2()-1));
-		var t_col=this.m_ParentEmitter.m_ColorStack.p_Get(t_colorIndex);
-		bb_graphics_SetColor(t_col.m_r,t_col.m_g,t_col.m_b);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<125>";
+		var t_colorIndex=((dbg_object(this).m_LifeTime/(dbg_object(this).m__life/(dbg_object(dbg_object(this).m_ParentEmitter).m_ColorStack.p_Length2())))|0);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<127>";
+		t_colorIndex=bb_math_Max(0,bb_math_Min(t_colorIndex,dbg_object(this.m_ParentEmitter).m_ColorStack.p_Length2()-1));
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<129>";
+		var t_col=dbg_object(this.m_ParentEmitter).m_ColorStack.p_Get(t_colorIndex);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<130>";
+		bb_graphics_SetColor(dbg_object(t_col).m_r,dbg_object(t_col).m_g,dbg_object(t_col).m_b);
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<133>";
 	bb_graphics_SetAlpha(this.m__alpha);
-	if(this.m_DrawableImage==null){
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<135>";
+	if(dbg_object(this).m_DrawableImage==null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<136>";
 		if(this.m_type==0){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<137>";
 			bb_graphics_DrawCircle(this.m_Position.p_X2(),this.m_Position.p_Y2(),this.m_Radius);
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<139>";
 			bb_graphics_DrawRect(this.m_Position.p_X2()-this.m_Radius,this.m_Position.p_Y2()-this.m_Radius,this.m_Radius*2.0,this.m_Radius*2.0);
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<143>";
 		bb_graphics_Scale(this.m__scale,this.m__scale);
-		this.m_DrawableImage.p_SetRotation(this.m_Angle);
-		this.m_DrawableImage.m_Position.p_X((this.m_Position.p_X2()-this.m_Radius)/this.m__scale);
-		this.m_DrawableImage.m_Position.p_Y((this.m_Position.p_Y2()-this.m_Radius)/this.m__scale);
-		this.m_DrawableImage.p_Render();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<144>";
+		dbg_object(this).m_DrawableImage.p_SetRotation(dbg_object(this).m_Angle);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<145>";
+		dbg_object(dbg_object(this).m_DrawableImage).m_Position.p_X((this.m_Position.p_X2()-this.m_Radius)/this.m__scale);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<146>";
+		dbg_object(dbg_object(this).m_DrawableImage).m_Position.p_Y((this.m_Position.p_Y2()-this.m_Radius)/this.m__scale);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<147>";
+		dbg_object(this).m_DrawableImage.p_Render();
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<150>";
 	bb_graphics_SetAlpha(1.0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/particlesystem/particle.monkey<151>";
 	bb_graphics_PopMatrix();
+	pop_err();
 }
 c_Particle.prototype.p_Create=function(){
+	push_err();
+	pop_err();
 }
 function c_Stack13(){
 	Object.call(this);
@@ -9204,61 +14358,109 @@ function c_Stack13(){
 }
 c_Stack13.m_NIL=null;
 c_Stack13.prototype.p_Clear=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<34>";
 	for(var t_i=0;t_i<this.m_length;t_i=t_i+1){
-		this.m_data[t_i]=c_Stack13.m_NIL;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<35>";
+		dbg_array(this.m_data,t_i)[dbg_index]=c_Stack13.m_NIL;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<37>";
 	this.m_length=0;
+	pop_err();
 }
 c_Stack13.prototype.p_Push34=function(t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<67>";
 	if(this.m_length==this.m_data.length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<68>";
 		this.m_data=resize_object_array(this.m_data,this.m_length*2+10);
 	}
-	this.m_data[this.m_length]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<70>";
+	dbg_array(this.m_data,this.m_length)[dbg_index]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<71>";
 	this.m_length+=1;
+	pop_err();
 }
 c_Stack13.prototype.p_Push35=function(t_values,t_offset,t_count){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<79>";
 	for(var t_i=0;t_i<t_count;t_i=t_i+1){
-		this.p_Push34(t_values[t_offset+t_i]);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<80>";
+		this.p_Push34(dbg_array(t_values,t_offset+t_i)[dbg_index]);
 	}
+	pop_err();
 }
 c_Stack13.prototype.p_Push36=function(t_values,t_offset){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<75>";
 	this.p_Push35(t_values,t_offset,t_values.length-t_offset);
+	pop_err();
 }
 c_Stack13.m_new=function(){
+	push_err();
+	pop_err();
 	return this;
 }
 c_Stack13.m_new2=function(t_data){
-	this.m_data=t_data.slice(0);
-	this.m_length=t_data.length;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<13>";
+	dbg_object(this).m_data=t_data.slice(0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<14>";
+	dbg_object(this).m_length=t_data.length;
+	pop_err();
 	return this;
 }
 c_Stack13.prototype.p_Length=function(t_newlength){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<41>";
 	if(t_newlength<this.m_length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<42>";
 		for(var t_i=t_newlength;t_i<this.m_length;t_i=t_i+1){
-			this.m_data[t_i]=c_Stack13.m_NIL;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<43>";
+			dbg_array(this.m_data,t_i)[dbg_index]=c_Stack13.m_NIL;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<45>";
 		if(t_newlength>this.m_data.length){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<46>";
 			this.m_data=resize_object_array(this.m_data,bb_math_Max(this.m_length*2+10,t_newlength));
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<48>";
 	this.m_length=t_newlength;
+	pop_err();
 }
 c_Stack13.prototype.p_Length2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<52>";
+	pop_err();
 	return this.m_length;
 }
 c_Stack13.prototype.p_Get=function(t_index){
-	return this.m_data[t_index];
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<100>";
+	pop_err();
+	return dbg_array(this.m_data,t_index)[dbg_index];
 }
 c_Stack13.prototype.p_Remove2=function(t_index){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<133>";
 	for(var t_i=t_index;t_i<this.m_length-1;t_i=t_i+1){
-		this.m_data[t_i]=this.m_data[t_i+1];
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<134>";
+		dbg_array(this.m_data,t_i)[dbg_index]=dbg_array(this.m_data,t_i+1)[dbg_index];
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<136>";
 	this.m_length-=1;
-	this.m_data[this.m_length]=c_Stack13.m_NIL;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<137>";
+	dbg_array(this.m_data,this.m_length)[dbg_index]=c_Stack13.m_NIL;
+	pop_err();
 }
 c_Stack13.prototype.p_ObjectEnumerator=function(){
-	return c_Enumerator12.m_new.call(new c_Enumerator12,this);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<184>";
+	var t_=c_Enumerator12.m_new.call(new c_Enumerator12,this);
+	pop_err();
+	return t_;
 }
 function c_Color(){
 	Object.call(this);
@@ -9268,21 +14470,37 @@ function c_Color(){
 	this.m_a=.0;
 }
 c_Color.m_new=function(){
-	this.m_r=0.0;
-	this.m_g=0.0;
-	this.m_b=0.0;
-	this.m_a=1.0;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/color.monkey<12>";
+	dbg_object(this).m_r=0.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/color.monkey<13>";
+	dbg_object(this).m_g=0.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/color.monkey<14>";
+	dbg_object(this).m_b=0.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/color.monkey<15>";
+	dbg_object(this).m_a=1.0;
+	pop_err();
 	return this;
 }
 c_Color.m_new2=function(t_r,t_g,t_b,t_a){
-	this.m_r=t_r;
-	this.m_g=t_g;
-	this.m_b=t_b;
-	this.m_a=t_a;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/color.monkey<20>";
+	dbg_object(this).m_r=t_r;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/color.monkey<21>";
+	dbg_object(this).m_g=t_g;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/color.monkey<22>";
+	dbg_object(this).m_b=t_b;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/color.monkey<23>";
+	dbg_object(this).m_a=t_a;
+	pop_err();
 	return this;
 }
 c_Color.m_White=function(){
-	return c_Color.m_new2.call(new c_Color,255.0,255.0,255.0,1.0);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/color.monkey<70>";
+	var t_=c_Color.m_new2.call(new c_Color,255.0,255.0,255.0,1.0);
+	pop_err();
+	return t_;
 }
 function c_Stack14(){
 	Object.call(this);
@@ -9291,75 +14509,136 @@ function c_Stack14(){
 }
 c_Stack14.m_NIL=null;
 c_Stack14.prototype.p_Length=function(t_newlength){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<41>";
 	if(t_newlength<this.m_length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<42>";
 		for(var t_i=t_newlength;t_i<this.m_length;t_i=t_i+1){
-			this.m_data[t_i]=c_Stack14.m_NIL;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<43>";
+			dbg_array(this.m_data,t_i)[dbg_index]=c_Stack14.m_NIL;
 		}
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<45>";
 		if(t_newlength>this.m_data.length){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<46>";
 			this.m_data=resize_object_array(this.m_data,bb_math_Max(this.m_length*2+10,t_newlength));
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<48>";
 	this.m_length=t_newlength;
+	pop_err();
 }
 c_Stack14.prototype.p_Length2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<52>";
+	pop_err();
 	return this.m_length;
 }
 c_Stack14.prototype.p_Get=function(t_index){
-	return this.m_data[t_index];
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<100>";
+	pop_err();
+	return dbg_array(this.m_data,t_index)[dbg_index];
 }
 c_Stack14.m_new=function(){
+	push_err();
+	pop_err();
 	return this;
 }
 c_Stack14.m_new2=function(t_data){
-	this.m_data=t_data.slice(0);
-	this.m_length=t_data.length;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<13>";
+	dbg_object(this).m_data=t_data.slice(0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<14>";
+	dbg_object(this).m_length=t_data.length;
+	pop_err();
 	return this;
 }
 c_Stack14.prototype.p_Push37=function(t_value){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<67>";
 	if(this.m_length==this.m_data.length){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<68>";
 		this.m_data=resize_object_array(this.m_data,this.m_length*2+10);
 	}
-	this.m_data[this.m_length]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<70>";
+	dbg_array(this.m_data,this.m_length)[dbg_index]=t_value;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<71>";
 	this.m_length+=1;
+	pop_err();
 }
 c_Stack14.prototype.p_Push38=function(t_values,t_offset,t_count){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<79>";
 	for(var t_i=0;t_i<t_count;t_i=t_i+1){
-		this.p_Push37(t_values[t_offset+t_i]);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<80>";
+		this.p_Push37(dbg_array(t_values,t_offset+t_i)[dbg_index]);
 	}
+	pop_err();
 }
 c_Stack14.prototype.p_Push39=function(t_values,t_offset){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<75>";
 	this.p_Push38(t_values,t_offset,t_values.length-t_offset);
+	pop_err();
 }
 var bb_random_Seed=0;
 function bb_random_Rnd(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/random.monkey<21>";
 	bb_random_Seed=bb_random_Seed*1664525+1013904223|0;
-	return (bb_random_Seed>>8&16777215)/16777216.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/random.monkey<22>";
+	var t_=(bb_random_Seed>>8&16777215)/16777216.0;
+	pop_err();
+	return t_;
 }
 function bb_random_Rnd2(t_low,t_high){
-	return bb_random_Rnd3(t_high-t_low)+t_low;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/random.monkey<30>";
+	var t_=bb_random_Rnd3(t_high-t_low)+t_low;
+	pop_err();
+	return t_;
 }
 function bb_random_Rnd3(t_range){
-	return bb_random_Rnd()*t_range;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/random.monkey<26>";
+	var t_=bb_random_Rnd()*t_range;
+	pop_err();
+	return t_;
 }
-function c_Enumerator7(){
+function c_Enumerator8(){
 	Object.call(this);
 	this.m_stack=null;
 	this.m_index=0;
 }
-c_Enumerator7.m_new=function(t_stack){
-	this.m_stack=t_stack;
+c_Enumerator8.m_new=function(t_stack){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<255>";
+	dbg_object(this).m_stack=t_stack;
+	pop_err();
 	return this;
 }
-c_Enumerator7.m_new2=function(){
+c_Enumerator8.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<252>";
+	pop_err();
 	return this;
 }
-c_Enumerator7.prototype.p_HasNext=function(){
-	return this.m_index<this.m_stack.p_Length2();
+c_Enumerator8.prototype.p_HasNext=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<259>";
+	var t_=this.m_index<this.m_stack.p_Length2();
+	pop_err();
+	return t_;
 }
-c_Enumerator7.prototype.p_NextObject=function(){
+c_Enumerator8.prototype.p_NextObject=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<263>";
 	this.m_index+=1;
-	return this.m_stack.m_data[this.m_index-1];
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<264>";
+	var t_=dbg_array(dbg_object(this.m_stack).m_data,this.m_index-1)[dbg_index];
+	pop_err();
+	return t_;
 }
 function c_Enemy(){
 	Object.call(this);
@@ -9375,112 +14654,202 @@ function c_Enemy(){
 	this.implments={c_iDrawable:1,c_iOnCollide:1};
 }
 c_Enemy.prototype.p_CreateSprite=function(){
-	this.m_animated_sprite=c_AnimatedSprite.m_new.call(new c_AnimatedSprite,"enemies.png",c_Vec2.m_new.call(new c_Vec2,0.0,0.0),9.0,9.0,6,0.0);
-	this.m_animated_sprite.p_AddSequence("4097",[0]);
-	this.m_animated_sprite.p_AddSequence("4098",[1]);
-	this.m_animated_sprite.p_AddSequence("4099",[2]);
-	this.m_animated_sprite.p_AddSequence("4100",[3]);
-	this.m_animated_sprite.p_AddSequence("4101",[4]);
-	this.m_animated_sprite.p_AddSequence("play",[5]);
-	this.m_animated_sprite.p_PlaySequence(this.m_type,100,true);
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<74>";
+	dbg_object(this).m_animated_sprite=c_AnimatedSprite.m_new.call(new c_AnimatedSprite,"enemies.png",c_Vec2.m_new.call(new c_Vec2,0.0,0.0),9.0,9.0,6,0.0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<75>";
+	dbg_object(this).m_animated_sprite.p_AddSequence("4097",[0]);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<76>";
+	dbg_object(this).m_animated_sprite.p_AddSequence("4098",[1]);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<77>";
+	dbg_object(this).m_animated_sprite.p_AddSequence("4099",[2]);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<78>";
+	dbg_object(this).m_animated_sprite.p_AddSequence("4100",[3]);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<79>";
+	dbg_object(this).m_animated_sprite.p_AddSequence("4101",[4]);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<80>";
+	dbg_object(this).m_animated_sprite.p_AddSequence("play",[5]);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<82>";
+	dbg_object(this).m_animated_sprite.p_PlaySequence(dbg_object(this).m_type,100,true);
+	pop_err();
 }
 c_Enemy.prototype.p_Create=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<88>";
 	this.p_CreateSprite();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<91>";
 	c_CollisionEngine.m_Instance2().p_AddStaticBody(this);
-	this.m_cannon=c_EnemyCannon.m_new.call(new c_EnemyCannon);
-	this.m_ai=c_SimpleShotAI.m_new.call(new c_SimpleShotAI,this);
-	this.m_explosion=c_AnimatedSprite.m_new.call(new c_AnimatedSprite,"explosion.png",c_Vec2.m_new.call(new c_Vec2,0.0,0.0),9.0,9.0,14,0.0);
-	this.m_explosion.p_AddSequence("explode",[0,1,2,3,4,5,6,7,8,9,10,11,12,13]);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<94>";
+	dbg_object(this).m_cannon=c_EnemyCannon.m_new.call(new c_EnemyCannon);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<96>";
+	dbg_object(this).m_ai=c_SimpleShotAI.m_new.call(new c_SimpleShotAI,this);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<99>";
+	dbg_object(this).m_explosion=c_AnimatedSprite.m_new.call(new c_AnimatedSprite,"explosion.png",c_Vec2.m_new.call(new c_Vec2,0.0,0.0),9.0,9.0,14,0.0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<100>";
+	dbg_object(this).m_explosion.p_AddSequence("explode",[0,1,2,3,4,5,6,7,8,9,10,11,12,13]);
+	pop_err();
 }
 c_Enemy.m_new=function(t_position,t_type){
-	this.m_position=t_position;
-	var t_=this.m_position;
-	this.m_position.p_Y(t_.p_Y2()-t_position.p_Height());
-	this.m_type=t_type;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<66>";
+	dbg_object(this).m_position=t_position;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<67>";
+	var t_=dbg_object(this).m_position;
+	dbg_object(this).m_position.p_Y(t_.p_Y2()-t_position.p_Height());
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<68>";
+	dbg_object(this).m_type=t_type;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<69>";
 	this.p_Create();
+	pop_err();
 	return this;
 }
 c_Enemy.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<41>";
+	pop_err();
 	return this;
 }
 c_Enemy.prototype.p_AAShot=function(){
-	this.m_cannon.p_Shot2(((this.m_position.p_X2())|0),((this.m_position.p_Y2())|0),((this.m_position.p_X2()-1.0)|0),((this.m_position.p_Y2())|0));
-	this.m_cannon.p_Shot2(((this.m_position.p_X2())|0),((this.m_position.p_Y2())|0),((this.m_position.p_X2()+1.0)|0),((this.m_position.p_Y2())|0));
-	this.m_cannon.p_Shot2(((this.m_position.p_X2())|0),((this.m_position.p_Y2())|0),((this.m_position.p_X2())|0),((this.m_position.p_Y2()-1.0)|0));
-	this.m_cannon.p_Shot2(((this.m_position.p_X2())|0),((this.m_position.p_Y2())|0),((this.m_position.p_X2())|0),((this.m_position.p_Y2()+1.0)|0));
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<168>";
+	dbg_object(this).m_cannon.p_Shot2(((dbg_object(this).m_position.p_X2())|0),((dbg_object(this).m_position.p_Y2())|0),((dbg_object(this).m_position.p_X2()-1.0)|0),((dbg_object(this).m_position.p_Y2())|0));
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<172>";
+	dbg_object(this).m_cannon.p_Shot2(((dbg_object(this).m_position.p_X2())|0),((dbg_object(this).m_position.p_Y2())|0),((dbg_object(this).m_position.p_X2()+1.0)|0),((dbg_object(this).m_position.p_Y2())|0));
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<176>";
+	dbg_object(this).m_cannon.p_Shot2(((dbg_object(this).m_position.p_X2())|0),((dbg_object(this).m_position.p_Y2())|0),((dbg_object(this).m_position.p_X2())|0),((dbg_object(this).m_position.p_Y2()-1.0)|0));
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<180>";
+	dbg_object(this).m_cannon.p_Shot2(((dbg_object(this).m_position.p_X2())|0),((dbg_object(this).m_position.p_Y2())|0),((dbg_object(this).m_position.p_X2())|0),((dbg_object(this).m_position.p_Y2()+1.0)|0));
+	pop_err();
 }
 c_Enemy.prototype.p_XShot=function(){
-	this.m_cannon.p_Shot2(((this.m_position.p_X2())|0),((this.m_position.p_Y2())|0),((this.m_position.p_X2()-1.0)|0),((this.m_position.p_Y2()-1.0)|0));
-	this.m_cannon.p_Shot2(((this.m_position.p_X2())|0),((this.m_position.p_Y2())|0),((this.m_position.p_X2()+1.0)|0),((this.m_position.p_Y2()+1.0)|0));
-	this.m_cannon.p_Shot2(((this.m_position.p_X2())|0),((this.m_position.p_Y2())|0),((this.m_position.p_X2()+1.0)|0),((this.m_position.p_Y2()-1.0)|0));
-	this.m_cannon.p_Shot2(((this.m_position.p_X2())|0),((this.m_position.p_Y2())|0),((this.m_position.p_X2()-1.0)|0),((this.m_position.p_Y2()+1.0)|0));
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<186>";
+	dbg_object(this).m_cannon.p_Shot2(((dbg_object(this).m_position.p_X2())|0),((dbg_object(this).m_position.p_Y2())|0),((dbg_object(this).m_position.p_X2()-1.0)|0),((dbg_object(this).m_position.p_Y2()-1.0)|0));
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<190>";
+	dbg_object(this).m_cannon.p_Shot2(((dbg_object(this).m_position.p_X2())|0),((dbg_object(this).m_position.p_Y2())|0),((dbg_object(this).m_position.p_X2()+1.0)|0),((dbg_object(this).m_position.p_Y2()+1.0)|0));
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<194>";
+	dbg_object(this).m_cannon.p_Shot2(((dbg_object(this).m_position.p_X2())|0),((dbg_object(this).m_position.p_Y2())|0),((dbg_object(this).m_position.p_X2()+1.0)|0),((dbg_object(this).m_position.p_Y2()-1.0)|0));
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<198>";
+	dbg_object(this).m_cannon.p_Shot2(((dbg_object(this).m_position.p_X2())|0),((dbg_object(this).m_position.p_Y2())|0),((dbg_object(this).m_position.p_X2()-1.0)|0),((dbg_object(this).m_position.p_Y2()+1.0)|0));
+	pop_err();
 }
 c_Enemy.prototype.p_Shot=function(){
-	if(this.m_type=="4097"){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<203>";
+	if(dbg_object(this).m_type=="4097"){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<204>";
 		this.p_AAShot();
 	}else{
-		if(this.m_type=="4098"){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<205>";
+		if(dbg_object(this).m_type=="4098"){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<206>";
 			this.p_AAShot();
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<207>";
 			this.p_XShot();
 		}else{
-			if(this.m_type=="4099"){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<208>";
+			if(dbg_object(this).m_type=="4099"){
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<209>";
 				this.p_XShot();
 			}
 		}
 	}
+	pop_err();
 }
 c_Enemy.prototype.p_Update=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<105>";
 	if(!this.m_visible){
+		pop_err();
 		return;
 	}
-	if(this.m_state==0){
-		this.m_animated_sprite.p_Update();
-		this.m_ai.p_Update();
-		this.m_cannon.p_Update();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<107>";
+	if(dbg_object(this).m_state==0){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<109>";
+		dbg_object(this).m_animated_sprite.p_Update();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<110>";
+		dbg_object(this).m_ai.p_Update();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<111>";
+		dbg_object(this).m_cannon.p_Update();
 	}else{
-		if(this.m_state==1){
-			this.m_explosion.p_Update();
-			if(this.m_explosion.p_IsLastFrame()){
-				this.m_state=2;
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<113>";
+		if(dbg_object(this).m_state==1){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<115>";
+			dbg_object(this).m_explosion.p_Update();
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<117>";
+			if(dbg_object(this).m_explosion.p_IsLastFrame()){
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<117>";
+				dbg_object(this).m_state=2;
 			}
 		}else{
-			if(this.m_state==2){
-				this.m_visible=false;
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<119>";
+			if(dbg_object(this).m_state==2){
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<121>";
+				dbg_object(this).m_visible=false;
 			}
 		}
 	}
+	pop_err();
 }
 c_Enemy.prototype.p_Render=function(){
-	if(!this.m_visible){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<127>";
+	if(!dbg_object(this).m_visible){
+		pop_err();
 		return;
 	}
-	if(this.m_state==0){
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<129>";
+	if(dbg_object(this).m_state==0){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<131>";
 		bb_graphics_PushMatrix();
-		bb_graphics_Translate(this.m_position.p_X2(),this.m_position.p_Y2());
-		this.m_animated_sprite.p_Render();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<132>";
+		bb_graphics_Translate(dbg_object(this).m_position.p_X2(),dbg_object(this).m_position.p_Y2());
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<133>";
+		dbg_object(this).m_animated_sprite.p_Render();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<134>";
 		bb_graphics_PopMatrix();
-		this.m_cannon.p_Render();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<136>";
+		dbg_object(this).m_cannon.p_Render();
 	}else{
-		if(this.m_state==1){
-			this.m_explosion.p_Render();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<138>";
+		if(dbg_object(this).m_state==1){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<139>";
+			dbg_object(this).m_explosion.p_Render();
 		}
 	}
+	pop_err();
 }
 c_Enemy.prototype.p_GetBox=function(){
-	return this.m_position;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<145>";
+	pop_err();
+	return dbg_object(this).m_position;
 }
 c_Enemy.prototype.p_OnCollide=function(t_name){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<149>";
 	if(t_name=="player" || t_name=="player_bullet"){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<150>";
 		c_Time.m_Freeze(100);
-		this.m_explosion.p_PlaySequence("explode",70,true);
-		this.m_explosion.m_Position.p_X(this.m_position.p_X2());
-		this.m_explosion.m_Position.p_Y(this.m_position.p_Y2());
-		this.m_state=1;
-		this.m_cannon.p_Destroy2();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<151>";
+		dbg_object(this).m_explosion.p_PlaySequence("explode",70,true);
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<152>";
+		dbg_object(dbg_object(this).m_explosion).m_Position.p_X(dbg_object(this).m_position.p_X2());
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<153>";
+		dbg_object(dbg_object(this).m_explosion).m_Position.p_Y(dbg_object(this).m_position.p_Y2());
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<154>";
+		dbg_object(this).m_state=1;
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<156>";
+		dbg_object(this).m_cannon.p_Destroy2();
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<157>";
 		c_CollisionEngine.m_Instance2().p_Destroy(this);
 	}
+	pop_err();
 }
 c_Enemy.prototype.p_GetName=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<162>";
+	pop_err();
 	return "enemy";
 }
 function c_PowerUp(){
@@ -9491,45 +14860,82 @@ function c_PowerUp(){
 	this.implments={c_iDrawable:1,c_iOnCollide:1};
 }
 c_PowerUp.prototype.p_Create=function(){
-	var t_=this.m_position;
-	this.m_position.p_X(t_.p_X2()+3.0);
-	var t_2=this.m_position;
-	this.m_position.p_Y(t_2.p_Y2()+2.0);
-	this.m_sprite=c_lpImage.m_new.call(new c_lpImage,"powerup.png",c_Vec2.m_new.call(new c_Vec2,0.0,0.0),0);
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/powerup.monkey<20>";
+	var t_=dbg_object(this).m_position;
+	dbg_object(this).m_position.p_X(t_.p_X2()+3.0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/powerup.monkey<21>";
+	var t_2=dbg_object(this).m_position;
+	dbg_object(this).m_position.p_Y(t_2.p_Y2()+2.0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/powerup.monkey<24>";
+	dbg_object(this).m_sprite=c_lpImage.m_new.call(new c_lpImage,"powerup.png",c_Vec2.m_new.call(new c_Vec2,0.0,0.0),0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/powerup.monkey<27>";
 	c_CollisionEngine.m_Instance2().p_AddStaticBody(this);
+	pop_err();
 }
 c_PowerUp.m_new=function(t_position){
-	this.m_position=t_position;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/powerup.monkey<12>";
+	dbg_object(this).m_position=t_position;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/powerup.monkey<14>";
 	this.p_Create();
+	pop_err();
 	return this;
 }
 c_PowerUp.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/powerup.monkey<4>";
+	pop_err();
 	return this;
 }
 c_PowerUp.prototype.p_Update=function(){
+	push_err();
+	pop_err();
 }
 c_PowerUp.prototype.p_Render=function(){
-	if(!this.m_visible){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/powerup.monkey<35>";
+	if(!dbg_object(this).m_visible){
+		pop_err();
 		return;
 	}
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/powerup.monkey<37>";
 	bb_graphics_PushMatrix();
-	bb_graphics_Translate(this.m_position.p_X2(),this.m_position.p_Y2());
-	this.m_sprite.p_Render();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/powerup.monkey<38>";
+	bb_graphics_Translate(dbg_object(this).m_position.p_X2(),dbg_object(this).m_position.p_Y2());
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/powerup.monkey<39>";
+	dbg_object(this).m_sprite.p_Render();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/powerup.monkey<40>";
 	bb_graphics_PopMatrix();
+	pop_err();
 }
 c_PowerUp.prototype.p_GetBox=function(){
-	return this.m_position;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/powerup.monkey<45>";
+	pop_err();
+	return dbg_object(this).m_position;
 }
 c_PowerUp.prototype.p_Destroy2=function(){
-	this.m_visible=false;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/powerup.monkey<58>";
+	dbg_object(this).m_visible=false;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/powerup.monkey<59>";
 	c_CollisionEngine.m_Instance2().p_Destroy(this);
+	pop_err();
 }
 c_PowerUp.prototype.p_OnCollide=function(t_name){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/powerup.monkey<48>";
 	if(t_name=="player"){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/powerup.monkey<49>";
 		this.p_Destroy2();
 	}
+	pop_err();
 }
 c_PowerUp.prototype.p_GetName=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/powerup.monkey<53>";
+	pop_err();
 	return "powerup";
 }
 function c_EnemyCannon(){
@@ -9538,21 +14944,37 @@ function c_EnemyCannon(){
 	this.implments={c_iDrawable:1};
 }
 c_EnemyCannon.prototype.p_Create=function(){
+	push_err();
+	pop_err();
 }
 c_EnemyCannon.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/enemy_cannon.monkey<46>";
 	this.p_Create();
+	pop_err();
 	return this;
 }
 c_EnemyCannon.prototype.p_Shot2=function(t_ox,t_oy,t_dx,t_dy){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/enemy_cannon.monkey<61>";
 	var t_v=c_Vec2.m_new.call(new c_Vec2,(t_dx-t_ox),(t_dy-t_oy));
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/enemy_cannon.monkey<62>";
 	c_EnemyBullet.m_new.call(new c_EnemyBullet,c_Vec2.m_new.call(new c_Vec2,(t_ox),(t_oy)),t_v.p_UnitVector(null));
+	pop_err();
 }
 c_EnemyCannon.prototype.p_Update=function(){
+	push_err();
+	pop_err();
 }
 c_EnemyCannon.prototype.p_Render=function(){
+	push_err();
+	pop_err();
 }
 c_EnemyCannon.prototype.p_Destroy2=function(){
-	this.m_visible=false;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/enemy_cannon.monkey<67>";
+	dbg_object(this).m_visible=false;
+	pop_err();
 }
 function c_SimpleShotAI(){
 	Object.call(this);
@@ -9562,23 +14984,40 @@ function c_SimpleShotAI(){
 	this.implments={c_iDrawable:1};
 }
 c_SimpleShotAI.prototype.p_Create=function(){
+	push_err();
+	pop_err();
 }
 c_SimpleShotAI.m_new=function(t_parent){
-	this.m_parent=t_parent;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<14>";
+	dbg_object(this).m_parent=t_parent;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<16>";
 	this.p_Create();
+	pop_err();
 	return this;
 }
 c_SimpleShotAI.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<6>";
+	pop_err();
 	return this;
 }
 c_SimpleShotAI.prototype.p_Update=function(){
-	this.m_shot_timer+=c_Time.m_Delta();
-	if(this.m_shot_timer>=this.m_shot_time){
-		this.m_shot_timer=0;
-		this.m_parent.p_Shot();
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<25>";
+	dbg_object(this).m_shot_timer+=c_Time.m_Delta();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<27>";
+	if(dbg_object(this).m_shot_timer>=dbg_object(this).m_shot_time){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<28>";
+		dbg_object(this).m_shot_timer=0;
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy.monkey<30>";
+		dbg_object(this).m_parent.p_Shot();
 	}
+	pop_err();
 }
 c_SimpleShotAI.prototype.p_Render=function(){
+	push_err();
+	pop_err();
 }
 function c_EnemyTurret(){
 	c_Enemy.call(this);
@@ -9586,20 +15025,35 @@ function c_EnemyTurret(){
 }
 c_EnemyTurret.prototype=extend_class(c_Enemy);
 c_EnemyTurret.m_new=function(t_position,t_gid){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<9>";
 	c_Enemy.m_new.call(this,t_position,t_gid);
+	pop_err();
 	return this;
 }
 c_EnemyTurret.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<6>";
 	c_Enemy.m_new2.call(this);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<6>";
+	pop_err();
 	return this;
 }
 c_EnemyTurret.prototype.p_Create=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<13>";
 	c_Enemy.prototype.p_Create.call(this);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<16>";
 	c_CollisionEngine.m_Instance2().p_AddStaticBody(this);
-	this.m_cannon=c_EnemyCannon.m_new.call(new c_EnemyCannon);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<19>";
+	dbg_object(this).m_cannon=c_EnemyCannon.m_new.call(new c_EnemyCannon);
+	pop_err();
 }
 c_EnemyTurret.prototype.p_Shot=function(){
-	this.m_cannon.p_Shot2(((this.m_position.p_X2())|0),((this.m_position.p_Y2())|0),((this.m_player_position.p_CenterX())|0),((this.m_player_position.p_CenterY())|0));
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_turret.monkey<25>";
+	dbg_object(this).m_cannon.p_Shot2(((dbg_object(this).m_position.p_X2())|0),((dbg_object(this).m_position.p_Y2())|0),((dbg_object(this).m_player_position.p_CenterX())|0),((dbg_object(this).m_player_position.p_CenterY())|0));
+	pop_err();
 }
 function c_EnemyWave(){
 	c_Enemy.call(this);
@@ -9609,27 +15063,48 @@ function c_EnemyWave(){
 }
 c_EnemyWave.prototype=extend_class(c_Enemy);
 c_EnemyWave.m_new=function(t_position){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<13>";
 	c_Enemy.m_new.call(this,t_position,"play");
-	this.m_position=t_position;
-	this.m_active=c_ActiveOnCamera.m_new.call(new c_ActiveOnCamera,this.m_position);
-	this.m_wavymovement=c_WavyMovement.m_new.call(new c_WavyMovement,this.m_position);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<14>";
+	dbg_object(this).m_position=t_position;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<16>";
+	dbg_object(this).m_active=c_ActiveOnCamera.m_new.call(new c_ActiveOnCamera,dbg_object(this).m_position);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<17>";
+	dbg_object(this).m_wavymovement=c_WavyMovement.m_new.call(new c_WavyMovement,dbg_object(this).m_position);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<19>";
 	this.p_Create();
+	pop_err();
 	return this;
 }
 c_EnemyWave.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<6>";
 	c_Enemy.m_new2.call(this);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<6>";
+	pop_err();
 	return this;
 }
 c_EnemyWave.prototype.p_Update=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<23>";
 	c_Enemy.prototype.p_Update.call(this);
-	this.m_active.p_Update();
-	if(!this.m_active.p_IsActive()){
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<24>";
+	dbg_object(this).m_active.p_Update();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<26>";
+	if(!dbg_object(this).m_active.p_IsActive()){
+		pop_err();
 		return;
 	}
-	this.m_animated_sprite.p_Update();
-	this.m_wavymovement.p_Update();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<28>";
+	dbg_object(this).m_animated_sprite.p_Update();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemywave.monkey<29>";
+	dbg_object(this).m_wavymovement.p_Update();
+	pop_err();
 }
 c_EnemyWave.prototype.p_Shot=function(){
+	push_err();
+	pop_err();
 }
 function c_ActiveOnCamera(){
 	Object.call(this);
@@ -9639,26 +15114,45 @@ function c_ActiveOnCamera(){
 	this.implments={c_iDrawable:1};
 }
 c_ActiveOnCamera.m_new=function(t_target){
-	this.m_target=t_target;
-	this.m_viewport=c_Game.m_Instance().p_GetCurrentCamera().m_ViewPort;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/activeoncamera.monkey<12>";
+	dbg_object(this).m_target=t_target;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/activeoncamera.monkey<14>";
+	dbg_object(this).m_viewport=dbg_object(c_Game.m_Instance().p_GetCurrentCamera()).m_ViewPort;
+	pop_err();
 	return this;
 }
 c_ActiveOnCamera.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/activeoncamera.monkey<5>";
+	pop_err();
 	return this;
 }
 c_ActiveOnCamera.prototype.p_Update=function(){
-	if(c_Collision.m_AABBIntersects(this.m_target,this.m_viewport)){
-		this.m_active=true;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/activeoncamera.monkey<22>";
+	if(c_Collision.m_AABBIntersects(dbg_object(this).m_target,dbg_object(this).m_viewport)){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/activeoncamera.monkey<23>";
+		dbg_object(this).m_active=true;
 	}else{
-		this.m_active=false;
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/activeoncamera.monkey<25>";
+		dbg_object(this).m_active=false;
 	}
+	pop_err();
 }
 c_ActiveOnCamera.prototype.p_IsActive=function(){
-	return this.m_active;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/activeoncamera.monkey<33>";
+	pop_err();
+	return dbg_object(this).m_active;
 }
 c_ActiveOnCamera.prototype.p_Create=function(){
+	push_err();
+	pop_err();
 }
 c_ActiveOnCamera.prototype.p_Render=function(){
+	push_err();
+	pop_err();
 }
 function c_WavyMovement(){
 	Object.call(this);
@@ -9668,21 +15162,36 @@ function c_WavyMovement(){
 	this.implments={c_iDrawable:1};
 }
 c_WavyMovement.m_new=function(t_target){
-	this.m_target=t_target;
-	this.m_initial_y=((this.m_target.p_Y2())|0);
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/wavymovement.monkey<10>";
+	dbg_object(this).m_target=t_target;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/wavymovement.monkey<11>";
+	dbg_object(this).m_initial_y=((dbg_object(this).m_target.p_Y2())|0);
+	pop_err();
 	return this;
 }
 c_WavyMovement.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/wavymovement.monkey<3>";
+	pop_err();
 	return this;
 }
 c_WavyMovement.prototype.p_Update=function(){
-	var t_=this.m_target;
-	this.m_target.p_X(t_.p_X2()+(this.m_speed)*c_Time.m_DeltaSecs());
-	this.m_target.p_Y((this.m_initial_y)+Math.sin((this.m_target.p_X2() % 45.0*8.0)*D2R)*7.0);
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/wavymovement.monkey<19>";
+	var t_=dbg_object(this).m_target;
+	dbg_object(this).m_target.p_X(t_.p_X2()+(dbg_object(this).m_speed)*c_Time.m_DeltaSecs());
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/wavymovement.monkey<20>";
+	dbg_object(this).m_target.p_Y((dbg_object(this).m_initial_y)+Math.sin((dbg_object(this).m_target.p_X2() % 45.0*8.0)*D2R)*7.0);
+	pop_err();
 }
 c_WavyMovement.prototype.p_Create=function(){
+	push_err();
+	pop_err();
 }
 c_WavyMovement.prototype.p_Render=function(){
+	push_err();
+	pop_err();
 }
 function c_EnemyRectLine(){
 	c_Enemy.call(this);
@@ -9693,37 +15202,63 @@ function c_EnemyRectLine(){
 }
 c_EnemyRectLine.prototype=extend_class(c_Enemy);
 c_EnemyRectLine.m_new=function(t_position,t_gid){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_rectline.monkey<16>";
 	c_Enemy.m_new.call(this,t_position,t_gid);
+	pop_err();
 	return this;
 }
 c_EnemyRectLine.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_rectline.monkey<5>";
 	c_Enemy.m_new2.call(this);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_rectline.monkey<5>";
+	pop_err();
 	return this;
 }
 c_EnemyRectLine.prototype.p_CreateSprite=function(){
-	this.m_animated_sprite=c_AnimatedSprite.m_new.call(new c_AnimatedSprite,"rectline_enemy.png",c_Vec2.m_new.call(new c_Vec2,0.0,0.0),25.0,10.0,1,0.0);
-	this.m_animated_sprite.p_AddSequence(this.m_type,[0]);
-	this.m_animated_sprite.p_PlaySequence(this.m_type,100,true);
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_rectline.monkey<20>";
+	dbg_object(this).m_animated_sprite=c_AnimatedSprite.m_new.call(new c_AnimatedSprite,"rectline_enemy.png",c_Vec2.m_new.call(new c_Vec2,0.0,0.0),25.0,10.0,1,0.0);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_rectline.monkey<21>";
+	dbg_object(this).m_animated_sprite.p_AddSequence(dbg_object(this).m_type,[0]);
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_rectline.monkey<23>";
+	dbg_object(this).m_animated_sprite.p_PlaySequence(dbg_object(this).m_type,100,true);
+	pop_err();
 }
 c_EnemyRectLine.prototype.p_Update=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_rectline.monkey<28>";
 	c_Enemy.prototype.p_Update.call(this);
-	if(c_Collision.m_AABBIntersects(c_Game.m_Instance().p_GetCurrentCamera().m_ViewPort,this.m_position)){
-		if(this.m_shot_state==0){
-			this.m_position.p_X(c_Game.m_Instance().p_GetCurrentCamera().m_ViewPort.p_X2()+c_Game.m_Instance().p_GetCurrentCamera().m_ViewPort.p_Width()-10.0);
-			if(this.m_wait_timer>=this.m_wait_time){
-				this.m_shot_state=1;
-				this.m_wait_timer=0;
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_rectline.monkey<30>";
+	if(c_Collision.m_AABBIntersects(dbg_object(c_Game.m_Instance().p_GetCurrentCamera()).m_ViewPort,dbg_object(this).m_position)){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_rectline.monkey<32>";
+		if(dbg_object(this).m_shot_state==0){
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_rectline.monkey<33>";
+			dbg_object(this).m_position.p_X(dbg_object(c_Game.m_Instance().p_GetCurrentCamera()).m_ViewPort.p_X2()+dbg_object(c_Game.m_Instance().p_GetCurrentCamera()).m_ViewPort.p_Width()-10.0);
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_rectline.monkey<35>";
+			if(dbg_object(this).m_wait_timer>=dbg_object(this).m_wait_time){
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_rectline.monkey<36>";
+				dbg_object(this).m_shot_state=1;
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_rectline.monkey<37>";
+				dbg_object(this).m_wait_timer=0;
 			}
-			this.m_wait_timer+=c_Time.m_Delta();
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_rectline.monkey<40>";
+			dbg_object(this).m_wait_timer+=c_Time.m_Delta();
 		}else{
-			if(this.m_shot_state==1){
-				var t_=this.m_position;
-				this.m_position.p_X(t_.p_X2()-100.0*c_Time.m_DeltaSecs());
+			err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_rectline.monkey<41>";
+			if(dbg_object(this).m_shot_state==1){
+				err_info="/Users/ricardo/git_loadingplay/gbjam4/src/sprites/enemy_rectline.monkey<42>";
+				var t_=dbg_object(this).m_position;
+				dbg_object(this).m_position.p_X(t_.p_X2()-100.0*c_Time.m_DeltaSecs());
 			}
 		}
 	}
+	pop_err();
 }
 c_EnemyRectLine.prototype.p_Shot=function(){
+	push_err();
+	pop_err();
 }
 function c_ClampToScreen(){
 	Object.call(this);
@@ -9732,29 +15267,49 @@ function c_ClampToScreen(){
 	this.implments={c_iDrawable:1};
 }
 c_ClampToScreen.m_new=function(t_target){
-	this.m_target=t_target;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/clamp_to_screen.monkey<10>";
+	dbg_object(this).m_target=t_target;
+	pop_err();
 	return this;
 }
 c_ClampToScreen.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/clamp_to_screen.monkey<4>";
+	pop_err();
 	return this;
 }
 c_ClampToScreen.prototype.p_Update=function(){
-	if(this.m_target.p_X2()<this.m_camera_viewport.p_X2()){
-		this.m_target.p_X(this.m_camera_viewport.p_X2());
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/clamp_to_screen.monkey<14>";
+	if(dbg_object(this).m_target.p_X2()<dbg_object(this).m_camera_viewport.p_X2()){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/clamp_to_screen.monkey<15>";
+		dbg_object(this).m_target.p_X(dbg_object(this).m_camera_viewport.p_X2());
 	}
-	if(this.m_target.p_Y2()<this.m_camera_viewport.p_Y2()){
-		this.m_target.p_Y(this.m_camera_viewport.p_Y2());
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/clamp_to_screen.monkey<18>";
+	if(dbg_object(this).m_target.p_Y2()<dbg_object(this).m_camera_viewport.p_Y2()){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/clamp_to_screen.monkey<19>";
+		dbg_object(this).m_target.p_Y(dbg_object(this).m_camera_viewport.p_Y2());
 	}
-	if(this.m_target.p_X2()+this.m_target.p_Width()>this.m_camera_viewport.p_X2()+this.m_camera_viewport.p_Width()){
-		this.m_target.p_X(this.m_camera_viewport.p_X2()+this.m_camera_viewport.p_Width()-this.m_target.p_Width());
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/clamp_to_screen.monkey<22>";
+	if(dbg_object(this).m_target.p_X2()+dbg_object(this).m_target.p_Width()>dbg_object(this).m_camera_viewport.p_X2()+dbg_object(this).m_camera_viewport.p_Width()){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/clamp_to_screen.monkey<23>";
+		dbg_object(this).m_target.p_X(dbg_object(this).m_camera_viewport.p_X2()+dbg_object(this).m_camera_viewport.p_Width()-dbg_object(this).m_target.p_Width());
 	}
-	if(this.m_target.p_Y2()+this.m_target.p_Height()>this.m_camera_viewport.p_Y2()+this.m_camera_viewport.p_Height()){
-		this.m_target.p_Y(this.m_camera_viewport.p_Y2()+this.m_camera_viewport.p_Height()-this.m_target.p_Height());
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/clamp_to_screen.monkey<26>";
+	if(dbg_object(this).m_target.p_Y2()+dbg_object(this).m_target.p_Height()>dbg_object(this).m_camera_viewport.p_Y2()+dbg_object(this).m_camera_viewport.p_Height()){
+		err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/clamp_to_screen.monkey<27>";
+		dbg_object(this).m_target.p_Y(dbg_object(this).m_camera_viewport.p_Y2()+dbg_object(this).m_camera_viewport.p_Height()-dbg_object(this).m_target.p_Height());
 	}
+	pop_err();
 }
 c_ClampToScreen.prototype.p_Create=function(){
+	push_err();
+	pop_err();
 }
 c_ClampToScreen.prototype.p_Render=function(){
+	push_err();
+	pop_err();
 }
 function c_CameraControl(){
 	Object.call(this);
@@ -9765,83 +15320,118 @@ function c_CameraControl(){
 	this.implments={c_iDrawable:1};
 }
 c_CameraControl.m_new=function(t_target){
-	this.m_target=t_target;
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camera_control.monkey<12>";
+	dbg_object(this).m_target=t_target;
+	pop_err();
 	return this;
 }
 c_CameraControl.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camera_control.monkey<4>";
+	pop_err();
 	return this;
 }
 c_CameraControl.prototype.p_Update=function(){
-	var t_=this.m_target;
-	this.m_target.p_X(t_.p_X2()+this.m_x_speed*c_Time.m_DeltaSecs());
-	var t_2=this.m_target;
-	this.m_target.p_Y(t_2.p_Y2()+this.m_y_speed*c_Time.m_DeltaSecs());
-	var t_3=this.m_player;
-	this.m_player.p_X(t_3.p_X2()+this.m_x_speed*c_Time.m_DeltaSecs());
+	push_err();
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camera_control.monkey<16>";
+	var t_=dbg_object(this).m_target;
+	dbg_object(this).m_target.p_X(t_.p_X2()+dbg_object(this).m_x_speed*c_Time.m_DeltaSecs());
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camera_control.monkey<17>";
+	var t_2=dbg_object(this).m_target;
+	dbg_object(this).m_target.p_Y(t_2.p_Y2()+dbg_object(this).m_y_speed*c_Time.m_DeltaSecs());
+	err_info="/Users/ricardo/git_loadingplay/gbjam4/src/components/camera_control.monkey<19>";
+	var t_3=dbg_object(this).m_player;
+	dbg_object(this).m_player.p_X(t_3.p_X2()+dbg_object(this).m_x_speed*c_Time.m_DeltaSecs());
+	pop_err();
 }
 c_CameraControl.prototype.p_Create=function(){
+	push_err();
+	pop_err();
 }
 c_CameraControl.prototype.p_Render=function(){
-}
-function c_Enumerator8(){
-	Object.call(this);
-	this.m_stack=null;
-	this.m_index=0;
-}
-c_Enumerator8.m_new=function(t_stack){
-	this.m_stack=t_stack;
-	return this;
-}
-c_Enumerator8.m_new2=function(){
-	return this;
-}
-c_Enumerator8.prototype.p_HasNext=function(){
-	return this.m_index<this.m_stack.p_Length2();
-}
-c_Enumerator8.prototype.p_NextObject=function(){
-	this.m_index+=1;
-	return this.m_stack.m_data[this.m_index-1];
+	push_err();
+	pop_err();
 }
 function c_NodeEnumerator(){
 	Object.call(this);
 	this.m_node=null;
 }
 c_NodeEnumerator.m_new=function(t_node){
-	this.m_node=t_node;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<437>";
+	dbg_object(this).m_node=t_node;
+	pop_err();
 	return this;
 }
 c_NodeEnumerator.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<434>";
+	pop_err();
 	return this;
 }
 c_NodeEnumerator.prototype.p_HasNext=function(){
-	return this.m_node!=null;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<441>";
+	var t_=this.m_node!=null;
+	pop_err();
+	return t_;
 }
 c_NodeEnumerator.prototype.p_NextObject=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<445>";
 	var t_t=this.m_node;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<446>";
 	this.m_node=this.m_node.p_NextNode();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/map.monkey<447>";
+	pop_err();
 	return t_t;
 }
 function bb_math_Clamp(t_n,t_min,t_max){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<61>";
 	if(t_n<t_min){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<61>";
+		pop_err();
 		return t_min;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<62>";
 	if(t_n>t_max){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<62>";
+		pop_err();
 		return t_max;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<63>";
+	pop_err();
 	return t_n;
 }
 function bb_math_Clamp2(t_n,t_min,t_max){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<88>";
 	if(t_n<t_min){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<88>";
+		pop_err();
 		return t_min;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<89>";
 	if(t_n>t_max){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<89>";
+		pop_err();
 		return t_max;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<90>";
+	pop_err();
 	return t_n;
 }
 function bb_graphics_DrawCircle(t_x,t_y,t_r){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<417>";
+	bb_graphics_DebugRenderDevice();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<419>";
 	bb_graphics_context.p_Validate();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/graphics.monkey<420>";
 	bb_graphics_renderDevice.DrawOval(t_x-t_r,t_y-t_r,t_r*2.0,t_r*2.0);
+	pop_err();
 	return 0;
 }
 function c_Enumerator9(){
@@ -9850,75 +15440,132 @@ function c_Enumerator9(){
 	this.m_index=0;
 }
 c_Enumerator9.m_new=function(t_stack){
-	this.m_stack=t_stack;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<255>";
+	dbg_object(this).m_stack=t_stack;
+	pop_err();
 	return this;
 }
 c_Enumerator9.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<252>";
+	pop_err();
 	return this;
 }
 c_Enumerator9.prototype.p_HasNext=function(){
-	return this.m_index<this.m_stack.p_Length2();
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<259>";
+	var t_=this.m_index<this.m_stack.p_Length2();
+	pop_err();
+	return t_;
 }
 c_Enumerator9.prototype.p_NextObject=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<263>";
 	this.m_index+=1;
-	return this.m_stack.m_data[this.m_index-1];
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<264>";
+	var t_=dbg_array(dbg_object(this.m_stack).m_data,this.m_index-1)[dbg_index];
+	pop_err();
+	return t_;
 }
 function c_Collision(){
 	Object.call(this);
 }
 c_Collision.m_AABBIntersects=function(t_r1,t_r2){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/functions.monkey<22>";
 	if(t_r1.p_X2()+t_r1.p_Width()<t_r2.p_X2() || t_r1.p_Y2()+t_r1.p_Height()<t_r2.p_Y2() || t_r1.p_X2()>t_r2.p_X2()+t_r2.p_Width() || t_r1.p_Y2()>t_r2.p_Y2()+t_r2.p_Height()){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/functions.monkey<23>";
+		pop_err();
 		return false;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/functions.monkey<26>";
+	pop_err();
 	return true;
 }
 function c_SAT(){
 	Object.call(this);
 }
 c_SAT.m_RectVsRect=function(t_r1,t_r2,t_rtn){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<30>";
 	var t_horizontalOverlap=.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<31>";
 	var t_horizontalDirection=.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<32>";
 	var t_verticalOverlap=.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<33>";
 	var t_verticalDirection=.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<35>";
 	var t_r1hw=t_r1.p_Width()/2.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<36>";
 	var t_r2hw=t_r2.p_Width()/2.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<37>";
 	var t_r1hh=t_r1.p_Height()/2.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<38>";
 	var t_r2hh=t_r2.p_Height()/2.0;
-	t_rtn.m_X=0.0;
-	t_rtn.m_Y=0.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<40>";
+	dbg_object(t_rtn).m_X=0.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<41>";
+	dbg_object(t_rtn).m_Y=0.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<43>";
 	t_horizontalOverlap=t_r1hw+t_r2hw-bb_math_Abs2(t_r1.p_X2()+t_r1hw-(t_r2.p_X2()+t_r2hw));
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<45>";
 	if(t_horizontalOverlap<=0.0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<46>";
+		pop_err();
 		return false;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<49>";
 	t_verticalOverlap=t_r1hh+t_r2hh-bb_math_Abs2(t_r1.p_Y2()+t_r1hh-(t_r2.p_Y2()+t_r2hh));
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<51>";
 	if(t_verticalOverlap<=0.0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<52>";
+		pop_err();
 		return false;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<55>";
 	if(t_horizontalOverlap<t_verticalOverlap){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<56>";
 		t_horizontalDirection=bb_math_Sgn2(t_r1.p_X2()+t_r1hw-(t_r2.p_X2()+t_r2hw));
-		t_rtn.m_X+=t_horizontalOverlap*t_horizontalDirection*-1.0;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<57>";
+		dbg_object(t_rtn).m_X+=t_horizontalOverlap*t_horizontalDirection*-1.0;
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<59>";
 		t_verticalDirection=bb_math_Sgn2(t_r1.p_Y2()+t_r1hh-(t_r2.p_Y2()+t_r2hh));
-		t_rtn.m_Y+=t_verticalOverlap*t_verticalDirection*-1.0;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<60>";
+		dbg_object(t_rtn).m_Y+=t_verticalOverlap*t_verticalDirection*-1.0;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<63>";
+	pop_err();
 	return true;
 }
 c_SAT.m_info=null;
 c_SAT.m_edge=null;
 c_SAT.m_axis=null;
 c_SAT.m_calculateInterval=function(t_r1,t_axis){
-	t_r1.p_Min(c_Vec2.m_Dot(t_r1.p_PointStack().p_Get(0).p_X2(),t_r1.p_PointStack().p_Get(0).p_Y2(),t_axis.m_X,t_axis.m_Y));
-	t_r1.p_Max(c_Vec2.m_Dot(t_r1.p_PointStack().p_Get(0).p_X2(),t_r1.p_PointStack().p_Get(0).p_Y2(),t_axis.m_X,t_axis.m_Y));
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<202>";
+	t_r1.p_Min(c_Vec2.m_Dot(t_r1.p_PointStack().p_Get(0).p_X2(),t_r1.p_PointStack().p_Get(0).p_Y2(),dbg_object(t_axis).m_X,dbg_object(t_axis).m_Y));
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<206>";
+	t_r1.p_Max(c_Vec2.m_Dot(t_r1.p_PointStack().p_Get(0).p_X2(),t_r1.p_PointStack().p_Get(0).p_Y2(),dbg_object(t_axis).m_X,dbg_object(t_axis).m_Y));
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<208>";
 	for(var t_i=1;t_i<t_r1.p_PointStack().p_Length2();t_i=t_i+1){
-		var t_d=c_Vec2.m_Dot(t_r1.p_PointStack().p_Get(t_i).p_X2(),t_r1.p_PointStack().p_Get(t_i).p_Y2(),t_axis.m_X,t_axis.m_Y);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<211>";
+		var t_d=c_Vec2.m_Dot(t_r1.p_PointStack().p_Get(t_i).p_X2(),t_r1.p_PointStack().p_Get(t_i).p_Y2(),dbg_object(t_axis).m_X,dbg_object(t_axis).m_Y);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<213>";
 		if(t_d<t_r1.p_Min2()){
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<214>";
 			t_r1.p_Min(t_d);
 		}else{
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<215>";
 			if(t_d>t_r1.p_Max2()){
+				err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<216>";
 				t_r1.p_Max(t_d);
 			}
 		}
 	}
+	pop_err();
 }
 c_SAT.m_mina=0;
 c_SAT.m_maxa=0;
@@ -9926,111 +15573,213 @@ c_SAT.m_minb=0;
 c_SAT.m_maxb=0;
 c_SAT.m_sep=null;
 c_SAT.m_separatedByAxis=function(t_r1,t_r2,t_axis){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<145>";
 	c_SAT.m_calculateInterval(t_r1,t_axis);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<146>";
 	c_SAT.m_mina=t_r1.p_Min2();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<147>";
 	c_SAT.m_maxa=t_r1.p_Max2();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<148>";
 	c_SAT.m_calculateInterval(t_r2,t_axis);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<149>";
 	c_SAT.m_minb=t_r2.p_Min2();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<150>";
 	c_SAT.m_maxb=t_r2.p_Max2();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<152>";
 	var t_d0=c_SAT.m_maxb-c_SAT.m_mina;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<153>";
 	var t_d1=c_SAT.m_minb-c_SAT.m_maxa;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<155>";
 	if(t_d0<0.0 || t_d1>0.0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<156>";
+		pop_err();
 		return true;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<159>";
 	var t_overlap=0.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<161>";
 	if(t_d0<-t_d1){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<162>";
 		t_overlap=t_d0;
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<164>";
 		t_overlap=t_d1;
 	}
-	var t_axis_length_squared=c_Vec2.m_DotSquared(t_axis.m_X,t_axis.m_Y);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<167>";
+	var t_axis_length_squared=c_Vec2.m_DotSquared(dbg_object(t_axis).m_X,dbg_object(t_axis).m_Y);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<169>";
 	if(!(t_axis_length_squared>0.00000000001)){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<170>";
 		error("axis_length_squared: no puede ser menor a 0.00000000001");
 	}
-	c_SAT.m_sep.m_X=t_axis.m_X*(t_overlap/t_axis_length_squared);
-	c_SAT.m_sep.m_Y=t_axis.m_Y*(t_overlap/t_axis_length_squared);
-	var t_sep_length_squared=c_Vec2.m_DotSquared(c_SAT.m_sep.m_X,c_SAT.m_sep.m_Y);
-	if(t_sep_length_squared<c_SAT.m_info.m_LengthSquared || c_SAT.m_info.m_LengthSquared<0.0){
-		c_SAT.m_info.m_LengthSquared=t_sep_length_squared;
-		c_SAT.m_info.m_mtd.m_X=c_SAT.m_sep.m_X;
-		c_SAT.m_info.m_mtd.m_Y=c_SAT.m_sep.m_Y;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<173>";
+	dbg_object(c_SAT.m_sep).m_X=dbg_object(t_axis).m_X*(t_overlap/t_axis_length_squared);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<174>";
+	dbg_object(c_SAT.m_sep).m_Y=dbg_object(t_axis).m_Y*(t_overlap/t_axis_length_squared);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<176>";
+	var t_sep_length_squared=c_Vec2.m_DotSquared(dbg_object(c_SAT.m_sep).m_X,dbg_object(c_SAT.m_sep).m_Y);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<178>";
+	if(t_sep_length_squared<dbg_object(c_SAT.m_info).m_LengthSquared || dbg_object(c_SAT.m_info).m_LengthSquared<0.0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<179>";
+		dbg_object(c_SAT.m_info).m_LengthSquared=t_sep_length_squared;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<180>";
+		dbg_object(dbg_object(c_SAT.m_info).m_mtd).m_X=dbg_object(c_SAT.m_sep).m_X;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<181>";
+		dbg_object(dbg_object(c_SAT.m_info).m_mtd).m_Y=dbg_object(c_SAT.m_sep).m_Y;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<184>";
+	pop_err();
 	return false;
 }
 c_SAT.m_PolyVsPoly=function(t_r1,t_r2,t_rtn){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<85>";
 	if(t_rtn!=null){
-		t_rtn.m_X=0.0;
-		t_rtn.m_Y=0.0;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<86>";
+		dbg_object(t_rtn).m_X=0.0;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<87>";
+		dbg_object(t_rtn).m_Y=0.0;
 	}
-	c_SAT.m_info.m_mtd.m_X=0.0;
-	c_SAT.m_info.m_mtd.m_Y=0.0;
-	c_SAT.m_info.m_LengthSquared=-1.0;
-	c_SAT.m_info.m_overlap=true;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<90>";
+	dbg_object(dbg_object(c_SAT.m_info).m_mtd).m_X=0.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<91>";
+	dbg_object(dbg_object(c_SAT.m_info).m_mtd).m_Y=0.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<93>";
+	dbg_object(c_SAT.m_info).m_LengthSquared=-1.0;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<94>";
+	dbg_object(c_SAT.m_info).m_overlap=true;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<96>";
 	var t_j=t_r1.p_Vertices().p_Length2()-1;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<98>";
 	for(var t_i=0;t_i<t_r1.p_Vertices().p_Length2();t_i=t_i+1){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<100>";
 		var t_v0=t_r1.p_Vertices().p_Get(t_j);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<101>";
 		var t_v1=t_r1.p_Vertices().p_Get(t_i);
-		c_SAT.m_edge.m_X=t_v1.p_X2()-t_v0.p_X2();
-		c_SAT.m_edge.m_Y=t_v1.p_Y2()-t_v0.p_Y2();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<103>";
+		dbg_object(c_SAT.m_edge).m_X=t_v1.p_X2()-t_v0.p_X2();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<104>";
+		dbg_object(c_SAT.m_edge).m_Y=t_v1.p_Y2()-t_v0.p_Y2();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<106>";
 		c_SAT.m_edge.p_Perp(c_SAT.m_axis);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<108>";
 		if(c_SAT.m_separatedByAxis(t_r1,t_r2,c_SAT.m_axis)){
-			c_SAT.m_info.m_overlap=false;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<109>";
+			dbg_object(c_SAT.m_info).m_overlap=false;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<112>";
 		t_j=t_i;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<116>";
 	t_j=t_r2.p_Vertices().p_Length2()-1;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<118>";
 	for(var t_i2=0;t_i2<t_r2.p_Vertices().p_Length2();t_i2=t_i2+1){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<120>";
 		var t_v02=t_r2.p_Vertices().p_Get(t_j);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<121>";
 		var t_v12=t_r2.p_Vertices().p_Get(t_i2);
-		c_SAT.m_edge.m_X=t_v12.p_X2()-t_v02.p_X2();
-		c_SAT.m_edge.m_Y=t_v12.p_Y2()-t_v02.p_Y2();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<123>";
+		dbg_object(c_SAT.m_edge).m_X=t_v12.p_X2()-t_v02.p_X2();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<124>";
+		dbg_object(c_SAT.m_edge).m_Y=t_v12.p_Y2()-t_v02.p_Y2();
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<126>";
 		c_SAT.m_edge.p_Perp(c_SAT.m_axis);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<128>";
 		if(c_SAT.m_separatedByAxis(t_r1,t_r2,c_SAT.m_axis)){
-			c_SAT.m_info.m_overlap=false;
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<129>";
+			dbg_object(c_SAT.m_info).m_overlap=false;
 		}
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<132>";
 		t_j=t_i2;
 	}
-	if(c_SAT.m_info.m_overlap && t_rtn!=null){
-		t_rtn.m_X=-c_SAT.m_info.m_mtd.m_X;
-		t_rtn.m_Y=-c_SAT.m_info.m_mtd.m_Y;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<136>";
+	if(dbg_object(c_SAT.m_info).m_overlap && t_rtn!=null){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<137>";
+		dbg_object(t_rtn).m_X=-dbg_object(dbg_object(c_SAT.m_info).m_mtd).m_X;
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<138>";
+		dbg_object(t_rtn).m_Y=-dbg_object(dbg_object(c_SAT.m_info).m_mtd).m_Y;
 	}
-	return c_SAT.m_info.m_overlap;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<141>";
+	pop_err();
+	return dbg_object(c_SAT.m_info).m_overlap;
 }
 c_SAT.m_Collide=function(t_r1,t_r2,t_rtn){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<17>";
 	if(t_r1.p_GetType()==3 && t_r2.p_GetType()==3){
-		return c_SAT.m_RectVsRect(t_r1,t_r2,t_rtn);
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<18>";
+		var t_=c_SAT.m_RectVsRect(t_r1,t_r2,t_rtn);
+		pop_err();
+		return t_;
 	}else{
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<20>";
 		if(c_Collision.m_AABBIntersects(t_r1,t_r2)){
-			return c_SAT.m_PolyVsPoly(t_r1,t_r2,t_rtn);
+			err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<21>";
+			var t_2=c_SAT.m_PolyVsPoly(t_r1,t_r2,t_rtn);
+			pop_err();
+			return t_2;
 		}
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<25>";
+	pop_err();
 	return false;
 }
 function bb_math_Abs(t_x){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<46>";
 	if(t_x>=0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<46>";
+		pop_err();
 		return t_x;
 	}
-	return -t_x;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<47>";
+	var t_=-t_x;
+	pop_err();
+	return t_;
 }
 function bb_math_Abs2(t_x){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<73>";
 	if(t_x>=0.0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<73>";
+		pop_err();
 		return t_x;
 	}
-	return -t_x;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<74>";
+	var t_=-t_x;
+	pop_err();
+	return t_;
 }
 function bb_math_Sgn(t_x){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<41>";
 	if(t_x<0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<41>";
+		pop_err();
 		return -1;
 	}
-	return ((t_x>0)?1:0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<42>";
+	var t_=((t_x>0)?1:0);
+	pop_err();
+	return t_;
 }
 function bb_math_Sgn2(t_x){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<67>";
 	if(t_x<0.0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<67>";
+		pop_err();
 		return -1.0;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<68>";
 	if(t_x>0.0){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<68>";
+		pop_err();
 		return 1.0;
 	}
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/math.monkey<69>";
+	pop_err();
 	return 0.0;
 }
 function c_lpCollisionInfo(){
@@ -10040,6 +15789,9 @@ function c_lpCollisionInfo(){
 	this.m_overlap=false;
 }
 c_lpCollisionInfo.m_new=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/collision/sat.monkey<5>";
+	pop_err();
 	return this;
 }
 function c_Enumerator10(){
@@ -10048,29 +15800,55 @@ function c_Enumerator10(){
 	this.m__curr=null;
 }
 c_Enumerator10.m_new=function(t_list){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<326>";
 	this.m__list=t_list;
-	this.m__curr=t_list.m__head.m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<327>";
+	this.m__curr=dbg_object(dbg_object(t_list).m__head).m__succ;
+	pop_err();
 	return this;
 }
 c_Enumerator10.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<323>";
+	pop_err();
 	return this;
 }
 c_Enumerator10.prototype.p_HasNext=function(){
-	while(this.m__curr.m__succ.m__pred!=this.m__curr){
-		this.m__curr=this.m__curr.m__succ;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<331>";
+	while(dbg_object(dbg_object(this.m__curr).m__succ).m__pred!=this.m__curr){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<332>";
+		this.m__curr=dbg_object(this.m__curr).m__succ;
 	}
-	return this.m__curr!=this.m__list.m__head;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<334>";
+	var t_=this.m__curr!=dbg_object(this.m__list).m__head;
+	pop_err();
+	return t_;
 }
 c_Enumerator10.prototype.p_NextObject=function(){
-	var t_data=this.m__curr.m__data;
-	this.m__curr=this.m__curr.m__succ;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<338>";
+	var t_data=dbg_object(this.m__curr).m__data;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<339>";
+	this.m__curr=dbg_object(this.m__curr).m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<340>";
+	pop_err();
 	return t_data;
 }
 function bb_input_KeyDown(t_key){
-	return ((bb_input_device.p_KeyDown(t_key))?1:0);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/input.monkey<40>";
+	var t_=((bb_input_device.p_KeyDown(t_key))?1:0);
+	pop_err();
+	return t_;
 }
 function bb_input_KeyHit(t_key){
-	return bb_input_device.p_KeyHit(t_key);
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/mojo/input.monkey<44>";
+	var t_=bb_input_device.p_KeyHit(t_key);
+	pop_err();
+	return t_;
 }
 function c_Enumerator11(){
 	Object.call(this);
@@ -10078,33 +15856,58 @@ function c_Enumerator11(){
 	this.m__curr=null;
 }
 c_Enumerator11.m_new=function(t_list){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<326>";
 	this.m__list=t_list;
-	this.m__curr=t_list.m__head.m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<327>";
+	this.m__curr=dbg_object(dbg_object(t_list).m__head).m__succ;
+	pop_err();
 	return this;
 }
 c_Enumerator11.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<323>";
+	pop_err();
 	return this;
 }
 c_Enumerator11.prototype.p_HasNext=function(){
-	while(this.m__curr.m__succ.m__pred!=this.m__curr){
-		this.m__curr=this.m__curr.m__succ;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<331>";
+	while(dbg_object(dbg_object(this.m__curr).m__succ).m__pred!=this.m__curr){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<332>";
+		this.m__curr=dbg_object(this.m__curr).m__succ;
 	}
-	return this.m__curr!=this.m__list.m__head;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<334>";
+	var t_=this.m__curr!=dbg_object(this.m__list).m__head;
+	pop_err();
+	return t_;
 }
 c_Enumerator11.prototype.p_NextObject=function(){
-	var t_data=this.m__curr.m__data;
-	this.m__curr=this.m__curr.m__succ;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<338>";
+	var t_data=dbg_object(this.m__curr).m__data;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<339>";
+	this.m__curr=dbg_object(this.m__curr).m__succ;
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/list.monkey<340>";
+	pop_err();
 	return t_data;
 }
 function c_Math(){
 	Object.call(this);
 }
 c_Math.m_Round=function(t_N){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/functions.monkey<17>";
 	var t_int_part=((t_N)|0);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/functions.monkey<19>";
 	if(t_N-(t_int_part)>=0.5){
+		err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/functions.monkey<20>";
 		t_int_part+=1;
 	}
-	return (t_int_part);
+	err_info="/Users/ricardo/MonkeyXPro82a/modules_ext/lp2/math/functions.monkey<23>";
+	var t_=(t_int_part);
+	pop_err();
+	return t_;
 }
 function c_Enumerator12(){
 	Object.call(this);
@@ -10112,18 +15915,33 @@ function c_Enumerator12(){
 	this.m_index=0;
 }
 c_Enumerator12.m_new=function(t_stack){
-	this.m_stack=t_stack;
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<255>";
+	dbg_object(this).m_stack=t_stack;
+	pop_err();
 	return this;
 }
 c_Enumerator12.m_new2=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<252>";
+	pop_err();
 	return this;
 }
 c_Enumerator12.prototype.p_HasNext=function(){
-	return this.m_index<this.m_stack.p_Length2();
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<259>";
+	var t_=this.m_index<this.m_stack.p_Length2();
+	pop_err();
+	return t_;
 }
 c_Enumerator12.prototype.p_NextObject=function(){
+	push_err();
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<263>";
 	this.m_index+=1;
-	return this.m_stack.m_data[this.m_index-1];
+	err_info="/Users/ricardo/MonkeyXPro82a/modules/monkey/stack.monkey<264>";
+	var t_=dbg_array(dbg_object(this.m_stack).m_data,this.m_index-1)[dbg_index];
+	pop_err();
+	return t_;
 }
 function bbInit(){
 	bb_app__app=null;
