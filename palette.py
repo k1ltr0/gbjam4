@@ -50,21 +50,25 @@ def readImage(image_name):
         for y in range(0,height):
             nim.putpixel((x, y), tuple(getNewColor(px[x, y])))
 
+    im.close()
     nim.save(image_name)
 
 
 def executeFullTree():
     # create a copy
     try:
-        shutil.copytree(orig_folder, dest_folder)
-    except:
-        pass
+        shutil.rmtree(dest_folder)
+    except ex:
+        print str(ex)
+
+    shutil.copytree(orig_folder, dest_folder)
 
     # convert all images
     for root, dirs, files in os.walk(os.path.join(os.path.dirname(__file__), dest_folder)):
         for f in files:
             fullpath = os.path.join(root, f)
             if os.path.splitext(fullpath)[1] == '.png':
+                print fullpath
                 readImage(fullpath)
 
 

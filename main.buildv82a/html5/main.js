@@ -19,7 +19,7 @@ CFG_TEXT_FILES="*.txt|*.xml|*.json;|*.fnt";
 //${CONFIG_END}
 
 //${METADATA_BEGIN}
-var META_DATA="[mojo_font.png];type=image/png;width=864;height=13;\n[bullet_enemy.png];type=image/png;width=6;height=6;\n[bullet_level_0.png];type=image/png;width=16;height=4;\n[bullet_level_1.png];type=image/png;width=5;height=3;\n[bullet_level_2.png];type=image/png;width=10;height=3;\n[bullet_level_3.png];type=image/png;width=10;height=6;\n[collisions.png];type=image/png;width=24;height=48;\n[enemies.png];type=image/png;width=55;height=9;\n[explosion.png];type=image/png;width=126;height=9;\n[powerup.png];type=image/png;width=4;height=6;\n[rectline_enemy.png];type=image/png;width=25;height=10;\n[ship.png];type=image/png;width=23;height=8;\n[thumbnail_a.png];type=image/png;width=588;height=331;\n[tiles.png];type=image/png;width=512;height=512;\n";
+var META_DATA="[mojo_font.png];type=image/png;width=864;height=13;\n[bullet_enemy.png];type=image/png;width=6;height=6;\n[bullet_level_0.png];type=image/png;width=16;height=4;\n[bullet_level_1.png];type=image/png;width=5;height=3;\n[bullet_level_2.png];type=image/png;width=10;height=3;\n[bullet_level_3.png];type=image/png;width=10;height=6;\n[collisions.png];type=image/png;width=24;height=48;\n[enemies.png];type=image/png;width=55;height=9;\n[explosion.png];type=image/png;width=126;height=9;\n[powerup.png];type=image/png;width=4;height=6;\n[rectline_enemy.png];type=image/png;width=25;height=10;\n[ship.png];type=image/png;width=23;height=8;\n[tiles.png];type=image/png;width=512;height=512;\n";
 //${METADATA_END}
 
 //${TRANSCODE_BEGIN}

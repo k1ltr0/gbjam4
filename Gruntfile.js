@@ -27,6 +27,9 @@ module.exports = function(grunt)
                 command: [
                     'transcc_macos -target=Html5_Game -config=Release main.monkey ',
                     'python -m palette'].join('&&')
+            },
+            clear: {
+                command: 'rm -rf main.buildv82a/html5b'
             }
         },
 
@@ -75,6 +78,6 @@ module.exports = function(grunt)
     grunt.loadNpmTasks('grunt-express');
     grunt.loadNpmTasks('grunt-contrib-compress');
 
-    grunt.registerTask('build', ['shell:build', 'compress']);
+    grunt.registerTask('build', ['shell:build', 'compress', 'shell:clear']);
     grunt.registerTask('default', ['shell:target', 'express', 'watch']);
 };
