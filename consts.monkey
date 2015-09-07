@@ -17,3 +17,5 @@ Const ENEMY_TURRET:String = "4100"
 Const ENEMY_TURRET_INVERTED:String = "4101"
 Const ENEMY_WAVE:String = "4102"
 Const ENEMY_RECTLINE:String = "4103"
+
+Const PLAYER:String = "4122"

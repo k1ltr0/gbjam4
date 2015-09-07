@@ -69,6 +69,11 @@ Class GamePlaySpace Extends Space
                 enemy = New EnemyWave(o)
             ElseIf o.gid = ENEMY_RECTLINE
                 enemy = New EnemyRectLine(o, o.gid)
+            ElseIf (o.gid = PLAYER) 
+                Self.player.position.X = o.X
+                Self.player.position.Y = o.Y
+
+                Game.Instance.GetCurrentCamera.ViewPort.X = Self.player.position.X - 50
             EndIf
 
             If (enemy <> Null)

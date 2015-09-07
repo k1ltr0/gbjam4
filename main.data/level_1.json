@@ -1029,6 +1029,22 @@
                  "width":9,
                  "x":1994.495,
                  "y":54
+                }, 
+                {
+                 "gid":4122,
+                 "height":8,
+                 "id":82,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":23,
+                 "x":9.33333333333324,
+                 "y":73
                 }],
          "opacity":0.949999988079071,
          "type":"objectgroup",
@@ -1048,7 +1064,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":82,
+ "nextobjectid":84,
  "orientation":"orthogonal",
  "properties":
     {
@@ -1163,6 +1179,22 @@
                 }
             },
          "tilewidth":8
+        }, 
+        {
+         "firstgid":4122,
+         "image":"ship.png",
+         "imageheight":8,
+         "imagewidth":23,
+         "margin":0,
+         "name":"ship",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":8,
+         "tilewidth":23
         }],
  "tilewidth":8,
  "version":1,

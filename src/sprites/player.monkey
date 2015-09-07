@@ -31,8 +31,8 @@ Class Player Implements iDrawable, iOnCollide
         Self.box = New Rectangle(0, 0, 10, 4)
 
         ''' ship animation
-        Self.sprite = new AnimatedSprite("ship.png", new Vec2(0,0), 23, 8, 2)
-        Self.sprite.AddSequence("fly", [0,1])
+        Self.sprite = new AnimatedSprite("ship.png", new Vec2(0,0), 23, 8, 1)
+        Self.sprite.AddSequence("fly", [0])
         Self.sprite.PlaySequence("fly", 1000/12)
 
         ''' movement controls
