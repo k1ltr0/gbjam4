@@ -24,7 +24,9 @@ module.exports = function(grunt)
                 command: 'transcc_macos -target=Html5_Game main.monkey'
             },
             build: {
-                command: 'transcc_macos -target=Html5_Game -config=Release main.monkey'
+                command: [
+                    'transcc_macos -target=Html5_Game -config=Release main.monkey ',
+                    'python -m palette'].join('&&')
             }
         },
 
@@ -43,8 +45,27 @@ module.exports = function(grunt)
         compress: {
             main: 
             {
-                options: { archive: 'builds/' + grunt.template.today('yyyy-mm-dd') + '.zip' },
-                files: [{expand: true, cwd: 'main.buildv82a/html5', src: ['**'], dest: ''}]
+                options: { 
+                    archive: 'builds/' + grunt.template.today('yyyy-mm-dd') + '.zip' 
+                },
+                files: [{
+                    expand: true, 
+                    cwd: 'main.buildv82a/html5', 
+                    src: ['**'], 
+                    dest: ''
+                }]
+            },
+            secondary : 
+            {
+                options: {
+                    archive: 'builds/' + grunt.template.today('yyyy-mm-dd') + '_b.zip'
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'main.buildv82a/html5b',
+                    src: ['**'],
+                    dest: ''
+                }]
             }
         }
 
