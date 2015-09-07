@@ -25,8 +25,9 @@ module.exports = function(grunt)
             },
             build: {
                 command: [
-                    'transcc_macos -target=Html5_Game -config=Release main.monkey ',
-                    'python -m palette'].join('&&')
+                    'transcc_macos -target=Html5_Game -config=Release +COLOR=B main.monkey ',
+                    'python -m palette',
+                    'transcc_macos -target=Html5_Game -config=Release +COLOR=A main.monkey '].join('&&')
             },
             clear: {
                 command: 'rm -rf main.buildv82a/html5b'

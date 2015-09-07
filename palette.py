@@ -13,10 +13,10 @@ orig = [[57, 57, 41, 255],
         [181, 165, 107, 255], 
         [231, 214, 156, 255]]
 
-other = [[4,8,23, 255],
-         [57,57,57, 255],
-         [128,128,128, 255],
-         [232,232,232, 255]]
+other = [[6,15,28, 255],
+         [96,94,102, 255],
+         [165,161,134, 255],
+         [215,210, 205, 255]]
 
 
 def getOrigIndex(rgb):
@@ -58,8 +58,8 @@ def executeFullTree():
     # create a copy
     try:
         shutil.rmtree(dest_folder)
-    except ex:
-        print str(ex)
+    except:
+        pass
 
     shutil.copytree(orig_folder, dest_folder)
 
