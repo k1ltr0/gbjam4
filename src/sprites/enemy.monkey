@@ -53,7 +53,7 @@ Class Enemy Implements iDrawable, iOnCollide
     Field player_position:Rectangle
 
     Field explosion:AnimatedSprite
-
+    Field explosion_sound:Sound
 
     ''' state machine
     Const STATE_ALIVE:Int = 0
@@ -99,6 +99,8 @@ Class Enemy Implements iDrawable, iOnCollide
         Self.explosion = New AnimatedSprite("explosion.png", new Vec2(0,0), 9,9,14)
         Self.explosion.AddSequence("explode", [0,1,2,3,4,5,6,7,8,9,10,11,12,13])
         '' Self.explosion.PlaySequence("explode", 70, False)
+
+        Self.explosion_sound = LoadSound("sounds/short_explosion.mp3")
     End
 
     Method Update:Void()
@@ -148,6 +150,7 @@ Class Enemy Implements iDrawable, iOnCollide
     Method OnCollide:Void(name:String)
         If (name = "player" Or name = "player_bullet")
             Time.Freeze(100)
+            PlaySound(Self.explosion_sound, 1)
             Self.explosion.PlaySequence("explode", 70)
             Self.explosion.Position.X = Self.position.X
             Self.explosion.Position.Y = Self.position.Y

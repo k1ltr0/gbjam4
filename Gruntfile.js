@@ -21,7 +21,7 @@ module.exports = function(grunt)
                 stderr: true
             },
             target: {
-                command: 'transcc_macos -target=Html5_Game main.monkey'
+                command: 'transcc_macos -target=Html5_Game +COLOR=A main.monkey'
             },
             build: {
                 command: [

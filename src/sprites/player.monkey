@@ -21,6 +21,9 @@ Class Player Implements iDrawable, iOnCollide
 
     Field state:Int = STATE_ALIVE
 
+
+    Field explosion_sound:Sound
+
     Method New()
         Self.Create()
     End
@@ -59,6 +62,8 @@ Class Player Implements iDrawable, iOnCollide
         ''' explosion
         Self.explosion = New AnimatedSprite("explosion.png", new Vec2(0,0), 9,9,14)
         Self.explosion.AddSequence("explode", [0,1,2,3,4,5,6,7,8,9,10,11,12,13])
+
+        Self.explosion_sound = LoadSound("sounds/long_explosion.mp3")
     End
     
     Method Update:Void()
@@ -132,6 +137,8 @@ Class Player Implements iDrawable, iOnCollide
         CollisionEngine.Instance.DestroyAll()
 
         Self.state = STATE_EXPLODE
+        SetChannelVolume( 0, 1 )
+        PlaySound( Self.explosion_sound, 0 )
 
         Self.explosion.Position.X = Self.position.X + 10
         Self.explosion.Position.Y = Self.position.Y

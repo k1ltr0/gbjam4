@@ -25,6 +25,8 @@ Class Bullet Extends AnimatedSprite Implements iOnCollide
 
     Field level:Int = 0
 
+    Global sound:Sound
+
     Method New(img:Image, position:Vec2)
         Super.New("bullet_level_0.png", position, 8.0, 4.0, 2)
 
@@ -34,6 +36,10 @@ Class Bullet Extends AnimatedSprite Implements iOnCollide
         Self.PlaySequence("shot")
 
         CollisionEngine.Instance.AddBody(Self)
+
+        If (Bullet.sound = Null)
+            Bullet.sound = LoadSound("sounds/hit.mp3")
+        EndIf
     End
 
     Method Update:Void()
@@ -73,6 +79,8 @@ Class Bullet Extends AnimatedSprite Implements iOnCollide
 
             Self.current_live_time = 0
             Self.max_live_time = 0.1
+
+            PlaySound(Bullet.sound, 2)
         End
     End
     Method GetName:String()
@@ -101,6 +109,8 @@ Class SpaceShooterCannon Implements iDrawable, iOnDestroy
 
     Field camera_fx:CameraFX
 
+    Field sound:Sound
+
     Method New(target:Point)
         Self.target = target
         Self.Create()
@@ -112,6 +122,8 @@ Class SpaceShooterCannon Implements iDrawable, iOnDestroy
         Self.bullets = New List<Bullet>
         Self.discard_list = New List<Bullet>
         Self.camera_fx = New CameraFX(Game.Instance.GetCurrentCamera.ViewPort)
+        Self.sound = LoadSound("sounds/shot.mp3")
+        SetChannelVolume( 0, 0.2 )
     End
 
     Method Update:Void()
@@ -163,6 +175,8 @@ Class SpaceShooterCannon Implements iDrawable, iOnDestroy
 
         self.bullets.AddLast(img)
         Self.camera_fx.Recoil()
+
+        PlaySound(Self.sound, 0)
     End
 
     Method LevelUp:Void()

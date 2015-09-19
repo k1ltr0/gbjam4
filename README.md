@@ -46,3 +46,6 @@ felipe
 * BUG: if you click out the screen and back, the ship jumps.
 * you can avoid big enemies by passing on top of screen
 * integrate gamejolt api
+
+
+NoiseForFun.com
