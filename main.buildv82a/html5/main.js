@@ -2172,19 +2172,27 @@ lp.OpenUrl = function( url, target)
 }
 
 lp.UrlParams = function( param_name ) {
-    qs = document.location.href.split( "?" )[1];
-    qs = qs.split("+").join(" ");
 
-    var params = {}, tokens,
-        re = /[?&]?([^=]+)=([^&]*)/g;
+    try
+    {
+        qs = document.location.href.split( "?" )[1];
+        qs = qs.split("+").join(" ");
 
-    while (tokens = re.exec(qs)) {
-        params[decodeURIComponent(tokens[1])]
-            = decodeURIComponent(tokens[2]);
+        var params = {}, tokens,
+            re = /[?&]?([^=]+)=([^&]*)/g;
+
+        while (tokens = re.exec(qs)) {
+            params[decodeURIComponent(tokens[1])]
+                = decodeURIComponent(tokens[2]);
+        }
+
+        if (undefined != params[param_name])
+            return params[param_name]
     }
-
-    if (undefined != params[param_name])
-        return params[param_name]
+    catch(e)
+    {
+        // nothing here...
+    }
 
     return "";
 }
@@ -2337,19 +2345,27 @@ lp.OpenUrl = function( url, target)
 }
 
 lp.UrlParams = function( param_name ) {
-    qs = document.location.href.split( "?" )[1];
-    qs = qs.split("+").join(" ");
 
-    var params = {}, tokens,
-        re = /[?&]?([^=]+)=([^&]*)/g;
+    try
+    {
+        qs = document.location.href.split( "?" )[1];
+        qs = qs.split("+").join(" ");
 
-    while (tokens = re.exec(qs)) {
-        params[decodeURIComponent(tokens[1])]
-            = decodeURIComponent(tokens[2]);
+        var params = {}, tokens,
+            re = /[?&]?([^=]+)=([^&]*)/g;
+
+        while (tokens = re.exec(qs)) {
+            params[decodeURIComponent(tokens[1])]
+                = decodeURIComponent(tokens[2]);
+        }
+
+        if (undefined != params[param_name])
+            return params[param_name]
     }
-
-    if (undefined != params[param_name])
-        return params[param_name]
+    catch(e)
+    {
+        // nothing here...
+    }
 
     return "";
 }

@@ -10,22 +10,11 @@ Thanks for playing!!
 * Move : Arrow keys
 * Shoot: X or SPACE
 
-
-# votos
-
-## Purple
-
-yi, cony, luis
-
-## Gray
-
-felipe
-
 # UPDATES: 
 
 05 - 09 - 2015
 
-*  added new enemies
+* added new enemies
 * level 1 improved
 * tweaks on visual effects
 * tweaks on gameplay

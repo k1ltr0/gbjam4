@@ -8,7 +8,7 @@ Class CameraControl Implements iDrawable
     Field y_speed:Float = 0
     Field player:Rectangle
 
-    Field max_x:Int = 300 * 8
+    Field max_x:Int = 320 * 8
 
     Method New(target:Rectangle)
         Self.target = target

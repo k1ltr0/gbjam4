@@ -5,8 +5,8 @@ import os
 import shutil
 from PIL import Image
 
-orig_folder = "main.buildv82a/html5"
-dest_folder = "main.buildv82a/html5b"
+orig_folder = "main.buildv86c/html5"
+dest_folder = "main.buildv86c/html5b"
 
 orig = [[57, 57, 41, 255], 
         [123, 115, 99, 255], 

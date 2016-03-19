@@ -30,7 +30,7 @@ module.exports = function(grunt)
                     'transcc_macos -target=Html5_Game -config=Release +COLOR=A main.monkey '].join('&&')
             },
             clear: {
-                command: 'rm -rf main.buildv82a/html5b'
+                command: 'rm -rf main.buildv86c/html5b'
             }
         },
 
@@ -39,7 +39,7 @@ module.exports = function(grunt)
                 options: {
                     port : 8888,
                     hostname : 'localhost',
-                    bases : ['main.buildv82a/html5/'],
+                    bases : ['main.buildv86c/html5/'],
                     livereload : true
                 }
             }
@@ -54,7 +54,7 @@ module.exports = function(grunt)
                 },
                 files: [{
                     expand: true, 
-                    cwd: 'main.buildv82a/html5', 
+                    cwd: 'main.buildv86c/html5', 
                     src: ['**'], 
                     dest: ''
                 }]
@@ -66,7 +66,7 @@ module.exports = function(grunt)
                 },
                 files: [{
                     expand: true,
-                    cwd: 'main.buildv82a/html5b',
+                    cwd: 'main.buildv86c/html5b',
                     src: ['**'],
                     dest: ''
                 }]
