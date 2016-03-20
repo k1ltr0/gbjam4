@@ -1,4 +1,5 @@
 Const GAME_SCENE:Int = 0
+Const MENU_SCENE:Int = 1
 
 Const SCREEN_WIDTH:Int = 160
 Const SCREEN_HEIGHT:Int = 144

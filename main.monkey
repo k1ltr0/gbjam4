@@ -10,11 +10,13 @@ Class GBNova Extends Game
 
         enablePixelArt()
 
-        Self.SetScene( GAME_SCENE )
+        Self.SetScene( MENU_SCENE )
     End
 
     Method GetScene:Scene( scene:Int )
         Select scene
+            Case MENU_SCENE
+                Return New MenuScene()
             Case GAME_SCENE
                 Return new GameScene()
         End
